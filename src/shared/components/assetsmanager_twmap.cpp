@@ -2528,7 +2528,13 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 			const CAsset_MapEntities* pEntities = GetAsset<CAsset_MapEntities>(pMap->GetEntityLayer(*EntityLayerIter));
 			if(!pEntities)
 				continue;
-			
+
+			if(Format == MAPFORMAT_INFCLASS)
+			{
+				EntityGroupNeeded = true;
+				continue;
+			}
+
 			for(int i=0; i<pEntities->GetEntityArraySize(); i++)
 			{
 				CSubPath SubPath = CAsset_MapEntities::SubPath_Entity(i);
@@ -3099,14 +3105,18 @@ void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, i
 				continue;
 			else if(EntityTypePath == m_Path_EntityType_TWNinja)
 				continue;
-			else if(EntityTypePath == m_Path_EntityType_TWHeart)
-				continue;
-			else if(EntityTypePath == m_Path_EntityType_TWArmor)
-				continue;
 			else if(EntityTypePath == m_Path_EntityType_TWFlagBlue)
 				continue;
 			else if(EntityTypePath == m_Path_EntityType_TWFlagRed)
 				continue;
+
+			if(Format != MAPFORMAT_INFCLASS)
+			{
+				if(EntityTypePath == m_Path_EntityType_TWHeart)
+					continue;
+				else if(EntityTypePath == m_Path_EntityType_TWArmor)
+					continue;
+			}
 
 			// Search in previous layers
 			unsigned int eId;
