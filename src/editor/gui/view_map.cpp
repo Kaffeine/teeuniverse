@@ -654,7 +654,8 @@ void CViewMap::RenderEntities()
 			CAsset_MapEntities::CIteratorEntity IterEntity;
 			for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
 			{
-				vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
+				vec2 Position = pEntities->GetEntityPosition(*IterEntity);
+				vec2 ScreenPos = MapRenderer()->MapPosToScreenPos(Position);
 				CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
 
 				const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
@@ -668,15 +669,15 @@ void CViewMap::RenderEntities()
 					float Angle1 = 2.0f*Pi*static_cast<float>(i+1)/32.0f;
 					float Angle2 = 2.0f*Pi*static_cast<float>(i+2)/32.0f;
 
-					vec2 P0 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle0), std::sin(Angle0)) * pEntityType->GetCollisionRadius());
-					vec2 P1 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle1), std::sin(Angle1)) * pEntityType->GetCollisionRadius());
-					vec2 P2 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle2), std::sin(Angle2)) * pEntityType->GetCollisionRadius());
+					vec2 P0 = MapRenderer()->MapPosToScreenPos(Position + vec2(std::cos(Angle0), std::sin(Angle0)) * pEntityType->GetCollisionRadius());
+					vec2 P1 = MapRenderer()->MapPosToScreenPos(Position + vec2(std::cos(Angle1), std::sin(Angle1)) * pEntityType->GetCollisionRadius());
+					vec2 P2 = MapRenderer()->MapPosToScreenPos(Position + vec2(std::cos(Angle2), std::sin(Angle2)) * pEntityType->GetCollisionRadius());
 
 					CGraphics::CFreeformItem Freeform(
 						P1.x, P1.y,
 						P2.x, P2.y,
 						P0.x, P0.y,
-						Pos.x, Pos.y
+						ScreenPos.x, ScreenPos.y
 					);
 					Graphics()->QuadsDrawFreeform(&Freeform, 1);
 
