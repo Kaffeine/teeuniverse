@@ -17,6 +17,7 @@
  */
 
 #include <client/components/graphics.h>
+#include <cstdint>
 #include <shared/components/assetsmanager.h>
 #include <shared/math/color.h>
 
@@ -914,20 +915,26 @@ protected:
 		int CharCount = pEnd - pText;
 		
 		uint32 Value = str_to_int_base(pText, 16);
-		
-		if(CharCount == 6)
+		const uint32_t DefaultValue = 255 + (255 << 8) + (255 << 16) + (255 << 24);
+
+		switch(CharCount)
 		{
+		case 6:
+			// Add alpha-channel:
 			Value = ((Value << 8) + 255);
+			break;
+		case 8:
+			// Use the value as-is
+			break;
+		default:
+			Value = DefaultValue;
 		}
-		else if(CharCount != 8)
-			Value = 255 + (255 << 8) + (255 << 16) + (255 << 24);
-		
+
 		m_pColorEdit->SetValue(vec4(
-			static_cast<float>((Value>>24) & 255)/255.0f,
-			static_cast<float>((Value>>16) & 255)/255.0f,
-			static_cast<float>((Value>>8) & 255)/255.0f,
-			static_cast<float>(Value & 255)/255.0f
-		));
+			static_cast<float>((Value >> 24) & 255) / 255.0f,
+			static_cast<float>((Value >> 16) & 255) / 255.0f,
+			static_cast<float>((Value >> 8) & 255) / 255.0f,
+			static_cast<float>(Value & 255) / 255.0f));
 	}
 	
 	void CopyToTextBuffer() override
