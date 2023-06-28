@@ -137,17 +137,17 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetCharacterPath() const { return m_CharacterPath; }
+	CAssetPath GetCharacterPath() const { return m_CharacterPath; }
 	
-	inline CSubPath GetCharacterPart() const { return m_CharacterPart; }
+	CSubPath GetCharacterPart() const { return m_CharacterPart; }
 	
-	inline CAssetPath GetSkeletonSkinPath() const { return m_SkeletonSkinPath; }
+	CAssetPath GetSkeletonSkinPath() const { return m_SkeletonSkinPath; }
 	
-	inline void SetCharacterPath(const CAssetPath& Value) { m_CharacterPath = Value; }
+	void SetCharacterPath(const CAssetPath& Value) { m_CharacterPath = Value; }
 	
-	inline void SetCharacterPart(const CSubPath& Value) { m_CharacterPart = Value; }
+	void SetCharacterPart(const CSubPath& Value) { m_CharacterPart = Value; }
 	
-	inline void SetSkeletonSkinPath(const CAssetPath& Value) { m_SkeletonSkinPath = Value; }
+	void SetSkeletonSkinPath(const CAssetPath& Value) { m_SkeletonSkinPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

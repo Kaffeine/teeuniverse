@@ -41,9 +41,9 @@
 class CAsset_TilingMaterial : public CAsset
 {
 public:
-	enum
+	enum EConditionType
 	{
-		CONDITIONTYPE_INDEX=0,
+		CONDITIONTYPE_INDEX,
 		CONDITIONTYPE_NOTINDEX,
 		CONDITIONTYPE_LABEL,
 		CONDITIONTYPE_NOTLABEL,
@@ -245,21 +245,21 @@ public:
 	
 	private:
 		CAssetPath m_ZoneTypePath;
-		uint8 m_OldIndex;
-		uint8 m_NewIndex;
+		uint8_t m_OldIndex;
+		uint8_t m_NewIndex;
 	
 	public:
-		inline CAssetPath GetZoneTypePath() const { return m_ZoneTypePath; }
+		CAssetPath GetZoneTypePath() const { return m_ZoneTypePath; }
 		
-		inline uint8 GetOldIndex() const { return m_OldIndex; }
+		uint8_t GetOldIndex() const { return m_OldIndex; }
 		
-		inline uint8 GetNewIndex() const { return m_NewIndex; }
+		uint8_t GetNewIndex() const { return m_NewIndex; }
 		
-		inline void SetZoneTypePath(const CAssetPath& Value) { m_ZoneTypePath = Value; }
+		void SetZoneTypePath(const CAssetPath& Value) { m_ZoneTypePath = Value; }
 		
-		inline void SetOldIndex(uint8 Value) { m_OldIndex = Value; }
+		void SetOldIndex(uint8_t Value) { m_OldIndex = Value; }
 		
-		inline void SetNewIndex(uint8 Value) { m_NewIndex = Value; }
+		void SetNewIndex(uint8_t Value) { m_NewIndex = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -336,21 +336,21 @@ public:
 		
 		public:
 			CCondition();
-			inline int GetType() const { return m_Type; }
+			int GetType() const { return m_Type; }
 			
-			inline int GetValue() const { return m_Value; }
+			int GetValue() const { return m_Value; }
 			
-			inline int GetRelPosX() const { return m_RelPosX; }
+			int GetRelPosX() const { return m_RelPosX; }
 			
-			inline int GetRelPosY() const { return m_RelPosY; }
+			int GetRelPosY() const { return m_RelPosY; }
 			
-			inline void SetType(int Value) { m_Type = Value; }
+			void SetType(int Value) { m_Type = Value; }
 			
-			inline void SetValue(int Value) { m_Value = Value; }
+			void SetValue(int Value) { m_Value = Value; }
 			
-			inline void SetRelPosX(int Value) { m_RelPosX = Value; }
+			void SetRelPosX(int Value) { m_RelPosX = Value; }
 			
-			inline void SetRelPosY(int Value) { m_RelPosY = Value; }
+			void SetRelPosY(int Value) { m_RelPosY = Value; }
 			
 			void AssetPathOperation(const CAssetPath::COperation& Operation)
 			{
@@ -415,19 +415,19 @@ public:
 	private:
 		std::vector<CRule::CCondition> m_Condition;
 		float m_Probability;
-		uint8 m_TileIndex;
-		uint8 m_TileFlags;
+		uint8_t m_TileIndex;
+		uint8_t m_TileFlags;
 	
 	public:
 		CRule();
-		inline int GetConditionArraySize() const { return m_Condition.size(); }
+		int GetConditionArraySize() const { return m_Condition.size(); }
 		
-		inline const CAsset_TilingMaterial::CRule::CCondition* GetConditionPtr() const { return &(m_Condition.front()); }
+		const CAsset_TilingMaterial::CRule::CCondition* GetConditionPtr() const { return &(m_Condition.front()); }
 		
-		inline const std::vector<CRule::CCondition>& GetConditionArray() const { return m_Condition; }
-		inline std::vector<CRule::CCondition>& GetConditionArray() { return m_Condition; }
+		const std::vector<CRule::CCondition>& GetConditionArray() const { return m_Condition; }
+		std::vector<CRule::CCondition>& GetConditionArray() { return m_Condition; }
 		
-		inline const CAsset_TilingMaterial::CRule::CCondition& GetCondition(const CSubPath& SubPath) const
+		const CAsset_TilingMaterial::CRule::CCondition& GetCondition(const CSubPath& SubPath) const
 		{
 			assert(SubPath.GetId() < m_Condition.size());
 			{
@@ -435,43 +435,43 @@ public:
 			}
 		}
 		
-		inline int GetConditionType(const CSubPath& SubPath) const
+		int GetConditionType(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				return m_Condition[SubPath.GetId()].GetType();
 			else return 0;
 		}
 		
-		inline int GetConditionValue(const CSubPath& SubPath) const
+		int GetConditionValue(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				return m_Condition[SubPath.GetId()].GetValue();
 			else return 0;
 		}
 		
-		inline int GetConditionRelPosX(const CSubPath& SubPath) const
+		int GetConditionRelPosX(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				return m_Condition[SubPath.GetId()].GetRelPosX();
 			else return 0;
 		}
 		
-		inline int GetConditionRelPosY(const CSubPath& SubPath) const
+		int GetConditionRelPosY(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				return m_Condition[SubPath.GetId()].GetRelPosY();
 			else return 0;
 		}
 		
-		inline float GetProbability() const { return m_Probability; }
+		float GetProbability() const { return m_Probability; }
 		
-		inline uint8 GetTileIndex() const { return m_TileIndex; }
+		uint8_t GetTileIndex() const { return m_TileIndex; }
 		
-		inline uint8 GetTileFlags() const { return m_TileFlags; }
+		uint8_t GetTileFlags() const { return m_TileFlags; }
 		
-		inline void SetConditionArraySize(int Value) { m_Condition.resize(Value); }
+		void SetConditionArraySize(int Value) { m_Condition.resize(Value); }
 		
-		inline void SetCondition(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule::CCondition& Value)
+		void SetCondition(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule::CCondition& Value)
 		{
 			if(SubPath.GetId() < m_Condition.size())
 			{
@@ -479,54 +479,54 @@ public:
 			}
 		}
 		
-		inline void SetConditionType(const CSubPath& SubPath, int Value)
+		void SetConditionType(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				m_Condition[SubPath.GetId()].SetType(Value);
 		}
 		
-		inline void SetConditionValue(const CSubPath& SubPath, int Value)
+		void SetConditionValue(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				m_Condition[SubPath.GetId()].SetValue(Value);
 		}
 		
-		inline void SetConditionRelPosX(const CSubPath& SubPath, int Value)
+		void SetConditionRelPosX(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				m_Condition[SubPath.GetId()].SetRelPosX(Value);
 		}
 		
-		inline void SetConditionRelPosY(const CSubPath& SubPath, int Value)
+		void SetConditionRelPosY(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Condition.size())
 				m_Condition[SubPath.GetId()].SetRelPosY(Value);
 		}
 		
-		inline void SetProbability(float Value) { m_Probability = Value; }
+		void SetProbability(float Value) { m_Probability = Value; }
 		
-		inline void SetTileIndex(uint8 Value) { m_TileIndex = Value; }
+		void SetTileIndex(uint8_t Value) { m_TileIndex = Value; }
 		
-		inline void SetTileFlags(uint8 Value) { m_TileFlags = Value; }
+		void SetTileFlags(uint8_t Value) { m_TileFlags = Value; }
 		
-		inline int AddCondition()
+		int AddCondition()
 		{
 			int Id = m_Condition.size();
 			m_Condition.emplace_back();
 			return Id;
 		}
 		
-		inline void AddAtCondition(int Index) { m_Condition.insert(m_Condition.begin() + Index, CAsset_TilingMaterial::CRule::CCondition()); }
+		void AddAtCondition(int Index) { m_Condition.insert(m_Condition.begin() + Index, CAsset_TilingMaterial::CRule::CCondition()); }
 		
-		inline void DeleteCondition(const CSubPath& SubPath) { m_Condition.erase(m_Condition.begin() + SubPath.GetId()); }
+		void DeleteCondition(const CSubPath& SubPath) { m_Condition.erase(m_Condition.begin() + SubPath.GetId()); }
 		
-		inline void RelMoveCondition(CSubPath& SubPath, int RelMove)
+		void RelMoveCondition(CSubPath& SubPath, int RelMove)
 		{
 			int NewId = relative_move(m_Condition, SubPath.GetId(), RelMove);
 			SubPath.SetId(NewId);
 		}
 		
-		inline bool IsValidCondition(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Condition.size()); }
+		bool IsValidCondition(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Condition.size()); }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -590,9 +590,9 @@ public:
 		_dynamic_string<128> m_Title;
 	
 	public:
-		inline const char* GetTitle() const { return m_Title.buffer(); }
+		const char* GetTitle() const { return m_Title.buffer(); }
 		
-		inline void SetTitle(const char* Value) { m_Title = Value; }
+		void SetTitle(const char* Value) { m_Title = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -653,19 +653,19 @@ public:
 	
 	private:
 		_dynamic_string<128> m_Title;
-		std::vector<uint8> m_Index;
+		std::vector<uint8_t> m_Index;
 	
 	public:
-		inline const char* GetTitle() const { return m_Title.buffer(); }
+		const char* GetTitle() const { return m_Title.buffer(); }
 		
-		inline int GetIndexArraySize() const { return m_Index.size(); }
+		int GetIndexArraySize() const { return m_Index.size(); }
 		
-		inline const uint8* GetIndexPtr() const { return &(m_Index.front()); }
+		const uint8_t* GetIndexPtr() const { return &(m_Index.front()); }
 		
-		inline const std::vector<uint8>& GetIndexArray() const { return m_Index; }
-		inline std::vector<uint8>& GetIndexArray() { return m_Index; }
+		const std::vector<uint8_t>& GetIndexArray() const { return m_Index; }
+		std::vector<uint8_t>& GetIndexArray() { return m_Index; }
 		
-		inline uint8 GetIndex(const CSubPath& SubPath) const
+		uint8_t GetIndex(const CSubPath& SubPath) const
 		{
 			assert(SubPath.GetId() < m_Index.size());
 			{
@@ -673,11 +673,11 @@ public:
 			}
 		}
 		
-		inline void SetTitle(const char* Value) { m_Title = Value; }
+		void SetTitle(const char* Value) { m_Title = Value; }
 		
-		inline void SetIndexArraySize(int Value) { m_Index.resize(Value); }
+		void SetIndexArraySize(int Value) { m_Index.resize(Value); }
 		
-		inline void SetIndex(const CSubPath& SubPath, uint8 Value)
+		void SetIndex(const CSubPath& SubPath, uint8_t Value)
 		{
 			if(SubPath.GetId() < m_Index.size())
 			{
@@ -685,24 +685,24 @@ public:
 			}
 		}
 		
-		inline int AddIndex()
+		int AddIndex()
 		{
 			int Id = m_Index.size();
 			m_Index.emplace_back();
 			return Id;
 		}
 		
-		inline void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, uint8()); }
+		void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, uint8_t()); }
 		
-		inline void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
+		void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
 		
-		inline void RelMoveIndex(CSubPath& SubPath, int RelMove)
+		void RelMoveIndex(CSubPath& SubPath, int RelMove)
 		{
 			int NewId = relative_move(m_Index, SubPath.GetId(), RelMove);
 			SubPath.SetId(NewId);
 		}
 		
-		inline bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
+		bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -797,16 +797,16 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetImagePath() const { return m_ImagePath; }
+	CAssetPath GetImagePath() const { return m_ImagePath; }
 	
-	inline int GetZoneConverterArraySize() const { return m_ZoneConverter.size(); }
+	int GetZoneConverterArraySize() const { return m_ZoneConverter.size(); }
 	
-	inline const CAsset_TilingMaterial::CZoneConverter* GetZoneConverterPtr() const { return &(m_ZoneConverter.front()); }
+	const CAsset_TilingMaterial::CZoneConverter* GetZoneConverterPtr() const { return &(m_ZoneConverter.front()); }
 	
-	inline const std::vector<CAsset_TilingMaterial::CZoneConverter>& GetZoneConverterArray() const { return m_ZoneConverter; }
-	inline std::vector<CAsset_TilingMaterial::CZoneConverter>& GetZoneConverterArray() { return m_ZoneConverter; }
+	const std::vector<CAsset_TilingMaterial::CZoneConverter>& GetZoneConverterArray() const { return m_ZoneConverter; }
+	std::vector<CAsset_TilingMaterial::CZoneConverter>& GetZoneConverterArray() { return m_ZoneConverter; }
 	
-	inline const CAsset_TilingMaterial::CZoneConverter& GetZoneConverter(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CZoneConverter& GetZoneConverter(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_ZoneConverter.size());
 		{
@@ -814,35 +814,35 @@ public:
 		}
 	}
 	
-	inline CAssetPath GetZoneConverterZoneTypePath(const CSubPath& SubPath) const
+	CAssetPath GetZoneConverterZoneTypePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			return m_ZoneConverter[SubPath.GetId()].GetZoneTypePath();
 		else return CAssetPath::Null();
 	}
 	
-	inline uint8 GetZoneConverterOldIndex(const CSubPath& SubPath) const
+	uint8_t GetZoneConverterOldIndex(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			return m_ZoneConverter[SubPath.GetId()].GetOldIndex();
 		else return 0;
 	}
 	
-	inline uint8 GetZoneConverterNewIndex(const CSubPath& SubPath) const
+	uint8_t GetZoneConverterNewIndex(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			return m_ZoneConverter[SubPath.GetId()].GetNewIndex();
 		else return 0;
 	}
 	
-	inline int GetRuleArraySize() const { return m_Rule.size(); }
+	int GetRuleArraySize() const { return m_Rule.size(); }
 	
-	inline const CAsset_TilingMaterial::CRule* GetRulePtr() const { return &(m_Rule.front()); }
+	const CAsset_TilingMaterial::CRule* GetRulePtr() const { return &(m_Rule.front()); }
 	
-	inline const std::vector<CAsset_TilingMaterial::CRule>& GetRuleArray() const { return m_Rule; }
-	inline std::vector<CAsset_TilingMaterial::CRule>& GetRuleArray() { return m_Rule; }
+	const std::vector<CAsset_TilingMaterial::CRule>& GetRuleArray() const { return m_Rule; }
+	std::vector<CAsset_TilingMaterial::CRule>& GetRuleArray() { return m_Rule; }
 	
-	inline const CAsset_TilingMaterial::CRule& GetRule(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CRule& GetRule(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Rule.size());
 		{
@@ -850,94 +850,94 @@ public:
 		}
 	}
 	
-	inline int GetRuleConditionArraySize(const CSubPath& SubPath) const
+	int GetRuleConditionArraySize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionArraySize();
 		else return 0;
 	}
 	
-	inline const CAsset_TilingMaterial::CRule::CCondition* GetRuleConditionPtr(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CRule::CCondition* GetRuleConditionPtr(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionPtr();
 		else return NULL;
 	}
 	
-	inline const std::vector<CRule::CCondition>& GetRuleConditionArray(const CSubPath& SubPath) const
+	const std::vector<CRule::CCondition>& GetRuleConditionArray(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Rule.size());
 		return m_Rule[SubPath.GetId()].GetConditionArray();
 	}
-	inline std::vector<CRule::CCondition>& GetRuleConditionArray(const CSubPath& SubPath)
+	std::vector<CRule::CCondition>& GetRuleConditionArray(const CSubPath& SubPath)
 	{
 		assert(SubPath.GetId() < m_Rule.size());
 		return m_Rule[SubPath.GetId()].GetConditionArray();
 	}
 	
-	inline const CAsset_TilingMaterial::CRule::CCondition& GetRuleCondition(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CRule::CCondition& GetRuleCondition(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Rule.size());
 		return m_Rule[SubPath.GetId()].GetCondition(SubPath.PopId());
 	}
 	
-	inline int GetRuleConditionType(const CSubPath& SubPath) const
+	int GetRuleConditionType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionType(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetRuleConditionValue(const CSubPath& SubPath) const
+	int GetRuleConditionValue(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionValue(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetRuleConditionRelPosX(const CSubPath& SubPath) const
+	int GetRuleConditionRelPosX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionRelPosX(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetRuleConditionRelPosY(const CSubPath& SubPath) const
+	int GetRuleConditionRelPosY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetConditionRelPosY(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline float GetRuleProbability(const CSubPath& SubPath) const
+	float GetRuleProbability(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetProbability();
 		else return 0.0f;
 	}
 	
-	inline uint8 GetRuleTileIndex(const CSubPath& SubPath) const
+	uint8_t GetRuleTileIndex(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetTileIndex();
 		else return 0;
 	}
 	
-	inline uint8 GetRuleTileFlags(const CSubPath& SubPath) const
+	uint8_t GetRuleTileFlags(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			return m_Rule[SubPath.GetId()].GetTileFlags();
 		else return 0;
 	}
 	
-	inline int GetIndexArraySize() const { return m_Index.size(); }
+	int GetIndexArraySize() const { return m_Index.size(); }
 	
-	inline const CAsset_TilingMaterial::CIndex* GetIndexPtr() const { return &(m_Index.front()); }
+	const CAsset_TilingMaterial::CIndex* GetIndexPtr() const { return &(m_Index.front()); }
 	
-	inline const std::vector<CAsset_TilingMaterial::CIndex>& GetIndexArray() const { return m_Index; }
-	inline std::vector<CAsset_TilingMaterial::CIndex>& GetIndexArray() { return m_Index; }
+	const std::vector<CAsset_TilingMaterial::CIndex>& GetIndexArray() const { return m_Index; }
+	std::vector<CAsset_TilingMaterial::CIndex>& GetIndexArray() { return m_Index; }
 	
-	inline const CAsset_TilingMaterial::CIndex& GetIndex(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CIndex& GetIndex(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Index.size());
 		{
@@ -945,21 +945,21 @@ public:
 		}
 	}
 	
-	inline const char* GetIndexTitle(const CSubPath& SubPath) const
+	const char* GetIndexTitle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetTitle();
 		else return NULL;
 	}
 	
-	inline int GetLabelArraySize() const { return m_Label.size(); }
+	int GetLabelArraySize() const { return m_Label.size(); }
 	
-	inline const CAsset_TilingMaterial::CLabel* GetLabelPtr() const { return &(m_Label.front()); }
+	const CAsset_TilingMaterial::CLabel* GetLabelPtr() const { return &(m_Label.front()); }
 	
-	inline const std::vector<CAsset_TilingMaterial::CLabel>& GetLabelArray() const { return m_Label; }
-	inline std::vector<CAsset_TilingMaterial::CLabel>& GetLabelArray() { return m_Label; }
+	const std::vector<CAsset_TilingMaterial::CLabel>& GetLabelArray() const { return m_Label; }
+	std::vector<CAsset_TilingMaterial::CLabel>& GetLabelArray() { return m_Label; }
 	
-	inline const CAsset_TilingMaterial::CLabel& GetLabel(const CSubPath& SubPath) const
+	const CAsset_TilingMaterial::CLabel& GetLabel(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Label.size());
 		{
@@ -967,50 +967,50 @@ public:
 		}
 	}
 	
-	inline const char* GetLabelTitle(const CSubPath& SubPath) const
+	const char* GetLabelTitle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetTitle();
 		else return NULL;
 	}
 	
-	inline int GetLabelIndexArraySize(const CSubPath& SubPath) const
+	int GetLabelIndexArraySize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetIndexArraySize();
 		else return 0;
 	}
 	
-	inline const uint8* GetLabelIndexPtr(const CSubPath& SubPath) const
+	const uint8_t* GetLabelIndexPtr(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetIndexPtr();
 		else return NULL;
 	}
 	
-	inline const std::vector<uint8>& GetLabelIndexArray(const CSubPath& SubPath) const
+	const std::vector<uint8_t>& GetLabelIndexArray(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Label.size());
 		return m_Label[SubPath.GetId()].GetIndexArray();
 	}
-	inline std::vector<uint8>& GetLabelIndexArray(const CSubPath& SubPath)
+	std::vector<uint8_t>& GetLabelIndexArray(const CSubPath& SubPath)
 	{
 		assert(SubPath.GetId() < m_Label.size());
 		return m_Label[SubPath.GetId()].GetIndexArray();
 	}
 	
-	inline uint8 GetLabelIndex(const CSubPath& SubPath) const
+	uint8_t GetLabelIndex(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetIndex(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
+	void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
 	
-	inline void SetZoneConverterArraySize(int Value) { m_ZoneConverter.resize(Value); }
+	void SetZoneConverterArraySize(int Value) { m_ZoneConverter.resize(Value); }
 	
-	inline void SetZoneConverter(const CSubPath& SubPath, const CAsset_TilingMaterial::CZoneConverter& Value)
+	void SetZoneConverter(const CSubPath& SubPath, const CAsset_TilingMaterial::CZoneConverter& Value)
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 		{
@@ -1018,27 +1018,27 @@ public:
 		}
 	}
 	
-	inline void SetZoneConverterZoneTypePath(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetZoneConverterZoneTypePath(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			m_ZoneConverter[SubPath.GetId()].SetZoneTypePath(Value);
 	}
 	
-	inline void SetZoneConverterOldIndex(const CSubPath& SubPath, uint8 Value)
+	void SetZoneConverterOldIndex(const CSubPath& SubPath, uint8_t Value)
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			m_ZoneConverter[SubPath.GetId()].SetOldIndex(Value);
 	}
 	
-	inline void SetZoneConverterNewIndex(const CSubPath& SubPath, uint8 Value)
+	void SetZoneConverterNewIndex(const CSubPath& SubPath, uint8_t Value)
 	{
 		if(SubPath.GetId() < m_ZoneConverter.size())
 			m_ZoneConverter[SubPath.GetId()].SetNewIndex(Value);
 	}
 	
-	inline void SetRuleArraySize(int Value) { m_Rule.resize(Value); }
+	void SetRuleArraySize(int Value) { m_Rule.resize(Value); }
 	
-	inline void SetRule(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule& Value)
+	void SetRule(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule& Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 		{
@@ -1046,63 +1046,63 @@ public:
 		}
 	}
 	
-	inline void SetRuleConditionArraySize(const CSubPath& SubPath, int Value)
+	void SetRuleConditionArraySize(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetConditionArraySize(Value);
 	}
 	
-	inline void SetRuleCondition(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule::CCondition& Value)
+	void SetRuleCondition(const CSubPath& SubPath, const CAsset_TilingMaterial::CRule::CCondition& Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetCondition(SubPath.PopId(), Value);
 	}
 	
-	inline void SetRuleConditionType(const CSubPath& SubPath, int Value)
+	void SetRuleConditionType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetConditionType(SubPath.PopId(), Value);
 	}
 	
-	inline void SetRuleConditionValue(const CSubPath& SubPath, int Value)
+	void SetRuleConditionValue(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetConditionValue(SubPath.PopId(), Value);
 	}
 	
-	inline void SetRuleConditionRelPosX(const CSubPath& SubPath, int Value)
+	void SetRuleConditionRelPosX(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetConditionRelPosX(SubPath.PopId(), Value);
 	}
 	
-	inline void SetRuleConditionRelPosY(const CSubPath& SubPath, int Value)
+	void SetRuleConditionRelPosY(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetConditionRelPosY(SubPath.PopId(), Value);
 	}
 	
-	inline void SetRuleProbability(const CSubPath& SubPath, float Value)
+	void SetRuleProbability(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetProbability(Value);
 	}
 	
-	inline void SetRuleTileIndex(const CSubPath& SubPath, uint8 Value)
+	void SetRuleTileIndex(const CSubPath& SubPath, uint8_t Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetTileIndex(Value);
 	}
 	
-	inline void SetRuleTileFlags(const CSubPath& SubPath, uint8 Value)
+	void SetRuleTileFlags(const CSubPath& SubPath, uint8_t Value)
 	{
 		if(SubPath.GetId() < m_Rule.size())
 			m_Rule[SubPath.GetId()].SetTileFlags(Value);
 	}
 	
-	inline void SetIndexArraySize(int Value) { m_Index.resize(Value); }
+	void SetIndexArraySize(int Value) { m_Index.resize(Value); }
 	
-	inline void SetIndex(const CSubPath& SubPath, const CAsset_TilingMaterial::CIndex& Value)
+	void SetIndex(const CSubPath& SubPath, const CAsset_TilingMaterial::CIndex& Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 		{
@@ -1110,15 +1110,15 @@ public:
 		}
 	}
 	
-	inline void SetIndexTitle(const CSubPath& SubPath, const char* Value)
+	void SetIndexTitle(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetTitle(Value);
 	}
 	
-	inline void SetLabelArraySize(int Value) { m_Label.resize(Value); }
+	void SetLabelArraySize(int Value) { m_Label.resize(Value); }
 	
-	inline void SetLabel(const CSubPath& SubPath, const CAsset_TilingMaterial::CLabel& Value)
+	void SetLabel(const CSubPath& SubPath, const CAsset_TilingMaterial::CLabel& Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 		{
@@ -1126,129 +1126,129 @@ public:
 		}
 	}
 	
-	inline void SetLabelTitle(const CSubPath& SubPath, const char* Value)
+	void SetLabelTitle(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetTitle(Value);
 	}
 	
-	inline void SetLabelIndexArraySize(const CSubPath& SubPath, int Value)
+	void SetLabelIndexArraySize(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetIndexArraySize(Value);
 	}
 	
-	inline void SetLabelIndex(const CSubPath& SubPath, uint8 Value)
+	void SetLabelIndex(const CSubPath& SubPath, uint8_t Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetIndex(SubPath.PopId(), Value);
 	}
 	
-	inline int AddZoneConverter()
+	int AddZoneConverter()
 	{
 		int Id = m_ZoneConverter.size();
 		m_ZoneConverter.emplace_back();
 		return Id;
 	}
 	
-	inline int AddRule()
+	int AddRule()
 	{
 		int Id = m_Rule.size();
 		m_Rule.emplace_back();
 		return Id;
 	}
 	
-	inline int AddRuleCondition(const CSubPath& SubPath) { return m_Rule[SubPath.GetId()].AddCondition(); }
+	int AddRuleCondition(const CSubPath& SubPath) { return m_Rule[SubPath.GetId()].AddCondition(); }
 	
-	inline int AddIndex()
+	int AddIndex()
 	{
 		int Id = m_Index.size();
 		m_Index.emplace_back();
 		return Id;
 	}
 	
-	inline int AddLabel()
+	int AddLabel()
 	{
 		int Id = m_Label.size();
 		m_Label.emplace_back();
 		return Id;
 	}
 	
-	inline int AddLabelIndex(const CSubPath& SubPath) { return m_Label[SubPath.GetId()].AddIndex(); }
+	int AddLabelIndex(const CSubPath& SubPath) { return m_Label[SubPath.GetId()].AddIndex(); }
 	
-	inline void AddAtZoneConverter(int Index) { m_ZoneConverter.insert(m_ZoneConverter.begin() + Index, CAsset_TilingMaterial::CZoneConverter()); }
+	void AddAtZoneConverter(int Index) { m_ZoneConverter.insert(m_ZoneConverter.begin() + Index, CAsset_TilingMaterial::CZoneConverter()); }
 	
-	inline void AddAtRule(int Index) { m_Rule.insert(m_Rule.begin() + Index, CAsset_TilingMaterial::CRule()); }
+	void AddAtRule(int Index) { m_Rule.insert(m_Rule.begin() + Index, CAsset_TilingMaterial::CRule()); }
 	
-	inline void AddAtRuleCondition(const CSubPath& SubPath, int Index) { m_Rule[SubPath.GetId()].AddAtCondition(Index); }
+	void AddAtRuleCondition(const CSubPath& SubPath, int Index) { m_Rule[SubPath.GetId()].AddAtCondition(Index); }
 	
-	inline void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, CAsset_TilingMaterial::CIndex()); }
+	void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, CAsset_TilingMaterial::CIndex()); }
 	
-	inline void AddAtLabel(int Index) { m_Label.insert(m_Label.begin() + Index, CAsset_TilingMaterial::CLabel()); }
+	void AddAtLabel(int Index) { m_Label.insert(m_Label.begin() + Index, CAsset_TilingMaterial::CLabel()); }
 	
-	inline void AddAtLabelIndex(const CSubPath& SubPath, int Index) { m_Label[SubPath.GetId()].AddAtIndex(Index); }
+	void AddAtLabelIndex(const CSubPath& SubPath, int Index) { m_Label[SubPath.GetId()].AddAtIndex(Index); }
 	
-	inline void DeleteZoneConverter(const CSubPath& SubPath) { m_ZoneConverter.erase(m_ZoneConverter.begin() + SubPath.GetId()); }
+	void DeleteZoneConverter(const CSubPath& SubPath) { m_ZoneConverter.erase(m_ZoneConverter.begin() + SubPath.GetId()); }
 	
-	inline void DeleteRule(const CSubPath& SubPath) { m_Rule.erase(m_Rule.begin() + SubPath.GetId()); }
+	void DeleteRule(const CSubPath& SubPath) { m_Rule.erase(m_Rule.begin() + SubPath.GetId()); }
 	
-	inline void DeleteRuleCondition(const CSubPath& SubPath) { m_Rule[SubPath.GetId()].DeleteCondition(SubPath.PopId()); }
+	void DeleteRuleCondition(const CSubPath& SubPath) { m_Rule[SubPath.GetId()].DeleteCondition(SubPath.PopId()); }
 	
-	inline void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
+	void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
 	
-	inline void DeleteLabel(const CSubPath& SubPath) { m_Label.erase(m_Label.begin() + SubPath.GetId()); }
+	void DeleteLabel(const CSubPath& SubPath) { m_Label.erase(m_Label.begin() + SubPath.GetId()); }
 	
-	inline void DeleteLabelIndex(const CSubPath& SubPath) { m_Label[SubPath.GetId()].DeleteIndex(SubPath.PopId()); }
+	void DeleteLabelIndex(const CSubPath& SubPath) { m_Label[SubPath.GetId()].DeleteIndex(SubPath.PopId()); }
 	
-	inline void RelMoveZoneConverter(CSubPath& SubPath, int RelMove)
+	void RelMoveZoneConverter(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_ZoneConverter, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveRule(CSubPath& SubPath, int RelMove)
+	void RelMoveRule(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Rule, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveRuleCondition(CSubPath& SubPath, int RelMove)
+	void RelMoveRuleCondition(CSubPath& SubPath, int RelMove)
 	{
 		CSubPath ChildSubPath = SubPath.PopId();
 		m_Rule[SubPath.GetId()].RelMoveCondition(ChildSubPath, RelMove);
 		SubPath.SetId2(ChildSubPath.GetId());
 	}
 	
-	inline void RelMoveIndex(CSubPath& SubPath, int RelMove)
+	void RelMoveIndex(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Index, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveLabel(CSubPath& SubPath, int RelMove)
+	void RelMoveLabel(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Label, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveLabelIndex(CSubPath& SubPath, int RelMove)
+	void RelMoveLabelIndex(CSubPath& SubPath, int RelMove)
 	{
 		CSubPath ChildSubPath = SubPath.PopId();
 		m_Label[SubPath.GetId()].RelMoveIndex(ChildSubPath, RelMove);
 		SubPath.SetId2(ChildSubPath.GetId());
 	}
 	
-	inline bool IsValidZoneConverter(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_ZoneConverter.size()); }
+	bool IsValidZoneConverter(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_ZoneConverter.size()); }
 	
-	inline bool IsValidRule(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Rule.size()); }
+	bool IsValidRule(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Rule.size()); }
 	
-	inline bool IsValidRuleCondition(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Rule.size() && m_Rule[SubPath.GetId()].IsValidCondition(SubPath.PopId())); }
+	bool IsValidRuleCondition(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Rule.size() && m_Rule[SubPath.GetId()].IsValidCondition(SubPath.PopId())); }
 	
-	inline bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
+	bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
 	
-	inline bool IsValidLabel(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size()); }
+	bool IsValidLabel(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size()); }
 	
-	inline bool IsValidLabelIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size() && m_Label[SubPath.GetId()].IsValidIndex(SubPath.PopId())); }
+	bool IsValidLabelIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size() && m_Label[SubPath.GetId()].IsValidIndex(SubPath.PopId())); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

@@ -162,29 +162,29 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiScrollbarStyle();
-	inline CAssetPath GetRectPath() const { return m_RectPath; }
+	CAssetPath GetRectPath() const { return m_RectPath; }
 	
-	inline CAssetPath GetDefaultRailPath() const { return m_DefaultRailPath; }
+	CAssetPath GetDefaultRailPath() const { return m_DefaultRailPath; }
 	
-	inline CAssetPath GetDefaultSliderPath() const { return m_DefaultSliderPath; }
+	CAssetPath GetDefaultSliderPath() const { return m_DefaultSliderPath; }
 	
-	inline CAssetPath GetMouseOverSliderPath() const { return m_MouseOverSliderPath; }
+	CAssetPath GetMouseOverSliderPath() const { return m_MouseOverSliderPath; }
 	
-	inline int GetMargin() const { return m_Margin; }
+	int GetMargin() const { return m_Margin; }
 	
-	inline int GetPadding() const { return m_Padding; }
+	int GetPadding() const { return m_Padding; }
 	
-	inline void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
+	void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
 	
-	inline void SetDefaultRailPath(const CAssetPath& Value) { m_DefaultRailPath = Value; }
+	void SetDefaultRailPath(const CAssetPath& Value) { m_DefaultRailPath = Value; }
 	
-	inline void SetDefaultSliderPath(const CAssetPath& Value) { m_DefaultSliderPath = Value; }
+	void SetDefaultSliderPath(const CAssetPath& Value) { m_DefaultSliderPath = Value; }
 	
-	inline void SetMouseOverSliderPath(const CAssetPath& Value) { m_MouseOverSliderPath = Value; }
+	void SetMouseOverSliderPath(const CAssetPath& Value) { m_MouseOverSliderPath = Value; }
 	
-	inline void SetMargin(int Value) { m_Margin = Value; }
+	void SetMargin(int Value) { m_Margin = Value; }
 	
-	inline void SetPadding(int Value) { m_Padding = Value; }
+	void SetPadding(int Value) { m_Padding = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

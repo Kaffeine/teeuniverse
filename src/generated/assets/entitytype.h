@@ -129,13 +129,13 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetGizmoPath() const { return m_GizmoPath; }
+	CAssetPath GetGizmoPath() const { return m_GizmoPath; }
 	
-	inline float GetCollisionRadius() const { return m_CollisionRadius; }
+	float GetCollisionRadius() const { return m_CollisionRadius; }
 	
-	inline void SetGizmoPath(const CAssetPath& Value) { m_GizmoPath = Value; }
+	void SetGizmoPath(const CAssetPath& Value) { m_GizmoPath = Value; }
 	
-	inline void SetCollisionRadius(float Value) { m_CollisionRadius = Value; }
+	void SetCollisionRadius(float Value) { m_CollisionRadius = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

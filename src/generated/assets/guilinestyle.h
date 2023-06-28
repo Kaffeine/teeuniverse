@@ -161,25 +161,25 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiLineStyle();
-	inline int GetFlags() const { return m_Flags; }
+	int GetFlags() const { return m_Flags; }
 	
-	inline vec4 GetBorderColor() const { return m_BorderColor; }
+	vec4 GetBorderColor() const { return m_BorderColor; }
 	
-	inline CAssetPath GetImageLPath() const { return m_ImageLPath; }
+	CAssetPath GetImageLPath() const { return m_ImageLPath; }
 	
-	inline CAssetPath GetImageMPath() const { return m_ImageMPath; }
+	CAssetPath GetImageMPath() const { return m_ImageMPath; }
 	
-	inline CAssetPath GetImageRPath() const { return m_ImageRPath; }
+	CAssetPath GetImageRPath() const { return m_ImageRPath; }
 	
-	inline void SetFlags(int Value) { m_Flags = Value; }
+	void SetFlags(int Value) { m_Flags = Value; }
 	
-	inline void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
+	void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
 	
-	inline void SetImageLPath(const CAssetPath& Value) { m_ImageLPath = Value; }
+	void SetImageLPath(const CAssetPath& Value) { m_ImageLPath = Value; }
 	
-	inline void SetImageMPath(const CAssetPath& Value) { m_ImageMPath = Value; }
+	void SetImageMPath(const CAssetPath& Value) { m_ImageMPath = Value; }
 	
-	inline void SetImageRPath(const CAssetPath& Value) { m_ImageRPath = Value; }
+	void SetImageRPath(const CAssetPath& Value) { m_ImageRPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

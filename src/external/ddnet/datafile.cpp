@@ -33,7 +33,6 @@
 
 #include "datafile.h"
 
-#include <shared/system/types.h>
 #include <shared/system/debug.h>
 #include <shared/math/math.h>
 #include <shared/components/storage.h>

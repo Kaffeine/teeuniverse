@@ -154,25 +154,25 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiSliderStyle();
-	inline CAssetPath GetRectPath() const { return m_RectPath; }
+	CAssetPath GetRectPath() const { return m_RectPath; }
 	
-	inline CAssetPath GetDefaultRailPath() const { return m_DefaultRailPath; }
+	CAssetPath GetDefaultRailPath() const { return m_DefaultRailPath; }
 	
-	inline CAssetPath GetCursorPath() const { return m_CursorPath; }
+	CAssetPath GetCursorPath() const { return m_CursorPath; }
 	
-	inline int GetMargin() const { return m_Margin; }
+	int GetMargin() const { return m_Margin; }
 	
-	inline int GetPadding() const { return m_Padding; }
+	int GetPadding() const { return m_Padding; }
 	
-	inline void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
+	void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
 	
-	inline void SetDefaultRailPath(const CAssetPath& Value) { m_DefaultRailPath = Value; }
+	void SetDefaultRailPath(const CAssetPath& Value) { m_DefaultRailPath = Value; }
 	
-	inline void SetCursorPath(const CAssetPath& Value) { m_CursorPath = Value; }
+	void SetCursorPath(const CAssetPath& Value) { m_CursorPath = Value; }
 	
-	inline void SetMargin(int Value) { m_Margin = Value; }
+	void SetMargin(int Value) { m_Margin = Value; }
 	
-	inline void SetPadding(int Value) { m_Padding = Value; }
+	void SetPadding(int Value) { m_Padding = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

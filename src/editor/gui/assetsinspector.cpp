@@ -701,7 +701,7 @@ protected:
 		
 		AssetsManager()->SaveAssetInHistory(m_pAssetsEditor->GetEditedAssetPath());
 		
-		array2d< uint8, allocator_default<uint8> >& Pixels = pImage->GetDataArray();
+		array2d< uint8_t, allocator_default<uint8_t> >& Pixels = pImage->GetDataArray();
 		ImageProcessing_Dilate(Pixels, 11);
 		
 		AssetsManager()->RequestUpdate(m_pAssetsEditor->GetEditedAssetPath());
@@ -730,7 +730,7 @@ protected:
 		
 		AssetsManager()->SaveAssetInHistory(m_pAssetsEditor->GetEditedAssetPath());
 		
-		array2d< uint8, allocator_default<uint8> >& Pixels = pImage->GetDataArray();
+		array2d< uint8_t, allocator_default<uint8_t> >& Pixels = pImage->GetDataArray();
 		ImageProcessing_AddBorder(Pixels, pImage->GetGridWidth(), pImage->GetGridHeight(), 2);
 		
 		AssetsManager()->RequestUpdate(m_pAssetsEditor->GetEditedAssetPath());

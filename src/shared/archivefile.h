@@ -19,12 +19,12 @@
 #ifndef __SHARED_DATAFILE__
 #define __SHARED_DATAFILE__
 
-#include <shared/system/types.h>
 #include <shared/system/memory.h>
 #include <shared/system/fs.h>
 #include <shared/math/vector.h>
 #include <shared/components/storage.h>
 
+#include <cstdint>
 #include <vector>
 
 /*
@@ -72,16 +72,16 @@
  *  * Strings
  */
 
-typedef int32 tua_int32;
-typedef int64 tua_int64;
-typedef uint8 tua_uint8;
-typedef uint16 tua_uint16;
-typedef uint32 tua_uint32;
+typedef int32_t tua_int32;
+typedef int64_t tua_int64;
+typedef uint8_t tua_uint8;
+typedef uint16_t tua_uint16;
+typedef uint32_t tua_uint32;
 typedef float tua_float;
 typedef double tua_double;
 
-typedef uint32 tua_stringid;
-typedef uint32 tua_dataid;
+typedef uint32_t tua_stringid;
+typedef uint32_t tua_dataid;
 
 class CTuaVec2
 {
@@ -151,84 +151,83 @@ private:
 	class CItemType
 	{
 	public:
-		uint32 m_ItemSize;
-		uint32 m_NumItems;
-		uint8* m_pData;
+		uint32_t m_ItemSize;
+		uint32_t m_NumItems;
+		uint8_t *m_pData;
 	};
 	
 	class CRawData
 	{
 	public:
-		uint32 m_UncompressedSize;
-		uint32 m_CompressedSize;
-		uint8* m_pCompressedData;
-		uint8* m_pUncompressedData;
+		uint32_t m_UncompressedSize;
+		uint32_t m_CompressedSize;
+		uint8_t *m_pCompressedData;
+		uint8_t *m_pUncompressedData;
 	};
-	
+
 	class CString
 	{
 	public:
-		char* m_pText;
+		char *m_pText;
 	};
-	
-	uint32 m_Crc;
-	CItemType m_ItemTypes[256];	
+
+	uint32_t m_Crc;
+	CItemType m_ItemTypes[256];
 	std::vector<CRawData> m_RawDatas;
 	std::vector<CString> m_Strings;
-	
-public:	
+
+public:
 	CArchiveFile();
 	~CArchiveFile();
-	
-	bool Open(class CStorage* pStorage, const char* pFilename, int StorageType);
-	bool Write(class CStorage* pStorage, const char* pFilename, int Type = CStorage::TYPE_SAVE);
-	bool Write(class CStorage* pStorage, fs_stream_wb* pFileStream);
+
+	bool Open(class CStorage *pStorage, const char *pFilename, int StorageType);
+	bool Write(class CStorage *pStorage, const char *pFilename, int Type = CStorage::TYPE_SAVE);
+	bool Write(class CStorage *pStorage, fs_stream_wb *pFileStream);
 	void Close();
-	
-	void SetItemType(uint32 Type, uint32 ItemSize, uint32 NumItems);
+
+	void SetItemType(uint32_t Type, uint32_t ItemSize, uint32_t NumItems);
 
 	inline int GetNumItems(int Type) const { return m_ItemTypes[Type].m_NumItems; }
-	inline uint8* GetItem(int Type, int Id) { return &m_ItemTypes[Type].m_pData[m_ItemTypes[Type].m_ItemSize * Id]; }
-	inline const uint8* GetItem(int Type, int Id) const { return &m_ItemTypes[Type].m_pData[m_ItemTypes[Type].m_ItemSize * Id]; }
-	
-	uint8* GetData(tua_dataid StoredDataId);
-	tua_dataid AddData(uint8* pData, uint32 Size);
-	
-	const char* GetString(tua_stringid StoredStringId);
-	tua_stringid AddString(const char* pText);
-	
-	inline uint32 Crc() const { return m_Crc; }
-	
-	TUA_READWRITE(uint8, tua_uint8, Bool)
-	TUA_READWRITE(uint8, tua_uint8, UInt8)
-	TUA_READWRITE(uint16, tua_uint16, UInt16)
-	TUA_READWRITE(uint32, tua_uint32, UInt32)
-	TUA_READWRITE(int32, tua_int32, Int32)
-	TUA_READWRITE(int32, tua_int64, Int64)
-	TUA_READWRITE(float, tua_float, Float) //TODO: Make sure that IEEE 754 is used to store float
-	TUA_READWRITE(double, tua_double, Double) //TODO: Make sure that IEEE 754 is used to store float
-	
-	TUA_READWRITE(uint32, tua_uint32, DataId)
-	TUA_READWRITE(uint32, tua_uint32, StringId)
+	inline uint8_t *GetItem(int Type, int Id) { return &m_ItemTypes[Type].m_pData[m_ItemTypes[Type].m_ItemSize * Id]; }
+	inline const uint8_t *GetItem(int Type, int Id) const { return &m_ItemTypes[Type].m_pData[m_ItemTypes[Type].m_ItemSize * Id]; }
 
-	inline tua_uint32 WriteColor(const vec4& Color)
+	uint8_t *GetData(tua_dataid StoredDataId);
+	tua_dataid AddData(void *pData, uint32_t Size);
+
+	const char *GetString(tua_stringid StoredStringId);
+	tua_stringid AddString(const char *pText);
+
+	inline uint32_t Crc() const { return m_Crc; }
+
+	TUA_READWRITE(uint8_t, tua_uint8, Bool)
+	TUA_READWRITE(uint8_t, tua_uint8, UInt8)
+	TUA_READWRITE(uint16_t, tua_uint16, UInt16)
+	TUA_READWRITE(uint32_t, tua_uint32, UInt32)
+	TUA_READWRITE(int32_t, tua_int32, Int32)
+	TUA_READWRITE(int32_t, tua_int64, Int64)
+	TUA_READWRITE(float, tua_float, Float) // TODO: Make sure that IEEE 754 is used to store float
+	TUA_READWRITE(double, tua_double, Double) // TODO: Make sure that IEEE 754 is used to store float
+
+	TUA_READWRITE(uint32_t, tua_uint32, DataId)
+	TUA_READWRITE(uint32_t, tua_uint32, StringId)
+
+	inline tua_uint32 WriteColor(const vec4 &Color)
 	{
-		uint32 Value = static_cast<uint32>(Color.r * 255.0f);
-		Value += (static_cast<uint32>(Color.g * 255.0f)<<8);
-		Value += (static_cast<uint32>(Color.b * 255.0f)<<16);
-		Value += (static_cast<uint32>(Color.a * 255.0f)<<24);
+		uint32_t Value = static_cast<uint32_t>(Color.r * 255.0f);
+		Value += (static_cast<uint32_t>(Color.g * 255.0f) << 8);
+		Value += (static_cast<uint32_t>(Color.b * 255.0f) << 16);
+		Value += (static_cast<uint32_t>(Color.a * 255.0f) << 24);
 		return WriteUInt32(Value);
 	}
 
 	inline vec4 ReadColor(tua_uint32 StoredValue)
 	{
-		uint32 Value = ReadUInt32(StoredValue);
+		uint32_t Value = ReadUInt32(StoredValue);
 		return vec4(
-			static_cast<float>(Value & 255)/255.0f,
-			static_cast<float>((Value>>8) & 255)/255.0f,
-			static_cast<float>((Value>>16) & 255)/255.0f,
-			static_cast<float>((Value>>24) & 255)/255.0f
-		);
+			static_cast<float>(Value & 255) / 255.0f,
+			static_cast<float>((Value >> 8) & 255) / 255.0f,
+			static_cast<float>((Value >> 16) & 255) / 255.0f,
+			static_cast<float>((Value >> 24) & 255) / 255.0f);
 	}
 };
 

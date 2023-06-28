@@ -174,11 +174,11 @@ class Type:
 
 class TypeUInt8(Type):
 	def __init__(self):
-		Type.__init__(self, "uint8")
+		Type.__init__(self, "uint8_t")
 	def tuaType(self, version):
 		return "tua_uint8"
 	def getSetInterfaces(self):
-		return [GetSetInterface_Simple("", self.tname, "uint32", self.tname)]
+		return [GetSetInterface_Simple("", self.tname, "uint32_t", self.tname)]
 	def generateWrite(self, varSys, varTua, version):
 		return [varTua + " = pLoadingContext->ArchiveFile()->WriteUInt8(" + varSys + ");"]
 	def generateRead(self, varSys, varTua, version):
@@ -188,11 +188,11 @@ class TypeUInt8(Type):
 
 class TypeUInt16(Type):
 	def __init__(self):
-		Type.__init__(self, "uint16")
+		Type.__init__(self, "uint16_t")
 	def tuaType(self, version):
 		return "tua_uint16"
 	def getSetInterfaces(self):
-		return [GetSetInterface_Simple("", self.tname, "uint32", self.tname)]
+		return [GetSetInterface_Simple("", self.tname, "uint32_t", self.tname)]
 	def generateWrite(self, varSys, varTua, version):
 		return [varTua + " = pLoadingContext->ArchiveFile()->WriteUInt16(" + varSys + ");"]
 	def generateRead(self, varSys, varTua, version):
@@ -202,11 +202,11 @@ class TypeUInt16(Type):
 
 class TypeUInt32(Type):
 	def __init__(self):
-		Type.__init__(self, "uint32")
+		Type.__init__(self, "uint32_t")
 	def tuaType(self, version):
 		return "tua_uint32"
 	def getSetInterfaces(self):
-		return [GetSetInterface_Simple("", self.tname, "uint32", self.tname)]
+		return [GetSetInterface_Simple("", self.tname, "uint32_t", self.tname)]
 	def generateWrite(self, varSys, varTua, version):
 		return [varTua + " = pLoadingContext->ArchiveFile()->WriteUInt32(" + varSys + ");"]
 	def generateRead(self, varSys, varTua, version):
@@ -228,7 +228,7 @@ class TypeInt32(Type):
 
 class TypeInt64(Type):
 	def __init__(self):
-		Type.__init__(self, "int64")
+		Type.__init__(self, "int64_t")
 	def tuaType(self, version):
 		return "tua_int64"
 	def generateWrite(self, varSys, varTua, version):
@@ -509,13 +509,13 @@ class TypeArray(Type):
 		res.append("{")
 		res.append("	" + varTua + ".m_Size = "+varSys+".size();")
 		res.append("	" + self.t.tuaType(version) + "* pData = new " + self.t.tuaType(version) + "["+varSys+".size()];")
-		res.append("	mem_zero((void*) pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".size());")
-		res.append("	for(unsigned int i=0; i<"+varSys+".size(); i++)")
+		res.append("	mem_zero(pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".size());")
+		res.append("	for(unsigned int i = 0; i < "+varSys+".size(); i++)")
 		res.append("	{")
 		for l in self.t.generateWrite(varSys+"[i]", "pData[i]", version):
 			res.append("		"+l)
 		res.append("	}")
-		res.append("	" + varTua + ".m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".size());")
+		res.append("	" + varTua + ".m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".size());")
 		res.append("	delete[] pData;")
 		res.append("}")
 		return res
@@ -523,9 +523,9 @@ class TypeArray(Type):
 		res = []
 		res.append("{")
 		res.append("	const "+self.t.tuaType(version)+"* pData = (const "+self.t.tuaType(version)+"*) pLoadingContext->ArchiveFile()->GetData("+varTua+".m_Data);")
-		res.append("	uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Size);")
+		res.append("	uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Size);")
 		res.append("	"+varSys+".resize(Size);")
-		res.append("	for(uint32 i=0; i<Size; i++)")
+		res.append("	for(uint32_t i = 0; i < Size; i++)")
 		res.append("	{")
 		for l in self.t.generateRead(varSys+"[i]", "pData[i]", version):
 			res.append("		"+l)
@@ -540,7 +540,7 @@ class TypeArray(Type):
 			if self.t.fullType() == "CAssetPath":
 				res.append("{")
 				res.append("	int Shift = 0;")
-				res.append("	for(unsigned int i=0; i<"+var+".size(); i++)")
+				res.append("	for(unsigned int i = 0; i < "+var+".size(); i++)")
 				res.append("	{")
 				res.append("		if("+operation+".MustBeDeleted("+var+"[i]))")
 				res.append("			Shift++;")
@@ -673,12 +673,12 @@ class TypeArray2d(Type):
 		res.append("	" + varTua + ".m_Width = pLoadingContext->ArchiveFile()->WriteUInt32("+varSys+".get_width());")
 		res.append("	" + varTua + ".m_Height = pLoadingContext->ArchiveFile()->WriteUInt32("+varSys+".get_height());")
 		res.append("	" + varTua + ".m_Depth = pLoadingContext->ArchiveFile()->WriteUInt32("+varSys+".get_depth());")
-		if self.t.fullType() == "uint8":
+		if self.t.fullType() == "uint8_t":
 			res.append("	" + varTua + ".m_Data = pLoadingContext->ArchiveFile()->AddData((tua_uint8*) "+varSys+".base_ptr(), "+varSys+".get_linear_size());")
 		else:
 			res.append("	" + self.t.tuaType(version) + "* pData = new " + self.t.tuaType(version) + "["+varSys+".get_linear_size()];")
-			res.append("	mem_zero((void*) pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".get_linear_size());")
-			res.append("	for(int i=0; i<"+varSys+".get_linear_size(); i++)")
+			res.append("	mem_zero(pData, sizeof(" + self.t.tuaType(version) + ")*"+varSys+".get_linear_size());")
+			res.append("	for(int i = 0; i < "+varSys+".get_linear_size(); i++)")
 			res.append("	{")
 			for l in self.t.generateWrite(varSys+".linear_get_clamp(i)", "pData[i]", version):
 				res.append("		"+l)
@@ -691,15 +691,15 @@ class TypeArray2d(Type):
 		res = []
 		res.append("{")
 		res.append("	const "+self.t.tuaType(version)+"* pData = (const "+self.t.tuaType(version)+"*) pLoadingContext->ArchiveFile()->GetData("+varTua+".m_Data);")
-		res.append("	uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Width);")
-		res.append("	uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Height);")
-		res.append("	uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Depth);")
+		res.append("	uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Width);")
+		res.append("	uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Height);")
+		res.append("	uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32("+varTua+".m_Depth);")
 		res.append("	"+varSys+".resize(Width, Height, Depth);")
-		if self.t.fullType() == "uint8":
-			res.append("	mem_copy((uint8*) "+varSys+".base_ptr(), pData, "+varSys+".get_linear_size());")
+		if self.t.fullType() == "uint8_t":
+			res.append("	mem_copy((uint8_t*) "+varSys+".base_ptr(), pData, "+varSys+".get_linear_size());")
 		else:
 			res.append("	int Size = Width * Height * Depth;")
-			res.append("	for(int i=0; i<Size; i++)")
+			res.append("	for(int i = 0; i < Size; i++)")
 			res.append("	{")
 			res.append("		"+self.t.tname+" ReadedValue;" )
 			for l in self.t.generateRead("ReadedValue", "pData[i]", version):
@@ -712,7 +712,7 @@ class TypeArray2d(Type):
 	def generateAssetPathOp(self, var, operation):
 		if len(self.t.generateAssetPathOp(var+"[i]", operation)) > 0:
 			res = []
-			res.append("for(int i=0; i<"+var+".get_linear_size(); i++)")
+			res.append("for(int i = 0; i<"+var+".get_linear_size(); i++)")
 			res.append("{")
 			for l in self.t.generateAssetPathOp(var+".linear_get_clamp(i)", operation):
 				res.append("	"+l)
@@ -816,28 +816,28 @@ class Member:
 				
 			if i.getbyref:
 				if len(i.generateGet(self.memberName(), i.defaultValue)) > 1:
-					res.append("inline const "+i.returnType+"& Get"+self.name+i.name+"("+params+") const")
+					res.append("const "+i.returnType+"& Get"+self.name+i.name+"("+params+") const")
 					res.append("{")
 					for l in i.generateGet(self.memberName(), i.defaultValue):
 						res.append("	"+l)
 					res.append("}")
-					res.append("inline "+i.returnType+"& Get"+self.name+i.name+"("+params+")")
+					res.append(""+i.returnType+"& Get"+self.name+i.name+"("+params+")")
 					res.append("{")
 					for l in i.generateGet(self.memberName(), i.defaultValue):
 						res.append("	"+l)
 					res.append("}")
 				else:
-					res.append("inline const "+i.returnType+"& Get"+self.name+i.name+"("+params+") const { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")
-					res.append("inline "+i.returnType+"& Get"+self.name+i.name+"("+params+") { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")
+					res.append("const "+i.returnType+"& Get"+self.name+i.name+"("+params+") const { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")
+					res.append(""+i.returnType+"& Get"+self.name+i.name+"("+params+") { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")
 			else:
 				if len(i.generateGet(self.memberName(), i.defaultValue)) > 1:
-					res.append("inline "+i.returnType+" Get"+self.name+i.name+"("+params+") const")
+					res.append(""+i.returnType+" Get"+self.name+i.name+"("+params+") const")
 					res.append("{")
 					for l in i.generateGet(self.memberName(), i.defaultValue):
 						res.append("	"+l)
 					res.append("}")
 				else:
-					res.append("inline "+i.returnType+" Get"+self.name+i.name+"("+params+") const { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")	
+					res.append(""+i.returnType+" Get"+self.name+i.name+"("+params+") const { "+i.generateGet(self.memberName(), i.defaultValue)[0]+" }")
 			
 			res.append("")
 		return res
@@ -849,13 +849,13 @@ class Member:
 				if i.subpath > 0:
 					params = "const CSubPath& SubPath, " + params
 				if len(i.generateSet(self.memberName(), "Value")) > 1:
-					res.append("inline void Set"+self.name+i.name+"("+params+")")
+					res.append("void Set"+self.name+i.name+"("+params+")")
 					res.append("{")
 					for l in i.generateSet(self.memberName(), "Value"):
 						res.append("	"+l)
 					res.append("}")
 				else:
-					res.append("inline void Set"+self.name+i.name+"("+params+") { "+i.generateSet(self.memberName(), "Value")[0]+" }")
+					res.append("void Set"+self.name+i.name+"("+params+") { "+i.generateSet(self.memberName(), "Value")[0]+" }")
 				res.append("")
 		return res
 	def generateAdd(self):
@@ -866,13 +866,13 @@ class Member:
 				params = "const CSubPath& SubPath"
 				
 			if len(i.generateAdd(self.memberName())) > 1:
-				res.append("inline int Add"+self.name+i.name+"("+params+")")
+				res.append("int Add"+self.name+i.name+"("+params+")")
 				res.append("{")
 				for l in i.generateAdd(self.memberName()):
 					res.append("	"+l)
 				res.append("}")
 			else:
-				res.append("inline int Add"+self.name+i.name+"("+params+") { "+i.generateAdd(self.memberName())[0]+" }")
+				res.append("int Add"+self.name+i.name+"("+params+") { "+i.generateAdd(self.memberName())[0]+" }")
 			
 			res.append("")
 		return res
@@ -884,13 +884,13 @@ class Member:
 				params = "const CSubPath& SubPath, " + params
 				
 			if len(i.generateAddAt(self.memberName())) > 1:
-				res.append("inline void AddAt"+self.name+i.name+"("+params+")")
+				res.append("void AddAt"+self.name+i.name+"("+params+")")
 				res.append("{")
 				for l in i.generateAddAt(self.memberName()):
 					res.append("	"+l)
 				res.append("}")
 			else:
-				res.append("inline void AddAt"+self.name+i.name+"("+params+") { "+i.generateAddAt(self.memberName())[0]+" }")
+				res.append("void AddAt"+self.name+i.name+"("+params+") { "+i.generateAddAt(self.memberName())[0]+" }")
 			
 			res.append("")
 		return res
@@ -899,13 +899,13 @@ class Member:
 		for i in self.t.addInterfaces():
 			
 			if len(i.generateDelete(self.memberName())) > 1:
-				res.append("inline void Delete"+self.name+i.name+"(const CSubPath& SubPath)")
+				res.append("void Delete"+self.name+i.name+"(const CSubPath& SubPath)")
 				res.append("{")
 				for l in i.generateDelete(self.memberName()):
 					res.append("	"+l)
 				res.append("}")
 			else:
-				res.append("inline void Delete"+self.name+i.name+"(const CSubPath& SubPath) { "+i.generateDelete(self.memberName())[0]+" }")
+				res.append("void Delete"+self.name+i.name+"(const CSubPath& SubPath) { "+i.generateDelete(self.memberName())[0]+" }")
 				
 			res.append("")
 		return res
@@ -914,13 +914,13 @@ class Member:
 		for i in self.t.addInterfaces():
 			
 			if len(i.generateRelMove(self.memberName())) > 1:
-				res.append("inline void RelMove"+self.name+i.name+"(CSubPath& SubPath, int RelMove)")
+				res.append("void RelMove"+self.name+i.name+"(CSubPath& SubPath, int RelMove)")
 				res.append("{")
 				for l in i.generateRelMove(self.memberName()):
 					res.append("	"+l)
 				res.append("}")
 			else:
-				res.append("inline void RelMove"+self.name+i.name+"(CSubPath& SubPath, int RelMove) { "+i.generateRelMove(self.memberName())[0]+" }")
+				res.append("void RelMove"+self.name+i.name+"(CSubPath& SubPath, int RelMove) { "+i.generateRelMove(self.memberName())[0]+" }")
 				
 			res.append("")
 		return res
@@ -931,13 +931,13 @@ class Member:
 			if i.subpath:
 				params = ""
 			if len(i.generateValid(self.memberName())) > 1:
-				res.append("inline bool IsValid"+self.name+i.name+"(const CSubPath& SubPath) const")
+				res.append("bool IsValid"+self.name+i.name+"(const CSubPath& SubPath) const")
 				res.append("{")
 				for l in i.generateValid(self.memberName()):
 					res.append("	"+l)
 				res.append("}")
 			else:
-				res.append("inline bool IsValid"+self.name+i.name+"(const CSubPath& SubPath) const { "+i.generateValid(self.memberName())[0]+" }")
+				res.append("bool IsValid"+self.name+i.name+"(const CSubPath& SubPath) const { "+i.generateValid(self.memberName())[0]+" }")
 			res.append("")
 		return res
 	def getSetInterfaces(self):
@@ -1555,13 +1555,13 @@ def generateHeader(asset):
 		print >>f, l
 	for l in asset.generateSetSpe("int"):
 		print >>f, l
-	for l in asset.generateGetSpe("uint32"):
+	for l in asset.generateGetSpe("uint32_t"):
 		print >>f, l
-	for l in asset.generateSetSpe("uint32"):
+	for l in asset.generateSetSpe("uint32_t"):
 		print >>f, l
-	for l in asset.generateGetSpe("int64"):
+	for l in asset.generateGetSpe("int64_t"):
 		print >>f, l
-	for l in asset.generateSetSpe("int64"):
+	for l in asset.generateSetSpe("int64_t"):
 		print >>f, l
 	for l in asset.generateGetSpe("bool"):
 		print >>f, l
@@ -1651,13 +1651,13 @@ def generateImpl(asset):
 		print >>f, l
 	for l in asset.generateSetImpl("int"):
 		print >>f, l
-	for l in asset.generateGetImpl("uint32"):
+	for l in asset.generateGetImpl("uint32_t"):
 		print >>f, l
-	for l in asset.generateSetImpl("uint32"):
+	for l in asset.generateSetImpl("uint32_t"):
 		print >>f, l
-	for l in asset.generateGetImpl("int64"):
+	for l in asset.generateGetImpl("int64_t"):
 		print >>f, l
-	for l in asset.generateSetImpl("int64"):
+	for l in asset.generateSetImpl("int64_t"):
 		print >>f, l
 	for l in asset.generateGetImpl("bool"):
 		print >>f, l
@@ -1991,8 +1991,8 @@ mapLayerQuads_quad.addMember("0.2.0", "AnimationPath", TypeAssetPath())
 mapLayerQuads_quad.addMember("0.2.2", "Color", TypeColor(), "1.0f")
 mapLayerQuads_quad.addMember("0.3.0", "AnimationOffset", TypeInt64(), "0")
 mapLayerQuads_quad.addPublicFunc([
-	"void GetTransform(CAssetsManager* pAssetsManager, int64 Time, matrix2x2* pMatrix, vec2* pPosition) const;",
-	"void GetDrawState(CAssetsManager* pAssetsManager, int64 Time, vec4* pColor, int* pState) const;"
+	"void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;",
+	"void GetDrawState(CAssetsManager* pAssetsManager, int64_t Time, vec4* pColor, int* pState) const;"
 ])
 
 mapLayerQuads = ClassAsset("MapLayerQuads", len(assetsList))
@@ -2004,11 +2004,11 @@ mapLayerQuads.addMember("0.2.0", "Quad", TypeArray(mapLayerQuads_quad))
 mapLayerQuads.addMember("0.2.0", "Visibility", TypeBool(), "true")
 mapLayerQuads.addMember("0.2.3", "LevelOfDetail", TypeInt32(), "0")
 mapLayerQuads.addPublicFunc([
-	"void GetQuadTransform(const CSubPath& SubPath, int64 Time, matrix2x2* pMatrix, vec2* pPosition) const;",
-	"void GetQuadDrawState(const CSubPath& SubPath, int64 Time, vec4* pColor, int* pState) const;"
+	"void GetQuadTransform(const CSubPath& SubPath, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;",
+	"void GetQuadDrawState(const CSubPath& SubPath, int64_t Time, vec4* pColor, int* pState) const;"
 ])
 mapLayerQuads.addPublicLines([
-	"enum",
+	"enum EVertex",
 	"{",
 	"	VERTEX_NONE=0,",
 	"	VERTEX_PIVOT,",
@@ -2043,7 +2043,7 @@ mapLayerTiles.addMember("0.2.3", "SourcePath", TypeAssetPath())
 mapLayerTiles.addMember("0.2.4", "RandomSeed", TypeInt32())
 
 mapLayerTiles.addPublicLines([
-	"enum",
+	"enum ETileFlag",
 	"{",
 	"	TILEFLAG_VFLIP=1,",
 	"	TILEFLAG_HFLIP=2,",
@@ -2170,9 +2170,9 @@ skeletonAnim_boneAnim.addMember("0.2.0", "KeyFrame", TypeArray(skeletonAnim_bone
 skeletonAnim_boneAnim.addMember("0.2.0", "BonePath", TypeSubPath())
 skeletonAnim_boneAnim.addMember("0.2.0", "CycleType", TypeInt32(), "CYCLETYPE_CLAMP")
 skeletonAnim_boneAnim.addPublicFunc([
-	"int64 GetDuration() const;",
-	"int TimeToKeyFrame(int64 Time) const;",
-	"bool GetFrame(int64 Time, CFrame& Frame) const;",
+	"int64_t GetDuration() const;",
+	"int TimeToKeyFrame(int64_t Time) const;",
+	"bool GetFrame(int64_t Time, CFrame& Frame) const;",
 	""
 ])
 
@@ -2195,9 +2195,9 @@ skeletonAnim_layerAnim.addMember("0.2.0", "KeyFrame", TypeArray(skeletonAnim_lay
 skeletonAnim_layerAnim.addMember("0.2.0", "LayerPath", TypeSubPath())
 skeletonAnim_layerAnim.addMember("0.2.0", "CycleType", TypeInt32(), "CYCLETYPE_CLAMP")
 skeletonAnim_layerAnim.addPublicFunc([
-	"int64 GetDuration() const;",
-	"int TimeToKeyFrame(int64 Time) const;",
-	"bool GetFrame(int64 Time, CFrame& Frame) const;",
+	"int64_t GetDuration() const;",
+	"int TimeToKeyFrame(int64_t Time) const;",
+	"bool GetFrame(int64_t Time, CFrame& Frame) const;",
 	""
 ])
 
@@ -2246,8 +2246,8 @@ skeletonAnim.addPublicLines([
 	""
 ])
 skeletonAnim.addPublicFunc([
-	"bool GetBoneAnimFrame(const CSubPath& SubPath, int64 Time, CBoneAnimation::CFrame& Frame) const;",
-	"bool GetLayerAnimFrame(const CSubPath& SubPath, int64 Time, CLayerAnimation::CFrame& Frame) const;",
+	"bool GetBoneAnimFrame(const CSubPath& SubPath, int64_t Time, CBoneAnimation::CFrame& Frame) const;",
+	"bool GetLayerAnimFrame(const CSubPath& SubPath, int64_t Time, CLayerAnimation::CFrame& Frame) const;",
 	"CSubPath FindBoneAnim(const CSubPath& BonePath) const;",
 	"CSubPath FindLayerAnim(const CSubPath& LayerPath) const;",
 	""
@@ -2485,12 +2485,16 @@ mapZoneObjects.addPublicFunc([
 	"void GetObjectDrawState(const CSubPath& SubPath, float Time, vec4* pColor, int* pState) const;"
 ])
 mapZoneObjects.addPublicLines([
-	"enum",
+	"enum EFillType",
 	"{",
 	"	FILLTYPE_NONE = 0,",
 	"	FILLTYPE_INSIDE,",
 	"	FILLTYPE_OUTSIDE,",
-	
+	"};",
+	""
+
+	"enum EPathType",
+	"{",
 	"	PATHTYPE_OPEN = 0,",
 	"	PATHTYPE_CLOSED,",
 	"	PATHTYPE_INFINITE,",
@@ -2539,9 +2543,9 @@ tilingMaterial.addMember("0.2.3", "Index", TypeArray(tilingMaterial_index))
 tilingMaterial.addMember("0.2.3", "Label", TypeArray(tilingMaterial_label))
 
 tilingMaterial.addPublicLines([
-	"enum",
+	"enum EConditionType",
 	"{",
-	"	CONDITIONTYPE_INDEX=0,",
+	"	CONDITIONTYPE_INDEX,",
 	"	CONDITIONTYPE_NOTINDEX,",
 	"	CONDITIONTYPE_LABEL,",
 	"	CONDITIONTYPE_NOTLABEL,",

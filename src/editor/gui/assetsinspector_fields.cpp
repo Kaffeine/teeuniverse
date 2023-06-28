@@ -351,8 +351,8 @@ public:
 		{
 			const char* pText = GetText();
 			pText = str_skip_whitespaces((char*) pText);
-			
-			uint32 Value = str_to_int_base(pText, 16);
+            
+            uint32_t Value = str_to_int_base(pText, 16);
 			
 			int Token = AssetsManager()->GenerateToken();
 			for(unsigned int i = 0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
@@ -369,7 +369,7 @@ public:
 		
 		void CopyToTextBuffer() override
 		{
-			uint32 Value = m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
+            uint32_t Value = m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
 				m_pAssetsEditor->GetEditedAssetPath(),
 				m_pAssetsEditor->GetFirstEditedSubPath(),
 				m_Member,
@@ -681,9 +681,9 @@ protected:
 	CGuiEditor* m_pAssetsEditor;
 	int m_Member;
 	
-	int64 GetValue() const override
+	int64_t GetValue() const override
 	{
-		return m_pAssetsEditor->AssetsManager()->GetAssetValue<int64>(
+		return m_pAssetsEditor->AssetsManager()->GetAssetValue<int64_t>(
 			m_pAssetsEditor->GetEditedAssetPath(),
 			m_pAssetsEditor->GetFirstEditedSubPath(),
 			m_Member,
@@ -691,12 +691,12 @@ protected:
 		);
 	}
 	
-	void SetValue(int64 Value) override
+	void SetValue(int64_t Value) override
 	{
 		int Token = AssetsManager()->GenerateToken();
 		for(unsigned int i = 0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
 		{
-			m_pAssetsEditor->AssetsManager()->SetAssetValue<int64>(
+			m_pAssetsEditor->AssetsManager()->SetAssetValue<int64_t>(
 				m_pAssetsEditor->GetEditedAssetPath(),
 				m_pAssetsEditor->GetEditedSubPathes()[i],
 				m_Member,

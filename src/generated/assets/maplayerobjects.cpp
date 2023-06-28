@@ -85,9 +85,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_0::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -107,9 +107,9 @@ void CAsset_MapLayerObjects::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_2_0* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -143,12 +143,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_0::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_0)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -165,12 +165,12 @@ void CAsset_MapLayerObjects::CTuaType_0_2_0::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_2_0* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_2_0[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_0)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_0)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_0)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_0)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -200,9 +200,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_1::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -222,9 +222,9 @@ void CAsset_MapLayerObjects::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_2_1* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -258,12 +258,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_1::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_1)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -280,12 +280,12 @@ void CAsset_MapLayerObjects::CTuaType_0_2_1::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_2_1* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_2_1[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_1)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_1)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_1)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_1)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -315,9 +315,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_2::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -337,9 +337,9 @@ void CAsset_MapLayerObjects::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_2_2* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -373,12 +373,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_2::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_2)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -395,12 +395,12 @@ void CAsset_MapLayerObjects::CTuaType_0_2_2::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_2_2* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_2_2[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_2)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_2)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_2)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_2)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -430,9 +430,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_3::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -452,9 +452,9 @@ void CAsset_MapLayerObjects::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_2_3* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -489,12 +489,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_3::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_3)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -511,12 +511,12 @@ void CAsset_MapLayerObjects::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_2_3* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_2_3[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_3)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_3)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_3)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_3)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -547,9 +547,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_4::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -569,9 +569,9 @@ void CAsset_MapLayerObjects::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_2_4* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -606,12 +606,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_2_4::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_2_4)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -628,12 +628,12 @@ void CAsset_MapLayerObjects::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_2_4* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_2_4[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_4)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_4)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_4)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_2_4)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -664,9 +664,9 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_3_0::Read(CAssetsSaveLoadContex
 	pLoadingContext->ReadAssetPath(TuaType.m_StylePath, SysType.m_StylePath);
 	{
 		const CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0* pData = (const CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Vertex.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Vertex.m_Size);
 		SysType.m_Vertex.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Vertex[i]);
 		}
@@ -688,9 +688,9 @@ void CAsset_MapLayerObjects::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadi
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapLayerObjects::CObject::CTuaType_0_3_0* pData = (const CAsset_MapLayerObjects::CObject::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Object.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Object.m_Size);
 		SysType.m_Object.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Object[i]);
 		}
@@ -725,12 +725,12 @@ void CAsset_MapLayerObjects::CObject::CTuaType_0_3_0::Write(CAssetsSaveLoadConte
 	{
 		TuaType.m_Vertex.m_Size = SysType.m_Vertex.size();
 		CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0* pData = new CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0[SysType.m_Vertex.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0)*SysType.m_Vertex.size());
-		for(unsigned int i=0; i<SysType.m_Vertex.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0)*SysType.m_Vertex.size());
+		for(unsigned int i = 0; i < SysType.m_Vertex.size(); i++)
 		{
 			CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Vertex[i], pData[i]);
 		}
-		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0)*SysType.m_Vertex.size());
+		TuaType.m_Vertex.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CVertex::CTuaType_0_3_0)*SysType.m_Vertex.size());
 		delete[] pData;
 	}
 	TuaType.m_PathType = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_PathType);
@@ -749,12 +749,12 @@ void CAsset_MapLayerObjects::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoad
 	{
 		TuaType.m_Object.m_Size = SysType.m_Object.size();
 		CAsset_MapLayerObjects::CObject::CTuaType_0_3_0* pData = new CAsset_MapLayerObjects::CObject::CTuaType_0_3_0[SysType.m_Object.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_3_0)*SysType.m_Object.size());
-		for(unsigned int i=0; i<SysType.m_Object.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_3_0)*SysType.m_Object.size());
+		for(unsigned int i = 0; i < SysType.m_Object.size(); i++)
 		{
 			CAsset_MapLayerObjects::CObject::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Object[i], pData[i]);
 		}
-		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_3_0)*SysType.m_Object.size());
+		TuaType.m_Object.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapLayerObjects::CObject::CTuaType_0_3_0)*SysType.m_Object.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -820,18 +820,18 @@ bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, in
 }
 
 template<>
-int64 CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, int64 DefaultValue) const
+int64_t CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, int64_t DefaultValue) const
 {
 	switch(ValueType)
 	{
 		case OBJECT_ANIMATIONOFFSET:
 			return GetObjectAnimationOffset(SubPath);
 	}
-	return CAsset::GetValue<int64>(ValueType, SubPath, DefaultValue);
+	return CAsset::GetValue<int64_t>(ValueType, SubPath, DefaultValue);
 }
 
 template<>
-bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, int64 Value)
+bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value)
 {
 	switch(ValueType)
 	{
@@ -839,7 +839,7 @@ bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, in
 			SetObjectAnimationOffset(SubPath, Value);
 			return true;
 	}
-	return CAsset::SetValue<int64>(ValueType, SubPath, Value);
+	return CAsset::SetValue<int64_t>(ValueType, SubPath, Value);
 }
 
 template<>

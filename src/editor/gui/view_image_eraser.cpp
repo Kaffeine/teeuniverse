@@ -42,7 +42,7 @@ void CCursorTool_Eraser::OnImagePicked(int MinX, int MinY, int MaxX, int MaxY)
 	
 	AssetsManager()->SaveAssetInHistory(ViewImage()->AssetsEditor()->GetEditedAssetPath());
 	
-	array2d< uint8, allocator_default<uint8> >& ImageData = pImage->GetDataArray();
+	array2d< uint8_t, allocator_default<uint8_t> >& ImageData = pImage->GetDataArray();
 	
 	for(int y=MinPixY; y<MaxPixY; y++)
 	{

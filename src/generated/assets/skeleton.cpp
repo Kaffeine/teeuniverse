@@ -68,9 +68,9 @@ void CAsset_Skeleton::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_2_0* pData = (const CAsset_Skeleton::CBone::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -78,9 +78,9 @@ void CAsset_Skeleton::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_2_0* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -113,23 +113,23 @@ void CAsset_Skeleton::CTuaType_0_2_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_2_0* pData = new CAsset_Skeleton::CBone::CTuaType_0_2_0[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_0)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_0)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_0)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_0)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_2_0* pData = new CAsset_Skeleton::CLayer::CTuaType_0_2_0[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_0)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_0)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_0)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_0)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }
@@ -159,9 +159,9 @@ void CAsset_Skeleton::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_2_1* pData = (const CAsset_Skeleton::CBone::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -169,9 +169,9 @@ void CAsset_Skeleton::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_2_1* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -204,23 +204,23 @@ void CAsset_Skeleton::CTuaType_0_2_1::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_2_1* pData = new CAsset_Skeleton::CBone::CTuaType_0_2_1[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_1)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_1)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_1)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_1)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_2_1* pData = new CAsset_Skeleton::CLayer::CTuaType_0_2_1[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_1)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_1)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_1)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_1)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }
@@ -250,9 +250,9 @@ void CAsset_Skeleton::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_2_2* pData = (const CAsset_Skeleton::CBone::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -260,9 +260,9 @@ void CAsset_Skeleton::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_2_2* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -295,23 +295,23 @@ void CAsset_Skeleton::CTuaType_0_2_2::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_2_2* pData = new CAsset_Skeleton::CBone::CTuaType_0_2_2[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_2)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_2)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_2)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_2)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_2_2* pData = new CAsset_Skeleton::CLayer::CTuaType_0_2_2[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_2)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_2)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_2)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_2)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }
@@ -341,9 +341,9 @@ void CAsset_Skeleton::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_2_3* pData = (const CAsset_Skeleton::CBone::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -351,9 +351,9 @@ void CAsset_Skeleton::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_2_3* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -386,23 +386,23 @@ void CAsset_Skeleton::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_2_3* pData = new CAsset_Skeleton::CBone::CTuaType_0_2_3[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_3)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_3)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_3)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_3)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_2_3* pData = new CAsset_Skeleton::CLayer::CTuaType_0_2_3[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_3)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_3)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_3)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_3)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }
@@ -432,9 +432,9 @@ void CAsset_Skeleton::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_2_4* pData = (const CAsset_Skeleton::CBone::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -442,9 +442,9 @@ void CAsset_Skeleton::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_2_4* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -477,23 +477,23 @@ void CAsset_Skeleton::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_2_4* pData = new CAsset_Skeleton::CBone::CTuaType_0_2_4[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_4)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_4)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_4)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_2_4)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_2_4* pData = new CAsset_Skeleton::CLayer::CTuaType_0_2_4[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_4)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_4)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_4)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_2_4)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }
@@ -523,9 +523,9 @@ void CAsset_Skeleton::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_Skeleton::CBone::CTuaType_0_3_0* pData = (const CAsset_Skeleton::CBone::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Bone.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Bone.m_Size);
 		SysType.m_Bone.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Bone[i]);
 		}
@@ -533,9 +533,9 @@ void CAsset_Skeleton::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const CAsset_Skeleton::CLayer::CTuaType_0_3_0* pData = (const CAsset_Skeleton::CLayer::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Layer[i]);
 		}
@@ -568,23 +568,23 @@ void CAsset_Skeleton::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Bone.m_Size = SysType.m_Bone.size();
 		CAsset_Skeleton::CBone::CTuaType_0_3_0* pData = new CAsset_Skeleton::CBone::CTuaType_0_3_0[SysType.m_Bone.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_3_0)*SysType.m_Bone.size());
-		for(unsigned int i=0; i<SysType.m_Bone.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_3_0)*SysType.m_Bone.size());
+		for(unsigned int i = 0; i < SysType.m_Bone.size(); i++)
 		{
 			CAsset_Skeleton::CBone::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Bone[i], pData[i]);
 		}
-		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_3_0)*SysType.m_Bone.size());
+		TuaType.m_Bone.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CBone::CTuaType_0_3_0)*SysType.m_Bone.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAsset_Skeleton::CLayer::CTuaType_0_3_0* pData = new CAsset_Skeleton::CLayer::CTuaType_0_3_0[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_3_0)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_3_0)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			CAsset_Skeleton::CLayer::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_3_0)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_Skeleton::CLayer::CTuaType_0_3_0)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 }

@@ -75,9 +75,9 @@ void CAsset_ZoneType::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_2_0* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -108,12 +108,12 @@ void CAsset_ZoneType::CTuaType_0_2_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_2_0* pData = new CAsset_ZoneType::CIndex::CTuaType_0_2_0[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_0)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_0)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_0)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_0)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
@@ -141,9 +141,9 @@ void CAsset_ZoneType::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_2_1* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -174,12 +174,12 @@ void CAsset_ZoneType::CTuaType_0_2_1::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_2_1* pData = new CAsset_ZoneType::CIndex::CTuaType_0_2_1[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_1)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_1)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_1)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_1)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
@@ -214,9 +214,9 @@ void CAsset_ZoneType::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_2_2* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -225,9 +225,9 @@ void CAsset_ZoneType::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_ZoneType::CDataInt::CTuaType_0_2_2* pData = (const CAsset_ZoneType::CDataInt::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_DataInt.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
 		SysType.m_DataInt.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_DataInt[i]);
 		}
@@ -235,9 +235,9 @@ void CAsset_ZoneType::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const tua_stringid* pData = (const tua_stringid*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Group.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
 		SysType.m_Group.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Group[i] = pLoadingContext->ArchiveFile()->GetString(pData[i]);
 		}
@@ -274,35 +274,35 @@ void CAsset_ZoneType::CTuaType_0_2_2::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_2_2* pData = new CAsset_ZoneType::CIndex::CTuaType_0_2_2[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_2)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_2)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_2)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_2)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
 	{
 		TuaType.m_DataInt.m_Size = SysType.m_DataInt.size();
 		CAsset_ZoneType::CDataInt::CTuaType_0_2_2* pData = new CAsset_ZoneType::CDataInt::CTuaType_0_2_2[SysType.m_DataInt.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_2)*SysType.m_DataInt.size());
-		for(unsigned int i=0; i<SysType.m_DataInt.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_2)*SysType.m_DataInt.size());
+		for(unsigned int i = 0; i < SysType.m_DataInt.size(); i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_DataInt[i], pData[i]);
 		}
-		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_2)*SysType.m_DataInt.size());
+		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_2)*SysType.m_DataInt.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Group.m_Size = SysType.m_Group.size();
 		tua_stringid* pData = new tua_stringid[SysType.m_Group.size()];
-		mem_zero((void*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
-		for(unsigned int i=0; i<SysType.m_Group.size(); i++)
+		mem_zero(pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		for(unsigned int i = 0; i < SysType.m_Group.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->AddString(SysType.m_Group[i].buffer());
 		}
-		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_stringid)*SysType.m_Group.size());
 		delete[] pData;
 	}
 }
@@ -338,9 +338,9 @@ void CAsset_ZoneType::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_2_3* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -349,9 +349,9 @@ void CAsset_ZoneType::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_ZoneType::CDataInt::CTuaType_0_2_3* pData = (const CAsset_ZoneType::CDataInt::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_DataInt.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
 		SysType.m_DataInt.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_DataInt[i]);
 		}
@@ -359,9 +359,9 @@ void CAsset_ZoneType::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const tua_stringid* pData = (const tua_stringid*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Group.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
 		SysType.m_Group.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Group[i] = pLoadingContext->ArchiveFile()->GetString(pData[i]);
 		}
@@ -400,35 +400,35 @@ void CAsset_ZoneType::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_2_3* pData = new CAsset_ZoneType::CIndex::CTuaType_0_2_3[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
 	{
 		TuaType.m_DataInt.m_Size = SysType.m_DataInt.size();
 		CAsset_ZoneType::CDataInt::CTuaType_0_2_3* pData = new CAsset_ZoneType::CDataInt::CTuaType_0_2_3[SysType.m_DataInt.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_3)*SysType.m_DataInt.size());
-		for(unsigned int i=0; i<SysType.m_DataInt.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_3)*SysType.m_DataInt.size());
+		for(unsigned int i = 0; i < SysType.m_DataInt.size(); i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_DataInt[i], pData[i]);
 		}
-		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_3)*SysType.m_DataInt.size());
+		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_3)*SysType.m_DataInt.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Group.m_Size = SysType.m_Group.size();
 		tua_stringid* pData = new tua_stringid[SysType.m_Group.size()];
-		mem_zero((void*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
-		for(unsigned int i=0; i<SysType.m_Group.size(); i++)
+		mem_zero(pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		for(unsigned int i = 0; i < SysType.m_Group.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->AddString(SysType.m_Group[i].buffer());
 		}
-		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_stringid)*SysType.m_Group.size());
 		delete[] pData;
 	}
 }
@@ -464,9 +464,9 @@ void CAsset_ZoneType::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_2_4* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -475,9 +475,9 @@ void CAsset_ZoneType::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_ZoneType::CDataInt::CTuaType_0_2_4* pData = (const CAsset_ZoneType::CDataInt::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_DataInt.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
 		SysType.m_DataInt.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_DataInt[i]);
 		}
@@ -485,9 +485,9 @@ void CAsset_ZoneType::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const tua_stringid* pData = (const tua_stringid*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Group.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
 		SysType.m_Group.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Group[i] = pLoadingContext->ArchiveFile()->GetString(pData[i]);
 		}
@@ -526,35 +526,35 @@ void CAsset_ZoneType::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_2_4* pData = new CAsset_ZoneType::CIndex::CTuaType_0_2_4[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
 	{
 		TuaType.m_DataInt.m_Size = SysType.m_DataInt.size();
 		CAsset_ZoneType::CDataInt::CTuaType_0_2_4* pData = new CAsset_ZoneType::CDataInt::CTuaType_0_2_4[SysType.m_DataInt.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_4)*SysType.m_DataInt.size());
-		for(unsigned int i=0; i<SysType.m_DataInt.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_4)*SysType.m_DataInt.size());
+		for(unsigned int i = 0; i < SysType.m_DataInt.size(); i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_DataInt[i], pData[i]);
 		}
-		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_4)*SysType.m_DataInt.size());
+		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_2_4)*SysType.m_DataInt.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Group.m_Size = SysType.m_Group.size();
 		tua_stringid* pData = new tua_stringid[SysType.m_Group.size()];
-		mem_zero((void*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
-		for(unsigned int i=0; i<SysType.m_Group.size(); i++)
+		mem_zero(pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		for(unsigned int i = 0; i < SysType.m_Group.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->AddString(SysType.m_Group[i].buffer());
 		}
-		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_stringid)*SysType.m_Group.size());
 		delete[] pData;
 	}
 }
@@ -590,9 +590,9 @@ void CAsset_ZoneType::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 
 	{
 		const CAsset_ZoneType::CIndex::CTuaType_0_3_0* pData = (const CAsset_ZoneType::CIndex::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -601,9 +601,9 @@ void CAsset_ZoneType::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_ZoneType::CDataInt::CTuaType_0_3_0* pData = (const CAsset_ZoneType::CDataInt::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_DataInt.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_DataInt.m_Size);
 		SysType.m_DataInt.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_DataInt[i]);
 		}
@@ -611,9 +611,9 @@ void CAsset_ZoneType::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	
 	{
 		const tua_stringid* pData = (const tua_stringid*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Group.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Group.m_Size);
 		SysType.m_Group.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Group[i] = pLoadingContext->ArchiveFile()->GetString(pData[i]);
 		}
@@ -652,35 +652,35 @@ void CAsset_ZoneType::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_ZoneType::CIndex::CTuaType_0_3_0* pData = new CAsset_ZoneType::CIndex::CTuaType_0_3_0[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_ZoneType::CIndex::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	pLoadingContext->WriteAssetPath(SysType.m_ImagePath, TuaType.m_ImagePath);
 	{
 		TuaType.m_DataInt.m_Size = SysType.m_DataInt.size();
 		CAsset_ZoneType::CDataInt::CTuaType_0_3_0* pData = new CAsset_ZoneType::CDataInt::CTuaType_0_3_0[SysType.m_DataInt.size()];
-		mem_zero((void*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_3_0)*SysType.m_DataInt.size());
-		for(unsigned int i=0; i<SysType.m_DataInt.size(); i++)
+		mem_zero(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_3_0)*SysType.m_DataInt.size());
+		for(unsigned int i = 0; i < SysType.m_DataInt.size(); i++)
 		{
 			CAsset_ZoneType::CDataInt::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_DataInt[i], pData[i]);
 		}
-		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_3_0)*SysType.m_DataInt.size());
+		TuaType.m_DataInt.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_ZoneType::CDataInt::CTuaType_0_3_0)*SysType.m_DataInt.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Group.m_Size = SysType.m_Group.size();
 		tua_stringid* pData = new tua_stringid[SysType.m_Group.size()];
-		mem_zero((void*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
-		for(unsigned int i=0; i<SysType.m_Group.size(); i++)
+		mem_zero(pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		for(unsigned int i = 0; i < SysType.m_Group.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->AddString(SysType.m_Group[i].buffer());
 		}
-		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_stringid)*SysType.m_Group.size());
+		TuaType.m_Group.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_stringid)*SysType.m_Group.size());
 		delete[] pData;
 	}
 }

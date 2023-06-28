@@ -276,69 +276,69 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiRectStyle();
-	inline int GetFlags() const { return m_Flags; }
+	int GetFlags() const { return m_Flags; }
 	
-	inline vec4 GetBackgroundColor() const { return m_BackgroundColor; }
+	vec4 GetBackgroundColor() const { return m_BackgroundColor; }
 	
-	inline float GetBackgroundPadding() const { return m_BackgroundPadding; }
+	float GetBackgroundPadding() const { return m_BackgroundPadding; }
 	
-	inline vec4 GetBorderColor() const { return m_BorderColor; }
+	vec4 GetBorderColor() const { return m_BorderColor; }
 	
-	inline int GetBorderFlags() const { return m_BorderFlags; }
+	int GetBorderFlags() const { return m_BorderFlags; }
 	
-	inline float GetCornerRadius() const { return m_CornerRadius; }
+	float GetCornerRadius() const { return m_CornerRadius; }
 	
-	inline int GetCornerFlags() const { return m_CornerFlags; }
+	int GetCornerFlags() const { return m_CornerFlags; }
 	
-	inline int GetImagePadding() const { return m_ImagePadding; }
+	int GetImagePadding() const { return m_ImagePadding; }
 	
-	inline CAssetPath GetImageTPath() const { return m_ImageTPath; }
+	CAssetPath GetImageTPath() const { return m_ImageTPath; }
 	
-	inline CAssetPath GetImageRPath() const { return m_ImageRPath; }
+	CAssetPath GetImageRPath() const { return m_ImageRPath; }
 	
-	inline CAssetPath GetImageBPath() const { return m_ImageBPath; }
+	CAssetPath GetImageBPath() const { return m_ImageBPath; }
 	
-	inline CAssetPath GetImageLPath() const { return m_ImageLPath; }
+	CAssetPath GetImageLPath() const { return m_ImageLPath; }
 	
-	inline CAssetPath GetImageTRPath() const { return m_ImageTRPath; }
+	CAssetPath GetImageTRPath() const { return m_ImageTRPath; }
 	
-	inline CAssetPath GetImageBRPath() const { return m_ImageBRPath; }
+	CAssetPath GetImageBRPath() const { return m_ImageBRPath; }
 	
-	inline CAssetPath GetImageBLPath() const { return m_ImageBLPath; }
+	CAssetPath GetImageBLPath() const { return m_ImageBLPath; }
 	
-	inline CAssetPath GetImageTLPath() const { return m_ImageTLPath; }
+	CAssetPath GetImageTLPath() const { return m_ImageTLPath; }
 	
-	inline void SetFlags(int Value) { m_Flags = Value; }
+	void SetFlags(int Value) { m_Flags = Value; }
 	
-	inline void SetBackgroundColor(vec4 Value) { m_BackgroundColor = Value; }
+	void SetBackgroundColor(vec4 Value) { m_BackgroundColor = Value; }
 	
-	inline void SetBackgroundPadding(float Value) { m_BackgroundPadding = Value; }
+	void SetBackgroundPadding(float Value) { m_BackgroundPadding = Value; }
 	
-	inline void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
+	void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
 	
-	inline void SetBorderFlags(int Value) { m_BorderFlags = Value; }
+	void SetBorderFlags(int Value) { m_BorderFlags = Value; }
 	
-	inline void SetCornerRadius(float Value) { m_CornerRadius = Value; }
+	void SetCornerRadius(float Value) { m_CornerRadius = Value; }
 	
-	inline void SetCornerFlags(int Value) { m_CornerFlags = Value; }
+	void SetCornerFlags(int Value) { m_CornerFlags = Value; }
 	
-	inline void SetImagePadding(int Value) { m_ImagePadding = Value; }
+	void SetImagePadding(int Value) { m_ImagePadding = Value; }
 	
-	inline void SetImageTPath(const CAssetPath& Value) { m_ImageTPath = Value; }
+	void SetImageTPath(const CAssetPath& Value) { m_ImageTPath = Value; }
 	
-	inline void SetImageRPath(const CAssetPath& Value) { m_ImageRPath = Value; }
+	void SetImageRPath(const CAssetPath& Value) { m_ImageRPath = Value; }
 	
-	inline void SetImageBPath(const CAssetPath& Value) { m_ImageBPath = Value; }
+	void SetImageBPath(const CAssetPath& Value) { m_ImageBPath = Value; }
 	
-	inline void SetImageLPath(const CAssetPath& Value) { m_ImageLPath = Value; }
+	void SetImageLPath(const CAssetPath& Value) { m_ImageLPath = Value; }
 	
-	inline void SetImageTRPath(const CAssetPath& Value) { m_ImageTRPath = Value; }
+	void SetImageTRPath(const CAssetPath& Value) { m_ImageTRPath = Value; }
 	
-	inline void SetImageBRPath(const CAssetPath& Value) { m_ImageBRPath = Value; }
+	void SetImageBRPath(const CAssetPath& Value) { m_ImageBRPath = Value; }
 	
-	inline void SetImageBLPath(const CAssetPath& Value) { m_ImageBLPath = Value; }
+	void SetImageBLPath(const CAssetPath& Value) { m_ImageBLPath = Value; }
 	
-	inline void SetImageTLPath(const CAssetPath& Value) { m_ImageTLPath = Value; }
+	void SetImageTLPath(const CAssetPath& Value) { m_ImageTLPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

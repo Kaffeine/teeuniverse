@@ -162,29 +162,29 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiBoxStyle();
-	inline int GetMinWidth() const { return m_MinWidth; }
+	int GetMinWidth() const { return m_MinWidth; }
 	
-	inline int GetMinHeight() const { return m_MinHeight; }
+	int GetMinHeight() const { return m_MinHeight; }
 	
-	inline int GetMargin() const { return m_Margin; }
+	int GetMargin() const { return m_Margin; }
 	
-	inline int GetPadding() const { return m_Padding; }
+	int GetPadding() const { return m_Padding; }
 	
-	inline int GetSpacing() const { return m_Spacing; }
+	int GetSpacing() const { return m_Spacing; }
 	
-	inline CAssetPath GetRectPath() const { return m_RectPath; }
+	CAssetPath GetRectPath() const { return m_RectPath; }
 	
-	inline void SetMinWidth(int Value) { m_MinWidth = Value; }
+	void SetMinWidth(int Value) { m_MinWidth = Value; }
 	
-	inline void SetMinHeight(int Value) { m_MinHeight = Value; }
+	void SetMinHeight(int Value) { m_MinHeight = Value; }
 	
-	inline void SetMargin(int Value) { m_Margin = Value; }
+	void SetMargin(int Value) { m_Margin = Value; }
 	
-	inline void SetPadding(int Value) { m_Padding = Value; }
+	void SetPadding(int Value) { m_Padding = Value; }
 	
-	inline void SetSpacing(int Value) { m_Spacing = Value; }
+	void SetSpacing(int Value) { m_Spacing = Value; }
 	
-	inline void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
+	void SetRectPath(const CAssetPath& Value) { m_RectPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

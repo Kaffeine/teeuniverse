@@ -129,13 +129,13 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetIncreaseButtonStylePath() const { return m_IncreaseButtonStylePath; }
+	CAssetPath GetIncreaseButtonStylePath() const { return m_IncreaseButtonStylePath; }
 	
-	inline CAssetPath GetDecreaseButtonStylePath() const { return m_DecreaseButtonStylePath; }
+	CAssetPath GetDecreaseButtonStylePath() const { return m_DecreaseButtonStylePath; }
 	
-	inline void SetIncreaseButtonStylePath(const CAssetPath& Value) { m_IncreaseButtonStylePath = Value; }
+	void SetIncreaseButtonStylePath(const CAssetPath& Value) { m_IncreaseButtonStylePath = Value; }
 	
-	inline void SetDecreaseButtonStylePath(const CAssetPath& Value) { m_DecreaseButtonStylePath = Value; }
+	void SetDecreaseButtonStylePath(const CAssetPath& Value) { m_DecreaseButtonStylePath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

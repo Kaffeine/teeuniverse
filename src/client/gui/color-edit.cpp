@@ -913,8 +913,8 @@ protected:
 		//Count number character
 		char* pEnd = str_skip_to_whitespace((char*) pText);
 		int CharCount = pEnd - pText;
-		
-		uint32 Value = str_to_int_base(pText, 16);
+        
+        uint32_t Value = str_to_int_base(pText, 16);
 		const uint32_t DefaultValue = 255 + (255 << 8) + (255 << 16) + (255 << 24);
 
 		switch(CharCount)
@@ -940,10 +940,10 @@ protected:
 	void CopyToTextBuffer() override
 	{
 		vec4 Color = m_pColorEdit->GetValue();
-		uint32 Value = static_cast<uint32>(Color.a * 255.0f);
-		Value += (static_cast<uint32>(Color.b * 255.0f)<<8);
-		Value += (static_cast<uint32>(Color.g * 255.0f)<<16);
-		Value += (static_cast<uint32>(Color.r * 255.0f)<<24);
+        uint32_t Value = static_cast<uint32_t>(Color.a * 255.0f);
+        Value += (static_cast<uint32_t>(Color.b * 255.0f)<<8);
+        Value += (static_cast<uint32_t>(Color.g * 255.0f)<<16);
+        Value += (static_cast<uint32_t>(Color.r * 255.0f)<<24);
 		
 		char aBuf[16];
 		str_format(aBuf, sizeof(aBuf), "#%08X", Value);

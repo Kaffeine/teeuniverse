@@ -45,7 +45,7 @@ bool CAssetsManager::Save_Image(const char* pFilename, int StorageType, const CA
 		return false;
 	}
 	
-	array2d< uint8, allocator_default<uint8> >& ImageData = pImage->GetDataArray();
+	array2d< uint8_t, allocator_default<uint8_t> >& ImageData = pImage->GetDataArray();
 	
 	int ColorType;
 	switch(ImageData.get_depth())

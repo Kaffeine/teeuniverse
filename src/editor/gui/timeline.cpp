@@ -40,7 +40,7 @@ protected:
 		CGuiEditor* m_pAssetsEditor;
 		CTimeLine* m_pTimeLine;
 		
-		int64 GetValue() const override
+		int64_t GetValue() const override
 		{
 			CSubPath FramePath;
 			int Member = -1;
@@ -55,7 +55,7 @@ protected:
 			
 			if(Member >= 0)
 			{
-				return m_pAssetsEditor->AssetsManager()->GetAssetValue<int64>(
+				return m_pAssetsEditor->AssetsManager()->GetAssetValue<int64_t>(
 					m_pTimeLine->GetAnimationPath(),
 					FramePath,
 					Member,
@@ -66,7 +66,7 @@ protected:
 				return 0;
 		}
 		
-		void SetValue(int64 Value) override
+		void SetValue(int64_t Value) override
 		{
 			CAssetPath AnimationPath = m_pTimeLine->GetAnimationPath();
 			CSubPath FramePath;
@@ -80,10 +80,10 @@ protected:
 					Member = CAsset_SkeletonAnimation::LAYERANIMATION_KEYFRAME_TIME;
 			}
 			
-			int64 TimeDiff = 0;
+			int64_t TimeDiff = 0;
 			if(Member >= 0)
 			{
-				TimeDiff = Value - AssetsManager()->GetAssetValue<int64>(
+				TimeDiff = Value - AssetsManager()->GetAssetValue<int64_t>(
 					AnimationPath,
 					FramePath,
 					Member,
@@ -100,14 +100,14 @@ protected:
 				else if(FramePath.GetType() == CAsset_SkeletonAnimation::TYPE_LAYERANIMATION_KEYFRAME)
 					Member = CAsset_SkeletonAnimation::LAYERANIMATION_KEYFRAME_TIME;
 				
-				int64 Time = AssetsManager()->GetAssetValue<int64>(
+				int64_t Time = AssetsManager()->GetAssetValue<int64_t>(
 					AnimationPath,
 					FramePath,
 					Member,
 					0
 				);
 				
-				AssetsManager()->SetAssetValue<int64>(
+				AssetsManager()->SetAssetValue<int64_t>(
 					AnimationPath,
 					FramePath,
 					Member,
@@ -626,7 +626,7 @@ protected:
 	int m_Mode;
 	int m_DragType;
 	int m_DragPos;
-	int64 m_DragTime;
+	int64_t m_DragTime;
 	int m_Token;
 	
 protected:
@@ -651,8 +651,8 @@ protected:
 		else
 			m_AnimationSubPath = CSubPath::Null();
 	}
-
-	CSubPath PickBoneKeyFrame(ivec2 Pos, int64* pFrameTime = nullptr)
+	
+	CSubPath PickBoneKeyFrame(ivec2 Pos, int64_t* pFrameTime = nullptr)
 	{
 		if(pFrameTime)
 			*pFrameTime = 0;
@@ -667,12 +667,12 @@ protected:
 		{
 			int Start = 0;
 			int End = 0;
-			int64 Duration = pAnimation->GetBoneAnimation(m_AnimationSubPath).GetDuration();
+			int64_t Duration = pAnimation->GetBoneAnimation(m_AnimationSubPath).GetDuration();
 			
 			if(pAnimation->GetBoneAnimationCycleType(m_AnimationSubPath) == CAsset_SkeletonAnimation::CYCLETYPE_LOOP && Animations.size() > 1)
 			{
-				int64 Time0 = m_pTimeLine->ScreenPosToTime(0);
-				int64 Time1 = m_pTimeLine->ScreenPosToTime(m_DrawRect.w);
+				int64_t Time0 = m_pTimeLine->ScreenPosToTime(0);
+				int64_t Time1 = m_pTimeLine->ScreenPosToTime(m_DrawRect.w);
 				Start = (Time0/Duration) - 1;
 				End = (Time1/Duration) + 1;
 				
@@ -696,8 +696,8 @@ protected:
 		
 		return CSubPath::Null();
 	}
-
-	CSubPath PickLayerKeyFrame(ivec2 Pos, int64* pFrameTime = nullptr)
+	
+	CSubPath PickLayerKeyFrame(ivec2 Pos, int64_t* pFrameTime = nullptr)
 	{
 		if(pFrameTime)
 			*pFrameTime = 0;
@@ -712,12 +712,12 @@ protected:
 		{
 			int Start = 0;
 			int End = 0;
-			int64 Duration = pAnimation->GetLayerAnimation(m_AnimationSubPath).GetDuration();
+			int64_t Duration = pAnimation->GetLayerAnimation(m_AnimationSubPath).GetDuration();
 			
 			if(pAnimation->GetLayerAnimationCycleType(m_AnimationSubPath) == CAsset_SkeletonAnimation::CYCLETYPE_LOOP && Animations.size() > 1)
 			{
-				int64 Time0 = m_pTimeLine->ScreenPosToTime(0);
-				int64 Time1 = m_pTimeLine->ScreenPosToTime(m_DrawRect.w);
+				int64_t Time0 = m_pTimeLine->ScreenPosToTime(0);
+				int64_t Time1 = m_pTimeLine->ScreenPosToTime(m_DrawRect.w);
 				Start = (Time0/Duration) - 1;
 				End = (Time1/Duration) + 1;
 				
@@ -741,15 +741,15 @@ protected:
 		
 		return CSubPath::Null();
 	}
-
-	void CreateBoneFrame(int64 Time)
+	
+	void CreateBoneFrame(int64_t Time)
 	{
 		CSubPath FramePath;
 		m_pTimeLine->CreateBoneKeyFrame(m_SkeletonSubPath, Time, m_AnimationSubPath, FramePath);
 		m_pTimeLine->SetEditedFrame(FramePath);
 	}
 	
-	void CreateLayerFrame(int64 Time)
+	void CreateLayerFrame(int64_t Time)
 	{
 		CSubPath FramePath;
 		m_pTimeLine->CreateLayerKeyFrame(m_SkeletonSubPath, Time, m_AnimationSubPath, FramePath);
@@ -794,7 +794,7 @@ public:
 				}
 				else if(m_Mode == ANIMMODE_BONE)
 				{
-					int64 FrameTime = 0;
+					int64_t FrameTime = 0;
 					CSubPath PickedFramePath = PickBoneKeyFrame(MousePos, &FrameTime);
 					if(PickedFramePath.IsNull())
 					{
@@ -813,7 +813,7 @@ public:
 				}
 				else if(m_Mode == ANIMMODE_LAYER)
 				{
-					int64 FrameTime = 0;
+					int64_t FrameTime = 0;
 					CSubPath PickedFramePath = PickLayerKeyFrame(MousePos, &FrameTime);
 					if(PickedFramePath.IsNull())
 					{
@@ -901,9 +901,9 @@ public:
 			else if(Button == KEY_MOUSE_WHEEL_UP)
 			{
 				ivec2 MousePos = Context()->GetMousePos();
-				int64 MouseTime = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64) 0);
+				int64_t MouseTime = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64_t) 0);
 				
-				int64 Time = m_pTimeLine->GetTimeShift();
+				int64_t Time = m_pTimeLine->GetTimeShift();
 				Time = MouseTime + (Time - MouseTime)/1.1;
 				m_pTimeLine->SetTimeShift(Time);
 				
@@ -915,9 +915,9 @@ public:
 			else if(Button == KEY_MOUSE_WHEEL_DOWN)
 			{
 				ivec2 MousePos = Context()->GetMousePos();
-				int64 MouseTime = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64) 0);
+				int64_t MouseTime = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64_t) 0);
 				
-				int64 Time = m_pTimeLine->GetTimeShift();
+				int64_t Time = m_pTimeLine->GetTimeShift();
 				Time = MouseTime + (Time - MouseTime)*1.1;
 				m_pTimeLine->SetTimeShift(Time);
 				
@@ -942,31 +942,31 @@ public:
 	{		
 		if(m_DragType == DRAGTYPE_TIMESCROLL)
 		{
-			int64 OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64) 0);
-			int64 NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64) 0);
-			int64 TimeDiff = NewTime - OldTime;
+			int64_t OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64_t) 0);
+			int64_t NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64_t) 0);
+			int64_t TimeDiff = NewTime - OldTime;
 			m_pTimeLine->SetTimeShift(m_DragTime - TimeDiff);
 		}
 		else if(m_DragType == DRAGTYPE_TIME)
 		{
 			ivec2 MousePos = Context()->GetMousePos();
-			int64 Time = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64) 0);
+			int64_t Time = max(m_pTimeLine->ScreenPosToTime(MousePos.x - m_DrawRect.x), (int64_t) 0);
 			
 			m_pAssetsEditor->SetTime(Time);
 		}
 		else if(m_DragType == DRAGTYPE_BONE)
 		{
-			int64 OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64) 0);
-			int64 NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64) 0);
-			int64 TimeDiff = NewTime - OldTime;
+			int64_t OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64_t) 0);
+			int64_t NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64_t) 0);
+			int64_t TimeDiff = NewTime - OldTime;
 			
 			m_DragItemPath = m_pTimeLine->MoveBoneFrame(m_DragItemPath, m_DragTime + TimeDiff, m_Token);
 		}
 		else if(m_DragType == DRAGTYPE_LAYER)
 		{
-			int64 OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64) 0);
-			int64 NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64) 0);
-			int64 TimeDiff = NewTime - OldTime;
+			int64_t OldTime = max(m_pTimeLine->ScreenPosToTime(m_DragPos - m_DrawRect.x), (int64_t) 0);
+			int64_t NewTime = max(m_pTimeLine->ScreenPosToTime(Context()->GetMousePos().x - m_DrawRect.x), (int64_t) 0);
+			int64_t TimeDiff = NewTime - OldTime;
 			
 			m_DragItemPath = m_pTimeLine->MoveLayerFrame(m_DragItemPath, m_DragTime + TimeDiff, m_Token);
 		}
@@ -1082,11 +1082,11 @@ public:
 		Graphics()->ClipPush(TimelineRect.x, TimelineRect.y, TimelineRect.w, TimelineRect.h);
 		
 		//Draw rules
-		int64 TimeMin = m_pTimeLine->ScreenPosToTime(0);
-		int64 TimeMax = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
-		int64 TimeLength = TimeMax - TimeMin;
-		int64 TimeSegment;
-		static int64 s_aPossibleSegmentLength[] = {20, 100, 1000, 5*1000, 10*1000, 60*1000, 5*60*1000, 15*60*1000, 60*60*1000, 6*60*60*1000, 24*60*60*1000};
+		int64_t TimeMin = m_pTimeLine->ScreenPosToTime(0);
+		int64_t TimeMax = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
+		int64_t TimeLength = TimeMax - TimeMin;
+		int64_t TimeSegment;
+		static int64_t s_aPossibleSegmentLength[] = {20, 100, 1000, 5*1000, 10*1000, 60*1000, 5*60*1000, 15*60*1000, 60*60*1000, 6*60*60*1000, 24*60*60*1000};
 		for(unsigned int i=0; i<sizeof(s_aPossibleSegmentLength)/sizeof(s_aPossibleSegmentLength[0]); i++)
 		{
 			TimeSegment = s_aPossibleSegmentLength[i];
@@ -1094,7 +1094,7 @@ public:
 				break;
 		}
 		
-		int64 TimeIter = TimeMin - TimeMin % TimeSegment;
+		int64_t TimeIter = TimeMin - TimeMin % TimeSegment;
 		while(TimeIter < TimeMax)
 		{
 			int XMin = TimelineRect.x + m_pTimeLine->TimeToScreenPos(TimeIter);
@@ -1170,12 +1170,12 @@ public:
 						
 						int Start = 0;
 						int End = 0;
-						int64 Duration = pAnimation->GetBoneAnimation(m_AnimationSubPath).GetDuration();
+						int64_t Duration = pAnimation->GetBoneAnimation(m_AnimationSubPath).GetDuration();
 						
 						if(pAnimation->GetBoneAnimationCycleType(m_AnimationSubPath) == CAsset_SkeletonAnimation::CYCLETYPE_LOOP && Animations.size() > 1)
 						{
-							int64 Time0 = m_pTimeLine->ScreenPosToTime(0);
-							int64 Time1 = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
+							int64_t Time0 = m_pTimeLine->ScreenPosToTime(0);
+							int64_t Time1 = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
 							Start = (Time0/Duration) - 1;
 							End = (Time1/Duration) + 1;
 							
@@ -1244,12 +1244,12 @@ public:
 					{
 						int Start = 0;
 						int End = 0;
-						int64 Duration = pAnimation->GetLayerAnimation(m_AnimationSubPath).GetDuration();
+						int64_t Duration = pAnimation->GetLayerAnimation(m_AnimationSubPath).GetDuration();
 						
 						if(pAnimation->GetLayerAnimationCycleType(m_AnimationSubPath) == CAsset_SkeletonAnimation::CYCLETYPE_LOOP && Animations.size() > 1)
 						{
-							int64 Time0 = m_pTimeLine->ScreenPosToTime(0);
-							int64 Time1 = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
+							int64_t Time0 = m_pTimeLine->ScreenPosToTime(0);
+							int64_t Time1 = m_pTimeLine->ScreenPosToTime(TimelineRect.w);
 							Start = (Time0/Duration) - 1;
 							End = (Time1/Duration) + 1;
 							
@@ -1314,7 +1314,7 @@ public:
 		{
 			if(TimelineRect.IsInside(MousePos))
 			{
-				int64 MouseTime = m_pTimeLine->ScreenPosToTime(MousePos.x - TimelineRect.x);
+				int64_t MouseTime = m_pTimeLine->ScreenPosToTime(MousePos.x - TimelineRect.x);
 				int FramePos = m_pTimeLine->TimeToScreenPos(MouseTime) + TimelineRect.x;
 				AssetsRenderer()->DrawSprite(
 					m_pAssetsEditor->m_Path_Sprite_GizmoFrameCursor,
@@ -1635,7 +1635,7 @@ void CTimeLine::Update(bool ParentEnabled)
 	gui::CVListLayout::Update(ParentEnabled);
 }
 
-bool CTimeLine::CreateBoneKeyFrame(CSubPath BonePath, int64 Time, CSubPath& AnimationSubPath, CSubPath& FramePath)
+bool CTimeLine::CreateBoneKeyFrame(CSubPath BonePath, int64_t Time, CSubPath& AnimationSubPath, CSubPath& FramePath)
 {
 	CAssetPath AnimationPath = GetAnimationPath();
 	CAsset_SkeletonAnimation* pAnimation = AssetsManager()->GetAsset_Hard<CAsset_SkeletonAnimation>(AnimationPath);
@@ -1674,7 +1674,7 @@ bool CTimeLine::CreateBoneKeyFrame(CSubPath BonePath, int64 Time, CSubPath& Anim
 	return true;
 }
 
-bool CTimeLine::CreateLayerKeyFrame(CSubPath LayerPath, int64 Time, CSubPath& AnimationSubPath, CSubPath& FramePath)
+bool CTimeLine::CreateLayerKeyFrame(CSubPath LayerPath, int64_t Time, CSubPath& AnimationSubPath, CSubPath& FramePath)
 {
 	CAssetPath AnimationPath = GetAnimationPath();
 	CAsset_SkeletonAnimation* pAnimation = AssetsManager()->GetAsset_Hard<CAsset_SkeletonAnimation>(AnimationPath);
@@ -1713,7 +1713,7 @@ bool CTimeLine::CreateLayerKeyFrame(CSubPath LayerPath, int64 Time, CSubPath& An
 	return true;
 }
 
-CSubPath CTimeLine::MoveBoneFrame(CSubPath FramePath, int64 Time, int Token)
+CSubPath CTimeLine::MoveBoneFrame(CSubPath FramePath, int64_t Time, int Token)
 {
 	CSubPath OldPath = FramePath;
 	
@@ -1759,7 +1759,7 @@ CSubPath CTimeLine::MoveBoneFrame(CSubPath FramePath, int64 Time, int Token)
 	return FramePath;
 }
 
-CSubPath CTimeLine::MoveLayerFrame(CSubPath FramePath, int64 Time, int Token)
+CSubPath CTimeLine::MoveLayerFrame(CSubPath FramePath, int64_t Time, int Token)
 {
 	CSubPath OldPath = FramePath;
 	

@@ -130,18 +130,18 @@ public:
 		
 	
 	private:
-		uint8 m_Index;
-		uint32 m_Flags;
+		uint8_t m_Index;
+		uint32_t m_Flags;
 	
 	public:
 		CTile();
-		inline uint8 GetIndex() const { return m_Index; }
+		uint8_t GetIndex() const { return m_Index; }
 		
-		inline uint32 GetFlags() const { return m_Flags; }
+		uint32_t GetFlags() const { return m_Flags; }
 		
-		inline void SetIndex(uint8 Value) { m_Index = Value; }
+		void SetIndex(uint8_t Value) { m_Index = Value; }
 		
-		inline void SetFlags(uint32 Value) { m_Flags = Value; }
+		void SetFlags(uint32_t Value) { m_Flags = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -256,81 +256,81 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_MapZoneTiles();
-	inline CAssetPath GetParentPath() const { return m_ParentPath; }
+	CAssetPath GetParentPath() const { return m_ParentPath; }
 	
-	inline CAssetPath GetZoneTypePath() const { return m_ZoneTypePath; }
+	CAssetPath GetZoneTypePath() const { return m_ZoneTypePath; }
 	
-	inline int GetTileWidth() const { return m_Tile.get_width(); }
+	int GetTileWidth() const { return m_Tile.get_width(); }
 	
-	inline int GetTileHeight() const { return m_Tile.get_height(); }
+	int GetTileHeight() const { return m_Tile.get_height(); }
 	
-	inline int GetTileDepth() const { return m_Tile.get_depth(); }
+	int GetTileDepth() const { return m_Tile.get_depth(); }
 	
-	inline const CAsset_MapZoneTiles::CTile* GetTilePtr() const { return m_Tile.base_ptr(); }
+	const CAsset_MapZoneTiles::CTile* GetTilePtr() const { return m_Tile.base_ptr(); }
 	
-	inline const array2d< CTile >& GetTileArray() const { return m_Tile; }
-	inline array2d< CTile >& GetTileArray() { return m_Tile; }
+	const array2d< CTile >& GetTileArray() const { return m_Tile; }
+	array2d< CTile >& GetTileArray() { return m_Tile; }
 	
-	inline const CAsset_MapZoneTiles::CTile& GetTile(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
+	const CAsset_MapZoneTiles::CTile& GetTile(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
 	
-	inline uint8 GetTileIndex(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).GetIndex(); }
+	uint8_t GetTileIndex(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).GetIndex(); }
 	
-	inline uint32 GetTileFlags(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).GetFlags(); }
+	uint32_t GetTileFlags(const CSubPath& SubPath) const { return m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).GetFlags(); }
 	
-	inline bool GetVisibility() const { return m_Visibility; }
+	bool GetVisibility() const { return m_Visibility; }
 	
-	inline int GetDataIntWidth() const { return m_DataInt.get_width(); }
+	int GetDataIntWidth() const { return m_DataInt.get_width(); }
 	
-	inline int GetDataIntHeight() const { return m_DataInt.get_height(); }
+	int GetDataIntHeight() const { return m_DataInt.get_height(); }
 	
-	inline int GetDataIntDepth() const { return m_DataInt.get_depth(); }
+	int GetDataIntDepth() const { return m_DataInt.get_depth(); }
 	
-	inline const int* GetDataIntPtr() const { return m_DataInt.base_ptr(); }
+	const int* GetDataIntPtr() const { return m_DataInt.base_ptr(); }
 	
-	inline const array2d< int >& GetDataIntArray() const { return m_DataInt; }
-	inline array2d< int >& GetDataIntArray() { return m_DataInt; }
+	const array2d< int >& GetDataIntArray() const { return m_DataInt; }
+	array2d< int >& GetDataIntArray() { return m_DataInt; }
 	
-	inline int GetDataInt(const CSubPath& SubPath) const { return m_DataInt.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
+	int GetDataInt(const CSubPath& SubPath) const { return m_DataInt.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
 	
-	inline int GetPositionX() const { return m_PositionX; }
+	int GetPositionX() const { return m_PositionX; }
 	
-	inline int GetPositionY() const { return m_PositionY; }
+	int GetPositionY() const { return m_PositionY; }
 	
-	inline void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
+	void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
 	
-	inline void SetZoneTypePath(const CAssetPath& Value) { m_ZoneTypePath = Value; }
+	void SetZoneTypePath(const CAssetPath& Value) { m_ZoneTypePath = Value; }
 	
-	inline void SetTileWidth(int Value) { m_Tile.resize_width(max(Value, 1)); }
+	void SetTileWidth(int Value) { m_Tile.resize_width(max(Value, 1)); }
 	
-	inline void SetTileHeight(int Value) { m_Tile.resize_height(max(Value, 1)); }
+	void SetTileHeight(int Value) { m_Tile.resize_height(max(Value, 1)); }
 	
-	inline void SetTileDepth(int Value) { m_Tile.resize_depth(max(Value, 1)); }
+	void SetTileDepth(int Value) { m_Tile.resize_depth(max(Value, 1)); }
 	
-	inline void SetTile(const CSubPath& SubPath, const CAsset_MapZoneTiles::CTile& Value) { m_Tile.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
+	void SetTile(const CSubPath& SubPath, const CAsset_MapZoneTiles::CTile& Value) { m_Tile.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
 	
-	inline void SetTileIndex(const CSubPath& SubPath, uint8 Value) { m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).SetIndex(Value); }
+	void SetTileIndex(const CSubPath& SubPath, uint8_t Value) { m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).SetIndex(Value); }
 	
-	inline void SetTileFlags(const CSubPath& SubPath, uint32 Value) { m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).SetFlags(Value); }
+	void SetTileFlags(const CSubPath& SubPath, uint32_t Value) { m_Tile.get_clamp(SubPath.GetId(), SubPath.GetId2()).SetFlags(Value); }
 	
-	inline void SetVisibility(bool Value) { m_Visibility = Value; }
+	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
-	inline void SetDataIntWidth(int Value) { m_DataInt.resize_width(max(Value, 1)); }
+	void SetDataIntWidth(int Value) { m_DataInt.resize_width(max(Value, 1)); }
 	
-	inline void SetDataIntHeight(int Value) { m_DataInt.resize_height(max(Value, 1)); }
+	void SetDataIntHeight(int Value) { m_DataInt.resize_height(max(Value, 1)); }
 	
-	inline void SetDataIntDepth(int Value) { m_DataInt.resize_depth(max(Value, 1)); }
+	void SetDataIntDepth(int Value) { m_DataInt.resize_depth(max(Value, 1)); }
 	
-	inline void SetDataInt(const CSubPath& SubPath, int Value) { m_DataInt.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
+	void SetDataInt(const CSubPath& SubPath, int Value) { m_DataInt.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
 	
-	inline void SetPositionX(int Value) { m_PositionX = Value; }
+	void SetPositionX(int Value) { m_PositionX = Value; }
 	
-	inline void SetPositionY(int Value) { m_PositionY = Value; }
+	void SetPositionY(int Value) { m_PositionY = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{
 		Operation.Apply(m_ParentPath);
 		Operation.Apply(m_ZoneTypePath);
-		for(int i=0; i<m_Tile.get_linear_size(); i++)
+		for(int i = 0; i<m_Tile.get_linear_size(); i++)
 		{
 			m_Tile.linear_get_clamp(i).AssetPathOperation(Operation);
 		}
@@ -340,8 +340,8 @@ public:
 
 template<> int CAsset_MapZoneTiles::GetValue(int ValueType, const CSubPath& SubPath, int DefaultValue) const;
 template<> bool CAsset_MapZoneTiles::SetValue(int ValueType, const CSubPath& SubPath, int Value);
-template<> uint32 CAsset_MapZoneTiles::GetValue(int ValueType, const CSubPath& SubPath, uint32 DefaultValue) const;
-template<> bool CAsset_MapZoneTiles::SetValue(int ValueType, const CSubPath& SubPath, uint32 Value);
+template<> uint32_t CAsset_MapZoneTiles::GetValue(int ValueType, const CSubPath& SubPath, uint32_t DefaultValue) const;
+template<> bool CAsset_MapZoneTiles::SetValue(int ValueType, const CSubPath& SubPath, uint32_t Value);
 template<> bool CAsset_MapZoneTiles::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const;
 template<> bool CAsset_MapZoneTiles::SetValue(int ValueType, const CSubPath& SubPath, bool Value);
 template<> CAssetPath CAsset_MapZoneTiles::GetValue(int ValueType, const CSubPath& SubPath, CAssetPath DefaultValue) const;

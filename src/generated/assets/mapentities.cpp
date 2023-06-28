@@ -58,9 +58,9 @@ void CAsset_MapEntities::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_2_0* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_2_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_0::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -85,12 +85,12 @@ void CAsset_MapEntities::CTuaType_0_2_0::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_2_0* pData = new CAsset_MapEntities::CEntity::CTuaType_0_2_0[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_0)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_0)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_0::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_0)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_0)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -111,9 +111,9 @@ void CAsset_MapEntities::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_2_1* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_2_1*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_1::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -138,12 +138,12 @@ void CAsset_MapEntities::CTuaType_0_2_1::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_2_1* pData = new CAsset_MapEntities::CEntity::CTuaType_0_2_1[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_1)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_1)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_1::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_1)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_1)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -164,9 +164,9 @@ void CAsset_MapEntities::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_2_2* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_2_2*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_2::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -191,12 +191,12 @@ void CAsset_MapEntities::CTuaType_0_2_2::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_2_2* pData = new CAsset_MapEntities::CEntity::CTuaType_0_2_2[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_2)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_2)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_2::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_2)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_2)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -217,9 +217,9 @@ void CAsset_MapEntities::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_2_3* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -244,12 +244,12 @@ void CAsset_MapEntities::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_2_3* pData = new CAsset_MapEntities::CEntity::CTuaType_0_2_3[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_3)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_3)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_3)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_3)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -270,9 +270,9 @@ void CAsset_MapEntities::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_2_4* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -297,12 +297,12 @@ void CAsset_MapEntities::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_2_4* pData = new CAsset_MapEntities::CEntity::CTuaType_0_2_4[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_4)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_4)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_4)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_2_4)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
@@ -323,9 +323,9 @@ void CAsset_MapEntities::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingCo
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAsset_MapEntities::CEntity::CTuaType_0_3_0* pData = (const CAsset_MapEntities::CEntity::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Entity.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Entity.m_Size);
 		SysType.m_Entity.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Entity[i]);
 		}
@@ -350,12 +350,12 @@ void CAsset_MapEntities::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoadingC
 	{
 		TuaType.m_Entity.m_Size = SysType.m_Entity.size();
 		CAsset_MapEntities::CEntity::CTuaType_0_3_0* pData = new CAsset_MapEntities::CEntity::CTuaType_0_3_0[SysType.m_Entity.size()];
-		mem_zero((void*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_3_0)*SysType.m_Entity.size());
-		for(unsigned int i=0; i<SysType.m_Entity.size(); i++)
+		mem_zero(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_3_0)*SysType.m_Entity.size());
+		for(unsigned int i = 0; i < SysType.m_Entity.size(); i++)
 		{
 			CAsset_MapEntities::CEntity::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Entity[i], pData[i]);
 		}
-		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_3_0)*SysType.m_Entity.size());
+		TuaType.m_Entity.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_MapEntities::CEntity::CTuaType_0_3_0)*SysType.m_Entity.size());
 		delete[] pData;
 	}
 	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);

@@ -79,7 +79,7 @@ void CreateNewImage_LoadPng(CSharedKernel* pKernel, png_t& Png, unsigned char*& 
 
 void CreateNewImage_CopyData(png_t& Png, unsigned char*& pBuffer, CAsset_Image* pImage)
 {
-	array2d<uint8>& Data = pImage->GetDataArray();
+	array2d<uint8_t>& Data = pImage->GetDataArray();
 	
 	int BBP = 1;
 	switch(Png.color_type)

@@ -137,17 +137,17 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetButtonPath() const { return m_ButtonPath; }
+	CAssetPath GetButtonPath() const { return m_ButtonPath; }
 	
-	inline CAssetPath GetPopupPath() const { return m_PopupPath; }
+	CAssetPath GetPopupPath() const { return m_PopupPath; }
 	
-	inline CAssetPath GetEnumPath() const { return m_EnumPath; }
+	CAssetPath GetEnumPath() const { return m_EnumPath; }
 	
-	inline void SetButtonPath(const CAssetPath& Value) { m_ButtonPath = Value; }
+	void SetButtonPath(const CAssetPath& Value) { m_ButtonPath = Value; }
 	
-	inline void SetPopupPath(const CAssetPath& Value) { m_PopupPath = Value; }
+	void SetPopupPath(const CAssetPath& Value) { m_PopupPath = Value; }
 	
-	inline void SetEnumPath(const CAssetPath& Value) { m_EnumPath = Value; }
+	void SetEnumPath(const CAssetPath& Value) { m_EnumPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

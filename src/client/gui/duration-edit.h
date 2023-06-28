@@ -27,14 +27,14 @@ namespace gui
 class CAbstractDurationEdit : public CAbstractTextEdit
 {
 protected:
-	int64 m_Value;
+	int64_t m_Value;
 	bool m_Percent;
 	
 	virtual void SaveFromTextBuffer();
 	virtual void CopyToTextBuffer();
 	
-	virtual int64 GetValue() const = 0;
-	virtual void SetValue(int64 Value) = 0;
+	virtual int64_t GetValue() const = 0;
+	virtual void SetValue(int64_t Value) = 0;
 	
 public:
 	CAbstractDurationEdit(class CGui *pConfig);

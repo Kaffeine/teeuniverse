@@ -148,21 +148,21 @@ public:
 	
 	public:
 		CEntity();
-		inline CAssetPath GetTypePath() const { return m_TypePath; }
+		CAssetPath GetTypePath() const { return m_TypePath; }
 		
-		inline vec2 GetPosition() const { return m_Position; }
+		vec2 GetPosition() const { return m_Position; }
 		
-		inline float GetPositionX() const { return m_Position.x; }
+		float GetPositionX() const { return m_Position.x; }
 		
-		inline float GetPositionY() const { return m_Position.y; }
+		float GetPositionY() const { return m_Position.y; }
 		
-		inline void SetTypePath(const CAssetPath& Value) { m_TypePath = Value; }
+		void SetTypePath(const CAssetPath& Value) { m_TypePath = Value; }
 		
-		inline void SetPosition(vec2 Value) { m_Position = Value; }
+		void SetPosition(vec2 Value) { m_Position = Value; }
 		
-		inline void SetPositionX(float Value) { m_Position.x = Value; }
+		void SetPositionX(float Value) { m_Position.x = Value; }
 		
-		inline void SetPositionY(float Value) { m_Position.y = Value; }
+		void SetPositionY(float Value) { m_Position.y = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -260,16 +260,16 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_MapEntities();
-	inline CAssetPath GetParentPath() const { return m_ParentPath; }
+	CAssetPath GetParentPath() const { return m_ParentPath; }
 	
-	inline int GetEntityArraySize() const { return m_Entity.size(); }
+	int GetEntityArraySize() const { return m_Entity.size(); }
 	
-	inline const CAsset_MapEntities::CEntity* GetEntityPtr() const { return &(m_Entity.front()); }
+	const CAsset_MapEntities::CEntity* GetEntityPtr() const { return &(m_Entity.front()); }
 	
-	inline const std::vector<CAsset_MapEntities::CEntity>& GetEntityArray() const { return m_Entity; }
-	inline std::vector<CAsset_MapEntities::CEntity>& GetEntityArray() { return m_Entity; }
+	const std::vector<CAsset_MapEntities::CEntity>& GetEntityArray() const { return m_Entity; }
+	std::vector<CAsset_MapEntities::CEntity>& GetEntityArray() { return m_Entity; }
 	
-	inline const CAsset_MapEntities::CEntity& GetEntity(const CSubPath& SubPath) const
+	const CAsset_MapEntities::CEntity& GetEntity(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Entity.size());
 		{
@@ -277,41 +277,41 @@ public:
 		}
 	}
 	
-	inline CAssetPath GetEntityTypePath(const CSubPath& SubPath) const
+	CAssetPath GetEntityTypePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			return m_Entity[SubPath.GetId()].GetTypePath();
 		else return CAssetPath::Null();
 	}
 	
-	inline vec2 GetEntityPosition(const CSubPath& SubPath) const
+	vec2 GetEntityPosition(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			return m_Entity[SubPath.GetId()].GetPosition();
 		else return 0.0f;
 	}
 	
-	inline float GetEntityPositionX(const CSubPath& SubPath) const
+	float GetEntityPositionX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			return m_Entity[SubPath.GetId()].GetPositionX();
 		else return 0.0f;
 	}
 	
-	inline float GetEntityPositionY(const CSubPath& SubPath) const
+	float GetEntityPositionY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			return m_Entity[SubPath.GetId()].GetPositionY();
 		else return 0.0f;
 	}
 	
-	inline bool GetVisibility() const { return m_Visibility; }
+	bool GetVisibility() const { return m_Visibility; }
 	
-	inline void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
+	void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
 	
-	inline void SetEntityArraySize(int Value) { m_Entity.resize(Value); }
+	void SetEntityArraySize(int Value) { m_Entity.resize(Value); }
 	
-	inline void SetEntity(const CSubPath& SubPath, const CAsset_MapEntities::CEntity& Value)
+	void SetEntity(const CSubPath& SubPath, const CAsset_MapEntities::CEntity& Value)
 	{
 		if(SubPath.GetId() < m_Entity.size())
 		{
@@ -319,50 +319,50 @@ public:
 		}
 	}
 	
-	inline void SetEntityTypePath(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetEntityTypePath(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			m_Entity[SubPath.GetId()].SetTypePath(Value);
 	}
 	
-	inline void SetEntityPosition(const CSubPath& SubPath, vec2 Value)
+	void SetEntityPosition(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			m_Entity[SubPath.GetId()].SetPosition(Value);
 	}
 	
-	inline void SetEntityPositionX(const CSubPath& SubPath, float Value)
+	void SetEntityPositionX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			m_Entity[SubPath.GetId()].SetPositionX(Value);
 	}
 	
-	inline void SetEntityPositionY(const CSubPath& SubPath, float Value)
+	void SetEntityPositionY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Entity.size())
 			m_Entity[SubPath.GetId()].SetPositionY(Value);
 	}
 	
-	inline void SetVisibility(bool Value) { m_Visibility = Value; }
+	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
-	inline int AddEntity()
+	int AddEntity()
 	{
 		int Id = m_Entity.size();
 		m_Entity.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtEntity(int Index) { m_Entity.insert(m_Entity.begin() + Index, CAsset_MapEntities::CEntity()); }
+	void AddAtEntity(int Index) { m_Entity.insert(m_Entity.begin() + Index, CAsset_MapEntities::CEntity()); }
 	
-	inline void DeleteEntity(const CSubPath& SubPath) { m_Entity.erase(m_Entity.begin() + SubPath.GetId()); }
+	void DeleteEntity(const CSubPath& SubPath) { m_Entity.erase(m_Entity.begin() + SubPath.GetId()); }
 	
-	inline void RelMoveEntity(CSubPath& SubPath, int RelMove)
+	void RelMoveEntity(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Entity, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidEntity(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Entity.size()); }
+	bool IsValidEntity(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Entity.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

@@ -145,21 +145,21 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetIdleStylePath() const { return m_IdleStylePath; }
+	CAssetPath GetIdleStylePath() const { return m_IdleStylePath; }
 	
-	inline CAssetPath GetMouseOverStylePath() const { return m_MouseOverStylePath; }
+	CAssetPath GetMouseOverStylePath() const { return m_MouseOverStylePath; }
 	
-	inline CAssetPath GetReadOnlyStylePath() const { return m_ReadOnlyStylePath; }
+	CAssetPath GetReadOnlyStylePath() const { return m_ReadOnlyStylePath; }
 	
-	inline CAssetPath GetFocusStylePath() const { return m_FocusStylePath; }
+	CAssetPath GetFocusStylePath() const { return m_FocusStylePath; }
 	
-	inline void SetIdleStylePath(const CAssetPath& Value) { m_IdleStylePath = Value; }
+	void SetIdleStylePath(const CAssetPath& Value) { m_IdleStylePath = Value; }
 	
-	inline void SetMouseOverStylePath(const CAssetPath& Value) { m_MouseOverStylePath = Value; }
+	void SetMouseOverStylePath(const CAssetPath& Value) { m_MouseOverStylePath = Value; }
 	
-	inline void SetReadOnlyStylePath(const CAssetPath& Value) { m_ReadOnlyStylePath = Value; }
+	void SetReadOnlyStylePath(const CAssetPath& Value) { m_ReadOnlyStylePath = Value; }
 	
-	inline void SetFocusStylePath(const CAssetPath& Value) { m_FocusStylePath = Value; }
+	void SetFocusStylePath(const CAssetPath& Value) { m_FocusStylePath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

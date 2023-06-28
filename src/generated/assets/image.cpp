@@ -53,11 +53,11 @@ void CAsset_Image::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }
@@ -91,11 +91,11 @@ void CAsset_Image::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }
@@ -129,11 +129,11 @@ void CAsset_Image::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }
@@ -167,11 +167,11 @@ void CAsset_Image::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }
@@ -205,11 +205,11 @@ void CAsset_Image::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }
@@ -243,11 +243,11 @@ void CAsset_Image::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingContext,
 	SysType.m_TilingEnabled = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_TilingEnabled);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Data.m_Data);
-		uint32 Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
-		uint32 Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
-		uint32 Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
+		uint32_t Width = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Width);
+		uint32_t Height = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Height);
+		uint32_t Depth = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Data.m_Depth);
 		SysType.m_Data.resize(Width, Height, Depth);
-		mem_copy((uint8*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
+		mem_copy((uint8_t*) SysType.m_Data.base_ptr(), pData, SysType.m_Data.get_linear_size());
 	}
 	
 }

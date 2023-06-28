@@ -151,7 +151,7 @@ private:
 	int m_GridSpacing;
 	int m_TexelSize;
 	bool m_TilingEnabled;
-	array2d< uint8 > m_Data;
+	array2d< uint8_t > m_Data;
 	CTextureHandle m_Texture;
 
 public:
@@ -179,54 +179,54 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_Image();
-	inline int GetGridWidth() const { return m_GridWidth; }
+	int GetGridWidth() const { return m_GridWidth; }
 	
-	inline int GetGridHeight() const { return m_GridHeight; }
+	int GetGridHeight() const { return m_GridHeight; }
 	
-	inline int GetGridSpacing() const { return m_GridSpacing; }
+	int GetGridSpacing() const { return m_GridSpacing; }
 	
-	inline int GetTexelSize() const { return m_TexelSize; }
+	int GetTexelSize() const { return m_TexelSize; }
 	
-	inline bool GetTilingEnabled() const { return m_TilingEnabled; }
+	bool GetTilingEnabled() const { return m_TilingEnabled; }
 	
-	inline int GetDataWidth() const { return m_Data.get_width(); }
+	int GetDataWidth() const { return m_Data.get_width(); }
 	
-	inline int GetDataHeight() const { return m_Data.get_height(); }
+	int GetDataHeight() const { return m_Data.get_height(); }
 	
-	inline int GetDataDepth() const { return m_Data.get_depth(); }
+	int GetDataDepth() const { return m_Data.get_depth(); }
 	
-	inline const uint8* GetDataPtr() const { return m_Data.base_ptr(); }
+	const uint8_t* GetDataPtr() const { return m_Data.base_ptr(); }
 	
-	inline const array2d< uint8 >& GetDataArray() const { return m_Data; }
-	inline array2d< uint8 >& GetDataArray() { return m_Data; }
+	const array2d< uint8_t >& GetDataArray() const { return m_Data; }
+	array2d< uint8_t >& GetDataArray() { return m_Data; }
 	
-	inline uint8 GetData(const CSubPath& SubPath) const { return m_Data.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
+	uint8_t GetData(const CSubPath& SubPath) const { return m_Data.get_clamp(SubPath.GetId(), SubPath.GetId2()); }
 	
-	inline CTextureHandle GetTexture() const { return m_Texture; }
+	CTextureHandle GetTexture() const { return m_Texture; }
 	
-	inline int GetTextureId() const { return m_Texture.Id(); }
+	int GetTextureId() const { return m_Texture.Id(); }
 	
-	inline void SetGridWidth(int Value) { m_GridWidth = Value; }
+	void SetGridWidth(int Value) { m_GridWidth = Value; }
 	
-	inline void SetGridHeight(int Value) { m_GridHeight = Value; }
+	void SetGridHeight(int Value) { m_GridHeight = Value; }
 	
-	inline void SetGridSpacing(int Value) { m_GridSpacing = Value; }
+	void SetGridSpacing(int Value) { m_GridSpacing = Value; }
 	
-	inline void SetTexelSize(int Value) { m_TexelSize = Value; }
+	void SetTexelSize(int Value) { m_TexelSize = Value; }
 	
-	inline void SetTilingEnabled(bool Value) { m_TilingEnabled = Value; }
+	void SetTilingEnabled(bool Value) { m_TilingEnabled = Value; }
 	
-	inline void SetDataWidth(int Value) { m_Data.resize_width(max(Value, 1)); }
+	void SetDataWidth(int Value) { m_Data.resize_width(max(Value, 1)); }
 	
-	inline void SetDataHeight(int Value) { m_Data.resize_height(max(Value, 1)); }
+	void SetDataHeight(int Value) { m_Data.resize_height(max(Value, 1)); }
 	
-	inline void SetDataDepth(int Value) { m_Data.resize_depth(max(Value, 1)); }
+	void SetDataDepth(int Value) { m_Data.resize_depth(max(Value, 1)); }
 	
-	inline void SetData(const CSubPath& SubPath, uint8 Value) { m_Data.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
+	void SetData(const CSubPath& SubPath, uint8_t Value) { m_Data.set_clamp(SubPath.GetId(), SubPath.GetId2(), Value); }
 	
-	inline void SetTexture(CTextureHandle Value) { m_Texture = Value; }
+	void SetTexture(CTextureHandle Value) { m_Texture = Value; }
 	
-	inline void SetTextureId(int Value) { m_Texture.SetId(Value); }
+	void SetTextureId(int Value) { m_Texture.SetId(Value); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

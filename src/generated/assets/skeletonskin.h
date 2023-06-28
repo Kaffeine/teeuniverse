@@ -211,57 +211,57 @@ public:
 	
 	public:
 		CSprite();
-		inline CAssetPath GetSpritePath() const { return m_SpritePath; }
+		CAssetPath GetSpritePath() const { return m_SpritePath; }
 		
-		inline CSubPath GetBonePath() const { return m_BonePath; }
+		CSubPath GetBonePath() const { return m_BonePath; }
 		
-		inline CSubPath GetLayerPath() const { return m_LayerPath; }
+		CSubPath GetLayerPath() const { return m_LayerPath; }
 		
-		inline float GetAnchor() const { return m_Anchor; }
+		float GetAnchor() const { return m_Anchor; }
 		
-		inline vec2 GetTranslation() const { return m_Translation; }
+		vec2 GetTranslation() const { return m_Translation; }
 		
-		inline float GetTranslationX() const { return m_Translation.x; }
+		float GetTranslationX() const { return m_Translation.x; }
 		
-		inline float GetTranslationY() const { return m_Translation.y; }
+		float GetTranslationY() const { return m_Translation.y; }
 		
-		inline vec2 GetScale() const { return m_Scale; }
+		vec2 GetScale() const { return m_Scale; }
 		
-		inline float GetScaleX() const { return m_Scale.x; }
+		float GetScaleX() const { return m_Scale.x; }
 		
-		inline float GetScaleY() const { return m_Scale.y; }
+		float GetScaleY() const { return m_Scale.y; }
 		
-		inline float GetAngle() const { return m_Angle; }
+		float GetAngle() const { return m_Angle; }
 		
-		inline vec4 GetColor() const { return m_Color; }
+		vec4 GetColor() const { return m_Color; }
 		
-		inline int GetAlignment() const { return m_Alignment; }
+		int GetAlignment() const { return m_Alignment; }
 		
-		inline void SetSpritePath(const CAssetPath& Value) { m_SpritePath = Value; }
+		void SetSpritePath(const CAssetPath& Value) { m_SpritePath = Value; }
 		
-		inline void SetBonePath(const CSubPath& Value) { m_BonePath = Value; }
+		void SetBonePath(const CSubPath& Value) { m_BonePath = Value; }
 		
-		inline void SetLayerPath(const CSubPath& Value) { m_LayerPath = Value; }
+		void SetLayerPath(const CSubPath& Value) { m_LayerPath = Value; }
 		
-		inline void SetAnchor(float Value) { m_Anchor = Value; }
+		void SetAnchor(float Value) { m_Anchor = Value; }
 		
-		inline void SetTranslation(vec2 Value) { m_Translation = Value; }
+		void SetTranslation(vec2 Value) { m_Translation = Value; }
 		
-		inline void SetTranslationX(float Value) { m_Translation.x = Value; }
+		void SetTranslationX(float Value) { m_Translation.x = Value; }
 		
-		inline void SetTranslationY(float Value) { m_Translation.y = Value; }
+		void SetTranslationY(float Value) { m_Translation.y = Value; }
 		
-		inline void SetScale(vec2 Value) { m_Scale = Value; }
+		void SetScale(vec2 Value) { m_Scale = Value; }
 		
-		inline void SetScaleX(float Value) { m_Scale.x = Value; }
+		void SetScaleX(float Value) { m_Scale.x = Value; }
 		
-		inline void SetScaleY(float Value) { m_Scale.y = Value; }
+		void SetScaleY(float Value) { m_Scale.y = Value; }
 		
-		inline void SetAngle(float Value) { m_Angle = Value; }
+		void SetAngle(float Value) { m_Angle = Value; }
 		
-		inline void SetColor(vec4 Value) { m_Color = Value; }
+		void SetColor(vec4 Value) { m_Color = Value; }
 		
-		inline void SetAlignment(int Value) { m_Alignment = Value; }
+		void SetAlignment(int Value) { m_Alignment = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -351,16 +351,16 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetSkeletonPath() const { return m_SkeletonPath; }
+	CAssetPath GetSkeletonPath() const { return m_SkeletonPath; }
 	
-	inline int GetSpriteArraySize() const { return m_Sprite.size(); }
+	int GetSpriteArraySize() const { return m_Sprite.size(); }
 	
-	inline const CAsset_SkeletonSkin::CSprite* GetSpritePtr() const { return &(m_Sprite.front()); }
+	const CAsset_SkeletonSkin::CSprite* GetSpritePtr() const { return &(m_Sprite.front()); }
 	
-	inline const std::vector<CAsset_SkeletonSkin::CSprite>& GetSpriteArray() const { return m_Sprite; }
-	inline std::vector<CAsset_SkeletonSkin::CSprite>& GetSpriteArray() { return m_Sprite; }
+	const std::vector<CAsset_SkeletonSkin::CSprite>& GetSpriteArray() const { return m_Sprite; }
+	std::vector<CAsset_SkeletonSkin::CSprite>& GetSpriteArray() { return m_Sprite; }
 	
-	inline const CAsset_SkeletonSkin::CSprite& GetSprite(const CSubPath& SubPath) const
+	const CAsset_SkeletonSkin::CSprite& GetSprite(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Sprite.size());
 		{
@@ -368,102 +368,102 @@ public:
 		}
 	}
 	
-	inline CAssetPath GetSpriteSpritePath(const CSubPath& SubPath) const
+	CAssetPath GetSpriteSpritePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetSpritePath();
 		else return CAssetPath::Null();
 	}
 	
-	inline CSubPath GetSpriteBonePath(const CSubPath& SubPath) const
+	CSubPath GetSpriteBonePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetBonePath();
 		else return CSubPath::Null();
 	}
 	
-	inline CSubPath GetSpriteLayerPath(const CSubPath& SubPath) const
+	CSubPath GetSpriteLayerPath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetLayerPath();
 		else return CSubPath::Null();
 	}
 	
-	inline float GetSpriteAnchor(const CSubPath& SubPath) const
+	float GetSpriteAnchor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetAnchor();
 		else return 0.0f;
 	}
 	
-	inline vec2 GetSpriteTranslation(const CSubPath& SubPath) const
+	vec2 GetSpriteTranslation(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetTranslation();
 		else return 0.0f;
 	}
 	
-	inline float GetSpriteTranslationX(const CSubPath& SubPath) const
+	float GetSpriteTranslationX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetTranslationX();
 		else return 0.0f;
 	}
 	
-	inline float GetSpriteTranslationY(const CSubPath& SubPath) const
+	float GetSpriteTranslationY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetTranslationY();
 		else return 0.0f;
 	}
 	
-	inline vec2 GetSpriteScale(const CSubPath& SubPath) const
+	vec2 GetSpriteScale(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetScale();
 		else return 0.0f;
 	}
 	
-	inline float GetSpriteScaleX(const CSubPath& SubPath) const
+	float GetSpriteScaleX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetScaleX();
 		else return 0.0f;
 	}
 	
-	inline float GetSpriteScaleY(const CSubPath& SubPath) const
+	float GetSpriteScaleY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetScaleY();
 		else return 0.0f;
 	}
 	
-	inline float GetSpriteAngle(const CSubPath& SubPath) const
+	float GetSpriteAngle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetAngle();
 		else return 0.0f;
 	}
 	
-	inline vec4 GetSpriteColor(const CSubPath& SubPath) const
+	vec4 GetSpriteColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetColor();
 		else return 1.0f;
 	}
 	
-	inline int GetSpriteAlignment(const CSubPath& SubPath) const
+	int GetSpriteAlignment(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			return m_Sprite[SubPath.GetId()].GetAlignment();
 		else return 0;
 	}
 	
-	inline void SetSkeletonPath(const CAssetPath& Value) { m_SkeletonPath = Value; }
+	void SetSkeletonPath(const CAssetPath& Value) { m_SkeletonPath = Value; }
 	
-	inline void SetSpriteArraySize(int Value) { m_Sprite.resize(Value); }
+	void SetSpriteArraySize(int Value) { m_Sprite.resize(Value); }
 	
-	inline void SetSprite(const CSubPath& SubPath, const CAsset_SkeletonSkin::CSprite& Value)
+	void SetSprite(const CSubPath& SubPath, const CAsset_SkeletonSkin::CSprite& Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 		{
@@ -471,102 +471,102 @@ public:
 		}
 	}
 	
-	inline void SetSpriteSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetSpriteSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetSpritePath(Value);
 	}
 	
-	inline void SetSpriteBonePath(const CSubPath& SubPath, const CSubPath& Value)
+	void SetSpriteBonePath(const CSubPath& SubPath, const CSubPath& Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetBonePath(Value);
 	}
 	
-	inline void SetSpriteLayerPath(const CSubPath& SubPath, const CSubPath& Value)
+	void SetSpriteLayerPath(const CSubPath& SubPath, const CSubPath& Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetLayerPath(Value);
 	}
 	
-	inline void SetSpriteAnchor(const CSubPath& SubPath, float Value)
+	void SetSpriteAnchor(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetAnchor(Value);
 	}
 	
-	inline void SetSpriteTranslation(const CSubPath& SubPath, vec2 Value)
+	void SetSpriteTranslation(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetTranslation(Value);
 	}
 	
-	inline void SetSpriteTranslationX(const CSubPath& SubPath, float Value)
+	void SetSpriteTranslationX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetTranslationX(Value);
 	}
 	
-	inline void SetSpriteTranslationY(const CSubPath& SubPath, float Value)
+	void SetSpriteTranslationY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetTranslationY(Value);
 	}
 	
-	inline void SetSpriteScale(const CSubPath& SubPath, vec2 Value)
+	void SetSpriteScale(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetScale(Value);
 	}
 	
-	inline void SetSpriteScaleX(const CSubPath& SubPath, float Value)
+	void SetSpriteScaleX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetScaleX(Value);
 	}
 	
-	inline void SetSpriteScaleY(const CSubPath& SubPath, float Value)
+	void SetSpriteScaleY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetScaleY(Value);
 	}
 	
-	inline void SetSpriteAngle(const CSubPath& SubPath, float Value)
+	void SetSpriteAngle(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetAngle(Value);
 	}
 	
-	inline void SetSpriteColor(const CSubPath& SubPath, vec4 Value)
+	void SetSpriteColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetColor(Value);
 	}
 	
-	inline void SetSpriteAlignment(const CSubPath& SubPath, int Value)
+	void SetSpriteAlignment(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Sprite.size())
 			m_Sprite[SubPath.GetId()].SetAlignment(Value);
 	}
 	
-	inline int AddSprite()
+	int AddSprite()
 	{
 		int Id = m_Sprite.size();
 		m_Sprite.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtSprite(int Index) { m_Sprite.insert(m_Sprite.begin() + Index, CAsset_SkeletonSkin::CSprite()); }
+	void AddAtSprite(int Index) { m_Sprite.insert(m_Sprite.begin() + Index, CAsset_SkeletonSkin::CSprite()); }
 	
-	inline void DeleteSprite(const CSubPath& SubPath) { m_Sprite.erase(m_Sprite.begin() + SubPath.GetId()); }
+	void DeleteSprite(const CSubPath& SubPath) { m_Sprite.erase(m_Sprite.begin() + SubPath.GetId()); }
 	
-	inline void RelMoveSprite(CSubPath& SubPath, int RelMove)
+	void RelMoveSprite(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Sprite, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Sprite.size()); }
+	bool IsValidSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Sprite.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

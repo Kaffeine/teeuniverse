@@ -165,25 +165,25 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_Sprite();
-	inline CAssetPath GetImagePath() const { return m_ImagePath; }
+	CAssetPath GetImagePath() const { return m_ImagePath; }
 	
-	inline int GetX() const { return m_X; }
+	int GetX() const { return m_X; }
 	
-	inline int GetY() const { return m_Y; }
+	int GetY() const { return m_Y; }
 	
-	inline int GetWidth() const { return m_Width; }
+	int GetWidth() const { return m_Width; }
 	
-	inline int GetHeight() const { return m_Height; }
+	int GetHeight() const { return m_Height; }
 	
-	inline void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
+	void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
 	
-	inline void SetX(int Value) { m_X = Value; }
+	void SetX(int Value) { m_X = Value; }
 	
-	inline void SetY(int Value) { m_Y = Value; }
+	void SetY(int Value) { m_Y = Value; }
 	
-	inline void SetWidth(int Value) { m_Width = Value; }
+	void SetWidth(int Value) { m_Width = Value; }
 	
-	inline void SetHeight(int Value) { m_Height = Value; }
+	void SetHeight(int Value) { m_Height = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

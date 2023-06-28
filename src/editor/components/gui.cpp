@@ -2320,7 +2320,7 @@ bool CGuiEditor::PreUpdate()
 		return false;
 	
 	CTimePoint TimeCurrent = GetCurrentTimePoint();
-	int64 ElapsedTime = GetTimeMsDiff(m_TimeLast, TimeCurrent);
+	int64_t ElapsedTime = GetTimeMsDiff(m_TimeLast, TimeCurrent);
 	m_TimeLast = TimeCurrent;
 	
 	if(!m_TimePaused && ElapsedTime >= 0)

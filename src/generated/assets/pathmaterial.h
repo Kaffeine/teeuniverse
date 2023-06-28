@@ -227,17 +227,17 @@ public:
 	
 	public:
 		CLabel();
-		inline vec4 GetColor() const { return m_Color; }
+		vec4 GetColor() const { return m_Color; }
 		
-		inline float GetAngleStart() const { return m_AngleStart; }
+		float GetAngleStart() const { return m_AngleStart; }
 		
-		inline float GetAngleEnd() const { return m_AngleEnd; }
+		float GetAngleEnd() const { return m_AngleEnd; }
 		
-		inline void SetColor(vec4 Value) { m_Color = Value; }
+		void SetColor(vec4 Value) { m_Color = Value; }
 		
-		inline void SetAngleStart(float Value) { m_AngleStart = Value; }
+		void SetAngleStart(float Value) { m_AngleStart = Value; }
 		
-		inline void SetAngleEnd(float Value) { m_AngleEnd = Value; }
+		void SetAngleEnd(float Value) { m_AngleEnd = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -364,61 +364,61 @@ public:
 	
 	public:
 		CSprite();
-		inline CAssetPath GetPath() const { return m_Path; }
+		CAssetPath GetPath() const { return m_Path; }
 		
-		inline vec2 GetSize() const { return m_Size; }
+		vec2 GetSize() const { return m_Size; }
 		
-		inline float GetSizeX() const { return m_Size.x; }
+		float GetSizeX() const { return m_Size.x; }
 		
-		inline float GetSizeY() const { return m_Size.y; }
+		float GetSizeY() const { return m_Size.y; }
 		
-		inline vec4 GetColor() const { return m_Color; }
+		vec4 GetColor() const { return m_Color; }
 		
-		inline int GetFlags() const { return m_Flags; }
+		int GetFlags() const { return m_Flags; }
 		
-		inline vec2 GetPosition() const { return m_Position; }
+		vec2 GetPosition() const { return m_Position; }
 		
-		inline float GetPositionX() const { return m_Position.x; }
+		float GetPositionX() const { return m_Position.x; }
 		
-		inline float GetPositionY() const { return m_Position.y; }
+		float GetPositionY() const { return m_Position.y; }
 		
-		inline int GetAlignment() const { return m_Alignment; }
+		int GetAlignment() const { return m_Alignment; }
 		
-		inline int GetFilling() const { return m_Filling; }
+		int GetFilling() const { return m_Filling; }
 		
-		inline int GetTileType() const { return m_TileType; }
+		int GetTileType() const { return m_TileType; }
 		
-		inline int GetTileLabel0() const { return m_TileLabel0; }
+		int GetTileLabel0() const { return m_TileLabel0; }
 		
-		inline int GetTileLabel1() const { return m_TileLabel1; }
+		int GetTileLabel1() const { return m_TileLabel1; }
 		
-		inline void SetPath(const CAssetPath& Value) { m_Path = Value; }
+		void SetPath(const CAssetPath& Value) { m_Path = Value; }
 		
-		inline void SetSize(vec2 Value) { m_Size = Value; }
+		void SetSize(vec2 Value) { m_Size = Value; }
 		
-		inline void SetSizeX(float Value) { m_Size.x = Value; }
+		void SetSizeX(float Value) { m_Size.x = Value; }
 		
-		inline void SetSizeY(float Value) { m_Size.y = Value; }
+		void SetSizeY(float Value) { m_Size.y = Value; }
 		
-		inline void SetColor(vec4 Value) { m_Color = Value; }
+		void SetColor(vec4 Value) { m_Color = Value; }
 		
-		inline void SetFlags(int Value) { m_Flags = Value; }
+		void SetFlags(int Value) { m_Flags = Value; }
 		
-		inline void SetPosition(vec2 Value) { m_Position = Value; }
+		void SetPosition(vec2 Value) { m_Position = Value; }
 		
-		inline void SetPositionX(float Value) { m_Position.x = Value; }
+		void SetPositionX(float Value) { m_Position.x = Value; }
 		
-		inline void SetPositionY(float Value) { m_Position.y = Value; }
+		void SetPositionY(float Value) { m_Position.y = Value; }
 		
-		inline void SetAlignment(int Value) { m_Alignment = Value; }
+		void SetAlignment(int Value) { m_Alignment = Value; }
 		
-		inline void SetFilling(int Value) { m_Filling = Value; }
+		void SetFilling(int Value) { m_Filling = Value; }
 		
-		inline void SetTileType(int Value) { m_TileType = Value; }
+		void SetTileType(int Value) { m_TileType = Value; }
 		
-		inline void SetTileLabel0(int Value) { m_TileLabel0 = Value; }
+		void SetTileLabel0(int Value) { m_TileLabel0 = Value; }
 		
-		inline void SetTileLabel1(int Value) { m_TileLabel1 = Value; }
+		void SetTileLabel1(int Value) { m_TileLabel1 = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -482,14 +482,14 @@ public:
 		std::vector<CSprite> m_Sprite;
 	
 	public:
-		inline int GetSpriteArraySize() const { return m_Sprite.size(); }
+		int GetSpriteArraySize() const { return m_Sprite.size(); }
 		
-		inline const CAsset_PathMaterial::CSprite* GetSpritePtr() const { return &(m_Sprite.front()); }
+		const CAsset_PathMaterial::CSprite* GetSpritePtr() const { return &(m_Sprite.front()); }
 		
-		inline const std::vector<CSprite>& GetSpriteArray() const { return m_Sprite; }
-		inline std::vector<CSprite>& GetSpriteArray() { return m_Sprite; }
+		const std::vector<CSprite>& GetSpriteArray() const { return m_Sprite; }
+		std::vector<CSprite>& GetSpriteArray() { return m_Sprite; }
 		
-		inline const CAsset_PathMaterial::CSprite& GetSprite(const CSubPath& SubPath) const
+		const CAsset_PathMaterial::CSprite& GetSprite(const CSubPath& SubPath) const
 		{
 			assert(SubPath.GetId() < m_Sprite.size());
 			{
@@ -497,107 +497,107 @@ public:
 			}
 		}
 		
-		inline CAssetPath GetSpritePath(const CSubPath& SubPath) const
+		CAssetPath GetSpritePath(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetPath();
 			else return CAssetPath::Null();
 		}
 		
-		inline vec2 GetSpriteSize(const CSubPath& SubPath) const
+		vec2 GetSpriteSize(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetSize();
 			else return 0.0f;
 		}
 		
-		inline float GetSpriteSizeX(const CSubPath& SubPath) const
+		float GetSpriteSizeX(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetSizeX();
 			else return 0.0f;
 		}
 		
-		inline float GetSpriteSizeY(const CSubPath& SubPath) const
+		float GetSpriteSizeY(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetSizeY();
 			else return 0.0f;
 		}
 		
-		inline vec4 GetSpriteColor(const CSubPath& SubPath) const
+		vec4 GetSpriteColor(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetColor();
 			else return 1.0f;
 		}
 		
-		inline int GetSpriteFlags(const CSubPath& SubPath) const
+		int GetSpriteFlags(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetFlags();
 			else return 0;
 		}
 		
-		inline vec2 GetSpritePosition(const CSubPath& SubPath) const
+		vec2 GetSpritePosition(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetPosition();
 			else return 0.0f;
 		}
 		
-		inline float GetSpritePositionX(const CSubPath& SubPath) const
+		float GetSpritePositionX(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetPositionX();
 			else return 0.0f;
 		}
 		
-		inline float GetSpritePositionY(const CSubPath& SubPath) const
+		float GetSpritePositionY(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetPositionY();
 			else return 0.0f;
 		}
 		
-		inline int GetSpriteAlignment(const CSubPath& SubPath) const
+		int GetSpriteAlignment(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetAlignment();
 			else return 0;
 		}
 		
-		inline int GetSpriteFilling(const CSubPath& SubPath) const
+		int GetSpriteFilling(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetFilling();
 			else return 0;
 		}
 		
-		inline int GetSpriteTileType(const CSubPath& SubPath) const
+		int GetSpriteTileType(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetTileType();
 			else return 0;
 		}
 		
-		inline int GetSpriteTileLabel0(const CSubPath& SubPath) const
+		int GetSpriteTileLabel0(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetTileLabel0();
 			else return 0;
 		}
 		
-		inline int GetSpriteTileLabel1(const CSubPath& SubPath) const
+		int GetSpriteTileLabel1(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				return m_Sprite[SubPath.GetId()].GetTileLabel1();
 			else return 0;
 		}
 		
-		inline void SetSpriteArraySize(int Value) { m_Sprite.resize(Value); }
+		void SetSpriteArraySize(int Value) { m_Sprite.resize(Value); }
 		
-		inline void SetSprite(const CSubPath& SubPath, const CAsset_PathMaterial::CSprite& Value)
+		void SetSprite(const CSubPath& SubPath, const CAsset_PathMaterial::CSprite& Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 			{
@@ -605,108 +605,108 @@ public:
 			}
 		}
 		
-		inline void SetSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
+		void SetSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetPath(Value);
 		}
 		
-		inline void SetSpriteSize(const CSubPath& SubPath, vec2 Value)
+		void SetSpriteSize(const CSubPath& SubPath, vec2 Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetSize(Value);
 		}
 		
-		inline void SetSpriteSizeX(const CSubPath& SubPath, float Value)
+		void SetSpriteSizeX(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetSizeX(Value);
 		}
 		
-		inline void SetSpriteSizeY(const CSubPath& SubPath, float Value)
+		void SetSpriteSizeY(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetSizeY(Value);
 		}
 		
-		inline void SetSpriteColor(const CSubPath& SubPath, vec4 Value)
+		void SetSpriteColor(const CSubPath& SubPath, vec4 Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetColor(Value);
 		}
 		
-		inline void SetSpriteFlags(const CSubPath& SubPath, int Value)
+		void SetSpriteFlags(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetFlags(Value);
 		}
 		
-		inline void SetSpritePosition(const CSubPath& SubPath, vec2 Value)
+		void SetSpritePosition(const CSubPath& SubPath, vec2 Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetPosition(Value);
 		}
 		
-		inline void SetSpritePositionX(const CSubPath& SubPath, float Value)
+		void SetSpritePositionX(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetPositionX(Value);
 		}
 		
-		inline void SetSpritePositionY(const CSubPath& SubPath, float Value)
+		void SetSpritePositionY(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetPositionY(Value);
 		}
 		
-		inline void SetSpriteAlignment(const CSubPath& SubPath, int Value)
+		void SetSpriteAlignment(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetAlignment(Value);
 		}
 		
-		inline void SetSpriteFilling(const CSubPath& SubPath, int Value)
+		void SetSpriteFilling(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetFilling(Value);
 		}
 		
-		inline void SetSpriteTileType(const CSubPath& SubPath, int Value)
+		void SetSpriteTileType(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetTileType(Value);
 		}
 		
-		inline void SetSpriteTileLabel0(const CSubPath& SubPath, int Value)
+		void SetSpriteTileLabel0(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetTileLabel0(Value);
 		}
 		
-		inline void SetSpriteTileLabel1(const CSubPath& SubPath, int Value)
+		void SetSpriteTileLabel1(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_Sprite.size())
 				m_Sprite[SubPath.GetId()].SetTileLabel1(Value);
 		}
 		
-		inline int AddSprite()
+		int AddSprite()
 		{
 			int Id = m_Sprite.size();
 			m_Sprite.emplace_back();
 			return Id;
 		}
 		
-		inline void AddAtSprite(int Index) { m_Sprite.insert(m_Sprite.begin() + Index, CAsset_PathMaterial::CSprite()); }
+		void AddAtSprite(int Index) { m_Sprite.insert(m_Sprite.begin() + Index, CAsset_PathMaterial::CSprite()); }
 		
-		inline void DeleteSprite(const CSubPath& SubPath) { m_Sprite.erase(m_Sprite.begin() + SubPath.GetId()); }
+		void DeleteSprite(const CSubPath& SubPath) { m_Sprite.erase(m_Sprite.begin() + SubPath.GetId()); }
 		
-		inline void RelMoveSprite(CSubPath& SubPath, int RelMove)
+		void RelMoveSprite(CSubPath& SubPath, int RelMove)
 		{
 			int NewId = relative_move(m_Sprite, SubPath.GetId(), RelMove);
 			SubPath.SetId(NewId);
 		}
 		
-		inline bool IsValidSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Sprite.size()); }
+		bool IsValidSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Sprite.size()); }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -842,14 +842,14 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_PathMaterial();
-	inline int GetLabelArraySize() const { return m_Label.size(); }
+	int GetLabelArraySize() const { return m_Label.size(); }
 	
-	inline const CAsset_PathMaterial::CLabel* GetLabelPtr() const { return &(m_Label.front()); }
+	const CAsset_PathMaterial::CLabel* GetLabelPtr() const { return &(m_Label.front()); }
 	
-	inline const std::vector<CAsset_PathMaterial::CLabel>& GetLabelArray() const { return m_Label; }
-	inline std::vector<CAsset_PathMaterial::CLabel>& GetLabelArray() { return m_Label; }
+	const std::vector<CAsset_PathMaterial::CLabel>& GetLabelArray() const { return m_Label; }
+	std::vector<CAsset_PathMaterial::CLabel>& GetLabelArray() { return m_Label; }
 	
-	inline const CAsset_PathMaterial::CLabel& GetLabel(const CSubPath& SubPath) const
+	const CAsset_PathMaterial::CLabel& GetLabel(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Label.size());
 		{
@@ -857,35 +857,35 @@ public:
 		}
 	}
 	
-	inline vec4 GetLabelColor(const CSubPath& SubPath) const
+	vec4 GetLabelColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetColor();
 		else return 1.0f;
 	}
 	
-	inline float GetLabelAngleStart(const CSubPath& SubPath) const
+	float GetLabelAngleStart(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetAngleStart();
 		else return 0.0f;
 	}
 	
-	inline float GetLabelAngleEnd(const CSubPath& SubPath) const
+	float GetLabelAngleEnd(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Label.size())
 			return m_Label[SubPath.GetId()].GetAngleEnd();
 		else return 0.0f;
 	}
 	
-	inline int GetLayerArraySize() const { return m_Layer.size(); }
+	int GetLayerArraySize() const { return m_Layer.size(); }
 	
-	inline const CAsset_PathMaterial::CLayer* GetLayerPtr() const { return &(m_Layer.front()); }
+	const CAsset_PathMaterial::CLayer* GetLayerPtr() const { return &(m_Layer.front()); }
 	
-	inline const std::vector<CAsset_PathMaterial::CLayer>& GetLayerArray() const { return m_Layer; }
-	inline std::vector<CAsset_PathMaterial::CLayer>& GetLayerArray() { return m_Layer; }
+	const std::vector<CAsset_PathMaterial::CLayer>& GetLayerArray() const { return m_Layer; }
+	std::vector<CAsset_PathMaterial::CLayer>& GetLayerArray() { return m_Layer; }
 	
-	inline const CAsset_PathMaterial::CLayer& GetLayer(const CSubPath& SubPath) const
+	const CAsset_PathMaterial::CLayer& GetLayer(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Layer.size());
 		{
@@ -893,154 +893,154 @@ public:
 		}
 	}
 	
-	inline int GetLayerSpriteArraySize(const CSubPath& SubPath) const
+	int GetLayerSpriteArraySize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteArraySize();
 		else return 0;
 	}
 	
-	inline const CAsset_PathMaterial::CSprite* GetLayerSpritePtr(const CSubPath& SubPath) const
+	const CAsset_PathMaterial::CSprite* GetLayerSpritePtr(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpritePtr();
 		else return NULL;
 	}
 	
-	inline const std::vector<CSprite>& GetLayerSpriteArray(const CSubPath& SubPath) const
+	const std::vector<CSprite>& GetLayerSpriteArray(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Layer.size());
 		return m_Layer[SubPath.GetId()].GetSpriteArray();
 	}
-	inline std::vector<CSprite>& GetLayerSpriteArray(const CSubPath& SubPath)
+	std::vector<CSprite>& GetLayerSpriteArray(const CSubPath& SubPath)
 	{
 		assert(SubPath.GetId() < m_Layer.size());
 		return m_Layer[SubPath.GetId()].GetSpriteArray();
 	}
 	
-	inline const CAsset_PathMaterial::CSprite& GetLayerSprite(const CSubPath& SubPath) const
+	const CAsset_PathMaterial::CSprite& GetLayerSprite(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Layer.size());
 		return m_Layer[SubPath.GetId()].GetSprite(SubPath.PopId());
 	}
 	
-	inline CAssetPath GetLayerSpritePath(const CSubPath& SubPath) const
+	CAssetPath GetLayerSpritePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpritePath(SubPath.PopId());
 		else return CAssetPath::Null();
 	}
 	
-	inline vec2 GetLayerSpriteSize(const CSubPath& SubPath) const
+	vec2 GetLayerSpriteSize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteSize(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetLayerSpriteSizeX(const CSubPath& SubPath) const
+	float GetLayerSpriteSizeX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteSizeX(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetLayerSpriteSizeY(const CSubPath& SubPath) const
+	float GetLayerSpriteSizeY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteSizeY(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline vec4 GetLayerSpriteColor(const CSubPath& SubPath) const
+	vec4 GetLayerSpriteColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteColor(SubPath.PopId());
 		else return 1.0f;
 	}
 	
-	inline int GetLayerSpriteFlags(const CSubPath& SubPath) const
+	int GetLayerSpriteFlags(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteFlags(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline vec2 GetLayerSpritePosition(const CSubPath& SubPath) const
+	vec2 GetLayerSpritePosition(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpritePosition(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetLayerSpritePositionX(const CSubPath& SubPath) const
+	float GetLayerSpritePositionX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpritePositionX(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetLayerSpritePositionY(const CSubPath& SubPath) const
+	float GetLayerSpritePositionY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpritePositionY(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline int GetLayerSpriteAlignment(const CSubPath& SubPath) const
+	int GetLayerSpriteAlignment(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteAlignment(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetLayerSpriteFilling(const CSubPath& SubPath) const
+	int GetLayerSpriteFilling(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteFilling(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetLayerSpriteTileType(const CSubPath& SubPath) const
+	int GetLayerSpriteTileType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteTileType(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetLayerSpriteTileLabel0(const CSubPath& SubPath) const
+	int GetLayerSpriteTileLabel0(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteTileLabel0(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetLayerSpriteTileLabel1(const CSubPath& SubPath) const
+	int GetLayerSpriteTileLabel1(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			return m_Layer[SubPath.GetId()].GetSpriteTileLabel1(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline CAssetPath GetTexturePath() const { return m_TexturePath; }
+	CAssetPath GetTexturePath() const { return m_TexturePath; }
 	
-	inline vec4 GetTextureColor() const { return m_TextureColor; }
+	vec4 GetTextureColor() const { return m_TextureColor; }
 	
-	inline vec2 GetTextureSize() const { return m_TextureSize; }
+	vec2 GetTextureSize() const { return m_TextureSize; }
 	
-	inline float GetTextureSizeX() const { return m_TextureSize.x; }
+	float GetTextureSizeX() const { return m_TextureSize.x; }
 	
-	inline float GetTextureSizeY() const { return m_TextureSize.y; }
+	float GetTextureSizeY() const { return m_TextureSize.y; }
 	
-	inline float GetTextureAngle() const { return m_TextureAngle; }
+	float GetTextureAngle() const { return m_TextureAngle; }
 	
-	inline float GetTextureSpacing() const { return m_TextureSpacing; }
+	float GetTextureSpacing() const { return m_TextureSpacing; }
 	
-	inline bool GetTextureEnabled() const { return m_TextureEnabled; }
+	bool GetTextureEnabled() const { return m_TextureEnabled; }
 	
-	inline void SetLabelArraySize(int Value) { m_Label.resize(Value); }
+	void SetLabelArraySize(int Value) { m_Label.resize(Value); }
 	
-	inline void SetLabel(const CSubPath& SubPath, const CAsset_PathMaterial::CLabel& Value)
+	void SetLabel(const CSubPath& SubPath, const CAsset_PathMaterial::CLabel& Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 		{
@@ -1048,27 +1048,27 @@ public:
 		}
 	}
 	
-	inline void SetLabelColor(const CSubPath& SubPath, vec4 Value)
+	void SetLabelColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetColor(Value);
 	}
 	
-	inline void SetLabelAngleStart(const CSubPath& SubPath, float Value)
+	void SetLabelAngleStart(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetAngleStart(Value);
 	}
 	
-	inline void SetLabelAngleEnd(const CSubPath& SubPath, float Value)
+	void SetLabelAngleEnd(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Label.size())
 			m_Label[SubPath.GetId()].SetAngleEnd(Value);
 	}
 	
-	inline void SetLayerArraySize(int Value) { m_Layer.resize(Value); }
+	void SetLayerArraySize(int Value) { m_Layer.resize(Value); }
 	
-	inline void SetLayer(const CSubPath& SubPath, const CAsset_PathMaterial::CLayer& Value)
+	void SetLayer(const CSubPath& SubPath, const CAsset_PathMaterial::CLayer& Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 		{
@@ -1076,170 +1076,170 @@ public:
 		}
 	}
 	
-	inline void SetLayerSpriteArraySize(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteArraySize(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteArraySize(Value);
 	}
 	
-	inline void SetLayerSprite(const CSubPath& SubPath, const CAsset_PathMaterial::CSprite& Value)
+	void SetLayerSprite(const CSubPath& SubPath, const CAsset_PathMaterial::CSprite& Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSprite(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetLayerSpritePath(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpritePath(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteSize(const CSubPath& SubPath, vec2 Value)
+	void SetLayerSpriteSize(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteSize(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteSizeX(const CSubPath& SubPath, float Value)
+	void SetLayerSpriteSizeX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteSizeX(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteSizeY(const CSubPath& SubPath, float Value)
+	void SetLayerSpriteSizeY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteSizeY(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteColor(const CSubPath& SubPath, vec4 Value)
+	void SetLayerSpriteColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteColor(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteFlags(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteFlags(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteFlags(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpritePosition(const CSubPath& SubPath, vec2 Value)
+	void SetLayerSpritePosition(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpritePosition(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpritePositionX(const CSubPath& SubPath, float Value)
+	void SetLayerSpritePositionX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpritePositionX(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpritePositionY(const CSubPath& SubPath, float Value)
+	void SetLayerSpritePositionY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpritePositionY(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteAlignment(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteAlignment(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteAlignment(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteFilling(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteFilling(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteFilling(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteTileType(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteTileType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteTileType(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteTileLabel0(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteTileLabel0(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteTileLabel0(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerSpriteTileLabel1(const CSubPath& SubPath, int Value)
+	void SetLayerSpriteTileLabel1(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 			m_Layer[SubPath.GetId()].SetSpriteTileLabel1(SubPath.PopId(), Value);
 	}
 	
-	inline void SetTexturePath(const CAssetPath& Value) { m_TexturePath = Value; }
+	void SetTexturePath(const CAssetPath& Value) { m_TexturePath = Value; }
 	
-	inline void SetTextureColor(vec4 Value) { m_TextureColor = Value; }
+	void SetTextureColor(vec4 Value) { m_TextureColor = Value; }
 	
-	inline void SetTextureSize(vec2 Value) { m_TextureSize = Value; }
+	void SetTextureSize(vec2 Value) { m_TextureSize = Value; }
 	
-	inline void SetTextureSizeX(float Value) { m_TextureSize.x = Value; }
+	void SetTextureSizeX(float Value) { m_TextureSize.x = Value; }
 	
-	inline void SetTextureSizeY(float Value) { m_TextureSize.y = Value; }
+	void SetTextureSizeY(float Value) { m_TextureSize.y = Value; }
 	
-	inline void SetTextureAngle(float Value) { m_TextureAngle = Value; }
+	void SetTextureAngle(float Value) { m_TextureAngle = Value; }
 	
-	inline void SetTextureSpacing(float Value) { m_TextureSpacing = Value; }
+	void SetTextureSpacing(float Value) { m_TextureSpacing = Value; }
 	
-	inline void SetTextureEnabled(bool Value) { m_TextureEnabled = Value; }
+	void SetTextureEnabled(bool Value) { m_TextureEnabled = Value; }
 	
-	inline int AddLabel()
+	int AddLabel()
 	{
 		int Id = m_Label.size();
 		m_Label.emplace_back();
 		return Id;
 	}
 	
-	inline int AddLayer()
+	int AddLayer()
 	{
 		int Id = m_Layer.size();
 		m_Layer.emplace_back();
 		return Id;
 	}
 	
-	inline int AddLayerSprite(const CSubPath& SubPath) { return m_Layer[SubPath.GetId()].AddSprite(); }
+	int AddLayerSprite(const CSubPath& SubPath) { return m_Layer[SubPath.GetId()].AddSprite(); }
 	
-	inline void AddAtLabel(int Index) { m_Label.insert(m_Label.begin() + Index, CAsset_PathMaterial::CLabel()); }
+	void AddAtLabel(int Index) { m_Label.insert(m_Label.begin() + Index, CAsset_PathMaterial::CLabel()); }
 	
-	inline void AddAtLayer(int Index) { m_Layer.insert(m_Layer.begin() + Index, CAsset_PathMaterial::CLayer()); }
+	void AddAtLayer(int Index) { m_Layer.insert(m_Layer.begin() + Index, CAsset_PathMaterial::CLayer()); }
 	
-	inline void AddAtLayerSprite(const CSubPath& SubPath, int Index) { m_Layer[SubPath.GetId()].AddAtSprite(Index); }
+	void AddAtLayerSprite(const CSubPath& SubPath, int Index) { m_Layer[SubPath.GetId()].AddAtSprite(Index); }
 	
-	inline void DeleteLabel(const CSubPath& SubPath) { m_Label.erase(m_Label.begin() + SubPath.GetId()); }
+	void DeleteLabel(const CSubPath& SubPath) { m_Label.erase(m_Label.begin() + SubPath.GetId()); }
 	
-	inline void DeleteLayer(const CSubPath& SubPath) { m_Layer.erase(m_Layer.begin() + SubPath.GetId()); }
+	void DeleteLayer(const CSubPath& SubPath) { m_Layer.erase(m_Layer.begin() + SubPath.GetId()); }
 	
-	inline void DeleteLayerSprite(const CSubPath& SubPath) { m_Layer[SubPath.GetId()].DeleteSprite(SubPath.PopId()); }
+	void DeleteLayerSprite(const CSubPath& SubPath) { m_Layer[SubPath.GetId()].DeleteSprite(SubPath.PopId()); }
 	
-	inline void RelMoveLabel(CSubPath& SubPath, int RelMove)
+	void RelMoveLabel(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Label, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveLayer(CSubPath& SubPath, int RelMove)
+	void RelMoveLayer(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Layer, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveLayerSprite(CSubPath& SubPath, int RelMove)
+	void RelMoveLayerSprite(CSubPath& SubPath, int RelMove)
 	{
 		CSubPath ChildSubPath = SubPath.PopId();
 		m_Layer[SubPath.GetId()].RelMoveSprite(ChildSubPath, RelMove);
 		SubPath.SetId2(ChildSubPath.GetId());
 	}
 	
-	inline bool IsValidLabel(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size()); }
+	bool IsValidLabel(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Label.size()); }
 	
-	inline bool IsValidLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size()); }
+	bool IsValidLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size()); }
 	
-	inline bool IsValidLayerSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size() && m_Layer[SubPath.GetId()].IsValidSprite(SubPath.PopId())); }
+	bool IsValidLayerSprite(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size() && m_Layer[SubPath.GetId()].IsValidSprite(SubPath.PopId())); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

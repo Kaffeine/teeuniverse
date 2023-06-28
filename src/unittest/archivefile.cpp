@@ -80,7 +80,7 @@ AssetsFile.append("/test.tup");
 		CTuaArray* pItem = (CTuaArray*) File.GetItem(52, 0);
 		TEST(pItem != nullptr);
 		pItem->m_Size = File.WriteUInt32(sizeof(aData)/sizeof(int));
-		pItem->m_Data = File.AddData((uint8*) aData, sizeof(aData));
+		pItem->m_Data = File.AddData((uint8_t*) aData, sizeof(aData));
 		TEST(File.ReadUInt32(pItem->m_Data) == 0);
 	}
 	
@@ -93,7 +93,7 @@ AssetsFile.append("/test.tup");
 		CTuaArray* pItem = (CTuaArray*) File.GetItem(52, 1);
 		TEST(pItem != nullptr);
 		pItem->m_Size = File.WriteUInt32(sizeof(aData)/sizeof(int));
-		pItem->m_Data = File.AddData((uint8*) aData, sizeof(aData));
+		pItem->m_Data = File.AddData((uint8_t*) aData, sizeof(aData));
 		TEST(File.ReadUInt32(pItem->m_Data) == 1);
 	}
 	
@@ -106,7 +106,7 @@ AssetsFile.append("/test.tup");
 		CTuaArray* pItem = (CTuaArray*) File.GetItem(52, 2);
 		TEST(pItem != nullptr);
 		pItem->m_Size = File.WriteUInt32(sizeof(aData)/sizeof(int));
-		pItem->m_Data = File.AddData((uint8*) aData, sizeof(aData));
+		pItem->m_Data = File.AddData((uint8_t*) aData, sizeof(aData));
 		TEST(File.ReadUInt32(pItem->m_Data) == 2);
 	}
 	

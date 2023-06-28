@@ -35,11 +35,12 @@
 #define __CLIENT_GRAPHICS__
 
 #include <shared/system/time.h>
-#include <shared/system/types.h>
 #include <shared/math/vector.h>
 #include <shared/graphics.h>
 #include <client/kernel.h>
 #include <pnglite/pnglite.h>
+
+#include <cstdint>
 
 /* FOREIGN CODE BEGIN: TeeWorlds **************************************/
 
@@ -446,10 +447,10 @@ protected:
 
 protected:
 	int m_RenderFrames;
-	int64 m_LastRenderTime;
-	int64 m_RenderFrameTime;
-	int64 m_RenderFrameTimeLow;
-	int64 m_RenderFrameTimeHigh;
+	int64_t m_LastRenderTime;
+	int64_t m_RenderFrameTime;
+	int64_t m_RenderFrameTimeLow;
+	int64_t m_RenderFrameTimeHigh;
 	bool m_IsReadyToRender;
 	int m_DesktopWidth;
 	int m_DesktopHeight;
@@ -607,7 +608,7 @@ public:
 	virtual bool PostUpdate();
 	virtual void Shutdown();
 	
-	int64 GetFrameTime();
+	int64_t GetFrameTime();
 
 	void ReadBackbuffer(unsigned char **ppPixels, int x, int y, int w, int h);
 	void TakeScreenshot(const char *pFilename);

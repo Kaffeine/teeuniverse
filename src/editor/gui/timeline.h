@@ -29,7 +29,7 @@ private:
 	int m_EditedAssetVersion;
 	std::vector<CSubPath> m_EditedFrames;
 	bool m_NeedRefresh;
-	int64 m_TimeShift;
+	int64_t m_TimeShift;
 	float m_PixelsPerMs;
 	bool m_ZoomLockedToUnit;
 	
@@ -47,20 +47,20 @@ public:
 	
 	inline bool RefreshNeeded() const { return m_NeedRefresh; }
 	
-	inline int64 GetTimeShift() const { return m_TimeShift; }
-	inline void SetTimeShift(int64 Value) { m_TimeShift = max((int64)0, Value); }
+	inline int64_t GetTimeShift() const { return m_TimeShift; }
+	inline void SetTimeShift(int64_t Value) { m_TimeShift = max((int64_t)0, Value); }
 	
 	inline float GetPixelsPerMs() const { return (m_ZoomLockedToUnit ? 0.25f : m_PixelsPerMs); }
 	inline void SetPixelsPerMs(float Value) { m_PixelsPerMs = clamp(Value, 0.001f, 10.0f); m_ZoomLockedToUnit = false; }
 	inline void SetZoomToUnit() { m_ZoomLockedToUnit = !m_ZoomLockedToUnit; }
 	
-	inline float TimeToScreenPos(int64 Time) const { return GetPixelsPerMs()*(Time-GetTimeShift()); }
-	inline int64 ScreenPosToTime(float ScreenPos) const { return (ScreenPos/GetPixelsPerMs())+GetTimeShift(); }
+	inline float TimeToScreenPos(int64_t Time) const { return GetPixelsPerMs()*(Time-GetTimeShift()); }
+	inline int64_t ScreenPosToTime(float ScreenPos) const { return (ScreenPos/GetPixelsPerMs())+GetTimeShift(); }
 	
-	bool CreateBoneKeyFrame(CSubPath BonePath, int64 Time, CSubPath& AnimationSubPath, CSubPath& FramePath);
-	bool CreateLayerKeyFrame(CSubPath LayerPath, int64 Time, CSubPath& AnimationSubPath, CSubPath& FramePath);
-	CSubPath MoveBoneFrame(CSubPath KeyPath, int64 Time, int Token);
-	CSubPath MoveLayerFrame(CSubPath KeyPath, int64 Time, int Token);
+	bool CreateBoneKeyFrame(CSubPath BonePath, int64_t Time, CSubPath& AnimationSubPath, CSubPath& FramePath);
+	bool CreateLayerKeyFrame(CSubPath LayerPath, int64_t Time, CSubPath& AnimationSubPath, CSubPath& FramePath);
+	CSubPath MoveBoneFrame(CSubPath KeyPath, int64_t Time, int Token);
+	CSubPath MoveLayerFrame(CSubPath KeyPath, int64_t Time, int Token);
 };
 
 #endif

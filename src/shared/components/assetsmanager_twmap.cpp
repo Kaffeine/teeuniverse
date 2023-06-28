@@ -401,8 +401,8 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 					ArchiveFile.UnloadData(pItem->m_ImageName);
 				}
 				
-				unsigned char* pData = (unsigned char*) ArchiveFile.GetData(pItem->m_ImageData);				
-				array2d<uint8>& Data = pImage->GetDataArray();
+				unsigned char* pData = (unsigned char*) ArchiveFile.GetData(pItem->m_ImageData);
+				array2d<uint8_t>& Data = pImage->GetDataArray();
 				
 				Data.resize(pItem->m_Width, pItem->m_Height, 4);
 				
@@ -2068,8 +2068,8 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 	int GameY = 0;
 	int GameWidth = 0;
 	int GameHeight = 0;
-
-	using IndexValidator = uint8 (*)(uint8, uint8);
+	
+	using IndexValidator = uint8_t (*)(uint8_t, uint8_t);
 	const auto ExportZoneToTiles = [&GameX, &GameY, &GameWidth, &GameHeight](const CAsset_MapZoneTiles *pZone, ddnet::CTile *pTiles, IndexValidator Validator = nullptr) {
 		for(int j=0; j<pZone->GetTileHeight(); j++)
 		{
@@ -2078,8 +2078,8 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 				CSubPath TilePath = CAsset_MapZoneTiles::SubPath_Tile(i, j);
 				int I = i + pZone->GetPositionX() - GameX;
 				int J = j + pZone->GetPositionY() - GameY;
-
-				uint8 Index = pZone->GetTileIndex(TilePath);
+				
+				uint8_t Index = pZone->GetTileIndex(TilePath);
 				if(Validator)
 					Index = (*Validator)(Index, pTiles[J * GameWidth + I].m_Index);
 
@@ -2354,7 +2354,7 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 				{
 					if(pZone->GetZoneTypePath() == m_Path_ZoneType_TeeWorlds)
 					{
-						IndexValidator Validator = [](uint8 Index, uint8 TargetIndex) -> uint8 {
+						IndexValidator Validator = [](uint8_t Index, uint8_t TargetIndex) -> uint8_t {
 							switch(Index)
 							{
 							case ddnet::TILE_SOLID:
@@ -3480,7 +3480,7 @@ void CAssetsManager::SaveMapAnimations(ddnet::CDataFileWriter *pArchiveFile, con
 						if(f+1 < KeyFrames.size() || Loop)
 						{
 							unsigned int f2 = (f+1)%KeyFrames.size();
-							int64 Time2 = KeyFrames[f2].GetTime();
+							int64_t Time2 = KeyFrames[f2].GetTime();
 							if(Time2 < KeyFrames[f].GetTime())
 								Time2 += pAnimation->GetBoneAnimation(GlobalBone).GetDuration();
 							Points.back().m_Time = (KeyFrames[f].GetTime() + Time2)/2;
@@ -3698,7 +3698,7 @@ void CAssetsManager::SaveMapAnimations(ddnet::CDataFileWriter *pArchiveFile, con
 						if(f+1 < KeyFrames.size() || Loop)
 						{
 							unsigned int f2 = (f+1)%KeyFrames.size();
-							int64 Time2 = KeyFrames[f2].GetTime();
+							int64_t Time2 = KeyFrames[f2].GetTime();
 							if(Time2 < KeyFrames[f].GetTime())
 								Time2 += pAnimation->GetLayerAnimation(GlobalLayer).GetDuration();
 							Points.back().m_Time = (KeyFrames[f].GetTime() + Time2)/2;

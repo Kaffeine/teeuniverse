@@ -23,7 +23,7 @@
 namespace
 {
 
-float FloatInterpolation(int Type, int64 Time, int64 Time0, int64 Time1)
+float FloatInterpolation(int Type, int64_t Time, int64_t Time0, int64_t Time1)
 {
 	double Alpha = (double)(Time - Time0) / (double)(Time1 - Time0);
 	
@@ -62,7 +62,7 @@ CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& CAsset_SkeletonAnimation::C
 
 /* BONE ***************************************************************/
 
-int64 CAsset_SkeletonAnimation::CBoneAnimation::GetDuration() const
+int64_t CAsset_SkeletonAnimation::CBoneAnimation::GetDuration() const
 {
 	if(m_KeyFrame.size())
 		return m_KeyFrame[m_KeyFrame.size()-1].GetTime();
@@ -70,7 +70,7 @@ int64 CAsset_SkeletonAnimation::CBoneAnimation::GetDuration() const
 		return 0.0;
 }
 
-int CAsset_SkeletonAnimation::CBoneAnimation::TimeToKeyFrame(int64 Time) const
+int CAsset_SkeletonAnimation::CBoneAnimation::TimeToKeyFrame(int64_t Time) const
 {
 	if(m_KeyFrame.size() == 0)
 		return 0;
@@ -85,13 +85,13 @@ int CAsset_SkeletonAnimation::CBoneAnimation::TimeToKeyFrame(int64 Time) const
 	return i;
 }
 
-bool CAsset_SkeletonAnimation::CBoneAnimation::GetFrame(int64 Time, CBoneAnimation::CFrame& Frame) const
+bool CAsset_SkeletonAnimation::CBoneAnimation::GetFrame(int64_t Time, CBoneAnimation::CFrame& Frame) const
 {
 	if(!m_KeyFrame.size())
 		return false;
 	
-	int64 Duration = GetDuration();
-	int64 CycleTime = Time;
+	int64_t Duration = GetDuration();
+	int64_t CycleTime = Time;
 	if(m_CycleType == CYCLETYPE_LOOP)
 		CycleTime = Time % GetDuration();
 	
@@ -113,8 +113,8 @@ bool CAsset_SkeletonAnimation::CBoneAnimation::GetFrame(int64 Time, CBoneAnimati
 		Frame = m_KeyFrame[i0];
 	else
 	{
-		int64 Time0 = m_KeyFrame[i0].GetTime();
-		int64 Time1 = m_KeyFrame[i1].GetTime();
+		int64_t Time0 = m_KeyFrame[i0].GetTime();
+		int64_t Time1 = m_KeyFrame[i1].GetTime();
 		if(Time0 > CycleTime)
 			Time0 -= Duration;
 		if(Time1 < CycleTime)
@@ -131,7 +131,7 @@ bool CAsset_SkeletonAnimation::CBoneAnimation::GetFrame(int64 Time, CBoneAnimati
 	return true;
 }
 
-bool CAsset_SkeletonAnimation::GetBoneAnimFrame(const CSubPath& SubPath, int64 Time, CBoneAnimation::CFrame& Frame) const
+bool CAsset_SkeletonAnimation::GetBoneAnimFrame(const CSubPath& SubPath, int64_t Time, CBoneAnimation::CFrame& Frame) const
 {
 	int Id = SubPath.GetId();
 	if(Id < 0 || Id >= static_cast<int>(m_BoneAnimation.size()))
@@ -170,7 +170,7 @@ CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& CAsset_SkeletonAnimation::
 
 /* LAYER **************************************************************/
 
-int64 CAsset_SkeletonAnimation::CLayerAnimation::GetDuration() const
+int64_t CAsset_SkeletonAnimation::CLayerAnimation::GetDuration() const
 {
 	if(m_KeyFrame.size())
 		return m_KeyFrame[m_KeyFrame.size()-1].GetTime();
@@ -178,7 +178,7 @@ int64 CAsset_SkeletonAnimation::CLayerAnimation::GetDuration() const
 		return 0;
 }
 
-int CAsset_SkeletonAnimation::CLayerAnimation::TimeToKeyFrame(int64 Time) const
+int CAsset_SkeletonAnimation::CLayerAnimation::TimeToKeyFrame(int64_t Time) const
 {
 	if(m_KeyFrame.size() == 0)
 		return 0;
@@ -193,13 +193,13 @@ int CAsset_SkeletonAnimation::CLayerAnimation::TimeToKeyFrame(int64 Time) const
 	return i;
 }
 
-bool CAsset_SkeletonAnimation::CLayerAnimation::GetFrame(int64 Time, CLayerAnimation::CFrame& Frame) const
+bool CAsset_SkeletonAnimation::CLayerAnimation::GetFrame(int64_t Time, CLayerAnimation::CFrame& Frame) const
 {
 	if(!m_KeyFrame.size())
 		return false;
 	
-	int64 Duration = GetDuration();
-	int64 CycleTime = Time;
+	int64_t Duration = GetDuration();
+	int64_t CycleTime = Time;
 
 	if(!Duration)
 		return false;
@@ -225,8 +225,8 @@ bool CAsset_SkeletonAnimation::CLayerAnimation::GetFrame(int64 Time, CLayerAnima
 		Frame = m_KeyFrame[i0];
 	else
 	{
-		int64 Time0 = m_KeyFrame[i0].GetTime();
-		int64 Time1 = m_KeyFrame[i1].GetTime();
+		int64_t Time0 = m_KeyFrame[i0].GetTime();
+		int64_t Time1 = m_KeyFrame[i1].GetTime();
 		if(Time0 > CycleTime)
 			Time0 -= Duration;
 		if(Time1 < CycleTime)
@@ -241,7 +241,7 @@ bool CAsset_SkeletonAnimation::CLayerAnimation::GetFrame(int64 Time, CLayerAnima
 	return true;
 }
 
-bool CAsset_SkeletonAnimation::GetLayerAnimFrame(const CSubPath& SubPath, int64 Time, CLayerAnimation::CFrame& Frame) const
+bool CAsset_SkeletonAnimation::GetLayerAnimFrame(const CSubPath& SubPath, int64_t Time, CLayerAnimation::CFrame& Frame) const
 {
 	int Id = SubPath.GetId();
 	if(Id < 0 || Id >= static_cast<int>(m_LayerAnimation.size()))

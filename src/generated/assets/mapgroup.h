@@ -219,16 +219,16 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_MapGroup();
-	inline CAssetPath GetParentPath() const { return m_ParentPath; }
+	CAssetPath GetParentPath() const { return m_ParentPath; }
 	
-	inline int GetLayerArraySize() const { return m_Layer.size(); }
+	int GetLayerArraySize() const { return m_Layer.size(); }
 	
-	inline const CAssetPath* GetLayerPtr() const { return &(m_Layer.front()); }
+	const CAssetPath* GetLayerPtr() const { return &(m_Layer.front()); }
 	
-	inline const std::vector<CAssetPath>& GetLayerArray() const { return m_Layer; }
-	inline std::vector<CAssetPath>& GetLayerArray() { return m_Layer; }
+	const std::vector<CAssetPath>& GetLayerArray() const { return m_Layer; }
+	std::vector<CAssetPath>& GetLayerArray() { return m_Layer; }
 	
-	inline CAssetPath GetLayer(const CSubPath& SubPath) const
+	CAssetPath GetLayer(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Layer.size());
 		{
@@ -236,39 +236,39 @@ public:
 		}
 	}
 	
-	inline vec2 GetPosition() const { return m_Position; }
+	vec2 GetPosition() const { return m_Position; }
 	
-	inline float GetPositionX() const { return m_Position.x; }
+	float GetPositionX() const { return m_Position.x; }
 	
-	inline float GetPositionY() const { return m_Position.y; }
+	float GetPositionY() const { return m_Position.y; }
 	
-	inline vec2 GetHardParallax() const { return m_HardParallax; }
+	vec2 GetHardParallax() const { return m_HardParallax; }
 	
-	inline float GetHardParallaxX() const { return m_HardParallax.x; }
+	float GetHardParallaxX() const { return m_HardParallax.x; }
 	
-	inline float GetHardParallaxY() const { return m_HardParallax.y; }
+	float GetHardParallaxY() const { return m_HardParallax.y; }
 	
-	inline bool GetClipping() const { return m_Clipping; }
+	bool GetClipping() const { return m_Clipping; }
 	
-	inline vec2 GetClipPosition() const { return m_ClipPosition; }
+	vec2 GetClipPosition() const { return m_ClipPosition; }
 	
-	inline float GetClipPositionX() const { return m_ClipPosition.x; }
+	float GetClipPositionX() const { return m_ClipPosition.x; }
 	
-	inline float GetClipPositionY() const { return m_ClipPosition.y; }
+	float GetClipPositionY() const { return m_ClipPosition.y; }
 	
-	inline vec2 GetClipSize() const { return m_ClipSize; }
+	vec2 GetClipSize() const { return m_ClipSize; }
 	
-	inline float GetClipSizeX() const { return m_ClipSize.x; }
+	float GetClipSizeX() const { return m_ClipSize.x; }
 	
-	inline float GetClipSizeY() const { return m_ClipSize.y; }
+	float GetClipSizeY() const { return m_ClipSize.y; }
 	
-	inline bool GetVisibility() const { return m_Visibility; }
+	bool GetVisibility() const { return m_Visibility; }
 	
-	inline void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
+	void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
 	
-	inline void SetLayerArraySize(int Value) { m_Layer.resize(Value); }
+	void SetLayerArraySize(int Value) { m_Layer.resize(Value); }
 	
-	inline void SetLayer(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetLayer(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_Layer.size())
 		{
@@ -276,59 +276,59 @@ public:
 		}
 	}
 	
-	inline void SetPosition(vec2 Value) { m_Position = Value; }
+	void SetPosition(vec2 Value) { m_Position = Value; }
 	
-	inline void SetPositionX(float Value) { m_Position.x = Value; }
+	void SetPositionX(float Value) { m_Position.x = Value; }
 	
-	inline void SetPositionY(float Value) { m_Position.y = Value; }
+	void SetPositionY(float Value) { m_Position.y = Value; }
 	
-	inline void SetHardParallax(vec2 Value) { m_HardParallax = Value; }
+	void SetHardParallax(vec2 Value) { m_HardParallax = Value; }
 	
-	inline void SetHardParallaxX(float Value) { m_HardParallax.x = Value; }
+	void SetHardParallaxX(float Value) { m_HardParallax.x = Value; }
 	
-	inline void SetHardParallaxY(float Value) { m_HardParallax.y = Value; }
+	void SetHardParallaxY(float Value) { m_HardParallax.y = Value; }
 	
-	inline void SetClipping(bool Value) { m_Clipping = Value; }
+	void SetClipping(bool Value) { m_Clipping = Value; }
 	
-	inline void SetClipPosition(vec2 Value) { m_ClipPosition = Value; }
+	void SetClipPosition(vec2 Value) { m_ClipPosition = Value; }
 	
-	inline void SetClipPositionX(float Value) { m_ClipPosition.x = Value; }
+	void SetClipPositionX(float Value) { m_ClipPosition.x = Value; }
 	
-	inline void SetClipPositionY(float Value) { m_ClipPosition.y = Value; }
+	void SetClipPositionY(float Value) { m_ClipPosition.y = Value; }
 	
-	inline void SetClipSize(vec2 Value) { m_ClipSize = Value; }
+	void SetClipSize(vec2 Value) { m_ClipSize = Value; }
 	
-	inline void SetClipSizeX(float Value) { m_ClipSize.x = Value; }
+	void SetClipSizeX(float Value) { m_ClipSize.x = Value; }
 	
-	inline void SetClipSizeY(float Value) { m_ClipSize.y = Value; }
+	void SetClipSizeY(float Value) { m_ClipSize.y = Value; }
 	
-	inline void SetVisibility(bool Value) { m_Visibility = Value; }
+	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
-	inline int AddLayer()
+	int AddLayer()
 	{
 		int Id = m_Layer.size();
 		m_Layer.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtLayer(int Index) { m_Layer.insert(m_Layer.begin() + Index, CAssetPath()); }
+	void AddAtLayer(int Index) { m_Layer.insert(m_Layer.begin() + Index, CAssetPath()); }
 	
-	inline void DeleteLayer(const CSubPath& SubPath) { m_Layer.erase(m_Layer.begin() + SubPath.GetId()); }
+	void DeleteLayer(const CSubPath& SubPath) { m_Layer.erase(m_Layer.begin() + SubPath.GetId()); }
 	
-	inline void RelMoveLayer(CSubPath& SubPath, int RelMove)
+	void RelMoveLayer(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Layer, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size()); }
+	bool IsValidLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Layer.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{
 		Operation.Apply(m_ParentPath);
 		{
 			int Shift = 0;
-			for(unsigned int i=0; i<m_Layer.size(); i++)
+			for(unsigned int i = 0; i < m_Layer.size(); i++)
 			{
 				if(Operation.MustBeDeleted(m_Layer[i]))
 					Shift++;

@@ -465,7 +465,7 @@ const char* CLocalization::Localize_P(const char* pLanguageCode, int Number, con
 
 /* ----- Localization of Integers ----------------------------------- */
 
-void CLocalization::AppendInteger(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64 Number)
+void CLocalization::AppendInteger(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64_t Number)
 {
 	icu::UnicodeString Utf16Buffer;
 	
@@ -484,7 +484,7 @@ void CLocalization::AppendInteger(dynamic_string& Buffer, int& BufferIter, CLang
 	}
 }
 
-void CLocalization::FormatInteger(dynamic_string& Buffer, const char* pLanguageCode, int64 Number)
+void CLocalization::FormatInteger(dynamic_string& Buffer, const char* pLanguageCode, int64_t Number)
 {
 	CLanguage* pLanguage = GetCurrentLanguage(pLanguageCode);
 	if(!pLanguage)
@@ -494,7 +494,7 @@ void CLocalization::FormatInteger(dynamic_string& Buffer, const char* pLanguageC
 	AppendInteger(Buffer, BufferIter, pLanguage, Number);
 }
 
-int64 CLocalization::ParseInteger(const char* pLanguageCode, const char* pText)
+int64_t CLocalization::ParseInteger(const char* pLanguageCode, const char* pText)
 {
 	CLanguage* pLanguage = GetCurrentLanguage(pLanguageCode);
 	if(!pLanguage)
@@ -639,12 +639,12 @@ double CLocalization::ParsePercent(const char* pLanguageCode, const char* pText)
 
 /* ----- Localization of Durations ---------------------------------- */
 
-void CLocalization::AppendDuration(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64 Duration)
+void CLocalization::AppendDuration(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64_t Duration)
 {
 	AppendDouble(Buffer, BufferIter, pLanguage, (double)Duration/1000.0);
 }
 
-void CLocalization::FormatDuration(dynamic_string& Buffer, const char* pLanguageCode, int64 Duration)
+void CLocalization::FormatDuration(dynamic_string& Buffer, const char* pLanguageCode, int64_t Duration)
 {
 	CLanguage* pLanguage = GetCurrentLanguage(pLanguageCode);
 	if(!pLanguage)
@@ -654,7 +654,7 @@ void CLocalization::FormatDuration(dynamic_string& Buffer, const char* pLanguage
 	AppendDuration(Buffer, BufferIter, pLanguage, Duration);
 }
 
-int64 CLocalization::ParseDuration(const char* pLanguageCode, const char* pText)
+int64_t CLocalization::ParseDuration(const char* pLanguageCode, const char* pText)
 {
 	double Result = ParseDouble(pLanguageCode, pText);
 	return Result*1000.0;

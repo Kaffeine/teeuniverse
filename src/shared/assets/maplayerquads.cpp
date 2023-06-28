@@ -20,7 +20,7 @@
 #include <generated/assets/skeletonanimation.h>
 #include <shared/components/assetsmanager.h>
 
-void CAsset_MapLayerQuads::CQuad::GetTransform(CAssetsManager* pAssetsManager, int64 Time, matrix2x2* pMatrix, vec2* pPosition) const
+void CAsset_MapLayerQuads::CQuad::GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const
 {
 	*pPosition = m_Pivot;
 	
@@ -46,7 +46,7 @@ void CAsset_MapLayerQuads::CQuad::GetTransform(CAssetsManager* pAssetsManager, i
 	*pMatrix = matrix2x2::rotation(Angle)*matrix2x2::scaling(Scale);
 }
 
-void CAsset_MapLayerQuads::CQuad::GetDrawState(CAssetsManager* pAssetsManager, int64 Time, vec4* pColor, int* pState) const
+void CAsset_MapLayerQuads::CQuad::GetDrawState(CAssetsManager* pAssetsManager, int64_t Time, vec4* pColor, int* pState) const
 {
 	*pColor = m_Color;
 	*pState = CAsset_SkeletonAnimation::LAYERSTATE_VISIBLE;
@@ -67,12 +67,12 @@ void CAsset_MapLayerQuads::CQuad::GetDrawState(CAssetsManager* pAssetsManager, i
 	}
 }
 
-void CAsset_MapLayerQuads::GetQuadTransform(const CSubPath& SubPath, int64 Time, matrix2x2* pMatrix, vec2* pPosition) const
+void CAsset_MapLayerQuads::GetQuadTransform(const CSubPath& SubPath, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const
 {
 	m_Quad[SubPath.GetId()].GetTransform(AssetsManager(), Time, pMatrix, pPosition);
 }
 
-void CAsset_MapLayerQuads::GetQuadDrawState(const CSubPath& SubPath, int64 Time, vec4* pColor, int* pState) const
+void CAsset_MapLayerQuads::GetQuadDrawState(const CSubPath& SubPath, int64_t Time, vec4* pColor, int* pState) const
 {
 	m_Quad[SubPath.GetId()].GetDrawState(AssetsManager(), Time, pColor, pState);
 }

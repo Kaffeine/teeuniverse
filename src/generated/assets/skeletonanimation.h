@@ -249,37 +249,37 @@ public:
 		
 		public:
 			CFrame();
-			inline vec2 GetTranslation() const { return m_Translation; }
+			vec2 GetTranslation() const { return m_Translation; }
 			
-			inline float GetTranslationX() const { return m_Translation.x; }
+			float GetTranslationX() const { return m_Translation.x; }
 			
-			inline float GetTranslationY() const { return m_Translation.y; }
+			float GetTranslationY() const { return m_Translation.y; }
 			
-			inline vec2 GetScale() const { return m_Scale; }
+			vec2 GetScale() const { return m_Scale; }
 			
-			inline float GetScaleX() const { return m_Scale.x; }
+			float GetScaleX() const { return m_Scale.x; }
 			
-			inline float GetScaleY() const { return m_Scale.y; }
+			float GetScaleY() const { return m_Scale.y; }
 			
-			inline float GetAngle() const { return m_Angle; }
+			float GetAngle() const { return m_Angle; }
 			
-			inline int GetAlignment() const { return m_Alignment; }
+			int GetAlignment() const { return m_Alignment; }
 			
-			inline void SetTranslation(vec2 Value) { m_Translation = Value; }
+			void SetTranslation(vec2 Value) { m_Translation = Value; }
 			
-			inline void SetTranslationX(float Value) { m_Translation.x = Value; }
+			void SetTranslationX(float Value) { m_Translation.x = Value; }
 			
-			inline void SetTranslationY(float Value) { m_Translation.y = Value; }
+			void SetTranslationY(float Value) { m_Translation.y = Value; }
 			
-			inline void SetScale(vec2 Value) { m_Scale = Value; }
+			void SetScale(vec2 Value) { m_Scale = Value; }
 			
-			inline void SetScaleX(float Value) { m_Scale.x = Value; }
+			void SetScaleX(float Value) { m_Scale.x = Value; }
 			
-			inline void SetScaleY(float Value) { m_Scale.y = Value; }
+			void SetScaleY(float Value) { m_Scale.y = Value; }
 			
-			inline void SetAngle(float Value) { m_Angle = Value; }
+			void SetAngle(float Value) { m_Angle = Value; }
 			
-			inline void SetAlignment(int Value) { m_Alignment = Value; }
+			void SetAlignment(int Value) { m_Alignment = Value; }
 			
 			void AssetPathOperation(const CAssetPath::COperation& Operation)
 			{
@@ -345,19 +345,19 @@ public:
 			
 		
 		private:
-			int64 m_Time;
+			int64_t m_Time;
 			int m_GraphType;
 		
 		public:
 			CKeyFrame& operator=(const CFrame& Frame);
 			CKeyFrame();
-			inline int64 GetTime() const { return m_Time; }
+			int64_t GetTime() const { return m_Time; }
 			
-			inline int GetGraphType() const { return m_GraphType; }
+			int GetGraphType() const { return m_GraphType; }
 			
-			inline void SetTime(int64 Value) { m_Time = Value; }
+			void SetTime(int64_t Value) { m_Time = Value; }
 			
-			inline void SetGraphType(int Value) { m_GraphType = Value; }
+			void SetGraphType(int Value) { m_GraphType = Value; }
 			
 			void AssetPathOperation(const CAssetPath::COperation& Operation)
 			{
@@ -431,19 +431,19 @@ public:
 		int m_CycleType;
 	
 	public:
-		int64 GetDuration() const;
-		int TimeToKeyFrame(int64 Time) const;
-		bool GetFrame(int64 Time, CFrame& Frame) const;
+		int64_t GetDuration() const;
+		int TimeToKeyFrame(int64_t Time) const;
+		bool GetFrame(int64_t Time, CFrame& Frame) const;
 		
 		CBoneAnimation();
-		inline int GetKeyFrameArraySize() const { return m_KeyFrame.size(); }
+		int GetKeyFrameArraySize() const { return m_KeyFrame.size(); }
 		
-		inline const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame* GetKeyFramePtr() const { return &(m_KeyFrame.front()); }
+		const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame* GetKeyFramePtr() const { return &(m_KeyFrame.front()); }
 		
-		inline const std::vector<CBoneAnimation::CKeyFrame>& GetKeyFrameArray() const { return m_KeyFrame; }
-		inline std::vector<CBoneAnimation::CKeyFrame>& GetKeyFrameArray() { return m_KeyFrame; }
+		const std::vector<CBoneAnimation::CKeyFrame>& GetKeyFrameArray() const { return m_KeyFrame; }
+		std::vector<CBoneAnimation::CKeyFrame>& GetKeyFrameArray() { return m_KeyFrame; }
 		
-		inline const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& GetKeyFrame(const CSubPath& SubPath) const
+		const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& GetKeyFrame(const CSubPath& SubPath) const
 		{
 			assert(SubPath.GetId() < m_KeyFrame.size());
 			{
@@ -451,83 +451,83 @@ public:
 			}
 		}
 		
-		inline vec2 GetKeyFrameTranslation(const CSubPath& SubPath) const
+		vec2 GetKeyFrameTranslation(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetTranslation();
 			else return 0.0f;
 		}
 		
-		inline float GetKeyFrameTranslationX(const CSubPath& SubPath) const
+		float GetKeyFrameTranslationX(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetTranslationX();
 			else return 0.0f;
 		}
 		
-		inline float GetKeyFrameTranslationY(const CSubPath& SubPath) const
+		float GetKeyFrameTranslationY(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetTranslationY();
 			else return 0.0f;
 		}
 		
-		inline vec2 GetKeyFrameScale(const CSubPath& SubPath) const
+		vec2 GetKeyFrameScale(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetScale();
 			else return 0.0f;
 		}
 		
-		inline float GetKeyFrameScaleX(const CSubPath& SubPath) const
+		float GetKeyFrameScaleX(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetScaleX();
 			else return 0.0f;
 		}
 		
-		inline float GetKeyFrameScaleY(const CSubPath& SubPath) const
+		float GetKeyFrameScaleY(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetScaleY();
 			else return 0.0f;
 		}
 		
-		inline float GetKeyFrameAngle(const CSubPath& SubPath) const
+		float GetKeyFrameAngle(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetAngle();
 			else return 0.0f;
 		}
 		
-		inline int GetKeyFrameAlignment(const CSubPath& SubPath) const
+		int GetKeyFrameAlignment(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetAlignment();
 			else return 0;
 		}
 		
-		inline int64 GetKeyFrameTime(const CSubPath& SubPath) const
+		int64_t GetKeyFrameTime(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetTime();
 			else return 0;
 		}
 		
-		inline int GetKeyFrameGraphType(const CSubPath& SubPath) const
+		int GetKeyFrameGraphType(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetGraphType();
 			else return 0;
 		}
 		
-		inline CSubPath GetBonePath() const { return m_BonePath; }
+		CSubPath GetBonePath() const { return m_BonePath; }
 		
-		inline int GetCycleType() const { return m_CycleType; }
+		int GetCycleType() const { return m_CycleType; }
 		
-		inline void SetKeyFrameArraySize(int Value) { m_KeyFrame.resize(Value); }
+		void SetKeyFrameArraySize(int Value) { m_KeyFrame.resize(Value); }
 		
-		inline void SetKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& Value)
+		void SetKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 			{
@@ -535,88 +535,88 @@ public:
 			}
 		}
 		
-		inline void SetKeyFrameTranslation(const CSubPath& SubPath, vec2 Value)
+		void SetKeyFrameTranslation(const CSubPath& SubPath, vec2 Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetTranslation(Value);
 		}
 		
-		inline void SetKeyFrameTranslationX(const CSubPath& SubPath, float Value)
+		void SetKeyFrameTranslationX(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetTranslationX(Value);
 		}
 		
-		inline void SetKeyFrameTranslationY(const CSubPath& SubPath, float Value)
+		void SetKeyFrameTranslationY(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetTranslationY(Value);
 		}
 		
-		inline void SetKeyFrameScale(const CSubPath& SubPath, vec2 Value)
+		void SetKeyFrameScale(const CSubPath& SubPath, vec2 Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetScale(Value);
 		}
 		
-		inline void SetKeyFrameScaleX(const CSubPath& SubPath, float Value)
+		void SetKeyFrameScaleX(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetScaleX(Value);
 		}
 		
-		inline void SetKeyFrameScaleY(const CSubPath& SubPath, float Value)
+		void SetKeyFrameScaleY(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetScaleY(Value);
 		}
 		
-		inline void SetKeyFrameAngle(const CSubPath& SubPath, float Value)
+		void SetKeyFrameAngle(const CSubPath& SubPath, float Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetAngle(Value);
 		}
 		
-		inline void SetKeyFrameAlignment(const CSubPath& SubPath, int Value)
+		void SetKeyFrameAlignment(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetAlignment(Value);
 		}
 		
-		inline void SetKeyFrameTime(const CSubPath& SubPath, int64 Value)
+		void SetKeyFrameTime(const CSubPath& SubPath, int64_t Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetTime(Value);
 		}
 		
-		inline void SetKeyFrameGraphType(const CSubPath& SubPath, int Value)
+		void SetKeyFrameGraphType(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetGraphType(Value);
 		}
 		
-		inline void SetBonePath(const CSubPath& Value) { m_BonePath = Value; }
+		void SetBonePath(const CSubPath& Value) { m_BonePath = Value; }
 		
-		inline void SetCycleType(int Value) { m_CycleType = Value; }
+		void SetCycleType(int Value) { m_CycleType = Value; }
 		
-		inline int AddKeyFrame()
+		int AddKeyFrame()
 		{
 			int Id = m_KeyFrame.size();
 			m_KeyFrame.emplace_back();
 			return Id;
 		}
 		
-		inline void AddAtKeyFrame(int Index) { m_KeyFrame.insert(m_KeyFrame.begin() + Index, CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame()); }
+		void AddAtKeyFrame(int Index) { m_KeyFrame.insert(m_KeyFrame.begin() + Index, CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame()); }
 		
-		inline void DeleteKeyFrame(const CSubPath& SubPath) { m_KeyFrame.erase(m_KeyFrame.begin() + SubPath.GetId()); }
+		void DeleteKeyFrame(const CSubPath& SubPath) { m_KeyFrame.erase(m_KeyFrame.begin() + SubPath.GetId()); }
 		
-		inline void RelMoveKeyFrame(CSubPath& SubPath, int RelMove)
+		void RelMoveKeyFrame(CSubPath& SubPath, int RelMove)
 		{
 			int NewId = relative_move(m_KeyFrame, SubPath.GetId(), RelMove);
 			SubPath.SetId(NewId);
 		}
 		
-		inline bool IsValidKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_KeyFrame.size()); }
+		bool IsValidKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_KeyFrame.size()); }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -694,13 +694,13 @@ public:
 		
 		public:
 			CFrame();
-			inline vec4 GetColor() const { return m_Color; }
+			vec4 GetColor() const { return m_Color; }
 			
-			inline int GetState() const { return m_State; }
+			int GetState() const { return m_State; }
 			
-			inline void SetColor(vec4 Value) { m_Color = Value; }
+			void SetColor(vec4 Value) { m_Color = Value; }
 			
-			inline void SetState(int Value) { m_State = Value; }
+			void SetState(int Value) { m_State = Value; }
 			
 			void AssetPathOperation(const CAssetPath::COperation& Operation)
 			{
@@ -766,19 +766,19 @@ public:
 			
 		
 		private:
-			int64 m_Time;
+			int64_t m_Time;
 			int m_GraphType;
 		
 		public:
 			CKeyFrame& operator=(const CFrame& Frame);
 			CKeyFrame();
-			inline int64 GetTime() const { return m_Time; }
+			int64_t GetTime() const { return m_Time; }
 			
-			inline int GetGraphType() const { return m_GraphType; }
+			int GetGraphType() const { return m_GraphType; }
 			
-			inline void SetTime(int64 Value) { m_Time = Value; }
+			void SetTime(int64_t Value) { m_Time = Value; }
 			
-			inline void SetGraphType(int Value) { m_GraphType = Value; }
+			void SetGraphType(int Value) { m_GraphType = Value; }
 			
 			void AssetPathOperation(const CAssetPath::COperation& Operation)
 			{
@@ -852,19 +852,19 @@ public:
 		int m_CycleType;
 	
 	public:
-		int64 GetDuration() const;
-		int TimeToKeyFrame(int64 Time) const;
-		bool GetFrame(int64 Time, CFrame& Frame) const;
+		int64_t GetDuration() const;
+		int TimeToKeyFrame(int64_t Time) const;
+		bool GetFrame(int64_t Time, CFrame& Frame) const;
 		
 		CLayerAnimation();
-		inline int GetKeyFrameArraySize() const { return m_KeyFrame.size(); }
+		int GetKeyFrameArraySize() const { return m_KeyFrame.size(); }
 		
-		inline const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame* GetKeyFramePtr() const { return &(m_KeyFrame.front()); }
+		const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame* GetKeyFramePtr() const { return &(m_KeyFrame.front()); }
 		
-		inline const std::vector<CLayerAnimation::CKeyFrame>& GetKeyFrameArray() const { return m_KeyFrame; }
-		inline std::vector<CLayerAnimation::CKeyFrame>& GetKeyFrameArray() { return m_KeyFrame; }
+		const std::vector<CLayerAnimation::CKeyFrame>& GetKeyFrameArray() const { return m_KeyFrame; }
+		std::vector<CLayerAnimation::CKeyFrame>& GetKeyFrameArray() { return m_KeyFrame; }
 		
-		inline const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& GetKeyFrame(const CSubPath& SubPath) const
+		const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& GetKeyFrame(const CSubPath& SubPath) const
 		{
 			assert(SubPath.GetId() < m_KeyFrame.size());
 			{
@@ -872,41 +872,41 @@ public:
 			}
 		}
 		
-		inline vec4 GetKeyFrameColor(const CSubPath& SubPath) const
+		vec4 GetKeyFrameColor(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetColor();
 			else return 1.0f;
 		}
 		
-		inline int GetKeyFrameState(const CSubPath& SubPath) const
+		int GetKeyFrameState(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetState();
 			else return 0;
 		}
 		
-		inline int64 GetKeyFrameTime(const CSubPath& SubPath) const
+		int64_t GetKeyFrameTime(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetTime();
 			else return 0;
 		}
 		
-		inline int GetKeyFrameGraphType(const CSubPath& SubPath) const
+		int GetKeyFrameGraphType(const CSubPath& SubPath) const
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				return m_KeyFrame[SubPath.GetId()].GetGraphType();
 			else return 0;
 		}
 		
-		inline CSubPath GetLayerPath() const { return m_LayerPath; }
+		CSubPath GetLayerPath() const { return m_LayerPath; }
 		
-		inline int GetCycleType() const { return m_CycleType; }
+		int GetCycleType() const { return m_CycleType; }
 		
-		inline void SetKeyFrameArraySize(int Value) { m_KeyFrame.resize(Value); }
+		void SetKeyFrameArraySize(int Value) { m_KeyFrame.resize(Value); }
 		
-		inline void SetKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& Value)
+		void SetKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 			{
@@ -914,52 +914,52 @@ public:
 			}
 		}
 		
-		inline void SetKeyFrameColor(const CSubPath& SubPath, vec4 Value)
+		void SetKeyFrameColor(const CSubPath& SubPath, vec4 Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetColor(Value);
 		}
 		
-		inline void SetKeyFrameState(const CSubPath& SubPath, int Value)
+		void SetKeyFrameState(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetState(Value);
 		}
 		
-		inline void SetKeyFrameTime(const CSubPath& SubPath, int64 Value)
+		void SetKeyFrameTime(const CSubPath& SubPath, int64_t Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetTime(Value);
 		}
 		
-		inline void SetKeyFrameGraphType(const CSubPath& SubPath, int Value)
+		void SetKeyFrameGraphType(const CSubPath& SubPath, int Value)
 		{
 			if(SubPath.GetId() < m_KeyFrame.size())
 				m_KeyFrame[SubPath.GetId()].SetGraphType(Value);
 		}
 		
-		inline void SetLayerPath(const CSubPath& Value) { m_LayerPath = Value; }
+		void SetLayerPath(const CSubPath& Value) { m_LayerPath = Value; }
 		
-		inline void SetCycleType(int Value) { m_CycleType = Value; }
+		void SetCycleType(int Value) { m_CycleType = Value; }
 		
-		inline int AddKeyFrame()
+		int AddKeyFrame()
 		{
 			int Id = m_KeyFrame.size();
 			m_KeyFrame.emplace_back();
 			return Id;
 		}
 		
-		inline void AddAtKeyFrame(int Index) { m_KeyFrame.insert(m_KeyFrame.begin() + Index, CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame()); }
+		void AddAtKeyFrame(int Index) { m_KeyFrame.insert(m_KeyFrame.begin() + Index, CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame()); }
 		
-		inline void DeleteKeyFrame(const CSubPath& SubPath) { m_KeyFrame.erase(m_KeyFrame.begin() + SubPath.GetId()); }
+		void DeleteKeyFrame(const CSubPath& SubPath) { m_KeyFrame.erase(m_KeyFrame.begin() + SubPath.GetId()); }
 		
-		inline void RelMoveKeyFrame(CSubPath& SubPath, int RelMove)
+		void RelMoveKeyFrame(CSubPath& SubPath, int RelMove)
 		{
 			int NewId = relative_move(m_KeyFrame, SubPath.GetId(), RelMove);
 			SubPath.SetId(NewId);
 		}
 		
-		inline bool IsValidKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_KeyFrame.size()); }
+		bool IsValidKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_KeyFrame.size()); }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -1037,8 +1037,8 @@ private:
 	std::vector<CAsset_SkeletonAnimation::CLayerAnimation> m_LayerAnimation;
 
 public:
-	bool GetBoneAnimFrame(const CSubPath& SubPath, int64 Time, CBoneAnimation::CFrame& Frame) const;
-	bool GetLayerAnimFrame(const CSubPath& SubPath, int64 Time, CLayerAnimation::CFrame& Frame) const;
+	bool GetBoneAnimFrame(const CSubPath& SubPath, int64_t Time, CBoneAnimation::CFrame& Frame) const;
+	bool GetLayerAnimFrame(const CSubPath& SubPath, int64_t Time, CLayerAnimation::CFrame& Frame) const;
 	CSubPath FindBoneAnim(const CSubPath& BonePath) const;
 	CSubPath FindLayerAnim(const CSubPath& LayerPath) const;
 	
@@ -1064,16 +1064,16 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetSkeletonPath() const { return m_SkeletonPath; }
+	CAssetPath GetSkeletonPath() const { return m_SkeletonPath; }
 	
-	inline int GetBoneAnimationArraySize() const { return m_BoneAnimation.size(); }
+	int GetBoneAnimationArraySize() const { return m_BoneAnimation.size(); }
 	
-	inline const CAsset_SkeletonAnimation::CBoneAnimation* GetBoneAnimationPtr() const { return &(m_BoneAnimation.front()); }
+	const CAsset_SkeletonAnimation::CBoneAnimation* GetBoneAnimationPtr() const { return &(m_BoneAnimation.front()); }
 	
-	inline const std::vector<CAsset_SkeletonAnimation::CBoneAnimation>& GetBoneAnimationArray() const { return m_BoneAnimation; }
-	inline std::vector<CAsset_SkeletonAnimation::CBoneAnimation>& GetBoneAnimationArray() { return m_BoneAnimation; }
+	const std::vector<CAsset_SkeletonAnimation::CBoneAnimation>& GetBoneAnimationArray() const { return m_BoneAnimation; }
+	std::vector<CAsset_SkeletonAnimation::CBoneAnimation>& GetBoneAnimationArray() { return m_BoneAnimation; }
 	
-	inline const CAsset_SkeletonAnimation::CBoneAnimation& GetBoneAnimation(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CBoneAnimation& GetBoneAnimation(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_BoneAnimation.size());
 		{
@@ -1081,129 +1081,129 @@ public:
 		}
 	}
 	
-	inline int GetBoneAnimationKeyFrameArraySize(const CSubPath& SubPath) const
+	int GetBoneAnimationKeyFrameArraySize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameArraySize();
 		else return 0;
 	}
 	
-	inline const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame* GetBoneAnimationKeyFramePtr(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame* GetBoneAnimationKeyFramePtr(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFramePtr();
 		else return NULL;
 	}
 	
-	inline const std::vector<CBoneAnimation::CKeyFrame>& GetBoneAnimationKeyFrameArray(const CSubPath& SubPath) const
+	const std::vector<CBoneAnimation::CKeyFrame>& GetBoneAnimationKeyFrameArray(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_BoneAnimation.size());
 		return m_BoneAnimation[SubPath.GetId()].GetKeyFrameArray();
 	}
-	inline std::vector<CBoneAnimation::CKeyFrame>& GetBoneAnimationKeyFrameArray(const CSubPath& SubPath)
+	std::vector<CBoneAnimation::CKeyFrame>& GetBoneAnimationKeyFrameArray(const CSubPath& SubPath)
 	{
 		assert(SubPath.GetId() < m_BoneAnimation.size());
 		return m_BoneAnimation[SubPath.GetId()].GetKeyFrameArray();
 	}
 	
-	inline const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& GetBoneAnimationKeyFrame(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& GetBoneAnimationKeyFrame(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_BoneAnimation.size());
 		return m_BoneAnimation[SubPath.GetId()].GetKeyFrame(SubPath.PopId());
 	}
 	
-	inline vec2 GetBoneAnimationKeyFrameTranslation(const CSubPath& SubPath) const
+	vec2 GetBoneAnimationKeyFrameTranslation(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameTranslation(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetBoneAnimationKeyFrameTranslationX(const CSubPath& SubPath) const
+	float GetBoneAnimationKeyFrameTranslationX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameTranslationX(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetBoneAnimationKeyFrameTranslationY(const CSubPath& SubPath) const
+	float GetBoneAnimationKeyFrameTranslationY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameTranslationY(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline vec2 GetBoneAnimationKeyFrameScale(const CSubPath& SubPath) const
+	vec2 GetBoneAnimationKeyFrameScale(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameScale(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetBoneAnimationKeyFrameScaleX(const CSubPath& SubPath) const
+	float GetBoneAnimationKeyFrameScaleX(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameScaleX(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetBoneAnimationKeyFrameScaleY(const CSubPath& SubPath) const
+	float GetBoneAnimationKeyFrameScaleY(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameScaleY(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline float GetBoneAnimationKeyFrameAngle(const CSubPath& SubPath) const
+	float GetBoneAnimationKeyFrameAngle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameAngle(SubPath.PopId());
 		else return 0.0f;
 	}
 	
-	inline int GetBoneAnimationKeyFrameAlignment(const CSubPath& SubPath) const
+	int GetBoneAnimationKeyFrameAlignment(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameAlignment(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int64 GetBoneAnimationKeyFrameTime(const CSubPath& SubPath) const
+	int64_t GetBoneAnimationKeyFrameTime(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameTime(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetBoneAnimationKeyFrameGraphType(const CSubPath& SubPath) const
+	int GetBoneAnimationKeyFrameGraphType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetKeyFrameGraphType(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline CSubPath GetBoneAnimationBonePath(const CSubPath& SubPath) const
+	CSubPath GetBoneAnimationBonePath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetBonePath();
 		else return CSubPath::Null();
 	}
 	
-	inline int GetBoneAnimationCycleType(const CSubPath& SubPath) const
+	int GetBoneAnimationCycleType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			return m_BoneAnimation[SubPath.GetId()].GetCycleType();
 		else return 0;
 	}
 	
-	inline int GetLayerAnimationArraySize() const { return m_LayerAnimation.size(); }
+	int GetLayerAnimationArraySize() const { return m_LayerAnimation.size(); }
 	
-	inline const CAsset_SkeletonAnimation::CLayerAnimation* GetLayerAnimationPtr() const { return &(m_LayerAnimation.front()); }
+	const CAsset_SkeletonAnimation::CLayerAnimation* GetLayerAnimationPtr() const { return &(m_LayerAnimation.front()); }
 	
-	inline const std::vector<CAsset_SkeletonAnimation::CLayerAnimation>& GetLayerAnimationArray() const { return m_LayerAnimation; }
-	inline std::vector<CAsset_SkeletonAnimation::CLayerAnimation>& GetLayerAnimationArray() { return m_LayerAnimation; }
+	const std::vector<CAsset_SkeletonAnimation::CLayerAnimation>& GetLayerAnimationArray() const { return m_LayerAnimation; }
+	std::vector<CAsset_SkeletonAnimation::CLayerAnimation>& GetLayerAnimationArray() { return m_LayerAnimation; }
 	
-	inline const CAsset_SkeletonAnimation::CLayerAnimation& GetLayerAnimation(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CLayerAnimation& GetLayerAnimation(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_LayerAnimation.size());
 		{
@@ -1211,84 +1211,84 @@ public:
 		}
 	}
 	
-	inline int GetLayerAnimationKeyFrameArraySize(const CSubPath& SubPath) const
+	int GetLayerAnimationKeyFrameArraySize(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFrameArraySize();
 		else return 0;
 	}
 	
-	inline const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame* GetLayerAnimationKeyFramePtr(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame* GetLayerAnimationKeyFramePtr(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFramePtr();
 		else return NULL;
 	}
 	
-	inline const std::vector<CLayerAnimation::CKeyFrame>& GetLayerAnimationKeyFrameArray(const CSubPath& SubPath) const
+	const std::vector<CLayerAnimation::CKeyFrame>& GetLayerAnimationKeyFrameArray(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_LayerAnimation.size());
 		return m_LayerAnimation[SubPath.GetId()].GetKeyFrameArray();
 	}
-	inline std::vector<CLayerAnimation::CKeyFrame>& GetLayerAnimationKeyFrameArray(const CSubPath& SubPath)
+	std::vector<CLayerAnimation::CKeyFrame>& GetLayerAnimationKeyFrameArray(const CSubPath& SubPath)
 	{
 		assert(SubPath.GetId() < m_LayerAnimation.size());
 		return m_LayerAnimation[SubPath.GetId()].GetKeyFrameArray();
 	}
 	
-	inline const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& GetLayerAnimationKeyFrame(const CSubPath& SubPath) const
+	const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& GetLayerAnimationKeyFrame(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_LayerAnimation.size());
 		return m_LayerAnimation[SubPath.GetId()].GetKeyFrame(SubPath.PopId());
 	}
 	
-	inline vec4 GetLayerAnimationKeyFrameColor(const CSubPath& SubPath) const
+	vec4 GetLayerAnimationKeyFrameColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFrameColor(SubPath.PopId());
 		else return 1.0f;
 	}
 	
-	inline int GetLayerAnimationKeyFrameState(const CSubPath& SubPath) const
+	int GetLayerAnimationKeyFrameState(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFrameState(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int64 GetLayerAnimationKeyFrameTime(const CSubPath& SubPath) const
+	int64_t GetLayerAnimationKeyFrameTime(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFrameTime(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline int GetLayerAnimationKeyFrameGraphType(const CSubPath& SubPath) const
+	int GetLayerAnimationKeyFrameGraphType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetKeyFrameGraphType(SubPath.PopId());
 		else return 0;
 	}
 	
-	inline CSubPath GetLayerAnimationLayerPath(const CSubPath& SubPath) const
+	CSubPath GetLayerAnimationLayerPath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetLayerPath();
 		else return CSubPath::Null();
 	}
 	
-	inline int GetLayerAnimationCycleType(const CSubPath& SubPath) const
+	int GetLayerAnimationCycleType(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			return m_LayerAnimation[SubPath.GetId()].GetCycleType();
 		else return 0;
 	}
 	
-	inline void SetSkeletonPath(const CAssetPath& Value) { m_SkeletonPath = Value; }
+	void SetSkeletonPath(const CAssetPath& Value) { m_SkeletonPath = Value; }
 	
-	inline void SetBoneAnimationArraySize(int Value) { m_BoneAnimation.resize(Value); }
+	void SetBoneAnimationArraySize(int Value) { m_BoneAnimation.resize(Value); }
 	
-	inline void SetBoneAnimation(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation& Value)
+	void SetBoneAnimation(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation& Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 		{
@@ -1296,93 +1296,93 @@ public:
 		}
 	}
 	
-	inline void SetBoneAnimationKeyFrameArraySize(const CSubPath& SubPath, int Value)
+	void SetBoneAnimationKeyFrameArraySize(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameArraySize(Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& Value)
+	void SetBoneAnimationKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrame(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameTranslation(const CSubPath& SubPath, vec2 Value)
+	void SetBoneAnimationKeyFrameTranslation(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameTranslation(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameTranslationX(const CSubPath& SubPath, float Value)
+	void SetBoneAnimationKeyFrameTranslationX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameTranslationX(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameTranslationY(const CSubPath& SubPath, float Value)
+	void SetBoneAnimationKeyFrameTranslationY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameTranslationY(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameScale(const CSubPath& SubPath, vec2 Value)
+	void SetBoneAnimationKeyFrameScale(const CSubPath& SubPath, vec2 Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameScale(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameScaleX(const CSubPath& SubPath, float Value)
+	void SetBoneAnimationKeyFrameScaleX(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameScaleX(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameScaleY(const CSubPath& SubPath, float Value)
+	void SetBoneAnimationKeyFrameScaleY(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameScaleY(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameAngle(const CSubPath& SubPath, float Value)
+	void SetBoneAnimationKeyFrameAngle(const CSubPath& SubPath, float Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameAngle(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameAlignment(const CSubPath& SubPath, int Value)
+	void SetBoneAnimationKeyFrameAlignment(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameAlignment(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameTime(const CSubPath& SubPath, int64 Value)
+	void SetBoneAnimationKeyFrameTime(const CSubPath& SubPath, int64_t Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameTime(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationKeyFrameGraphType(const CSubPath& SubPath, int Value)
+	void SetBoneAnimationKeyFrameGraphType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetKeyFrameGraphType(SubPath.PopId(), Value);
 	}
 	
-	inline void SetBoneAnimationBonePath(const CSubPath& SubPath, const CSubPath& Value)
+	void SetBoneAnimationBonePath(const CSubPath& SubPath, const CSubPath& Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetBonePath(Value);
 	}
 	
-	inline void SetBoneAnimationCycleType(const CSubPath& SubPath, int Value)
+	void SetBoneAnimationCycleType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_BoneAnimation.size())
 			m_BoneAnimation[SubPath.GetId()].SetCycleType(Value);
 	}
 	
-	inline void SetLayerAnimationArraySize(int Value) { m_LayerAnimation.resize(Value); }
+	void SetLayerAnimationArraySize(int Value) { m_LayerAnimation.resize(Value); }
 	
-	inline void SetLayerAnimation(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation& Value)
+	void SetLayerAnimation(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation& Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 		{
@@ -1390,121 +1390,121 @@ public:
 		}
 	}
 	
-	inline void SetLayerAnimationKeyFrameArraySize(const CSubPath& SubPath, int Value)
+	void SetLayerAnimationKeyFrameArraySize(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrameArraySize(Value);
 	}
 	
-	inline void SetLayerAnimationKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& Value)
+	void SetLayerAnimationKeyFrame(const CSubPath& SubPath, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrame(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerAnimationKeyFrameColor(const CSubPath& SubPath, vec4 Value)
+	void SetLayerAnimationKeyFrameColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrameColor(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerAnimationKeyFrameState(const CSubPath& SubPath, int Value)
+	void SetLayerAnimationKeyFrameState(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrameState(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerAnimationKeyFrameTime(const CSubPath& SubPath, int64 Value)
+	void SetLayerAnimationKeyFrameTime(const CSubPath& SubPath, int64_t Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrameTime(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerAnimationKeyFrameGraphType(const CSubPath& SubPath, int Value)
+	void SetLayerAnimationKeyFrameGraphType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetKeyFrameGraphType(SubPath.PopId(), Value);
 	}
 	
-	inline void SetLayerAnimationLayerPath(const CSubPath& SubPath, const CSubPath& Value)
+	void SetLayerAnimationLayerPath(const CSubPath& SubPath, const CSubPath& Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetLayerPath(Value);
 	}
 	
-	inline void SetLayerAnimationCycleType(const CSubPath& SubPath, int Value)
+	void SetLayerAnimationCycleType(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_LayerAnimation.size())
 			m_LayerAnimation[SubPath.GetId()].SetCycleType(Value);
 	}
 	
-	inline int AddBoneAnimation()
+	int AddBoneAnimation()
 	{
 		int Id = m_BoneAnimation.size();
 		m_BoneAnimation.emplace_back();
 		return Id;
 	}
 	
-	inline int AddBoneAnimationKeyFrame(const CSubPath& SubPath) { return m_BoneAnimation[SubPath.GetId()].AddKeyFrame(); }
+	int AddBoneAnimationKeyFrame(const CSubPath& SubPath) { return m_BoneAnimation[SubPath.GetId()].AddKeyFrame(); }
 	
-	inline int AddLayerAnimation()
+	int AddLayerAnimation()
 	{
 		int Id = m_LayerAnimation.size();
 		m_LayerAnimation.emplace_back();
 		return Id;
 	}
 	
-	inline int AddLayerAnimationKeyFrame(const CSubPath& SubPath) { return m_LayerAnimation[SubPath.GetId()].AddKeyFrame(); }
+	int AddLayerAnimationKeyFrame(const CSubPath& SubPath) { return m_LayerAnimation[SubPath.GetId()].AddKeyFrame(); }
 	
-	inline void AddAtBoneAnimation(int Index) { m_BoneAnimation.insert(m_BoneAnimation.begin() + Index, CAsset_SkeletonAnimation::CBoneAnimation()); }
+	void AddAtBoneAnimation(int Index) { m_BoneAnimation.insert(m_BoneAnimation.begin() + Index, CAsset_SkeletonAnimation::CBoneAnimation()); }
 	
-	inline void AddAtBoneAnimationKeyFrame(const CSubPath& SubPath, int Index) { m_BoneAnimation[SubPath.GetId()].AddAtKeyFrame(Index); }
+	void AddAtBoneAnimationKeyFrame(const CSubPath& SubPath, int Index) { m_BoneAnimation[SubPath.GetId()].AddAtKeyFrame(Index); }
 	
-	inline void AddAtLayerAnimation(int Index) { m_LayerAnimation.insert(m_LayerAnimation.begin() + Index, CAsset_SkeletonAnimation::CLayerAnimation()); }
+	void AddAtLayerAnimation(int Index) { m_LayerAnimation.insert(m_LayerAnimation.begin() + Index, CAsset_SkeletonAnimation::CLayerAnimation()); }
 	
-	inline void AddAtLayerAnimationKeyFrame(const CSubPath& SubPath, int Index) { m_LayerAnimation[SubPath.GetId()].AddAtKeyFrame(Index); }
+	void AddAtLayerAnimationKeyFrame(const CSubPath& SubPath, int Index) { m_LayerAnimation[SubPath.GetId()].AddAtKeyFrame(Index); }
 	
-	inline void DeleteBoneAnimation(const CSubPath& SubPath) { m_BoneAnimation.erase(m_BoneAnimation.begin() + SubPath.GetId()); }
+	void DeleteBoneAnimation(const CSubPath& SubPath) { m_BoneAnimation.erase(m_BoneAnimation.begin() + SubPath.GetId()); }
 	
-	inline void DeleteBoneAnimationKeyFrame(const CSubPath& SubPath) { m_BoneAnimation[SubPath.GetId()].DeleteKeyFrame(SubPath.PopId()); }
+	void DeleteBoneAnimationKeyFrame(const CSubPath& SubPath) { m_BoneAnimation[SubPath.GetId()].DeleteKeyFrame(SubPath.PopId()); }
 	
-	inline void DeleteLayerAnimation(const CSubPath& SubPath) { m_LayerAnimation.erase(m_LayerAnimation.begin() + SubPath.GetId()); }
+	void DeleteLayerAnimation(const CSubPath& SubPath) { m_LayerAnimation.erase(m_LayerAnimation.begin() + SubPath.GetId()); }
 	
-	inline void DeleteLayerAnimationKeyFrame(const CSubPath& SubPath) { m_LayerAnimation[SubPath.GetId()].DeleteKeyFrame(SubPath.PopId()); }
+	void DeleteLayerAnimationKeyFrame(const CSubPath& SubPath) { m_LayerAnimation[SubPath.GetId()].DeleteKeyFrame(SubPath.PopId()); }
 	
-	inline void RelMoveBoneAnimation(CSubPath& SubPath, int RelMove)
+	void RelMoveBoneAnimation(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_BoneAnimation, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveBoneAnimationKeyFrame(CSubPath& SubPath, int RelMove)
+	void RelMoveBoneAnimationKeyFrame(CSubPath& SubPath, int RelMove)
 	{
 		CSubPath ChildSubPath = SubPath.PopId();
 		m_BoneAnimation[SubPath.GetId()].RelMoveKeyFrame(ChildSubPath, RelMove);
 		SubPath.SetId2(ChildSubPath.GetId());
 	}
 	
-	inline void RelMoveLayerAnimation(CSubPath& SubPath, int RelMove)
+	void RelMoveLayerAnimation(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_LayerAnimation, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveLayerAnimationKeyFrame(CSubPath& SubPath, int RelMove)
+	void RelMoveLayerAnimationKeyFrame(CSubPath& SubPath, int RelMove)
 	{
 		CSubPath ChildSubPath = SubPath.PopId();
 		m_LayerAnimation[SubPath.GetId()].RelMoveKeyFrame(ChildSubPath, RelMove);
 		SubPath.SetId2(ChildSubPath.GetId());
 	}
 	
-	inline bool IsValidBoneAnimation(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BoneAnimation.size()); }
+	bool IsValidBoneAnimation(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BoneAnimation.size()); }
 	
-	inline bool IsValidBoneAnimationKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BoneAnimation.size() && m_BoneAnimation[SubPath.GetId()].IsValidKeyFrame(SubPath.PopId())); }
+	bool IsValidBoneAnimationKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BoneAnimation.size() && m_BoneAnimation[SubPath.GetId()].IsValidKeyFrame(SubPath.PopId())); }
 	
-	inline bool IsValidLayerAnimation(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_LayerAnimation.size()); }
+	bool IsValidLayerAnimation(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_LayerAnimation.size()); }
 	
-	inline bool IsValidLayerAnimationKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_LayerAnimation.size() && m_LayerAnimation[SubPath.GetId()].IsValidKeyFrame(SubPath.PopId())); }
+	bool IsValidLayerAnimationKeyFrame(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_LayerAnimation.size() && m_LayerAnimation[SubPath.GetId()].IsValidKeyFrame(SubPath.PopId())); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{
@@ -1523,8 +1523,8 @@ public:
 
 template<> int CAsset_SkeletonAnimation::GetValue(int ValueType, const CSubPath& SubPath, int DefaultValue) const;
 template<> bool CAsset_SkeletonAnimation::SetValue(int ValueType, const CSubPath& SubPath, int Value);
-template<> int64 CAsset_SkeletonAnimation::GetValue(int ValueType, const CSubPath& SubPath, int64 DefaultValue) const;
-template<> bool CAsset_SkeletonAnimation::SetValue(int ValueType, const CSubPath& SubPath, int64 Value);
+template<> int64_t CAsset_SkeletonAnimation::GetValue(int ValueType, const CSubPath& SubPath, int64_t DefaultValue) const;
+template<> bool CAsset_SkeletonAnimation::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value);
 template<> float CAsset_SkeletonAnimation::GetValue(int ValueType, const CSubPath& SubPath, float DefaultValue) const;
 template<> bool CAsset_SkeletonAnimation::SetValue(int ValueType, const CSubPath& SubPath, float Value);
 template<> vec2 CAsset_SkeletonAnimation::GetValue(int ValueType, const CSubPath& SubPath, vec2 DefaultValue) const;

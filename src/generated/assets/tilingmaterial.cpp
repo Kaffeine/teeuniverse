@@ -244,9 +244,9 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* 
 {
 	{
 		const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3* pData = (const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Condition.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
 		SysType.m_Condition.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Condition[i]);
 		}
@@ -269,9 +269,9 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_2_3::Read(CAssetsSaveLoadContext*
 	SysType.m_Title = pLoadingContext->ArchiveFile()->GetString(TuaType.m_Title);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Index[i] = pLoadingContext->ArchiveFile()->ReadUInt8(pData[i]);
 		}
@@ -287,9 +287,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadin
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3* pData = (const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_ZoneConverter.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
 		SysType.m_ZoneConverter.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_ZoneConverter[i]);
 		}
@@ -297,9 +297,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CRule::CTuaType_0_2_3* pData = (const CAsset_TilingMaterial::CRule::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Rule.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
 		SysType.m_Rule.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Rule[i]);
 		}
@@ -307,9 +307,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CIndex::CTuaType_0_2_3* pData = (const CAsset_TilingMaterial::CIndex::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -317,9 +317,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CLabel::CTuaType_0_2_3* pData = (const CAsset_TilingMaterial::CLabel::CTuaType_0_2_3*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Label.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
 		SysType.m_Label.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_2_3::Read(pLoadingContext, pData[i], SysType.m_Label[i]);
 		}
@@ -348,12 +348,12 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_2_3::Write(CAssetsSaveLoadContext*
 	{
 		TuaType.m_Condition.m_Size = SysType.m_Condition.size();
 		CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3* pData = new CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3[SysType.m_Condition.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3)*SysType.m_Condition.size());
-		for(unsigned int i=0; i<SysType.m_Condition.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3)*SysType.m_Condition.size());
+		for(unsigned int i = 0; i < SysType.m_Condition.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Condition[i], pData[i]);
 		}
-		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3)*SysType.m_Condition.size());
+		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_3)*SysType.m_Condition.size());
 		delete[] pData;
 	}
 	TuaType.m_Probability = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Probability);
@@ -372,12 +372,12 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_2_3::Write(CAssetsSaveLoadContext
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		tua_uint8* pData = new tua_uint8[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->WriteUInt8(SysType.m_Index[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_uint8)*SysType.m_Index.size());
 		delete[] pData;
 	}
 }
@@ -390,45 +390,45 @@ void CAsset_TilingMaterial::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoadi
 	{
 		TuaType.m_ZoneConverter.m_Size = SysType.m_ZoneConverter.size();
 		CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3* pData = new CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3[SysType.m_ZoneConverter.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3)*SysType.m_ZoneConverter.size());
-		for(unsigned int i=0; i<SysType.m_ZoneConverter.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3)*SysType.m_ZoneConverter.size());
+		for(unsigned int i = 0; i < SysType.m_ZoneConverter.size(); i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_ZoneConverter[i], pData[i]);
 		}
-		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3)*SysType.m_ZoneConverter.size());
+		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_3)*SysType.m_ZoneConverter.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Rule.m_Size = SysType.m_Rule.size();
 		CAsset_TilingMaterial::CRule::CTuaType_0_2_3* pData = new CAsset_TilingMaterial::CRule::CTuaType_0_2_3[SysType.m_Rule.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_3)*SysType.m_Rule.size());
-		for(unsigned int i=0; i<SysType.m_Rule.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_3)*SysType.m_Rule.size());
+		for(unsigned int i = 0; i < SysType.m_Rule.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Rule[i], pData[i]);
 		}
-		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_3)*SysType.m_Rule.size());
+		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_3)*SysType.m_Rule.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_TilingMaterial::CIndex::CTuaType_0_2_3* pData = new CAsset_TilingMaterial::CIndex::CTuaType_0_2_3[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_3)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Label.m_Size = SysType.m_Label.size();
 		CAsset_TilingMaterial::CLabel::CTuaType_0_2_3* pData = new CAsset_TilingMaterial::CLabel::CTuaType_0_2_3[SysType.m_Label.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_3)*SysType.m_Label.size());
-		for(unsigned int i=0; i<SysType.m_Label.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_3)*SysType.m_Label.size());
+		for(unsigned int i = 0; i < SysType.m_Label.size(); i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_2_3::Write(pLoadingContext, SysType.m_Label[i], pData[i]);
 		}
-		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_3)*SysType.m_Label.size());
+		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_3)*SysType.m_Label.size());
 		delete[] pData;
 	}
 }
@@ -454,9 +454,9 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* 
 {
 	{
 		const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4* pData = (const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Condition.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
 		SysType.m_Condition.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Condition[i]);
 		}
@@ -479,9 +479,9 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_2_4::Read(CAssetsSaveLoadContext*
 	SysType.m_Title = pLoadingContext->ArchiveFile()->GetString(TuaType.m_Title);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Index[i] = pLoadingContext->ArchiveFile()->ReadUInt8(pData[i]);
 		}
@@ -497,9 +497,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadin
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4* pData = (const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_ZoneConverter.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
 		SysType.m_ZoneConverter.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_ZoneConverter[i]);
 		}
@@ -507,9 +507,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CRule::CTuaType_0_2_4* pData = (const CAsset_TilingMaterial::CRule::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Rule.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
 		SysType.m_Rule.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Rule[i]);
 		}
@@ -517,9 +517,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CIndex::CTuaType_0_2_4* pData = (const CAsset_TilingMaterial::CIndex::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -527,9 +527,9 @@ void CAsset_TilingMaterial::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CLabel::CTuaType_0_2_4* pData = (const CAsset_TilingMaterial::CLabel::CTuaType_0_2_4*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Label.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
 		SysType.m_Label.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_2_4::Read(pLoadingContext, pData[i], SysType.m_Label[i]);
 		}
@@ -558,12 +558,12 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_2_4::Write(CAssetsSaveLoadContext*
 	{
 		TuaType.m_Condition.m_Size = SysType.m_Condition.size();
 		CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4* pData = new CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4[SysType.m_Condition.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4)*SysType.m_Condition.size());
-		for(unsigned int i=0; i<SysType.m_Condition.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4)*SysType.m_Condition.size());
+		for(unsigned int i = 0; i < SysType.m_Condition.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Condition[i], pData[i]);
 		}
-		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4)*SysType.m_Condition.size());
+		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_2_4)*SysType.m_Condition.size());
 		delete[] pData;
 	}
 	TuaType.m_Probability = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Probability);
@@ -582,12 +582,12 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_2_4::Write(CAssetsSaveLoadContext
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		tua_uint8* pData = new tua_uint8[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->WriteUInt8(SysType.m_Index[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_uint8)*SysType.m_Index.size());
 		delete[] pData;
 	}
 }
@@ -600,45 +600,45 @@ void CAsset_TilingMaterial::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoadi
 	{
 		TuaType.m_ZoneConverter.m_Size = SysType.m_ZoneConverter.size();
 		CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4* pData = new CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4[SysType.m_ZoneConverter.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4)*SysType.m_ZoneConverter.size());
-		for(unsigned int i=0; i<SysType.m_ZoneConverter.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4)*SysType.m_ZoneConverter.size());
+		for(unsigned int i = 0; i < SysType.m_ZoneConverter.size(); i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_ZoneConverter[i], pData[i]);
 		}
-		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4)*SysType.m_ZoneConverter.size());
+		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_2_4)*SysType.m_ZoneConverter.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Rule.m_Size = SysType.m_Rule.size();
 		CAsset_TilingMaterial::CRule::CTuaType_0_2_4* pData = new CAsset_TilingMaterial::CRule::CTuaType_0_2_4[SysType.m_Rule.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_4)*SysType.m_Rule.size());
-		for(unsigned int i=0; i<SysType.m_Rule.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_4)*SysType.m_Rule.size());
+		for(unsigned int i = 0; i < SysType.m_Rule.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Rule[i], pData[i]);
 		}
-		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_4)*SysType.m_Rule.size());
+		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_2_4)*SysType.m_Rule.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_TilingMaterial::CIndex::CTuaType_0_2_4* pData = new CAsset_TilingMaterial::CIndex::CTuaType_0_2_4[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_2_4)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Label.m_Size = SysType.m_Label.size();
 		CAsset_TilingMaterial::CLabel::CTuaType_0_2_4* pData = new CAsset_TilingMaterial::CLabel::CTuaType_0_2_4[SysType.m_Label.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_4)*SysType.m_Label.size());
-		for(unsigned int i=0; i<SysType.m_Label.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_4)*SysType.m_Label.size());
+		for(unsigned int i = 0; i < SysType.m_Label.size(); i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_2_4::Write(pLoadingContext, SysType.m_Label[i], pData[i]);
 		}
-		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_4)*SysType.m_Label.size());
+		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_2_4)*SysType.m_Label.size());
 		delete[] pData;
 	}
 }
@@ -664,9 +664,9 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* 
 {
 	{
 		const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0* pData = (const CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Condition.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Condition.m_Size);
 		SysType.m_Condition.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Condition[i]);
 		}
@@ -689,9 +689,9 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_3_0::Read(CAssetsSaveLoadContext*
 	SysType.m_Title = pLoadingContext->ArchiveFile()->GetString(TuaType.m_Title);
 	{
 		const tua_uint8* pData = (const tua_uint8*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			SysType.m_Index[i] = pLoadingContext->ArchiveFile()->ReadUInt8(pData[i]);
 		}
@@ -707,9 +707,9 @@ void CAsset_TilingMaterial::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadin
 	pLoadingContext->ReadAssetPath(TuaType.m_ImagePath, SysType.m_ImagePath);
 	{
 		const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0* pData = (const CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_ZoneConverter.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneConverter.m_Size);
 		SysType.m_ZoneConverter.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_ZoneConverter[i]);
 		}
@@ -717,9 +717,9 @@ void CAsset_TilingMaterial::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CRule::CTuaType_0_3_0* pData = (const CAsset_TilingMaterial::CRule::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Rule.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Rule.m_Size);
 		SysType.m_Rule.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Rule[i]);
 		}
@@ -727,9 +727,9 @@ void CAsset_TilingMaterial::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CIndex::CTuaType_0_3_0* pData = (const CAsset_TilingMaterial::CIndex::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Index.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Index.m_Size);
 		SysType.m_Index.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Index[i]);
 		}
@@ -737,9 +737,9 @@ void CAsset_TilingMaterial::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadin
 	
 	{
 		const CAsset_TilingMaterial::CLabel::CTuaType_0_3_0* pData = (const CAsset_TilingMaterial::CLabel::CTuaType_0_3_0*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Label.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Label.m_Size);
 		SysType.m_Label.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_3_0::Read(pLoadingContext, pData[i], SysType.m_Label[i]);
 		}
@@ -768,12 +768,12 @@ void CAsset_TilingMaterial::CRule::CTuaType_0_3_0::Write(CAssetsSaveLoadContext*
 	{
 		TuaType.m_Condition.m_Size = SysType.m_Condition.size();
 		CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0* pData = new CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0[SysType.m_Condition.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0)*SysType.m_Condition.size());
-		for(unsigned int i=0; i<SysType.m_Condition.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0)*SysType.m_Condition.size());
+		for(unsigned int i = 0; i < SysType.m_Condition.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Condition[i], pData[i]);
 		}
-		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0)*SysType.m_Condition.size());
+		TuaType.m_Condition.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CCondition::CTuaType_0_3_0)*SysType.m_Condition.size());
 		delete[] pData;
 	}
 	TuaType.m_Probability = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Probability);
@@ -792,12 +792,12 @@ void CAsset_TilingMaterial::CLabel::CTuaType_0_3_0::Write(CAssetsSaveLoadContext
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		tua_uint8* pData = new tua_uint8[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			pData[i] = pLoadingContext->ArchiveFile()->WriteUInt8(SysType.m_Index[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(tua_uint8)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(tua_uint8)*SysType.m_Index.size());
 		delete[] pData;
 	}
 }
@@ -810,45 +810,45 @@ void CAsset_TilingMaterial::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoadi
 	{
 		TuaType.m_ZoneConverter.m_Size = SysType.m_ZoneConverter.size();
 		CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0* pData = new CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0[SysType.m_ZoneConverter.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0)*SysType.m_ZoneConverter.size());
-		for(unsigned int i=0; i<SysType.m_ZoneConverter.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0)*SysType.m_ZoneConverter.size());
+		for(unsigned int i = 0; i < SysType.m_ZoneConverter.size(); i++)
 		{
 			CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_ZoneConverter[i], pData[i]);
 		}
-		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0)*SysType.m_ZoneConverter.size());
+		TuaType.m_ZoneConverter.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CZoneConverter::CTuaType_0_3_0)*SysType.m_ZoneConverter.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Rule.m_Size = SysType.m_Rule.size();
 		CAsset_TilingMaterial::CRule::CTuaType_0_3_0* pData = new CAsset_TilingMaterial::CRule::CTuaType_0_3_0[SysType.m_Rule.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_3_0)*SysType.m_Rule.size());
-		for(unsigned int i=0; i<SysType.m_Rule.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_3_0)*SysType.m_Rule.size());
+		for(unsigned int i = 0; i < SysType.m_Rule.size(); i++)
 		{
 			CAsset_TilingMaterial::CRule::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Rule[i], pData[i]);
 		}
-		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_3_0)*SysType.m_Rule.size());
+		TuaType.m_Rule.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CRule::CTuaType_0_3_0)*SysType.m_Rule.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Index.m_Size = SysType.m_Index.size();
 		CAsset_TilingMaterial::CIndex::CTuaType_0_3_0* pData = new CAsset_TilingMaterial::CIndex::CTuaType_0_3_0[SysType.m_Index.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
-		for(unsigned int i=0; i<SysType.m_Index.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
+		for(unsigned int i = 0; i < SysType.m_Index.size(); i++)
 		{
 			CAsset_TilingMaterial::CIndex::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Index[i], pData[i]);
 		}
-		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
+		TuaType.m_Index.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CIndex::CTuaType_0_3_0)*SysType.m_Index.size());
 		delete[] pData;
 	}
 	{
 		TuaType.m_Label.m_Size = SysType.m_Label.size();
 		CAsset_TilingMaterial::CLabel::CTuaType_0_3_0* pData = new CAsset_TilingMaterial::CLabel::CTuaType_0_3_0[SysType.m_Label.size()];
-		mem_zero((void*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_3_0)*SysType.m_Label.size());
-		for(unsigned int i=0; i<SysType.m_Label.size(); i++)
+		mem_zero(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_3_0)*SysType.m_Label.size());
+		for(unsigned int i = 0; i < SysType.m_Label.size(); i++)
 		{
 			CAsset_TilingMaterial::CLabel::CTuaType_0_3_0::Write(pLoadingContext, SysType.m_Label[i], pData[i]);
 		}
-		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_3_0)*SysType.m_Label.size());
+		TuaType.m_Label.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAsset_TilingMaterial::CLabel::CTuaType_0_3_0)*SysType.m_Label.size());
 		delete[] pData;
 	}
 }

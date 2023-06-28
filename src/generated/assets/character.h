@@ -147,13 +147,13 @@ public:
 		CAssetPath m_DefaultPath;
 	
 	public:
-		inline const char* GetName() const { return m_Name.buffer(); }
+		const char* GetName() const { return m_Name.buffer(); }
 		
-		inline CAssetPath GetDefaultPath() const { return m_DefaultPath; }
+		CAssetPath GetDefaultPath() const { return m_DefaultPath; }
 		
-		inline void SetName(const char* Value) { m_Name = Value; }
+		void SetName(const char* Value) { m_Name = Value; }
 		
-		inline void SetDefaultPath(const CAssetPath& Value) { m_DefaultPath = Value; }
+		void SetDefaultPath(const CAssetPath& Value) { m_DefaultPath = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -264,22 +264,22 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetIdlePath() const { return m_IdlePath; }
+	CAssetPath GetIdlePath() const { return m_IdlePath; }
 	
-	inline CAssetPath GetWalkPath() const { return m_WalkPath; }
+	CAssetPath GetWalkPath() const { return m_WalkPath; }
 	
-	inline CAssetPath GetControlledJumpPath() const { return m_ControlledJumpPath; }
+	CAssetPath GetControlledJumpPath() const { return m_ControlledJumpPath; }
 	
-	inline CAssetPath GetUncontrolledJumpPath() const { return m_UncontrolledJumpPath; }
+	CAssetPath GetUncontrolledJumpPath() const { return m_UncontrolledJumpPath; }
 	
-	inline int GetPartArraySize() const { return m_Part.size(); }
+	int GetPartArraySize() const { return m_Part.size(); }
 	
-	inline const CAsset_Character::CPart* GetPartPtr() const { return &(m_Part.front()); }
+	const CAsset_Character::CPart* GetPartPtr() const { return &(m_Part.front()); }
 	
-	inline const std::vector<CAsset_Character::CPart>& GetPartArray() const { return m_Part; }
-	inline std::vector<CAsset_Character::CPart>& GetPartArray() { return m_Part; }
+	const std::vector<CAsset_Character::CPart>& GetPartArray() const { return m_Part; }
+	std::vector<CAsset_Character::CPart>& GetPartArray() { return m_Part; }
 	
-	inline const CAsset_Character::CPart& GetPart(const CSubPath& SubPath) const
+	const CAsset_Character::CPart& GetPart(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Part.size());
 		{
@@ -287,31 +287,31 @@ public:
 		}
 	}
 	
-	inline const char* GetPartName(const CSubPath& SubPath) const
+	const char* GetPartName(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Part.size())
 			return m_Part[SubPath.GetId()].GetName();
 		else return NULL;
 	}
 	
-	inline CAssetPath GetPartDefaultPath(const CSubPath& SubPath) const
+	CAssetPath GetPartDefaultPath(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Part.size())
 			return m_Part[SubPath.GetId()].GetDefaultPath();
 		else return CAssetPath::Null();
 	}
 	
-	inline void SetIdlePath(const CAssetPath& Value) { m_IdlePath = Value; }
+	void SetIdlePath(const CAssetPath& Value) { m_IdlePath = Value; }
 	
-	inline void SetWalkPath(const CAssetPath& Value) { m_WalkPath = Value; }
+	void SetWalkPath(const CAssetPath& Value) { m_WalkPath = Value; }
 	
-	inline void SetControlledJumpPath(const CAssetPath& Value) { m_ControlledJumpPath = Value; }
+	void SetControlledJumpPath(const CAssetPath& Value) { m_ControlledJumpPath = Value; }
 	
-	inline void SetUncontrolledJumpPath(const CAssetPath& Value) { m_UncontrolledJumpPath = Value; }
+	void SetUncontrolledJumpPath(const CAssetPath& Value) { m_UncontrolledJumpPath = Value; }
 	
-	inline void SetPartArraySize(int Value) { m_Part.resize(Value); }
+	void SetPartArraySize(int Value) { m_Part.resize(Value); }
 	
-	inline void SetPart(const CSubPath& SubPath, const CAsset_Character::CPart& Value)
+	void SetPart(const CSubPath& SubPath, const CAsset_Character::CPart& Value)
 	{
 		if(SubPath.GetId() < m_Part.size())
 		{
@@ -319,36 +319,36 @@ public:
 		}
 	}
 	
-	inline void SetPartName(const CSubPath& SubPath, const char* Value)
+	void SetPartName(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Part.size())
 			m_Part[SubPath.GetId()].SetName(Value);
 	}
 	
-	inline void SetPartDefaultPath(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetPartDefaultPath(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_Part.size())
 			m_Part[SubPath.GetId()].SetDefaultPath(Value);
 	}
 	
-	inline int AddPart()
+	int AddPart()
 	{
 		int Id = m_Part.size();
 		m_Part.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtPart(int Index) { m_Part.insert(m_Part.begin() + Index, CAsset_Character::CPart()); }
+	void AddAtPart(int Index) { m_Part.insert(m_Part.begin() + Index, CAsset_Character::CPart()); }
 	
-	inline void DeletePart(const CSubPath& SubPath) { m_Part.erase(m_Part.begin() + SubPath.GetId()); }
+	void DeletePart(const CSubPath& SubPath) { m_Part.erase(m_Part.begin() + SubPath.GetId()); }
 	
-	inline void RelMovePart(CSubPath& SubPath, int RelMove)
+	void RelMovePart(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Part, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidPart(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Part.size()); }
+	bool IsValidPart(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Part.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

@@ -19,7 +19,6 @@
 #ifndef __SHARED_LOCALIZATION__
 #define __SHARED_LOCALIZATION__
 
-#include <shared/system/types.h>
 #include <shared/kernel.h>
 #include <shared/system/time.h>
 #include <shared/tl/hashtable.h>
@@ -30,6 +29,7 @@
 #include <unicode/decimfmt.h>
 #include <unicode/upluralrules.h>
 
+#include <cstdint>
 #include <stdarg.h>
 
 class CLocalizableString
@@ -54,7 +54,7 @@ public:
 			} m_String;
 			struct
 			{
-				int64 m_Value;
+				int64_t m_Value;
 			} m_Integer;
 			struct
 			{
@@ -62,11 +62,11 @@ public:
 			} m_Double;
 			struct
 			{
-				int64 m_Value;
+				int64_t m_Value;
 			} m_Duration;
 			struct
 			{
-				int64 m_Value; //Generic values must be equal to the biggest value type
+				int64_t m_Value; //Generic values must be equal to the biggest value type
 			} m_Generic;
 		};
 		dynamic_string m_Name;
@@ -153,7 +153,7 @@ public:
 	inline const char* GetText() const { return m_Text.buffer(); }
 	inline const std::vector< CParameter >& GetParameters() const { return m_Parameters; }
 	
-	inline void AddInteger(const char* pName, int64 Value)
+	inline void AddInteger(const char* pName, int64_t Value)
 	{
 		m_Parameters.emplace_back();
 		m_Parameters.back().m_Name = pName;
@@ -161,7 +161,7 @@ public:
 		m_Parameters.back().m_Type = TYPE_INTEGER;
 	}
 	
-	inline void AddDuration(const char* pName, int64 Value)
+	inline void AddDuration(const char* pName, int64_t Value)
 	{
 		m_Parameters.emplace_back();
 		m_Parameters.back().m_Name = pName;
@@ -298,10 +298,10 @@ protected:
 	const char* LocalizeWithDepth(const char* pLanguageCode, const char* pText, int Depth);
 	const char* LocalizeWithDepth_P(const char* pLanguageCode, int Number, const char* pText, int Depth);
 	
-	void AppendInteger(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64 Number);
+	void AppendInteger(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64_t Number);
 	void AppendDouble(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, double Number);
 	void AppendPercent(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, double Number);
-	void AppendDuration(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64 Duration);
+	void AppendDuration(dynamic_string& Buffer, int& BufferIter, CLanguage* pLanguage, int64_t Duration);
 	
 public:
 	CLocalization(CSharedKernel* pKernel);
@@ -324,14 +324,14 @@ public:
 	
 	//format
 	void Format(dynamic_string& Buffer, const char* pLanguageCode, const CLocalizableString& LString);
-	void FormatInteger(dynamic_string& Buffer, const char* pLanguageCode, int64 Number);
+	void FormatInteger(dynamic_string& Buffer, const char* pLanguageCode, int64_t Number);
 	void FormatDouble(dynamic_string& Buffer, const char* pLanguageCode, double Number);
-	void FormatDuration(dynamic_string& Buffer, const char* pLanguageCode, int64 Duration);
+	void FormatDuration(dynamic_string& Buffer, const char* pLanguageCode, int64_t Duration);
 	
-	int64 ParseInteger(const char* pLanguageCode, const char* pText);
+	int64_t ParseInteger(const char* pLanguageCode, const char* pText);
 	double ParseDouble(const char* pLanguageCode, const char* pText);
 	double ParsePercent(const char* pLanguageCode, const char* pText);
-	int64 ParseDuration(const char* pLanguageCode, const char* pText);
+	int64_t ParseDuration(const char* pLanguageCode, const char* pText);
 };
 
 #endif

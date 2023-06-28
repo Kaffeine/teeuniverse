@@ -21,8 +21,6 @@
 
 #include <chrono>
 
-#include "types.h"
-
 typedef std::chrono::system_clock CClock;
 typedef CClock::duration CTimeDiff;
 typedef std::chrono::time_point<CClock, CTimeDiff> CTimePoint;
@@ -37,7 +35,7 @@ inline CTimeDiff GetTimePointDiff(const CTimePoint& a, const CTimePoint& b)
 	return b-a;
 }
 
-inline int64 GetTimeMsDiff(const CTimePoint& a, const CTimePoint& b)
+inline int64_t GetTimeMsDiff(const CTimePoint& a, const CTimePoint& b)
 {
 	return std::chrono::duration_cast<std::chrono::milliseconds>(b-a).count();
 }

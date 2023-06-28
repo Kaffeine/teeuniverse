@@ -249,41 +249,41 @@ public:
 	
 	public:
 		CIndex();
-		inline bool GetUsed() const { return m_Used; }
+		bool GetUsed() const { return m_Used; }
 		
-		inline const char* GetDescription() const { return m_Description.buffer(); }
+		const char* GetDescription() const { return m_Description.buffer(); }
 		
-		inline vec4 GetColor() const { return m_Color; }
+		vec4 GetColor() const { return m_Color; }
 		
-		inline const char* GetTitle() const { return m_Title.buffer(); }
+		const char* GetTitle() const { return m_Title.buffer(); }
 		
-		inline int GetBorderIndex() const { return m_BorderIndex; }
+		int GetBorderIndex() const { return m_BorderIndex; }
 		
-		inline vec4 GetBorderColor() const { return m_BorderColor; }
+		vec4 GetBorderColor() const { return m_BorderColor; }
 		
-		inline int GetGroup() const { return m_Group; }
+		int GetGroup() const { return m_Group; }
 		
-		inline bool GetRotationAllowed() const { return m_RotationAllowed; }
+		bool GetRotationAllowed() const { return m_RotationAllowed; }
 		
-		inline bool GetMirrorAllowed() const { return m_MirrorAllowed; }
+		bool GetMirrorAllowed() const { return m_MirrorAllowed; }
 		
-		inline void SetUsed(bool Value) { m_Used = Value; }
+		void SetUsed(bool Value) { m_Used = Value; }
 		
-		inline void SetDescription(const char* Value) { m_Description = Value; }
+		void SetDescription(const char* Value) { m_Description = Value; }
 		
-		inline void SetColor(vec4 Value) { m_Color = Value; }
+		void SetColor(vec4 Value) { m_Color = Value; }
 		
-		inline void SetTitle(const char* Value) { m_Title = Value; }
+		void SetTitle(const char* Value) { m_Title = Value; }
 		
-		inline void SetBorderIndex(int Value) { m_BorderIndex = Value; }
+		void SetBorderIndex(int Value) { m_BorderIndex = Value; }
 		
-		inline void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
+		void SetBorderColor(vec4 Value) { m_BorderColor = Value; }
 		
-		inline void SetGroup(int Value) { m_Group = Value; }
+		void SetGroup(int Value) { m_Group = Value; }
 		
-		inline void SetRotationAllowed(bool Value) { m_RotationAllowed = Value; }
+		void SetRotationAllowed(bool Value) { m_RotationAllowed = Value; }
 		
-		inline void SetMirrorAllowed(bool Value) { m_MirrorAllowed = Value; }
+		void SetMirrorAllowed(bool Value) { m_MirrorAllowed = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -370,29 +370,29 @@ public:
 	
 	public:
 		CDataInt();
-		inline const char* GetTitle() const { return m_Title.buffer(); }
+		const char* GetTitle() const { return m_Title.buffer(); }
 		
-		inline const char* GetDescription() const { return m_Description.buffer(); }
+		const char* GetDescription() const { return m_Description.buffer(); }
 		
-		inline int GetDefaultValue() const { return m_DefaultValue; }
+		int GetDefaultValue() const { return m_DefaultValue; }
 		
-		inline int GetMinValue() const { return m_MinValue; }
+		int GetMinValue() const { return m_MinValue; }
 		
-		inline int GetMaxValue() const { return m_MaxValue; }
+		int GetMaxValue() const { return m_MaxValue; }
 		
-		inline int GetNullValue() const { return m_NullValue; }
+		int GetNullValue() const { return m_NullValue; }
 		
-		inline void SetTitle(const char* Value) { m_Title = Value; }
+		void SetTitle(const char* Value) { m_Title = Value; }
 		
-		inline void SetDescription(const char* Value) { m_Description = Value; }
+		void SetDescription(const char* Value) { m_Description = Value; }
 		
-		inline void SetDefaultValue(int Value) { m_DefaultValue = Value; }
+		void SetDefaultValue(int Value) { m_DefaultValue = Value; }
 		
-		inline void SetMinValue(int Value) { m_MinValue = Value; }
+		void SetMinValue(int Value) { m_MinValue = Value; }
 		
-		inline void SetMaxValue(int Value) { m_MaxValue = Value; }
+		void SetMaxValue(int Value) { m_MaxValue = Value; }
 		
-		inline void SetNullValue(int Value) { m_NullValue = Value; }
+		void SetNullValue(int Value) { m_NullValue = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -491,14 +491,14 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline int GetIndexArraySize() const { return m_Index.size(); }
+	int GetIndexArraySize() const { return m_Index.size(); }
 	
-	inline const CAsset_ZoneType::CIndex* GetIndexPtr() const { return &(m_Index.front()); }
+	const CAsset_ZoneType::CIndex* GetIndexPtr() const { return &(m_Index.front()); }
 	
-	inline const std::vector<CAsset_ZoneType::CIndex>& GetIndexArray() const { return m_Index; }
-	inline std::vector<CAsset_ZoneType::CIndex>& GetIndexArray() { return m_Index; }
+	const std::vector<CAsset_ZoneType::CIndex>& GetIndexArray() const { return m_Index; }
+	std::vector<CAsset_ZoneType::CIndex>& GetIndexArray() { return m_Index; }
 	
-	inline const CAsset_ZoneType::CIndex& GetIndex(const CSubPath& SubPath) const
+	const CAsset_ZoneType::CIndex& GetIndex(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Index.size());
 		{
@@ -506,79 +506,79 @@ public:
 		}
 	}
 	
-	inline bool GetIndexUsed(const CSubPath& SubPath) const
+	bool GetIndexUsed(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetUsed();
 		else return false;
 	}
 	
-	inline const char* GetIndexDescription(const CSubPath& SubPath) const
+	const char* GetIndexDescription(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetDescription();
 		else return NULL;
 	}
 	
-	inline vec4 GetIndexColor(const CSubPath& SubPath) const
+	vec4 GetIndexColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetColor();
 		else return 1.0f;
 	}
 	
-	inline const char* GetIndexTitle(const CSubPath& SubPath) const
+	const char* GetIndexTitle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetTitle();
 		else return NULL;
 	}
 	
-	inline int GetIndexBorderIndex(const CSubPath& SubPath) const
+	int GetIndexBorderIndex(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetBorderIndex();
 		else return 0;
 	}
 	
-	inline vec4 GetIndexBorderColor(const CSubPath& SubPath) const
+	vec4 GetIndexBorderColor(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetBorderColor();
 		else return 1.0f;
 	}
 	
-	inline int GetIndexGroup(const CSubPath& SubPath) const
+	int GetIndexGroup(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetGroup();
 		else return 0;
 	}
 	
-	inline bool GetIndexRotationAllowed(const CSubPath& SubPath) const
+	bool GetIndexRotationAllowed(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetRotationAllowed();
 		else return false;
 	}
 	
-	inline bool GetIndexMirrorAllowed(const CSubPath& SubPath) const
+	bool GetIndexMirrorAllowed(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Index.size())
 			return m_Index[SubPath.GetId()].GetMirrorAllowed();
 		else return false;
 	}
 	
-	inline CAssetPath GetImagePath() const { return m_ImagePath; }
+	CAssetPath GetImagePath() const { return m_ImagePath; }
 	
-	inline int GetDataIntArraySize() const { return m_DataInt.size(); }
+	int GetDataIntArraySize() const { return m_DataInt.size(); }
 	
-	inline const CAsset_ZoneType::CDataInt* GetDataIntPtr() const { return &(m_DataInt.front()); }
+	const CAsset_ZoneType::CDataInt* GetDataIntPtr() const { return &(m_DataInt.front()); }
 	
-	inline const std::vector<CAsset_ZoneType::CDataInt>& GetDataIntArray() const { return m_DataInt; }
-	inline std::vector<CAsset_ZoneType::CDataInt>& GetDataIntArray() { return m_DataInt; }
+	const std::vector<CAsset_ZoneType::CDataInt>& GetDataIntArray() const { return m_DataInt; }
+	std::vector<CAsset_ZoneType::CDataInt>& GetDataIntArray() { return m_DataInt; }
 	
-	inline const CAsset_ZoneType::CDataInt& GetDataInt(const CSubPath& SubPath) const
+	const CAsset_ZoneType::CDataInt& GetDataInt(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_DataInt.size());
 		{
@@ -586,56 +586,56 @@ public:
 		}
 	}
 	
-	inline const char* GetDataIntTitle(const CSubPath& SubPath) const
+	const char* GetDataIntTitle(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetTitle();
 		else return NULL;
 	}
 	
-	inline const char* GetDataIntDescription(const CSubPath& SubPath) const
+	const char* GetDataIntDescription(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetDescription();
 		else return NULL;
 	}
 	
-	inline int GetDataIntDefaultValue(const CSubPath& SubPath) const
+	int GetDataIntDefaultValue(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetDefaultValue();
 		else return 0;
 	}
 	
-	inline int GetDataIntMinValue(const CSubPath& SubPath) const
+	int GetDataIntMinValue(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetMinValue();
 		else return 0;
 	}
 	
-	inline int GetDataIntMaxValue(const CSubPath& SubPath) const
+	int GetDataIntMaxValue(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetMaxValue();
 		else return 0;
 	}
 	
-	inline int GetDataIntNullValue(const CSubPath& SubPath) const
+	int GetDataIntNullValue(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			return m_DataInt[SubPath.GetId()].GetNullValue();
 		else return 0;
 	}
 	
-	inline int GetGroupArraySize() const { return m_Group.size(); }
+	int GetGroupArraySize() const { return m_Group.size(); }
 	
-	inline const _dynamic_string<128>* GetGroupPtr() const { return &(m_Group.front()); }
+	const _dynamic_string<128>* GetGroupPtr() const { return &(m_Group.front()); }
 	
-	inline const std::vector<_dynamic_string<128>>& GetGroupArray() const { return m_Group; }
-	inline std::vector<_dynamic_string<128>>& GetGroupArray() { return m_Group; }
+	const std::vector<_dynamic_string<128>>& GetGroupArray() const { return m_Group; }
+	std::vector<_dynamic_string<128>>& GetGroupArray() { return m_Group; }
 	
-	inline const char* GetGroup(const CSubPath& SubPath) const
+	const char* GetGroup(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_Group.size());
 		{
@@ -643,9 +643,9 @@ public:
 		}
 	}
 	
-	inline void SetIndexArraySize(int Value) { m_Index.resize(Value); }
+	void SetIndexArraySize(int Value) { m_Index.resize(Value); }
 	
-	inline void SetIndex(const CSubPath& SubPath, const CAsset_ZoneType::CIndex& Value)
+	void SetIndex(const CSubPath& SubPath, const CAsset_ZoneType::CIndex& Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 		{
@@ -653,65 +653,65 @@ public:
 		}
 	}
 	
-	inline void SetIndexUsed(const CSubPath& SubPath, bool Value)
+	void SetIndexUsed(const CSubPath& SubPath, bool Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetUsed(Value);
 	}
 	
-	inline void SetIndexDescription(const CSubPath& SubPath, const char* Value)
+	void SetIndexDescription(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetDescription(Value);
 	}
 	
-	inline void SetIndexColor(const CSubPath& SubPath, vec4 Value)
+	void SetIndexColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetColor(Value);
 	}
 	
-	inline void SetIndexTitle(const CSubPath& SubPath, const char* Value)
+	void SetIndexTitle(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetTitle(Value);
 	}
 	
-	inline void SetIndexBorderIndex(const CSubPath& SubPath, int Value)
+	void SetIndexBorderIndex(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetBorderIndex(Value);
 	}
 	
-	inline void SetIndexBorderColor(const CSubPath& SubPath, vec4 Value)
+	void SetIndexBorderColor(const CSubPath& SubPath, vec4 Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetBorderColor(Value);
 	}
 	
-	inline void SetIndexGroup(const CSubPath& SubPath, int Value)
+	void SetIndexGroup(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetGroup(Value);
 	}
 	
-	inline void SetIndexRotationAllowed(const CSubPath& SubPath, bool Value)
+	void SetIndexRotationAllowed(const CSubPath& SubPath, bool Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetRotationAllowed(Value);
 	}
 	
-	inline void SetIndexMirrorAllowed(const CSubPath& SubPath, bool Value)
+	void SetIndexMirrorAllowed(const CSubPath& SubPath, bool Value)
 	{
 		if(SubPath.GetId() < m_Index.size())
 			m_Index[SubPath.GetId()].SetMirrorAllowed(Value);
 	}
 	
-	inline void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
+	void SetImagePath(const CAssetPath& Value) { m_ImagePath = Value; }
 	
-	inline void SetDataIntArraySize(int Value) { m_DataInt.resize(Value); }
+	void SetDataIntArraySize(int Value) { m_DataInt.resize(Value); }
 	
-	inline void SetDataInt(const CSubPath& SubPath, const CAsset_ZoneType::CDataInt& Value)
+	void SetDataInt(const CSubPath& SubPath, const CAsset_ZoneType::CDataInt& Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 		{
@@ -719,45 +719,45 @@ public:
 		}
 	}
 	
-	inline void SetDataIntTitle(const CSubPath& SubPath, const char* Value)
+	void SetDataIntTitle(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetTitle(Value);
 	}
 	
-	inline void SetDataIntDescription(const CSubPath& SubPath, const char* Value)
+	void SetDataIntDescription(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetDescription(Value);
 	}
 	
-	inline void SetDataIntDefaultValue(const CSubPath& SubPath, int Value)
+	void SetDataIntDefaultValue(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetDefaultValue(Value);
 	}
 	
-	inline void SetDataIntMinValue(const CSubPath& SubPath, int Value)
+	void SetDataIntMinValue(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetMinValue(Value);
 	}
 	
-	inline void SetDataIntMaxValue(const CSubPath& SubPath, int Value)
+	void SetDataIntMaxValue(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetMaxValue(Value);
 	}
 	
-	inline void SetDataIntNullValue(const CSubPath& SubPath, int Value)
+	void SetDataIntNullValue(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_DataInt.size())
 			m_DataInt[SubPath.GetId()].SetNullValue(Value);
 	}
 	
-	inline void SetGroupArraySize(int Value) { m_Group.resize(Value); }
+	void SetGroupArraySize(int Value) { m_Group.resize(Value); }
 	
-	inline void SetGroup(const CSubPath& SubPath, const char* Value)
+	void SetGroup(const CSubPath& SubPath, const char* Value)
 	{
 		if(SubPath.GetId() < m_Group.size())
 		{
@@ -765,62 +765,62 @@ public:
 		}
 	}
 	
-	inline int AddIndex()
+	int AddIndex()
 	{
 		int Id = m_Index.size();
 		m_Index.emplace_back();
 		return Id;
 	}
 	
-	inline int AddDataInt()
+	int AddDataInt()
 	{
 		int Id = m_DataInt.size();
 		m_DataInt.emplace_back();
 		return Id;
 	}
 	
-	inline int AddGroup()
+	int AddGroup()
 	{
 		int Id = m_Group.size();
 		m_Group.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, CAsset_ZoneType::CIndex()); }
+	void AddAtIndex(int Index) { m_Index.insert(m_Index.begin() + Index, CAsset_ZoneType::CIndex()); }
 	
-	inline void AddAtDataInt(int Index) { m_DataInt.insert(m_DataInt.begin() + Index, CAsset_ZoneType::CDataInt()); }
+	void AddAtDataInt(int Index) { m_DataInt.insert(m_DataInt.begin() + Index, CAsset_ZoneType::CDataInt()); }
 	
-	inline void AddAtGroup(int Index) { m_Group.insert(m_Group.begin() + Index, _dynamic_string<128>()); }
+	void AddAtGroup(int Index) { m_Group.insert(m_Group.begin() + Index, _dynamic_string<128>()); }
 	
-	inline void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
+	void DeleteIndex(const CSubPath& SubPath) { m_Index.erase(m_Index.begin() + SubPath.GetId()); }
 	
-	inline void DeleteDataInt(const CSubPath& SubPath) { m_DataInt.erase(m_DataInt.begin() + SubPath.GetId()); }
+	void DeleteDataInt(const CSubPath& SubPath) { m_DataInt.erase(m_DataInt.begin() + SubPath.GetId()); }
 	
-	inline void DeleteGroup(const CSubPath& SubPath) { m_Group.erase(m_Group.begin() + SubPath.GetId()); }
+	void DeleteGroup(const CSubPath& SubPath) { m_Group.erase(m_Group.begin() + SubPath.GetId()); }
 	
-	inline void RelMoveIndex(CSubPath& SubPath, int RelMove)
+	void RelMoveIndex(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Index, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveDataInt(CSubPath& SubPath, int RelMove)
+	void RelMoveDataInt(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_DataInt, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveGroup(CSubPath& SubPath, int RelMove)
+	void RelMoveGroup(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_Group, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
+	bool IsValidIndex(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Index.size()); }
 	
-	inline bool IsValidDataInt(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_DataInt.size()); }
+	bool IsValidDataInt(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_DataInt.size()); }
 	
-	inline bool IsValidGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Group.size()); }
+	bool IsValidGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_Group.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

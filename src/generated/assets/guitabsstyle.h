@@ -170,33 +170,33 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiTabsStyle();
-	inline CAssetPath GetLayoutPath() const { return m_LayoutPath; }
+	CAssetPath GetLayoutPath() const { return m_LayoutPath; }
 	
-	inline CAssetPath GetContentPath() const { return m_ContentPath; }
+	CAssetPath GetContentPath() const { return m_ContentPath; }
 	
-	inline CAssetPath GetButtonListPath() const { return m_ButtonListPath; }
+	CAssetPath GetButtonListPath() const { return m_ButtonListPath; }
 	
-	inline CAssetPath GetInactiveButtonPath() const { return m_InactiveButtonPath; }
+	CAssetPath GetInactiveButtonPath() const { return m_InactiveButtonPath; }
 	
-	inline CAssetPath GetActiveButtonPath() const { return m_ActiveButtonPath; }
+	CAssetPath GetActiveButtonPath() const { return m_ActiveButtonPath; }
 	
-	inline bool GetButtonListFill() const { return m_ButtonListFill; }
+	bool GetButtonListFill() const { return m_ButtonListFill; }
 	
-	inline bool GetButtonListText() const { return m_ButtonListText; }
+	bool GetButtonListText() const { return m_ButtonListText; }
 	
-	inline void SetLayoutPath(const CAssetPath& Value) { m_LayoutPath = Value; }
+	void SetLayoutPath(const CAssetPath& Value) { m_LayoutPath = Value; }
 	
-	inline void SetContentPath(const CAssetPath& Value) { m_ContentPath = Value; }
+	void SetContentPath(const CAssetPath& Value) { m_ContentPath = Value; }
 	
-	inline void SetButtonListPath(const CAssetPath& Value) { m_ButtonListPath = Value; }
+	void SetButtonListPath(const CAssetPath& Value) { m_ButtonListPath = Value; }
 	
-	inline void SetInactiveButtonPath(const CAssetPath& Value) { m_InactiveButtonPath = Value; }
+	void SetInactiveButtonPath(const CAssetPath& Value) { m_InactiveButtonPath = Value; }
 	
-	inline void SetActiveButtonPath(const CAssetPath& Value) { m_ActiveButtonPath = Value; }
+	void SetActiveButtonPath(const CAssetPath& Value) { m_ActiveButtonPath = Value; }
 	
-	inline void SetButtonListFill(bool Value) { m_ButtonListFill = Value; }
+	void SetButtonListFill(bool Value) { m_ButtonListFill = Value; }
 	
-	inline void SetButtonListText(bool Value) { m_ButtonListText = Value; }
+	void SetButtonListText(bool Value) { m_ButtonListText = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

@@ -189,7 +189,7 @@ void ApplyTilingMaterials_Tiles(CAssetsManager* pAssetsManager, array2d<CAsset_M
 								CSubPath LabelPath = CAsset_TilingMaterial::SubPath_Label(Conditions[c].GetValue());
 								if(pMaterial->IsValidLabel(LabelPath))
 								{
-									const std::vector<uint8>& Indices = pMaterial->GetLabelIndexArray(LabelPath);
+									const std::vector<uint8_t>& Indices = pMaterial->GetLabelIndexArray(LabelPath);
 									for(unsigned int li=0; li<Indices.size(); li++)
 									{
 										if(Indices[li] == Tiles.get_clamp(i + Conditions[c].GetRelPosX(), j + Conditions[c].GetRelPosY()).GetBrush())
@@ -212,7 +212,7 @@ void ApplyTilingMaterials_Tiles(CAssetsManager* pAssetsManager, array2d<CAsset_M
 								CSubPath LabelPath = CAsset_TilingMaterial::SubPath_Label(Conditions[c].GetValue());
 								if(pMaterial->IsValidLabel(LabelPath))
 								{
-									const std::vector<uint8>& Indices = pMaterial->GetLabelIndexArray(LabelPath);
+									const std::vector<uint8_t>& Indices = pMaterial->GetLabelIndexArray(LabelPath);
 									for(unsigned int li=0; li<Indices.size(); li++)
 									{
 										if(Indices[li] == Tiles.get_clamp(i + Conditions[c].GetRelPosX(), j + Conditions[c].GetRelPosY()).GetBrush())

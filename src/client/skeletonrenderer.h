@@ -73,7 +73,7 @@ public:
 	}
 	
 	void SetSkeleton(const CAssetPath& SkeletonPath);
-	void ApplyAnimation(CAssetPath AnimationPath, int64 Time);
+	void ApplyAnimation(CAssetPath AnimationPath, int64_t Time);
 	void AddSkin(const CAssetPath& SkinPath)
 	{
 		m_Skins.emplace_back(SkinPath);

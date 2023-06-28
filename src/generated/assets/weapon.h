@@ -145,21 +145,21 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetCharacterPath() const { return m_CharacterPath; }
+	CAssetPath GetCharacterPath() const { return m_CharacterPath; }
 	
-	inline CAssetPath GetCursorPath() const { return m_CursorPath; }
+	CAssetPath GetCursorPath() const { return m_CursorPath; }
 	
-	inline CAssetPath GetSkinPath() const { return m_SkinPath; }
+	CAssetPath GetSkinPath() const { return m_SkinPath; }
 	
-	inline CAssetPath GetAttackAnimationPath() const { return m_AttackAnimationPath; }
+	CAssetPath GetAttackAnimationPath() const { return m_AttackAnimationPath; }
 	
-	inline void SetCharacterPath(const CAssetPath& Value) { m_CharacterPath = Value; }
+	void SetCharacterPath(const CAssetPath& Value) { m_CharacterPath = Value; }
 	
-	inline void SetCursorPath(const CAssetPath& Value) { m_CursorPath = Value; }
+	void SetCursorPath(const CAssetPath& Value) { m_CursorPath = Value; }
 	
-	inline void SetSkinPath(const CAssetPath& Value) { m_SkinPath = Value; }
+	void SetSkinPath(const CAssetPath& Value) { m_SkinPath = Value; }
 	
-	inline void SetAttackAnimationPath(const CAssetPath& Value) { m_AttackAnimationPath = Value; }
+	void SetAttackAnimationPath(const CAssetPath& Value) { m_AttackAnimationPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

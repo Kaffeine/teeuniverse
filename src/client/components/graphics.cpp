@@ -943,7 +943,7 @@ bool CGraphics::PreUpdate()
 		if(pImage->GetTilingEnabled() && pImage->GetGridWidth() == 16 && pImage->GetGridHeight() == 16)
 			Flags = CGraphics::TEXLOAD_MULTI_DIMENSION;
 		
-		const array2d<uint8>& Data = pImage->GetDataArray();
+		const array2d<uint8_t>& Data = pImage->GetDataArray();
 		
 		int Format = CImageInfo::FORMAT_AUTO;
 		if(Data.get_depth() == 1)
@@ -1017,7 +1017,7 @@ void CGraphics::Shutdown()
 		delete m_apCommandBuffers[i];
 }
 
-int64 CGraphics::GetFrameTime()
+int64_t CGraphics::GetFrameTime()
 {
 	return GetTimeMsDiff(m_TimeStart, GetCurrentTimePoint());
 }

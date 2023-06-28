@@ -84,7 +84,7 @@ void CSkeletonRenderer::SetSkeleton(const CAssetPath& SkeletonPath)
 	}
 }
 
-void CSkeletonRenderer::ApplyAnimation(CAssetPath AnimationPath, int64 Time)
+void CSkeletonRenderer::ApplyAnimation(CAssetPath AnimationPath, int64_t Time)
 {
 	const CAsset_SkeletonAnimation* pAnimation = AssetsManager()->GetAsset<CAsset_SkeletonAnimation>(AnimationPath);
 	if(!pAnimation || pAnimation->GetSkeletonPath() != m_SkeletonPath)

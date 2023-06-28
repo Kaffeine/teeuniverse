@@ -91,8 +91,8 @@ void CAssetsPackage::Save_AssetsFile(class CAssetsSaveLoadContext* pLoadingConte
 {
 	pLoadingContext->ArchiveFile()->SetItemType(0, sizeof(CTuaType_Info), 1);
 	CTuaType_Info* pItem = reinterpret_cast<CTuaType_Info*>(pLoadingContext->ArchiveFile()->GetItem(0, 0));
-	
-	pItem->m_AssetsVersion = pLoadingContext->ArchiveFile()->WriteUInt32((uint32) ASSETSVERSION_CURRENT);
+
+	pItem->m_AssetsVersion = pLoadingContext->ArchiveFile()->WriteUInt32((uint32_t)ASSETSVERSION_CURRENT);
 	pItem->m_Author = pLoadingContext->ArchiveFile()->AddString(m_Author.buffer());
 	pItem->m_Credits = pLoadingContext->ArchiveFile()->AddString(m_Credits.buffer());
 	pItem->m_License = pLoadingContext->ArchiveFile()->AddString(m_License.buffer());

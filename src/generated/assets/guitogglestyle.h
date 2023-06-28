@@ -170,33 +170,33 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_GuiToggleStyle();
-	inline CAssetPath GetIdleTrueStylePath() const { return m_IdleTrueStylePath; }
+	CAssetPath GetIdleTrueStylePath() const { return m_IdleTrueStylePath; }
 	
-	inline CAssetPath GetMouseOverTrueStylePath() const { return m_MouseOverTrueStylePath; }
+	CAssetPath GetMouseOverTrueStylePath() const { return m_MouseOverTrueStylePath; }
 	
-	inline CAssetPath GetIconTruePath() const { return m_IconTruePath; }
+	CAssetPath GetIconTruePath() const { return m_IconTruePath; }
 	
-	inline CAssetPath GetIdleFalseStylePath() const { return m_IdleFalseStylePath; }
+	CAssetPath GetIdleFalseStylePath() const { return m_IdleFalseStylePath; }
 	
-	inline CAssetPath GetMouseOverFalseStylePath() const { return m_MouseOverFalseStylePath; }
+	CAssetPath GetMouseOverFalseStylePath() const { return m_MouseOverFalseStylePath; }
 	
-	inline CAssetPath GetIconFalsePath() const { return m_IconFalsePath; }
+	CAssetPath GetIconFalsePath() const { return m_IconFalsePath; }
 	
-	inline bool GetSwitchIcon() const { return m_SwitchIcon; }
+	bool GetSwitchIcon() const { return m_SwitchIcon; }
 	
-	inline void SetIdleTrueStylePath(const CAssetPath& Value) { m_IdleTrueStylePath = Value; }
+	void SetIdleTrueStylePath(const CAssetPath& Value) { m_IdleTrueStylePath = Value; }
 	
-	inline void SetMouseOverTrueStylePath(const CAssetPath& Value) { m_MouseOverTrueStylePath = Value; }
+	void SetMouseOverTrueStylePath(const CAssetPath& Value) { m_MouseOverTrueStylePath = Value; }
 	
-	inline void SetIconTruePath(const CAssetPath& Value) { m_IconTruePath = Value; }
+	void SetIconTruePath(const CAssetPath& Value) { m_IconTruePath = Value; }
 	
-	inline void SetIdleFalseStylePath(const CAssetPath& Value) { m_IdleFalseStylePath = Value; }
+	void SetIdleFalseStylePath(const CAssetPath& Value) { m_IdleFalseStylePath = Value; }
 	
-	inline void SetMouseOverFalseStylePath(const CAssetPath& Value) { m_MouseOverFalseStylePath = Value; }
+	void SetMouseOverFalseStylePath(const CAssetPath& Value) { m_MouseOverFalseStylePath = Value; }
 	
-	inline void SetIconFalsePath(const CAssetPath& Value) { m_IconFalsePath = Value; }
+	void SetIconFalsePath(const CAssetPath& Value) { m_IconFalsePath = Value; }
 	
-	inline void SetSwitchIcon(bool Value) { m_SwitchIcon = Value; }
+	void SetSwitchIcon(bool Value) { m_SwitchIcon = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

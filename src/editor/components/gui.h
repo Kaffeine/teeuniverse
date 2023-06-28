@@ -59,7 +59,7 @@ private:
 	
 	//Editor time
 	bool m_TimePaused;
-	int64 m_Time;
+	int64_t m_Time;
 	float m_TimeSpeed;
 
 	bool m_NeedRefreshPackageTree;
@@ -333,8 +333,8 @@ public:
 	inline CSubPath GetUniqueEditedSubPath() const { return (m_EditedSubPathes.size() == 1 ? m_EditedSubPathes[0] : CSubPath::Null()); }
 	inline const std::vector<CSubPath>& GetEditedSubPathes() const { return m_EditedSubPathes; }
 	
-	inline int64 GetTime() const { return m_Time; }
-	inline void SetTime(int64 Time) { m_Time = Time; }
+	inline int64_t GetTime() const { return m_Time; }
+	inline void SetTime(int64_t Time) { m_Time = Time; }
 	
 	inline float GetTimeSpeed() const { return m_TimeSpeed; }
 	inline void SetTimeSpeed(float TimeSpeed) { m_TimeSpeed = TimeSpeed; }

@@ -161,29 +161,29 @@ public:
 	
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
-	inline CAssetPath GetButtonStylePath() const { return m_ButtonStylePath; }
+	CAssetPath GetButtonStylePath() const { return m_ButtonStylePath; }
 	
-	inline CAssetPath GetPopupStylePath() const { return m_PopupStylePath; }
+	CAssetPath GetPopupStylePath() const { return m_PopupStylePath; }
 	
-	inline CAssetPath GetRGBIconPath() const { return m_RGBIconPath; }
+	CAssetPath GetRGBIconPath() const { return m_RGBIconPath; }
 	
-	inline CAssetPath GetHSVIconPath() const { return m_HSVIconPath; }
+	CAssetPath GetHSVIconPath() const { return m_HSVIconPath; }
 	
-	inline CAssetPath GetSquareIconPath() const { return m_SquareIconPath; }
+	CAssetPath GetSquareIconPath() const { return m_SquareIconPath; }
 	
-	inline CAssetPath GetWheelIconPath() const { return m_WheelIconPath; }
+	CAssetPath GetWheelIconPath() const { return m_WheelIconPath; }
 	
-	inline void SetButtonStylePath(const CAssetPath& Value) { m_ButtonStylePath = Value; }
+	void SetButtonStylePath(const CAssetPath& Value) { m_ButtonStylePath = Value; }
 	
-	inline void SetPopupStylePath(const CAssetPath& Value) { m_PopupStylePath = Value; }
+	void SetPopupStylePath(const CAssetPath& Value) { m_PopupStylePath = Value; }
 	
-	inline void SetRGBIconPath(const CAssetPath& Value) { m_RGBIconPath = Value; }
+	void SetRGBIconPath(const CAssetPath& Value) { m_RGBIconPath = Value; }
 	
-	inline void SetHSVIconPath(const CAssetPath& Value) { m_HSVIconPath = Value; }
+	void SetHSVIconPath(const CAssetPath& Value) { m_HSVIconPath = Value; }
 	
-	inline void SetSquareIconPath(const CAssetPath& Value) { m_SquareIconPath = Value; }
+	void SetSquareIconPath(const CAssetPath& Value) { m_SquareIconPath = Value; }
 	
-	inline void SetWheelIconPath(const CAssetPath& Value) { m_WheelIconPath = Value; }
+	void SetWheelIconPath(const CAssetPath& Value) { m_WheelIconPath = Value; }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{

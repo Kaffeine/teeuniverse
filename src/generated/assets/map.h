@@ -284,14 +284,14 @@ public:
 	void RelMoveSubItem(CSubPath& SubPath, int RelMove);
 	
 	CAsset_Map();
-	inline int GetBgGroupArraySize() const { return m_BgGroup.size(); }
+	int GetBgGroupArraySize() const { return m_BgGroup.size(); }
 	
-	inline const CAssetPath* GetBgGroupPtr() const { return &(m_BgGroup.front()); }
+	const CAssetPath* GetBgGroupPtr() const { return &(m_BgGroup.front()); }
 	
-	inline const std::vector<CAssetPath>& GetBgGroupArray() const { return m_BgGroup; }
-	inline std::vector<CAssetPath>& GetBgGroupArray() { return m_BgGroup; }
+	const std::vector<CAssetPath>& GetBgGroupArray() const { return m_BgGroup; }
+	std::vector<CAssetPath>& GetBgGroupArray() { return m_BgGroup; }
 	
-	inline CAssetPath GetBgGroup(const CSubPath& SubPath) const
+	CAssetPath GetBgGroup(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_BgGroup.size());
 		{
@@ -299,14 +299,14 @@ public:
 		}
 	}
 	
-	inline int GetFgGroupArraySize() const { return m_FgGroup.size(); }
+	int GetFgGroupArraySize() const { return m_FgGroup.size(); }
 	
-	inline const CAssetPath* GetFgGroupPtr() const { return &(m_FgGroup.front()); }
+	const CAssetPath* GetFgGroupPtr() const { return &(m_FgGroup.front()); }
 	
-	inline const std::vector<CAssetPath>& GetFgGroupArray() const { return m_FgGroup; }
-	inline std::vector<CAssetPath>& GetFgGroupArray() { return m_FgGroup; }
+	const std::vector<CAssetPath>& GetFgGroupArray() const { return m_FgGroup; }
+	std::vector<CAssetPath>& GetFgGroupArray() { return m_FgGroup; }
 	
-	inline CAssetPath GetFgGroup(const CSubPath& SubPath) const
+	CAssetPath GetFgGroup(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_FgGroup.size());
 		{
@@ -314,14 +314,14 @@ public:
 		}
 	}
 	
-	inline int GetZoneLayerArraySize() const { return m_ZoneLayer.size(); }
+	int GetZoneLayerArraySize() const { return m_ZoneLayer.size(); }
 	
-	inline const CAssetPath* GetZoneLayerPtr() const { return &(m_ZoneLayer.front()); }
+	const CAssetPath* GetZoneLayerPtr() const { return &(m_ZoneLayer.front()); }
 	
-	inline const std::vector<CAssetPath>& GetZoneLayerArray() const { return m_ZoneLayer; }
-	inline std::vector<CAssetPath>& GetZoneLayerArray() { return m_ZoneLayer; }
+	const std::vector<CAssetPath>& GetZoneLayerArray() const { return m_ZoneLayer; }
+	std::vector<CAssetPath>& GetZoneLayerArray() { return m_ZoneLayer; }
 	
-	inline CAssetPath GetZoneLayer(const CSubPath& SubPath) const
+	CAssetPath GetZoneLayer(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_ZoneLayer.size());
 		{
@@ -329,14 +329,14 @@ public:
 		}
 	}
 	
-	inline int GetEntityLayerArraySize() const { return m_EntityLayer.size(); }
+	int GetEntityLayerArraySize() const { return m_EntityLayer.size(); }
 	
-	inline const CAssetPath* GetEntityLayerPtr() const { return &(m_EntityLayer.front()); }
+	const CAssetPath* GetEntityLayerPtr() const { return &(m_EntityLayer.front()); }
 	
-	inline const std::vector<CAssetPath>& GetEntityLayerArray() const { return m_EntityLayer; }
-	inline std::vector<CAssetPath>& GetEntityLayerArray() { return m_EntityLayer; }
+	const std::vector<CAssetPath>& GetEntityLayerArray() const { return m_EntityLayer; }
+	std::vector<CAssetPath>& GetEntityLayerArray() { return m_EntityLayer; }
 	
-	inline CAssetPath GetEntityLayer(const CSubPath& SubPath) const
+	CAssetPath GetEntityLayer(const CSubPath& SubPath) const
 	{
 		assert(SubPath.GetId() < m_EntityLayer.size());
 		{
@@ -344,21 +344,21 @@ public:
 		}
 	}
 	
-	inline vec2 GetCameraPosition() const { return m_CameraPosition; }
+	vec2 GetCameraPosition() const { return m_CameraPosition; }
 	
-	inline float GetCameraPositionX() const { return m_CameraPosition.x; }
+	float GetCameraPositionX() const { return m_CameraPosition.x; }
 	
-	inline float GetCameraPositionY() const { return m_CameraPosition.y; }
+	float GetCameraPositionY() const { return m_CameraPosition.y; }
 	
-	inline float GetCameraZoom() const { return m_CameraZoom; }
+	float GetCameraZoom() const { return m_CameraZoom; }
 	
-	inline bool GetShowEntities() const { return m_ShowEntities; }
+	bool GetShowEntities() const { return m_ShowEntities; }
 	
-	inline bool GetShowZones() const { return m_ShowZones; }
+	bool GetShowZones() const { return m_ShowZones; }
 	
-	inline void SetBgGroupArraySize(int Value) { m_BgGroup.resize(Value); }
+	void SetBgGroupArraySize(int Value) { m_BgGroup.resize(Value); }
 	
-	inline void SetBgGroup(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetBgGroup(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_BgGroup.size())
 		{
@@ -366,9 +366,9 @@ public:
 		}
 	}
 	
-	inline void SetFgGroupArraySize(int Value) { m_FgGroup.resize(Value); }
+	void SetFgGroupArraySize(int Value) { m_FgGroup.resize(Value); }
 	
-	inline void SetFgGroup(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetFgGroup(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_FgGroup.size())
 		{
@@ -376,9 +376,9 @@ public:
 		}
 	}
 	
-	inline void SetZoneLayerArraySize(int Value) { m_ZoneLayer.resize(Value); }
+	void SetZoneLayerArraySize(int Value) { m_ZoneLayer.resize(Value); }
 	
-	inline void SetZoneLayer(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetZoneLayer(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_ZoneLayer.size())
 		{
@@ -386,9 +386,9 @@ public:
 		}
 	}
 	
-	inline void SetEntityLayerArraySize(int Value) { m_EntityLayer.resize(Value); }
+	void SetEntityLayerArraySize(int Value) { m_EntityLayer.resize(Value); }
 	
-	inline void SetEntityLayer(const CSubPath& SubPath, const CAssetPath& Value)
+	void SetEntityLayer(const CSubPath& SubPath, const CAssetPath& Value)
 	{
 		if(SubPath.GetId() < m_EntityLayer.size())
 		{
@@ -396,99 +396,99 @@ public:
 		}
 	}
 	
-	inline void SetCameraPosition(vec2 Value) { m_CameraPosition = Value; }
+	void SetCameraPosition(vec2 Value) { m_CameraPosition = Value; }
 	
-	inline void SetCameraPositionX(float Value) { m_CameraPosition.x = Value; }
+	void SetCameraPositionX(float Value) { m_CameraPosition.x = Value; }
 	
-	inline void SetCameraPositionY(float Value) { m_CameraPosition.y = Value; }
+	void SetCameraPositionY(float Value) { m_CameraPosition.y = Value; }
 	
-	inline void SetCameraZoom(float Value) { m_CameraZoom = Value; }
+	void SetCameraZoom(float Value) { m_CameraZoom = Value; }
 	
-	inline void SetShowEntities(bool Value) { m_ShowEntities = Value; }
+	void SetShowEntities(bool Value) { m_ShowEntities = Value; }
 	
-	inline void SetShowZones(bool Value) { m_ShowZones = Value; }
+	void SetShowZones(bool Value) { m_ShowZones = Value; }
 	
-	inline int AddBgGroup()
+	int AddBgGroup()
 	{
 		int Id = m_BgGroup.size();
 		m_BgGroup.emplace_back();
 		return Id;
 	}
 	
-	inline int AddFgGroup()
+	int AddFgGroup()
 	{
 		int Id = m_FgGroup.size();
 		m_FgGroup.emplace_back();
 		return Id;
 	}
 	
-	inline int AddZoneLayer()
+	int AddZoneLayer()
 	{
 		int Id = m_ZoneLayer.size();
 		m_ZoneLayer.emplace_back();
 		return Id;
 	}
 	
-	inline int AddEntityLayer()
+	int AddEntityLayer()
 	{
 		int Id = m_EntityLayer.size();
 		m_EntityLayer.emplace_back();
 		return Id;
 	}
 	
-	inline void AddAtBgGroup(int Index) { m_BgGroup.insert(m_BgGroup.begin() + Index, CAssetPath()); }
+	void AddAtBgGroup(int Index) { m_BgGroup.insert(m_BgGroup.begin() + Index, CAssetPath()); }
 	
-	inline void AddAtFgGroup(int Index) { m_FgGroup.insert(m_FgGroup.begin() + Index, CAssetPath()); }
+	void AddAtFgGroup(int Index) { m_FgGroup.insert(m_FgGroup.begin() + Index, CAssetPath()); }
 	
-	inline void AddAtZoneLayer(int Index) { m_ZoneLayer.insert(m_ZoneLayer.begin() + Index, CAssetPath()); }
+	void AddAtZoneLayer(int Index) { m_ZoneLayer.insert(m_ZoneLayer.begin() + Index, CAssetPath()); }
 	
-	inline void AddAtEntityLayer(int Index) { m_EntityLayer.insert(m_EntityLayer.begin() + Index, CAssetPath()); }
+	void AddAtEntityLayer(int Index) { m_EntityLayer.insert(m_EntityLayer.begin() + Index, CAssetPath()); }
 	
-	inline void DeleteBgGroup(const CSubPath& SubPath) { m_BgGroup.erase(m_BgGroup.begin() + SubPath.GetId()); }
+	void DeleteBgGroup(const CSubPath& SubPath) { m_BgGroup.erase(m_BgGroup.begin() + SubPath.GetId()); }
 	
-	inline void DeleteFgGroup(const CSubPath& SubPath) { m_FgGroup.erase(m_FgGroup.begin() + SubPath.GetId()); }
+	void DeleteFgGroup(const CSubPath& SubPath) { m_FgGroup.erase(m_FgGroup.begin() + SubPath.GetId()); }
 	
-	inline void DeleteZoneLayer(const CSubPath& SubPath) { m_ZoneLayer.erase(m_ZoneLayer.begin() + SubPath.GetId()); }
+	void DeleteZoneLayer(const CSubPath& SubPath) { m_ZoneLayer.erase(m_ZoneLayer.begin() + SubPath.GetId()); }
 	
-	inline void DeleteEntityLayer(const CSubPath& SubPath) { m_EntityLayer.erase(m_EntityLayer.begin() + SubPath.GetId()); }
+	void DeleteEntityLayer(const CSubPath& SubPath) { m_EntityLayer.erase(m_EntityLayer.begin() + SubPath.GetId()); }
 	
-	inline void RelMoveBgGroup(CSubPath& SubPath, int RelMove)
+	void RelMoveBgGroup(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_BgGroup, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveFgGroup(CSubPath& SubPath, int RelMove)
+	void RelMoveFgGroup(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_FgGroup, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveZoneLayer(CSubPath& SubPath, int RelMove)
+	void RelMoveZoneLayer(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_ZoneLayer, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline void RelMoveEntityLayer(CSubPath& SubPath, int RelMove)
+	void RelMoveEntityLayer(CSubPath& SubPath, int RelMove)
 	{
 		int NewId = relative_move(m_EntityLayer, SubPath.GetId(), RelMove);
 		SubPath.SetId(NewId);
 	}
 	
-	inline bool IsValidBgGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BgGroup.size()); }
+	bool IsValidBgGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_BgGroup.size()); }
 	
-	inline bool IsValidFgGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_FgGroup.size()); }
+	bool IsValidFgGroup(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_FgGroup.size()); }
 	
-	inline bool IsValidZoneLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_ZoneLayer.size()); }
+	bool IsValidZoneLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_ZoneLayer.size()); }
 	
-	inline bool IsValidEntityLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_EntityLayer.size()); }
+	bool IsValidEntityLayer(const CSubPath& SubPath) const { return (SubPath.IsNotNull() && SubPath.GetId() < m_EntityLayer.size()); }
 	
 	void AssetPathOperation(const CAssetPath::COperation& Operation)
 	{
 		{
 			int Shift = 0;
-			for(unsigned int i=0; i<m_BgGroup.size(); i++)
+			for(unsigned int i = 0; i < m_BgGroup.size(); i++)
 			{
 				if(Operation.MustBeDeleted(m_BgGroup[i]))
 					Shift++;
@@ -503,7 +503,7 @@ public:
 		}
 		{
 			int Shift = 0;
-			for(unsigned int i=0; i<m_FgGroup.size(); i++)
+			for(unsigned int i = 0; i < m_FgGroup.size(); i++)
 			{
 				if(Operation.MustBeDeleted(m_FgGroup[i]))
 					Shift++;
@@ -518,7 +518,7 @@ public:
 		}
 		{
 			int Shift = 0;
-			for(unsigned int i=0; i<m_ZoneLayer.size(); i++)
+			for(unsigned int i = 0; i < m_ZoneLayer.size(); i++)
 			{
 				if(Operation.MustBeDeleted(m_ZoneLayer[i]))
 					Shift++;
@@ -533,7 +533,7 @@ public:
 		}
 		{
 			int Shift = 0;
-			for(unsigned int i=0; i<m_EntityLayer.size(); i++)
+			for(unsigned int i = 0; i < m_EntityLayer.size(); i++)
 			{
 				if(Operation.MustBeDeleted(m_EntityLayer[i]))
 					Shift++;

@@ -50,9 +50,9 @@ void CAsset_MapGroup::CTuaType_0_2_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -79,12 +79,12 @@ void CAsset_MapGroup::CTuaType_0_2_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
@@ -106,9 +106,9 @@ void CAsset_MapGroup::CTuaType_0_2_1::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -135,12 +135,12 @@ void CAsset_MapGroup::CTuaType_0_2_1::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
@@ -162,9 +162,9 @@ void CAsset_MapGroup::CTuaType_0_2_2::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -191,12 +191,12 @@ void CAsset_MapGroup::CTuaType_0_2_2::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
@@ -218,9 +218,9 @@ void CAsset_MapGroup::CTuaType_0_2_3::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -247,12 +247,12 @@ void CAsset_MapGroup::CTuaType_0_2_3::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
@@ -274,9 +274,9 @@ void CAsset_MapGroup::CTuaType_0_2_4::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -303,12 +303,12 @@ void CAsset_MapGroup::CTuaType_0_2_4::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
@@ -330,9 +330,9 @@ void CAsset_MapGroup::CTuaType_0_3_0::Read(CAssetsSaveLoadContext* pLoadingConte
 	pLoadingContext->ReadAssetPath(TuaType.m_ParentPath, SysType.m_ParentPath);
 	{
 		const CAssetPath::CTuaType* pData = (const CAssetPath::CTuaType*) pLoadingContext->ArchiveFile()->GetData(TuaType.m_Layer.m_Data);
-		uint32 Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
+		uint32_t Size = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_Layer.m_Size);
 		SysType.m_Layer.resize(Size);
-		for(uint32 i=0; i<Size; i++)
+		for(uint32_t i = 0; i < Size; i++)
 		{
 			pLoadingContext->ReadAssetPath(pData[i], SysType.m_Layer[i]);
 		}
@@ -359,12 +359,12 @@ void CAsset_MapGroup::CTuaType_0_3_0::Write(CAssetsSaveLoadContext* pLoadingCont
 	{
 		TuaType.m_Layer.m_Size = SysType.m_Layer.size();
 		CAssetPath::CTuaType* pData = new CAssetPath::CTuaType[SysType.m_Layer.size()];
-		mem_zero((void*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
-		for(unsigned int i=0; i<SysType.m_Layer.size(); i++)
+		mem_zero(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		for(unsigned int i = 0; i < SysType.m_Layer.size(); i++)
 		{
 			pLoadingContext->WriteAssetPath(SysType.m_Layer[i], pData[i]);
 		}
-		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData((uint8*) pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
+		TuaType.m_Layer.m_Data = pLoadingContext->ArchiveFile()->AddData(pData, sizeof(CAssetPath::CTuaType)*SysType.m_Layer.size());
 		delete[] pData;
 	}
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);

@@ -77,7 +77,7 @@ public:
 private:
 	dynamic_string m_Name;
 	dynamic_string m_Directory;
-	uint32 m_Crc;
+	uint32_t m_Crc;
 	int m_State;
 	std::vector<int> Dependencies;
 	bool m_ReadOnly;
