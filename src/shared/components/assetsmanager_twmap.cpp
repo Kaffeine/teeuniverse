@@ -2836,11 +2836,11 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 		int StartLayer = LayerId;
 		
 		CAsset_Map::CIteratorZoneLayer ZoneIter;
-		for(unsigned int i=0; i<ZoneLayers.size(); i++)
+		for(const CAssetPath &ZoneLayer : ZoneLayers)
 		{
-			if(ZoneLayers[i].GetType() == CAsset_MapZoneTiles::TypeId)
+			if(ZoneLayer.GetType() == CAsset_MapZoneTiles::TypeId)
 			{
-				const CAsset_MapZoneTiles* pZone = GetAsset<CAsset_MapZoneTiles>(ZoneLayers[i]);
+				const CAsset_MapZoneTiles* pZone = GetAsset<CAsset_MapZoneTiles>(ZoneLayer);
 				if(!pZone)
 					continue;
 				
@@ -2896,9 +2896,9 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 				
 				delete[] pTiles;
 			}
-			else if(ZoneLayers[i].GetType() == CAsset_MapZoneObjects::TypeId)
+			else if(ZoneLayer.GetType() == CAsset_MapZoneObjects::TypeId)
 			{
-				const CAsset_MapZoneObjects* pZone = GetAsset<CAsset_MapZoneObjects>(ZoneLayers[i]);
+				const CAsset_MapZoneObjects* pZone = GetAsset<CAsset_MapZoneObjects>(ZoneLayer);
 				if(!pZone)
 					continue;
 				
