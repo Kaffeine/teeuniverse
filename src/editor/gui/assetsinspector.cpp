@@ -1616,7 +1616,15 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapEntities_Asset()
 	AddField_AssetProperties(pTab);
 	
 	pTab->Add(new CSubItemList_MapEntities_Entity(AssetsEditor()), true);
-	
+
+	gui::CVListLayout* pEntityEditor = new CSubItemEditor(AssetsEditor(), CAsset_MapEntities::TYPE_ENTITY);
+	pTab->Add(pEntityEditor, false);
+
+	AddField_Vec2(pEntityEditor, CAsset_MapEntities::ENTITY_PIVOT_X, CAsset_MapEntities::ENTITY_PIVOT_Y, _LSTRING("Pivot"));
+	AddField_Vec2(pEntityEditor, CAsset_MapEntities::ENTITY_POSITION_X, CAsset_MapEntities::ENTITY_POSITION_Y, _LSTRING("Offset"));
+	AddField_Animations(pEntityEditor, CAsset_MapEntities::ENTITY_ANIMATIONPATH, _LSTRING("Animation"));
+	AddField_Duration(pEntityEditor, CAsset_MapEntities::ENTITY_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
+
 	return pTab;
 }
 

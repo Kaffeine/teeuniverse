@@ -50,6 +50,7 @@ protected:
 	
 protected:
 	template<typename ASSET> void OnViewButtonClick_Objects_Impl(int Button);
+	void OnViewButtonClick_Entities_Impl(int Button);
 	template<typename ASSET> void OnViewMouseMove_Objects_Impl();
 	template<typename ASSET> void RenderView_Objects_Impl();
 	

@@ -61,6 +61,11 @@ public:
 		ENTITY_POSITION,
 		ENTITY_POSITION_X,
 		ENTITY_POSITION_Y,
+		ENTITY_PIVOT,
+		ENTITY_PIVOT_X,
+		ENTITY_PIVOT_Y,
+		ENTITY_ANIMATIONPATH,
+		ENTITY_ANIMATIONOFFSET,
 		ENTITY,
 		VISIBILITY,
 	};
@@ -146,6 +151,9 @@ public:
 		public:
 			CAssetPath::CTuaType m_TypePath;
 			CTuaVec2 m_Position;
+			CTuaVec2 m_Pivot;
+			CAssetPath::CTuaType m_AnimationPath;
+			tua_int64 m_AnimationOffset;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapEntities::CEntity& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapEntities::CEntity& SysType, CTuaType_0_3_3& TuaType);
 		};
@@ -154,8 +162,12 @@ public:
 	private:
 		CAssetPath m_TypePath{};
 		vec2 m_Position{};
+		vec2 m_Pivot{};
+		CAssetPath m_AnimationPath{};
+		int64_t m_AnimationOffset{};
 	
 	public:
+		void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;
 		CEntity();
 		CAssetPath GetTypePath() const { return m_TypePath; }
 		
@@ -165,6 +177,16 @@ public:
 		
 		float GetPositionY() const { return m_Position.y; }
 		
+		vec2 GetPivot() const { return m_Pivot; }
+		
+		float GetPivotX() const { return m_Pivot.x; }
+		
+		float GetPivotY() const { return m_Pivot.y; }
+		
+		CAssetPath GetAnimationPath() const { return m_AnimationPath; }
+		
+		int64_t GetAnimationOffset() const { return m_AnimationOffset; }
+		
 		void SetTypePath(const CAssetPath& Value) { m_TypePath = Value; }
 		
 		void SetPosition(vec2 Value) { m_Position = Value; }
@@ -173,9 +195,20 @@ public:
 		
 		void SetPositionY(float Value) { m_Position.y = Value; }
 		
+		void SetPivot(vec2 Value) { m_Pivot = Value; }
+		
+		void SetPivotX(float Value) { m_Pivot.x = Value; }
+		
+		void SetPivotY(float Value) { m_Pivot.y = Value; }
+		
+		void SetAnimationPath(const CAssetPath& Value) { m_AnimationPath = Value; }
+		
+		void SetAnimationOffset(int64_t Value) { m_AnimationOffset = Value; }
+		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
 			Operation.Apply(m_TypePath);
+			Operation.Apply(m_AnimationPath);
 		}
 		
 	};
@@ -256,6 +289,7 @@ private:
 	bool m_Visibility{};
 
 public:
+	void GetEntityTransform(const CSubPath& SubPath, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;
 	virtual ~CAsset_MapEntities() {}
 	
 	template<typename T>
@@ -324,6 +358,41 @@ public:
 		else return 0.0f;
 	}
 	
+	vec2 GetEntityPivot(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			return m_Entity[SubPath.GetId()].GetPivot();
+		else return 0.0f;
+	}
+	
+	float GetEntityPivotX(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			return m_Entity[SubPath.GetId()].GetPivotX();
+		else return 0.0f;
+	}
+	
+	float GetEntityPivotY(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			return m_Entity[SubPath.GetId()].GetPivotY();
+		else return 0.0f;
+	}
+	
+	CAssetPath GetEntityAnimationPath(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			return m_Entity[SubPath.GetId()].GetAnimationPath();
+		else return CAssetPath::Null();
+	}
+	
+	int64_t GetEntityAnimationOffset(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			return m_Entity[SubPath.GetId()].GetAnimationOffset();
+		else return 0;
+	}
+	
 	bool GetVisibility() const { return m_Visibility; }
 	
 	void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
@@ -362,6 +431,36 @@ public:
 			m_Entity[SubPath.GetId()].SetPositionY(Value);
 	}
 	
+	void SetEntityPivot(const CSubPath& SubPath, vec2 Value)
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			m_Entity[SubPath.GetId()].SetPivot(Value);
+	}
+	
+	void SetEntityPivotX(const CSubPath& SubPath, float Value)
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			m_Entity[SubPath.GetId()].SetPivotX(Value);
+	}
+	
+	void SetEntityPivotY(const CSubPath& SubPath, float Value)
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			m_Entity[SubPath.GetId()].SetPivotY(Value);
+	}
+	
+	void SetEntityAnimationPath(const CSubPath& SubPath, const CAssetPath& Value)
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			m_Entity[SubPath.GetId()].SetAnimationPath(Value);
+	}
+	
+	void SetEntityAnimationOffset(const CSubPath& SubPath, int64_t Value)
+	{
+		if(SubPath.GetId() < m_Entity.size())
+			m_Entity[SubPath.GetId()].SetAnimationOffset(Value);
+	}
+	
 	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
 	int AddEntity()
@@ -396,6 +495,8 @@ public:
 
 template<> int CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, int DefaultValue) const;
 template<> bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, int Value);
+template<> int64_t CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, int64_t DefaultValue) const;
+template<> bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value);
 template<> bool CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const;
 template<> bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, bool Value);
 template<> float CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, float DefaultValue) const;

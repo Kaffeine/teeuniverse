@@ -36,6 +36,8 @@
 CAsset_MapEntities::CEntity::CEntity()
 {
 	m_Position = 0.0f;
+	m_Pivot = 0.0f;
+	m_AnimationOffset = 0;
 }
 
 CAsset_MapEntities::CAsset_MapEntities()
@@ -366,6 +368,10 @@ void CAsset_MapEntities::CEntity::CTuaType_0_3_3::Read(CAssetsSaveLoadContext* p
 	pLoadingContext->ReadAssetPath(TuaType.m_TypePath, SysType.m_TypePath);
 	SysType.m_Position.x = pLoadingContext->ArchiveFile()->ReadFloat(TuaType.m_Position.m_X);
 	SysType.m_Position.y = pLoadingContext->ArchiveFile()->ReadFloat(TuaType.m_Position.m_Y);
+	SysType.m_Pivot.x = pLoadingContext->ArchiveFile()->ReadFloat(TuaType.m_Pivot.m_X);
+	SysType.m_Pivot.y = pLoadingContext->ArchiveFile()->ReadFloat(TuaType.m_Pivot.m_Y);
+	pLoadingContext->ReadAssetPath(TuaType.m_AnimationPath, SysType.m_AnimationPath);
+	SysType.m_AnimationOffset = pLoadingContext->ArchiveFile()->ReadInt64(TuaType.m_AnimationOffset);
 }
 
 
@@ -393,6 +399,10 @@ void CAsset_MapEntities::CEntity::CTuaType_0_3_3::Write(CAssetsSaveLoadContext* 
 	pLoadingContext->WriteAssetPath(SysType.m_TypePath, TuaType.m_TypePath);
 	TuaType.m_Position.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.x);
 	TuaType.m_Position.m_Y = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Position.y);
+	TuaType.m_Pivot.m_X = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Pivot.x);
+	TuaType.m_Pivot.m_Y = pLoadingContext->ArchiveFile()->WriteFloat(SysType.m_Pivot.y);
+	pLoadingContext->WriteAssetPath(SysType.m_AnimationPath, TuaType.m_AnimationPath);
+	TuaType.m_AnimationOffset = pLoadingContext->ArchiveFile()->WriteInt64(SysType.m_AnimationOffset);
 }
 
 void CAsset_MapEntities::CTuaType_0_3_3::Write(CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapEntities& SysType, CTuaType_0_3_3& TuaType)
@@ -438,6 +448,29 @@ bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, int Va
 }
 
 template<>
+int64_t CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, int64_t DefaultValue) const
+{
+	switch(ValueType)
+	{
+		case ENTITY_ANIMATIONOFFSET:
+			return GetEntityAnimationOffset(SubPath);
+	}
+	return CAsset::GetValue<int64_t>(ValueType, SubPath, DefaultValue);
+}
+
+template<>
+bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value)
+{
+	switch(ValueType)
+	{
+		case ENTITY_ANIMATIONOFFSET:
+			SetEntityAnimationOffset(SubPath, Value);
+			return true;
+	}
+	return CAsset::SetValue<int64_t>(ValueType, SubPath, Value);
+}
+
+template<>
 bool CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const
 {
 	switch(ValueType)
@@ -469,6 +502,10 @@ float CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, float
 			return GetEntityPositionX(SubPath);
 		case ENTITY_POSITION_Y:
 			return GetEntityPositionY(SubPath);
+		case ENTITY_PIVOT_X:
+			return GetEntityPivotX(SubPath);
+		case ENTITY_PIVOT_Y:
+			return GetEntityPivotY(SubPath);
 	}
 	return CAsset::GetValue<float>(ValueType, SubPath, DefaultValue);
 }
@@ -484,6 +521,12 @@ bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, float 
 		case ENTITY_POSITION_Y:
 			SetEntityPositionY(SubPath, Value);
 			return true;
+		case ENTITY_PIVOT_X:
+			SetEntityPivotX(SubPath, Value);
+			return true;
+		case ENTITY_PIVOT_Y:
+			SetEntityPivotY(SubPath, Value);
+			return true;
 	}
 	return CAsset::SetValue<float>(ValueType, SubPath, Value);
 }
@@ -495,6 +538,8 @@ vec2 CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, vec2 D
 	{
 		case ENTITY_POSITION:
 			return GetEntityPosition(SubPath);
+		case ENTITY_PIVOT:
+			return GetEntityPivot(SubPath);
 	}
 	return CAsset::GetValue<vec2>(ValueType, SubPath, DefaultValue);
 }
@@ -506,6 +551,9 @@ bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, vec2 V
 	{
 		case ENTITY_POSITION:
 			SetEntityPosition(SubPath, Value);
+			return true;
+		case ENTITY_PIVOT:
+			SetEntityPivot(SubPath, Value);
 			return true;
 	}
 	return CAsset::SetValue<vec2>(ValueType, SubPath, Value);
@@ -520,6 +568,8 @@ CAssetPath CAsset_MapEntities::GetValue(int ValueType, const CSubPath& SubPath, 
 			return GetParentPath();
 		case ENTITY_TYPEPATH:
 			return GetEntityTypePath(SubPath);
+		case ENTITY_ANIMATIONPATH:
+			return GetEntityAnimationPath(SubPath);
 	}
 	return CAsset::GetValue<CAssetPath>(ValueType, SubPath, DefaultValue);
 }
@@ -534,6 +584,9 @@ bool CAsset_MapEntities::SetValue(int ValueType, const CSubPath& SubPath, CAsset
 			return true;
 		case ENTITY_TYPEPATH:
 			SetEntityTypePath(SubPath, Value);
+			return true;
+		case ENTITY_ANIMATIONPATH:
+			SetEntityAnimationPath(SubPath, Value);
 			return true;
 	}
 	return CAsset::SetValue<CAssetPath>(ValueType, SubPath, Value);

@@ -1600,6 +1600,7 @@ void CTimeLine::Update(bool ParentEnabled)
 			case CAsset_MapLayerObjects::TypeId:
 			case CAsset_MapZoneTiles::TypeId:
 			case CAsset_MapZoneObjects::TypeId:
+			case CAsset_MapEntities::TypeId:
 			case CAsset_SkeletonAnimation::TypeId:
 				Enable();
 				break;

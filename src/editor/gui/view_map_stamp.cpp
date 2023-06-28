@@ -623,7 +623,7 @@ void CCursorTool_MapStamp::OnViewButtonClick(int Button)
 					for(unsigned int i=0; i<m_EntitySelection.size(); i++)
 					{
 						CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(AssetsManager()->AddSubItem(AssetsEditor()->GetEditedAssetPath(), CSubPath::Null(), CAsset_MapEntities::TYPE_ENTITY, m_Token));
-						AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), EntityPath, CAsset_MapEntities::ENTITY_POSITION, m_EntitySelection[i].GetPosition() + CursorMapPos, m_Token);
+						AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), EntityPath, CAsset_MapEntities::ENTITY_PIVOT, m_EntitySelection[i].GetPosition() + CursorMapPos, m_Token);
 						AssetsManager()->SetAssetValue<CAssetPath>(AssetsEditor()->GetEditedAssetPath(), EntityPath, CAsset_MapEntities::ENTITY_TYPEPATH, m_EntitySelection[i].GetTypePath(), m_Token);
 					}
 					
@@ -1619,7 +1619,8 @@ void CCursorTool_MapStamp::PaletteCallback_SelectEntityType(CAssetPath EntityTyp
 	m_EntitySelection.emplace_back();
 	CAsset_MapEntities::CEntity& Entity = m_EntitySelection.back();
 	Entity.SetTypePath(EntityTypePath);
-	Entity.SetPosition(0.0f);
+	Entity.SetPosition(vec2(0.f, 0.f));
+	Entity.SetPivot(vec2(0.f, 0.f));
 	
 	m_SelectionEnabled = true;
 }

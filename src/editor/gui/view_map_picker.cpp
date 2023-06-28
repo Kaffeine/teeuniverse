@@ -32,8 +32,14 @@ CCursorTool_MapPicker::CCursorTool_MapPicker(CViewMap* pViewMap, const CLocaliza
 	
 }
 
-CSubPath CCursorTool_MapPicker::Pick(vec2 CursorPos)
+CSubPath CCursorTool_MapPicker::Pick(vec2 CursorPos, bool *pPivot)
 {
+	bool PivotHelper;
+	if (!pPivot)
+	{
+		pPivot = &PivotHelper;
+	}
+
 	static const float GizmoSize = 16.0f;
 	
 	if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId)
@@ -41,14 +47,35 @@ CSubPath CCursorTool_MapPicker::Pick(vec2 CursorPos)
 		const CAsset_MapEntities* pEntities = AssetsManager()->GetAsset<CAsset_MapEntities>(AssetsEditor()->GetEditedAssetPath());
 		if(pEntities)
 		{
-			float GizmoSize = 24.0f;
-			
+			bool PivotIsVisible = ViewMap()->GetShowEntites() < 3;
+			float EntityGizmoSize = 32.0f;
 			CAsset_MapEntities::CIteratorEntity Iter;
 			for(Iter = pEntities->ReverseBeginEntity(); Iter != pEntities->ReverseEndEntity(); ++Iter)
 			{
-				vec2 PivotPos = ViewMap()->MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*Iter));
-				if(length(CursorPos - PivotPos) < GizmoSize)
+				vec2 PivotPosition;
+				matrix2x2 Transform;
+				pEntities->GetEntityTransform(*Iter, ViewMap()->MapRenderer()->GetTime(), &Transform, &PivotPosition);
+
+				if(PivotIsVisible)
+				{
+					vec2 PivotScreenPos = ViewMap()->MapRenderer()->MapPosToScreenPos(PivotPosition);
+					if(length(CursorPos - PivotScreenPos) < GizmoSize)
+					{
+						*pPivot = true;
+						return *Iter;
+					}
+				}
+
+				vec2 EntityPos = pEntities->GetEntityPosition(*Iter);
+				vec2 TransformedPos = Transform * EntityPos + PivotPosition;
+				vec2 EntityScreenPos = ViewMap()->MapRenderer()->MapPosToScreenPos(TransformedPos);
+
+				if(length(CursorPos - EntityScreenPos) < EntityGizmoSize)
+				{
+					// If Pivot is not visible then still edit the pivot instead of the offset
+					*pPivot = (PivotIsVisible == false);
 					return *Iter;
+				}
 			}
 		}
 		

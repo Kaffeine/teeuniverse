@@ -489,7 +489,7 @@ public:
 	int GetHistorySize();
 
 protected:
-	void SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, int Format, const CAsset_Map *pMap, const std::vector<CAsset_MapEntities::CEntity> &PTUMTeeWorldsEntities, const vec2 &LayerShift, int *pLayerId, int *pGroupId);
+	void SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, int Format, const CAsset_Map *pMap, const std::vector<CAsset_MapEntities::CEntity> &PTUMTeeWorldsEntities, std::vector<CAssetPath> *pAnimations, const vec2 &LayerShift, int *pLayerId, int *pGroupId);
 	void SaveMapImages(ddnet::CDataFileWriter *pArchiveFile, int Format, const std::vector<CAssetPath> &Animations);
 	void SaveMapAnimations(ddnet::CDataFileWriter *pArchiveFile, const std::vector<CAssetPath> &Animations);
 };

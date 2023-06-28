@@ -618,6 +618,7 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 					ddnet::CQuad *pQuads = (ddnet::CQuad *) ArchiveFile.GetDataSwapped(pQuadsItem->m_Data);
 					for(int i=0; i<pQuadsItem->m_NumQuads; i++)
 					{
+						vec2 Pivot(fx2f(pQuads[i].m_aPoints[4].x), fx2f(pQuads[i].m_aPoints[4].y));
 						vec2 P0(fx2f(pQuads[i].m_aPoints[1].x), fx2f(pQuads[i].m_aPoints[1].y));
 						vec2 P1(fx2f(pQuads[i].m_aPoints[0].x), fx2f(pQuads[i].m_aPoints[0].y));
 						vec2 P2(fx2f(pQuads[i].m_aPoints[3].x), fx2f(pQuads[i].m_aPoints[3].y));
@@ -625,7 +626,16 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 						vec2 Pos = (P0+P1+P2+P3)/4.0f;
 						CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntities->AddEntity());
 						pEntities->SetEntityTypePath(EntityPath, EntityTypePath);
-						pEntities->SetEntityPosition(EntityPath, Pos);
+						pEntities->SetEntityPosition(EntityPath, Pos - Pivot);
+						pEntities->SetEntityPivot(EntityPath, Pivot);
+
+						bool PosEnvEnabled = pQuads[i].m_PosEnv >= 0 && pQuads[i].m_PosEnv < (int) Animations.size();
+						if(PosEnvEnabled)
+						{
+							const CAssetPath AnimationPath = Animations[pQuads[i].m_PosEnv];
+							pEntities->SetEntityAnimationPath(EntityPath, AnimationPath);
+							pEntities->SetEntityAnimationOffset(EntityPath, pQuads[i].m_PosEnvOffset);
+						}
 					}
 				}
 			}
@@ -872,91 +882,91 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawn);
-												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_SPAWN_RED + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnRed);
-												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_SPAWN_BLUE + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnBlue);
-												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_FLAGSTAND_RED + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagRed);
-												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_FLAGSTAND_BLUE + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagBlue);
-												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_HEALTH_1 + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSHeart);
-												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_CHAINSAW + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSChainsaw);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_SHOTGUN + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSShotgun);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_GRENADE + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSGrenade);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_LASER + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSLaser);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_RIFLE + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSRifle);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_ELECTRIC + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSElectric);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_FLAMER + ninslash::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlamer);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											default:
@@ -979,13 +989,13 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawn);
-													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -993,35 +1003,35 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnRed);
-												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_SPAWN_BLUE + ddnet::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnBlue);
-												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_HEALTH_1 + ddnet::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWHeart);
-												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_ARMOR_1 + ddnet::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWArmor);
-												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_POWERUP_NINJA + ddnet::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWNinja);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_WEAPON_GRENADE + ddnet::ENTITY_OFFSET:
@@ -1030,13 +1040,13 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 													GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWGrenade);
-													GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -1044,14 +1054,14 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWLaserRifle);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_WEAPON_SHOTGUN + ddnet::ENTITY_OFFSET:
 											{
 												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
 												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWShotgun);
-												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												GetWeaponsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_FLAGSTAND_BLUE + ddnet::ENTITY_OFFSET:
@@ -1069,7 +1079,7 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 													GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagBlue);
-													GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -1088,7 +1098,7 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
 													GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagRed);
-													GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetPickupsEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -1098,7 +1108,7 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												{
 													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
 													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													GetSpawnEntities()->SetEntityPivot(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else if(Format == MAPFORMAT_DDNET)
 												{
@@ -2563,8 +2573,8 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 			{
 				CSubPath SubPath = CAsset_MapEntities::SubPath_Entity(i);
 				CAssetPath EntityTypePath = pEntities->GetEntityTypePath(SubPath);
-				int X = (pEntities->GetEntityPositionX(SubPath)-16.0f)/32.0f - GameX;
-				int Y = (pEntities->GetEntityPositionY(SubPath)-16.0f)/32.0f - GameY;
+				int X = (pEntities->GetEntityPivotX(SubPath)-16.0f)/32.0f - GameX;
+				int Y = (pEntities->GetEntityPivotY(SubPath)-16.0f)/32.0f - GameY;
 				
 				int Index = -1;
 				
@@ -2646,7 +2656,7 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 					PTUMTeeWorldsEntities.push_back(pEntities->GetEntity(SubPath));
 					continue;
 				}
-				if(distance(pEntities->GetEntityPosition(SubPath), vec2(X*32.0f+16.0f, Y*32.0f+16.0f)) > 0.01f)
+				if(distance(pEntities->GetEntityPivot(SubPath), vec2(X*32.0f+16.0f, Y*32.0f+16.0f)) > 0.01f)
 				{
 					EntityGroupNeeded = true;
 					PTUMTeeWorldsEntities.push_back(pEntities->GetEntity(SubPath));
@@ -3034,7 +3044,7 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 	//Step5: Save other entities in PTUM format
 	if(EntityGroupNeeded)
 	{
-		SaveMapPtumEntities(&ArchiveFile, Format, pMap, PTUMTeeWorldsEntities, LayerShift, &LayerId, &GroupId);
+		SaveMapPtumEntities(&ArchiveFile, Format, pMap, PTUMTeeWorldsEntities, &Animations, LayerShift, &LayerId, &GroupId);
 	}
 	
 	//Step6: Save images
@@ -3047,7 +3057,7 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 	return true;
 }
 
-void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, int Format, const CAsset_Map *pMap, const std::vector<CAsset_MapEntities::CEntity> &PTUMTeeWorldsEntities, const vec2 &LayerShift, int *pLayerId, int *pGroupId)
+void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, int Format, const CAsset_Map *pMap, const std::vector<CAsset_MapEntities::CEntity> &PTUMTeeWorldsEntities, std::vector<CAssetPath> *pAnimations, const vec2 &LayerShift, int *pLayerId, int *pGroupId)
 {
 	int &LayerId = *pLayerId;
 	int &GroupId = *pGroupId;
@@ -3073,19 +3083,24 @@ void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, i
 			EntityQuads.emplace_back();
 		}
 
+		vec2 Pivot = Entity.GetPivot();
+		vec2 Pos = Entity.GetPosition();
+		CAssetPath AnimationPath = Entity.GetAnimationPath();
+		int AnimationOffset = Entity.GetAnimationOffset();
+
 		EntityQuads[eId].emplace_back();
 		ddnet::CQuad &Quad = EntityQuads[eId].back();
 
-		Quad.m_aPoints[1].x = f2fx(Entity.GetPositionX() - 16.0f - LayerShift.x);
-		Quad.m_aPoints[1].y = f2fx(Entity.GetPositionY() - 16.0f - LayerShift.y);
-		Quad.m_aPoints[0].x = f2fx(Entity.GetPositionX() + 16.0f - LayerShift.x);
-		Quad.m_aPoints[0].y = f2fx(Entity.GetPositionY() - 16.0f - LayerShift.y);
-		Quad.m_aPoints[3].x = f2fx(Entity.GetPositionX() - 16.0f - LayerShift.x);
-		Quad.m_aPoints[3].y = f2fx(Entity.GetPositionY() + 16.0f - LayerShift.y);
-		Quad.m_aPoints[2].x = f2fx(Entity.GetPositionX() + 16.0f - LayerShift.x);
-		Quad.m_aPoints[2].y = f2fx(Entity.GetPositionY() + 16.0f - LayerShift.y);
-		Quad.m_aPoints[4].x = f2fx(Entity.GetPositionX() - LayerShift.x);
-		Quad.m_aPoints[4].y = f2fx(Entity.GetPositionY() - LayerShift.y);
+		Quad.m_aPoints[1].x = f2fx(Pivot.x + Pos.x - 16.0f - LayerShift.x);
+		Quad.m_aPoints[1].y = f2fx(Pivot.y + Pos.y - 16.0f - LayerShift.y);
+		Quad.m_aPoints[0].x = f2fx(Pivot.x + Pos.x + 16.0f - LayerShift.x);
+		Quad.m_aPoints[0].y = f2fx(Pivot.y + Pos.y - 16.0f - LayerShift.y);
+		Quad.m_aPoints[3].x = f2fx(Pivot.x + Pos.x - 16.0f - LayerShift.x);
+		Quad.m_aPoints[3].y = f2fx(Pivot.y + Pos.y + 16.0f - LayerShift.y);
+		Quad.m_aPoints[2].x = f2fx(Pivot.x + Pos.x + 16.0f - LayerShift.x);
+		Quad.m_aPoints[2].y = f2fx(Pivot.y + Pos.y + 16.0f - LayerShift.y);
+		Quad.m_aPoints[4].x = f2fx(Pivot.x - LayerShift.x);
+		Quad.m_aPoints[4].y = f2fx(Pivot.y - LayerShift.y);
 
 		for(int j = 0; j < 4; j++)
 		{
@@ -3097,8 +3112,29 @@ void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, i
 			Quad.m_aColors[j + 1 - 2 * (j % 2)].a = 255.0f;
 		}
 
-		Quad.m_PosEnv = -1;
-		Quad.m_PosEnvOffset = 0;
+		int AnimationId = -1;
+
+		const CAsset_SkeletonAnimation *pAnimation = GetAsset<CAsset_SkeletonAnimation>(AnimationPath);
+		if(pAnimation)
+		{
+			for(unsigned int i = 0; i < pAnimations->size(); i++)
+			{
+				if(pAnimations->at(i) == AnimationPath)
+				{
+					AnimationId = static_cast<int>(i);
+					break;
+				}
+			}
+
+			if(AnimationId == -1)
+			{
+				AnimationId = pAnimations->size();
+				pAnimations->push_back(AnimationPath);
+			}
+		}
+
+		Quad.m_PosEnv = AnimationId * 2;
+		Quad.m_PosEnvOffset = AnimationOffset;
 		Quad.m_ColorEnv = -1;
 		Quad.m_ColorEnvOffset = 0;
 	}
@@ -3155,19 +3191,24 @@ void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, i
 				EntityQuads.emplace_back();
 			}
 
+			vec2 Pivot = pEntities->GetEntityPivot(SubPath);
+			vec2 Pos = pEntities->GetEntityPosition(SubPath);
+			CAssetPath AnimationPath = pEntities->GetEntityAnimationPath(SubPath);
+			int AnimationOffset = pEntities->GetEntityAnimationOffset(SubPath);
+
 			EntityQuads[eId].emplace_back();
 			ddnet::CQuad &Quad = EntityQuads[eId].back();
 
-			Quad.m_aPoints[1].x = f2fx(pEntities->GetEntityPositionX(SubPath) - 16.0f - LayerShift.x);
-			Quad.m_aPoints[1].y = f2fx(pEntities->GetEntityPositionY(SubPath) - 16.0f - LayerShift.y);
-			Quad.m_aPoints[0].x = f2fx(pEntities->GetEntityPositionX(SubPath) + 16.0f - LayerShift.x);
-			Quad.m_aPoints[0].y = f2fx(pEntities->GetEntityPositionY(SubPath) - 16.0f - LayerShift.y);
-			Quad.m_aPoints[3].x = f2fx(pEntities->GetEntityPositionX(SubPath) - 16.0f - LayerShift.x);
-			Quad.m_aPoints[3].y = f2fx(pEntities->GetEntityPositionY(SubPath) + 16.0f - LayerShift.y);
-			Quad.m_aPoints[2].x = f2fx(pEntities->GetEntityPositionX(SubPath) + 16.0f - LayerShift.x);
-			Quad.m_aPoints[2].y = f2fx(pEntities->GetEntityPositionY(SubPath) + 16.0f - LayerShift.y);
-			Quad.m_aPoints[4].x = f2fx(pEntities->GetEntityPositionX(SubPath) - LayerShift.x);
-			Quad.m_aPoints[4].y = f2fx(pEntities->GetEntityPositionY(SubPath) - LayerShift.y);
+			Quad.m_aPoints[1].x = f2fx(Pivot.x + Pos.x - 16.0f - LayerShift.x);
+			Quad.m_aPoints[1].y = f2fx(Pivot.y + Pos.y - 16.0f - LayerShift.y);
+			Quad.m_aPoints[0].x = f2fx(Pivot.x + Pos.x + 16.0f - LayerShift.x);
+			Quad.m_aPoints[0].y = f2fx(Pivot.y + Pos.y - 16.0f - LayerShift.y);
+			Quad.m_aPoints[3].x = f2fx(Pivot.x + Pos.x - 16.0f - LayerShift.x);
+			Quad.m_aPoints[3].y = f2fx(Pivot.y + Pos.y + 16.0f - LayerShift.y);
+			Quad.m_aPoints[2].x = f2fx(Pivot.x + Pos.x + 16.0f - LayerShift.x);
+			Quad.m_aPoints[2].y = f2fx(Pivot.y + Pos.y + 16.0f - LayerShift.y);
+			Quad.m_aPoints[4].x = f2fx(Pivot.x - LayerShift.x);
+			Quad.m_aPoints[4].y = f2fx(Pivot.y - LayerShift.y);
 
 			for(int j = 0; j < 4; j++)
 			{
@@ -3179,8 +3220,29 @@ void CAssetsManager::SaveMapPtumEntities(ddnet::CDataFileWriter *pArchiveFile, i
 				Quad.m_aColors[j + 1 - 2 * (j % 2)].a = 255.0f;
 			}
 
-			Quad.m_PosEnv = -1;
-			Quad.m_PosEnvOffset = 0;
+			int AnimationId = -1;
+
+			const CAsset_SkeletonAnimation *pAnimation = GetAsset<CAsset_SkeletonAnimation>(AnimationPath);
+			if(pAnimation)
+			{
+				for(unsigned int i = 0; i < pAnimations->size(); i++)
+				{
+					if(pAnimations->at(i) == AnimationPath)
+					{
+						AnimationId = static_cast<int>(i);
+						break;
+					}
+				}
+
+				if(AnimationId == -1)
+				{
+					AnimationId = pAnimations->size();
+					pAnimations->push_back(AnimationPath);
+				}
+			}
+
+			Quad.m_PosEnv = AnimationId;
+			Quad.m_PosEnvOffset = AnimationOffset;
 			Quad.m_ColorEnv = -1;
 			Quad.m_ColorEnvOffset = 0;
 		}

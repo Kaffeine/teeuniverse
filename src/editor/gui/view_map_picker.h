@@ -24,7 +24,7 @@
 class CCursorTool_MapPicker : public CViewMap::CCursorTool
 {
 protected:
-	CSubPath Pick(vec2 CursorPos);
+	CSubPath Pick(vec2 CursorPos, bool *pPivot = nullptr);
 	
 	void RenderPivots();
 	template<typename ASSET> void RenderPivots_Objects_Impl();

@@ -122,6 +122,43 @@ void CCursorTool_MapTransform::OnViewButtonClick_Objects_Impl(int Button)
 	}
 }
 
+void CCursorTool_MapTransform::OnViewButtonClick_Entities_Impl(int Button)
+{
+	const CAsset_MapEntities *pEntities = AssetsManager()->GetAsset<CAsset_MapEntities>(AssetsEditor()->GetEditedAssetPath());
+	if(!pEntities)
+		return;
+
+	vec2 CursorPos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
+	bool FoundPivot = false;
+	CSubPath EntityFound = Pick(CursorPos, &FoundPivot);
+
+	if(EntityFound.IsNull())
+	{
+		AssetsEditor()->SetEditedAsset(AssetsEditor()->GetEditedAssetPath(), CSubPath::Null());
+		return;
+	}
+
+	m_Token = AssetsManager()->GenerateToken();
+	if(FoundPivot)
+	{
+		m_DragType = DRAGTYPE_TRANSLATION;
+		vec2 RefPointMapPos = pEntities->GetEntityPivot(EntityFound);
+		vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos);
+		m_ClickDiff = CursorMapPos - RefPointMapPos;
+	}
+	else
+	{
+		m_DragType = DRAGTYPE_GIZMO;
+		vec2 RefPointMapPos = pEntities->GetEntityPosition(EntityFound);
+		vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos);
+		m_ClickDiff = CursorMapPos - RefPointMapPos;
+	}
+
+	AssetsEditor()->SetEditedAsset(
+		AssetsEditor()->GetEditedAssetPath(),
+		EntityFound);
+}
+
 void CCursorTool_MapTransform::OnViewButtonClick(int Button)
 {
 	if(!ViewMap()->GetViewRect().IsInside(Context()->GetMousePos()))
@@ -218,33 +255,7 @@ void CCursorTool_MapTransform::OnViewButtonClick(int Button)
 	else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapLayerObjects::TypeId)
 		OnViewButtonClick_Objects_Impl<CAsset_MapLayerObjects>(Button);
 	else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId)
-	{
-		const CAsset_MapEntities* pEntities = AssetsManager()->GetAsset<CAsset_MapEntities>(AssetsEditor()->GetEditedAssetPath());
-		if(!pEntities)
-			return;
-		
-		vec2 CursorPos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
-		CSubPath EntityFound = Pick(CursorPos);
-		
-		if(!EntityFound.IsNull())
-		{
-			m_Token = AssetsManager()->GenerateToken();
-			m_DragType = DRAGTYPE_TRANSLATION;
-			
-			vec2 PivotMapPos = pEntities->GetEntityPosition(EntityFound);
-			vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(vec2(Context()->GetMousePos().x, Context()->GetMousePos().y));
-			m_ClickDiff = CursorMapPos - PivotMapPos;
-			
-			AssetsEditor()->SetEditedAsset(
-				AssetsEditor()->GetEditedAssetPath(),
-				EntityFound
-			);
-		}
-		else
-			AssetsEditor()->SetEditedAsset(AssetsEditor()->GetEditedAssetPath(), CSubPath::Null());
-		
-		return;
-	}
+		OnViewButtonClick_Entities_Impl(Button);
 	else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapGroup::TypeId)
 	{
 		const CAsset_MapGroup* pMapGroup = AssetsManager()->GetAsset<CAsset_MapGroup>(AssetsEditor()->GetEditedAssetPath());
@@ -487,6 +498,13 @@ void CCursorTool_MapTransform::OnViewMouseMove()
 			vec2 NewPosition = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos) - m_ClickDiff;
 			ApplyGridAlignment(&NewPosition, s_ObjectPosOffset);
 		
+			AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), SelectedEntity, CAsset_MapEntities::ENTITY_PIVOT, NewPosition, m_Token);
+			m_Transformed = true;
+		}
+		else if(m_DragType == DRAGTYPE_GIZMO)
+		{
+			vec2 NewPosition = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos) - m_ClickDiff;
+			ApplyGridAlignment(&NewPosition);
 			AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), SelectedEntity, CAsset_MapEntities::ENTITY_POSITION, NewPosition, m_Token);
 			m_Transformed = true;
 		}

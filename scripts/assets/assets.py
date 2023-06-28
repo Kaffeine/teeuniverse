@@ -2001,6 +2001,12 @@ assetsList.append(mapZoneTiles)
 mapEntities_entity = Class("Entity")
 mapEntities_entity.addMember("0.2.0", "TypePath", TypeAssetPath())
 mapEntities_entity.addMember("0.2.0", "Position", TypeVec2(), "0.0f")
+mapEntities_entity.addMember("0.3.3", "Pivot", TypeVec2(), "0.0f")
+mapEntities_entity.addMember("0.3.3", "AnimationPath", TypeAssetPath())
+mapEntities_entity.addMember("0.3.3", "AnimationOffset", TypeInt64(), "0")
+mapEntities_entity.addPublicFunc([
+	"void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;",
+])
 
 mapEntities = ClassAsset("MapEntities", len(assetsList))
 mapEntities.setInheritance(mainAsset)
@@ -2008,6 +2014,9 @@ mapEntities.addClass(mapEntities_entity)
 mapEntities.addMember("0.2.0", "ParentPath", TypeAssetPath())
 mapEntities.addMember("0.2.0", "Entity", TypeArray(mapEntities_entity))
 mapEntities.addMember("0.2.0", "Visibility", TypeBool(), "true")
+mapEntities.addPublicFunc([
+	"void GetEntityTransform(const CSubPath& SubPath, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;",
+])
 
 assetsList.append(mapEntities)
 
