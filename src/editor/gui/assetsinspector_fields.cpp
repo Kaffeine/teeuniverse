@@ -111,71 +111,72 @@ void CAssetsInspector::AddField_AssetProperties(gui::CVScrollLayout* pTab)
 
 class CMemberTextEdit : public gui::CAbstractTextEdit
 {
+public:
+	CMemberTextEdit(CGuiEditor *pAssetsEditor, int Member);
+	void Update(bool ParentEnabled) override;
+
 protected:
+	void SaveFromTextBuffer() override;
+	void CopyToTextBuffer() override;
+
 	CGuiEditor* m_pAssetsEditor;
 	int m_Member;
-	
-	void SaveFromTextBuffer() override
-	{
-		int Token = AssetsManager()->GenerateToken();
-		for(unsigned int i = 0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
-		{
-			AssetsManager()->SetAssetValue<const char*>(
-				m_pAssetsEditor->GetEditedAssetPath(),
-				m_pAssetsEditor->GetEditedSubPathes()[i],
-				m_Member,
-				GetText(),
-				Token
-			);
-		}
-	}
-	
-	void CopyToTextBuffer() override
-	{
-		const char* pName = AssetsManager()->GetAssetValue<const char*>(
-			m_pAssetsEditor->GetEditedAssetPath(),
-			m_pAssetsEditor->GetFirstEditedSubPath(),
-			m_Member,
-			nullptr
-		);
-		
-		if(pName)
-		{
-			if(m_Text != pName)
-				SetText(pName);
-		}
-		else
-			SetText("");
-	}
-	
-public:
-	CMemberTextEdit(CGuiEditor* pAssetsEditor, int Member) :
-		gui::CAbstractTextEdit(pAssetsEditor),
-		m_pAssetsEditor(pAssetsEditor),
-		m_Member(Member)
-	{ }
-	
-	void Update(bool ParentEnabled) override
-	{
-		if(IsEnabled() && ParentEnabled)
-		{
-			if(!AssetsManager()->IsValidPackage(m_pAssetsEditor->GetEditedPackageId()) || AssetsManager()->IsReadOnlyPackage(m_pAssetsEditor->GetEditedPackageId()))
-				Editable(false);
-			else
-				Editable(true);
-		}
-		
-		gui::CAbstractTextEdit::Update(ParentEnabled);
-	}
 };
+
+CMemberTextEdit::CMemberTextEdit(CGuiEditor *pAssetsEditor, int Member) :
+	gui::CAbstractTextEdit(pAssetsEditor),
+	m_pAssetsEditor(pAssetsEditor),
+	m_Member(Member)
+{
+}
+
+void CMemberTextEdit::Update(bool ParentEnabled)
+{
+	if(IsEnabled() && ParentEnabled)
+	{
+		if(!AssetsManager()->IsValidPackage(m_pAssetsEditor->GetEditedPackageId()) || AssetsManager()->IsReadOnlyPackage(m_pAssetsEditor->GetEditedPackageId()))
+			Editable(false);
+		else
+			Editable(true);
+	}
+
+	gui::CAbstractTextEdit::Update(ParentEnabled);
+}
+
+void CMemberTextEdit::SaveFromTextBuffer()
+{
+	int Token = AssetsManager()->GenerateToken();
+	for(unsigned int i = 0; i < m_pAssetsEditor->GetEditedSubPathes().size(); i++)
+	{
+		AssetsManager()->SetAssetValue<const char *>(
+			m_pAssetsEditor->GetEditedAssetPath(),
+			m_pAssetsEditor->GetEditedSubPathes()[i],
+			m_Member,
+			GetText(),
+			Token);
+	}
+}
+
+void CMemberTextEdit::CopyToTextBuffer()
+{
+	const char *pName = AssetsManager()->GetAssetValue<const char *>(
+		m_pAssetsEditor->GetEditedAssetPath(),
+		m_pAssetsEditor->GetFirstEditedSubPath(),
+		m_Member,
+		nullptr);
+
+	if(pName)
+	{
+		if(m_Text != pName)
+			SetText(pName);
+	}
+	else
+		SetText("");
+}
 
 void CAssetsInspector::AddField_Text(gui::CVListLayout* pList, int Member, const CLocalizableString& Text)
 {
-	CMemberTextEdit* pWidget = new CMemberTextEdit(
-		m_pAssetsEditor,
-		Member
-	);
-	
+	gui::CWidget *pWidget = new CMemberTextEdit(m_pAssetsEditor, Member);
 	AddField(pList, pWidget, Text);
 }
 
@@ -818,15 +819,18 @@ void CAssetsInspector::AddField_Color(gui::CVListLayout* pList, int Member, cons
 class CMemberAssetEdit : public gui::CButton
 {
 public:
-	enum
+	enum class EMode
 	{
-		MODE_TYPEID=0,
-		MODE_IMAGE_TILE,
-		MODE_TILELAYER_STYLE,
-		MODE_MAPGROUP_PARENT,
-		MODE_ANIMATION,
+		TypeId=0,
+		ImageTile,
+		TilelayerStyle,
+		MapgroupParent,
+		Animation,
 	};
-	
+
+	CMemberAssetEdit(CGuiEditor* pAssetsEditor, int Member, int AssetType, EMode Mode);
+	void Update(bool ParentEnabled) override;
+
 public:
 	class CPopup : public gui::CPopup
 	{
@@ -844,7 +848,7 @@ public:
 			}
 			
 		public:
-			CItem(CPopup* pPopup, CAssetPath AssetPath, int Mode) :
+			CItem(CPopup* pPopup, CAssetPath AssetPath, EMode Mode) :
 				gui::CButton(pPopup->Context(), ""),
 				m_AssetPath(AssetPath),
 				m_pPopup(pPopup)
@@ -860,7 +864,7 @@ public:
 					SetText(m_pPopup->m_pAssetsEditor->GetItemName(m_AssetPath, CSubPath::Null()));
 				}
 				
-				if(Mode == MODE_IMAGE_TILE)
+				if(Mode == EMode::ImageTile)
 				{
 					const CAsset_Image* pImage = AssetsManager()->GetAsset<CAsset_Image>(m_AssetPath);
 					if(!pImage || !pImage->GetTilingEnabled())
@@ -886,7 +890,7 @@ public:
 		CGuiEditor* m_pAssetsEditor;
 		int m_Member;
 		int m_AssetType;
-		int m_Mode;
+		EMode m_Mode;
 	
 	protected:
 		void ShowPackage(gui::CVScrollLayout* pLayout, int PackageId)
@@ -900,14 +904,14 @@ public:
 			pLayout->Add(pExpand);
 			pExpand->SetTitle(new gui::CLabel(Context(), AssetsManager()->GetPackageName(PackageId), m_pAssetsEditor->m_Path_Sprite_IconFolder));
 			
-			if(m_Mode == MODE_TILELAYER_STYLE)
+			if(m_Mode == EMode::TilelayerStyle)
 			{
 				for(int i=0; i<AssetsManager()->GetNumAssets<CAsset_Image>(PackageId); i++)
-					pExpand->Add(new CItem(this, CAssetPath(CAsset_Image::TypeId, PackageId, i), MODE_IMAGE_TILE));
+					pExpand->Add(new CItem(this, CAssetPath(CAsset_Image::TypeId, PackageId, i), EMode::ImageTile));
 				for(int i=0; i<AssetsManager()->GetNumAssets<CAsset_TilingMaterial>(PackageId); i++)
 					pExpand->Add(new CItem(this, CAssetPath(CAsset_TilingMaterial::TypeId, PackageId, i), m_Mode));
 			}
-			else if(m_Mode == MODE_ANIMATION)
+			else if(m_Mode == EMode::Animation)
 			{
 				for(int i=0; i<AssetsManager()->GetNumAssets<CAsset_SkeletonAnimation>(PackageId); i++)
 				{
@@ -929,7 +933,7 @@ public:
 		}
 	
 	public:
-		CPopup(CGuiEditor* pAssetsEditor, int Member, int AssetType, gui::CRect ParentRect, int Mode) :
+		CPopup(CGuiEditor* pAssetsEditor, int Member, int AssetType, gui::CRect ParentRect, EMode Mode) :
 			gui::CPopup(pAssetsEditor, ParentRect, 250, 400, gui::CPopup::ALIGNMENT_SIDE),
 			m_pAssetsEditor(pAssetsEditor),
 			m_Member(Member),
@@ -941,7 +945,7 @@ public:
 			Add(pLayout);
 			
 			SetBoxStyle(m_pAssetsEditor->m_Path_Box_Dialog);
-			pLayout->Add(new CItem(this, CAssetPath::Null(), false), false);
+			pLayout->Add(new CItem(this, CAssetPath::Null(), m_Mode), false);
 			
 			ShowPackage(pLayout, m_pAssetsEditor->GetEditedPackageId());
 			for(int p=0; p<AssetsManager()->GetNumPackages(); p++)
@@ -966,7 +970,7 @@ public:
 		void SetValue(CAssetPath Value)
 		{
 			int Token = AssetsManager()->GenerateToken();
-			if(m_Mode == MODE_MAPGROUP_PARENT)
+			if(m_Mode == EMode::MapgroupParent)
 			{
 				bool Changes = false;
 				for(unsigned int i=0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
@@ -1037,56 +1041,53 @@ protected:
 	CGuiEditor* m_pAssetsEditor;
 	int m_Member;
 	int m_AssetType;
-	int m_Mode;
+	EMode m_Mode;
 	
 protected:
 	void MouseClickAction() override
 	{
 		Context()->DisplayPopup(new CPopup(m_pAssetsEditor, m_Member, m_AssetType, m_DrawRect, m_Mode));
 	}
-
-public:
-	CMemberAssetEdit(CGuiEditor* pAssetsEditor, int Member, int AssetType, int Mode) :
-		gui::CButton(pAssetsEditor, "", CAssetPath::Null()),
-		m_pAssetsEditor(pAssetsEditor),
-		m_Member(Member),
-		m_AssetType(AssetType),
-		m_Mode(Mode)
-	{
-		
-	}
-	
-	void Update(bool ParentEnabled) override
-	{
-		if(IsEnabled() && ParentEnabled)
-		{
-			if(!AssetsManager()->IsValidPackage(m_pAssetsEditor->GetEditedPackageId()) || AssetsManager()->IsReadOnlyPackage(m_pAssetsEditor->GetEditedPackageId()))
-				Editable(false);
-			else
-				Editable(true);
-				
-			CAssetPath Value = m_pAssetsEditor->AssetsManager()->GetAssetValue<CAssetPath>(
-				m_pAssetsEditor->GetEditedAssetPath(),
-				m_pAssetsEditor->GetFirstEditedSubPath(),
-				m_Member,
-				CAssetPath::Null()
-			);
-			
-			if(Value.IsNull())
-			{
-				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconNone);
-				SetText(_LSTRING("None"));
-			}
-			else
-			{
-				SetIcon(m_pAssetsEditor->GetItemIcon(Value, CSubPath::Null()));
-				SetText(m_pAssetsEditor->GetItemName(Value, CSubPath::Null()));
-			}
-		}
-		
-		gui::CButton::Update(ParentEnabled);
-	}
 };
+
+CMemberAssetEdit::CMemberAssetEdit(CGuiEditor *pAssetsEditor, int Member, int AssetType, EMode Mode) :
+	gui::CButton(pAssetsEditor, "", CAssetPath::Null()),
+	m_pAssetsEditor(pAssetsEditor),
+	m_Member(Member),
+	m_AssetType(AssetType),
+	m_Mode(Mode)
+{
+}
+
+void CMemberAssetEdit::Update(bool ParentEnabled)
+{
+	if(IsEnabled() && ParentEnabled)
+	{
+		if(!AssetsManager()->IsValidPackage(m_pAssetsEditor->GetEditedPackageId()) || AssetsManager()->IsReadOnlyPackage(m_pAssetsEditor->GetEditedPackageId()))
+			Editable(false);
+		else
+			Editable(true);
+
+		CAssetPath Value = m_pAssetsEditor->AssetsManager()->GetAssetValue<CAssetPath>(
+			m_pAssetsEditor->GetEditedAssetPath(),
+			m_pAssetsEditor->GetFirstEditedSubPath(),
+			m_Member,
+			CAssetPath::Null());
+
+		if(Value.IsNull())
+		{
+			SetIcon(m_pAssetsEditor->m_Path_Sprite_IconNone);
+			SetText(_LSTRING("None"));
+		}
+		else
+		{
+			SetIcon(m_pAssetsEditor->GetItemIcon(Value, CSubPath::Null()));
+			SetText(m_pAssetsEditor->GetItemName(Value, CSubPath::Null()));
+		}
+	}
+
+	gui::CButton::Update(ParentEnabled);
+}
 
 void CAssetsInspector::AddField_Asset(gui::CVListLayout* pList, int Member, int AssetType, const CLocalizableString& Text)
 {
@@ -1094,7 +1095,7 @@ void CAssetsInspector::AddField_Asset(gui::CVListLayout* pList, int Member, int 
 		m_pAssetsEditor,
 		Member,
 		AssetType,
-		CMemberAssetEdit::MODE_TYPEID
+		CMemberAssetEdit::EMode::TypeId
 	);
 	
 	AddField(pList, pWidget, Text);
@@ -1106,7 +1107,7 @@ void CAssetsInspector::AddField_TileLayerStyle(gui::CVListLayout* pList, int Mem
 		m_pAssetsEditor,
 		Member,
 		CAsset_Image::TypeId,
-		CMemberAssetEdit::MODE_TILELAYER_STYLE
+		CMemberAssetEdit::EMode::TilelayerStyle
 	);
 	
 	AddField(pList, pWidget, Text);
@@ -1118,7 +1119,7 @@ void CAssetsInspector::AddField_ImageTiles(gui::CVListLayout* pList, int Member,
 		m_pAssetsEditor,
 		Member,
 		CAsset_Image::TypeId,
-		CMemberAssetEdit::MODE_IMAGE_TILE
+		CMemberAssetEdit::EMode::ImageTile
 	);
 	
 	AddField(pList, pWidget, Text);
@@ -1130,7 +1131,7 @@ void CAssetsInspector::AddField_MapGroups(gui::CVListLayout* pList, int Member, 
 		m_pAssetsEditor,
 		Member,
 		CAsset_MapGroup::TypeId,
-		CMemberAssetEdit::MODE_MAPGROUP_PARENT
+		CMemberAssetEdit::EMode::MapgroupParent
 	);
 	
 	AddField(pList, pWidget, Text);
@@ -1142,7 +1143,7 @@ void CAssetsInspector::AddField_Animations(gui::CVListLayout* pList, int Member,
 		m_pAssetsEditor,
 		Member,
 		CAsset_MapGroup::TypeId,
-		CMemberAssetEdit::MODE_ANIMATION
+		CMemberAssetEdit::EMode::Animation
 	);
 	
 	AddField(pList, pWidget, Text);
