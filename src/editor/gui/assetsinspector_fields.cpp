@@ -953,8 +953,6 @@ public:
 				if(p != m_pAssetsEditor->GetEditedPackageId() && str_comp(AssetsManager()->GetPackageName(p), "gui_editor") != 0)
 					ShowPackage(pLayout, p);
 			}
-			
-			#undef TU_MACRO_ASSETTYPE
 		}
 		
 		CAssetPath GetValue()
