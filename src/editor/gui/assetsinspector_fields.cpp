@@ -187,9 +187,19 @@ protected:
 	CGuiEditor* m_pAssetsEditor;
 	int m_Member;
 	bool m_NoEdit;
+	bool m_Unsigned = false;
 	
 	int GetValue() const override
 	{
+		if(m_Unsigned)
+		{
+			return m_pAssetsEditor->AssetsManager()->GetAssetValue<uint32_t>(
+				m_pAssetsEditor->GetEditedAssetPath(),
+				m_pAssetsEditor->GetFirstEditedSubPath(),
+				m_Member,
+				0u
+			);
+		}
 		return m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
 			m_pAssetsEditor->GetEditedAssetPath(),
 			m_pAssetsEditor->GetFirstEditedSubPath(),
@@ -203,6 +213,18 @@ protected:
 		int Token = AssetsManager()->GenerateToken();
 		for(unsigned int i = 0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
 		{
+			if(m_Unsigned)
+			{
+				uint32_t V = Value;
+				m_pAssetsEditor->AssetsManager()->SetAssetValue<uint32_t>(
+					m_pAssetsEditor->GetEditedAssetPath(),
+					m_pAssetsEditor->GetEditedSubPathes()[i],
+					m_Member,
+					V,
+					Token
+				);
+				continue;
+			}
 			m_pAssetsEditor->AssetsManager()->SetAssetValue<int>(
 				m_pAssetsEditor->GetEditedAssetPath(),
 				m_pAssetsEditor->GetEditedSubPathes()[i],
@@ -222,6 +244,11 @@ public:
 	{
 		if(m_NoEdit)
 			Editable(false);
+	}
+
+	void SetUnsigned(bool Unsigned)
+	{
+		m_Unsigned = Unsigned;
 	}
 	
 	void Update(bool ParentEnabled) override
@@ -275,6 +302,17 @@ void CAssetsInspector::AddField_Integer(gui::CVListLayout* pList, int Member, co
 		Member
 	);
 	
+	AddField(pList, pWidget, Text);
+}
+
+void CAssetsInspector::AddField_UInteger(gui::CVListLayout *pList, int Member, const CLocalizableString &Text)
+{
+	CMemberIntegerEdit* pWidget = new CMemberIntegerEdit(
+		m_pAssetsEditor,
+		Member
+	);
+
+	pWidget->SetUnsigned(true);
 	AddField(pList, pWidget, Text);
 }
 
