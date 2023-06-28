@@ -1362,7 +1362,8 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapZoneObjects_Asset()
 	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_POSITION_X, CAsset_MapZoneObjects::OBJECT_POSITION_Y, _LSTRING("Position"));	
 	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_SIZE_X, CAsset_MapZoneObjects::OBJECT_SIZE_Y, _LSTRING("Size"));	
 	AddField_Angle(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANGLE, _LSTRING("Angle"));
-	AddField_Integer(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, _LSTRING("Zone Index"));
+	AddField_ZoneIndex(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, _LSTRING("Zone Index"));
+
 	AddField_Animations(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONPATH, _LSTRING("Animation"));
 	AddField_Duration(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
 	

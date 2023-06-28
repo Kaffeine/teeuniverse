@@ -1147,6 +1147,181 @@ void CAssetsInspector::AddField_Animations(gui::CVListLayout* pList, int Member,
 	AddField(pList, pWidget, Text);
 }
 
+class CZoneTypeEdit : public gui::CButton
+{
+public:
+	CZoneTypeEdit(CGuiEditor* pAssetsEditor, int Member);
+	void Update(bool ParentEnabled) override;
+
+public:
+	class CPopup : public gui::CPopup
+	{
+	public:
+		class CItem : public gui::CButton
+		{
+		public:
+			CItem(CPopup* pPopup, CAssetPath ZoneTypePath, CSubPath ZoneTypeIndex);
+			void Update(bool ParentEnabled) override;
+
+		protected:
+			void MouseClickAction() override
+			{
+				m_pPopup->SetZoneTypeIndex(m_ZoneTypeIndex.GetId());
+			}
+
+			CAssetPath m_AssetPath;
+			CPopup* m_pPopup;
+			CSubPath m_ZoneTypeIndex;
+		};
+
+	protected:
+		CGuiEditor* m_pAssetsEditor;
+		int m_Member;
+		CAssetPath m_ZoneTypeAssetPath;
+
+	public:
+		CPopup(CGuiEditor* pAssetsEditor, int Member, CAssetPath ZoneTypeAssetPath, gui::CRect ParentRect) :
+			gui::CPopup(pAssetsEditor, ParentRect, 250, 400, gui::CPopup::ALIGNMENT_SIDE),
+			m_pAssetsEditor(pAssetsEditor),
+			m_Member(Member),
+			m_ZoneTypeAssetPath(ZoneTypeAssetPath)
+		{
+			gui::CVScrollLayout *pLayout = new gui::CVScrollLayout(Context());
+			Add(pLayout);
+
+			SetBoxStyle(m_pAssetsEditor->m_Path_Box_Dialog);
+
+			const CAsset_ZoneType *pZoneType = AssetsManager()->GetAsset<CAsset_ZoneType>(m_ZoneTypeAssetPath);
+
+			CAsset_ZoneType::CIteratorIndex Iter;
+			for(Iter = pZoneType->BeginIndex(); Iter != pZoneType->EndIndex(); ++Iter)
+			{
+				pLayout->Add(new CItem(this, m_ZoneTypeAssetPath, *Iter), false);
+			}
+		}
+
+		int GetZoneTypeIndex()
+		{
+			return AssetsManager()->GetAssetValue<int>(
+				m_pAssetsEditor->GetEditedAssetPath(),
+				m_pAssetsEditor->GetFirstEditedSubPath(),
+				m_Member,
+				0);
+		}
+
+		void SetZoneTypeIndex(int Index)
+		{
+			int Token = AssetsManager()->GenerateToken();
+			for(unsigned int i = 0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
+			{
+				AssetsManager()->SetAssetValue<int>(
+					m_pAssetsEditor->GetEditedAssetPath(),
+					m_pAssetsEditor->GetEditedSubPathes()[i],
+					m_Member,
+					Index,
+					Token);
+			}
+		}
+
+		int GetInputToBlock() override { return CGui::BLOCKEDINPUT_ALL; }
+	};
+
+protected:
+	CGuiEditor* m_pAssetsEditor;
+	int m_Member;
+	CAssetPath m_ZoneTypeAssetPath;
+
+protected:
+	void MouseClickAction() override
+	{
+		Context()->DisplayPopup(new CPopup(m_pAssetsEditor, m_Member, m_ZoneTypeAssetPath, m_DrawRect));
+	}
+};
+
+CZoneTypeEdit::CZoneTypeEdit(CGuiEditor *pAssetsEditor, int Member) :
+	gui::CButton(pAssetsEditor, "", CAssetPath::Null()),
+	m_pAssetsEditor(pAssetsEditor),
+	m_Member(Member)
+{
+}
+
+void CZoneTypeEdit::Update(bool ParentEnabled)
+{
+	if(IsEnabled() && ParentEnabled)
+	{
+		if(!AssetsManager()->IsValidPackage(m_pAssetsEditor->GetEditedPackageId()) || AssetsManager()->IsReadOnlyPackage(m_pAssetsEditor->GetEditedPackageId()))
+			Editable(false);
+		else
+			Editable(true);
+
+		int Index = m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
+			m_pAssetsEditor->GetEditedAssetPath(),
+			m_pAssetsEditor->GetFirstEditedSubPath(),
+			m_Member,
+			0);
+
+		m_ZoneTypeAssetPath = AssetsManager()->GetAssetValue<CAssetPath>(
+			m_pAssetsEditor->GetEditedAssetPath(),
+			m_pAssetsEditor->GetFirstEditedSubPath(),
+			CAsset_MapZoneTiles::ZONETYPEPATH,
+			CAssetPath::Null());
+
+		const CAsset_ZoneType *pZoneType = AssetsManager()->GetAsset<CAsset_ZoneType>(m_ZoneTypeAssetPath);
+		const CSubPath SubPath = CAsset_ZoneType::SubPath_Index(Index);
+		if(pZoneType && pZoneType->IsValidIndex(SubPath) && pZoneType->GetIndexUsed(SubPath))
+		{
+			const char *pTitle = pZoneType->GetIndexTitle(SubPath);
+			SetText(pTitle);
+		}
+		else
+		{
+			SetText(_LSTRING("None"));
+		}
+	}
+
+	gui::CButton::Update(ParentEnabled);
+}
+
+CZoneTypeEdit::CPopup::CItem::CItem(CPopup *pPopup, CAssetPath ZoneTypePath, CSubPath ZoneTypeIndex) :
+	gui::CButton(pPopup->Context(), ""),
+	m_AssetPath(ZoneTypePath),
+	m_pPopup(pPopup),
+	m_ZoneTypeIndex(ZoneTypeIndex)
+{
+	if(m_AssetPath.IsNull())
+	{
+		SetText(_LSTRING("None"));
+	}
+	else
+	{
+		const CAsset_ZoneType *pZoneType = AssetsManager()->GetAsset<CAsset_ZoneType>(m_AssetPath);
+		if(pZoneType && pZoneType->IsValidIndex(m_ZoneTypeIndex))
+		{
+			const char *pTitle = pZoneType->GetIndexTitle(m_ZoneTypeIndex);
+			SetText(pTitle);
+		}
+	}
+}
+
+void CZoneTypeEdit::CPopup::CItem::Update(bool ParentEnabled)
+{
+	if(ParentEnabled)
+	{
+		if(m_pPopup->GetZoneTypeIndex() == m_ZoneTypeIndex.GetId())
+			SetButtonStyle(m_pPopup->m_pAssetsEditor->m_Path_Button_ListItemHL);
+		else
+			SetButtonStyle(m_pPopup->m_pAssetsEditor->m_Path_Button_ListItem);
+	}
+
+	gui::CButton::Update(ParentEnabled);
+}
+
+void CAssetsInspector::AddField_ZoneIndex(gui::CVListLayout *pList, int Member, const CLocalizableString &Text)
+{
+	CZoneTypeEdit *pWidget = new CZoneTypeEdit(m_pAssetsEditor, Member);
+	AddField(pList, pWidget, Text);
+}
+
 /* BONE EDIT **********************************************************/
 
 class CMemberBoneEdit : public gui::CButton

@@ -83,6 +83,7 @@ private:
 	void AddField_TileLayerStyle(gui::CVListLayout* pList, int Member, const CLocalizableString& Text);
 	void AddField_MapGroups(gui::CVListLayout* pList, int Member, const CLocalizableString& Text);
 	void AddField_Animations(gui::CVListLayout* pList, int Member, const CLocalizableString& Text);
+	void AddField_ZoneIndex(gui::CVListLayout* pList, int Member, const CLocalizableString& Text);
 	void AddField_AssetProperties(gui::CVScrollLayout* pList);
 	void AddField_Bone(gui::CVListLayout* pList, int MemberSkeleton, int MemberBone, const CLocalizableString& Text);
 	void AddField_Layer(gui::CVListLayout* pList, int MemberSkeleton, int MemberLayer, const CLocalizableString& Text);
