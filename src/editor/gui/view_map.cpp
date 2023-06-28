@@ -597,124 +597,134 @@ void CViewMap::RenderView()
 			}
 		}
 	}
-	
-	//Draw grid
-	if(m_ShowGrid)
-	{
-		float Log = log((1.0/CameraZoom)*32.0)/log(2.0);
-		float Int = floor(Log);
-		float Frac = Log - Int;
-		float Alpha = 1.f-Frac;
-		float Step = pow(2.0, Int);
 
-		ScopedGroupSetter GroupSetter(this);
-		MapRenderer()->RenderGrid(Step, vec4(1.0f, 1.0f, 1.0f, 0.5f*(Alpha)));
-		MapRenderer()->RenderGrid(Step*2.0f, vec4(1.0f, 1.0f, 1.0f, 0.5f*(1.0f-Alpha)));
-	}
-	
-	//Draw entities
+	RenderGrid();
+	RenderEntities();
+	RenderBoxes();
+}
+
+void CViewMap::RenderGrid()
+{
+	if(!m_ShowGrid)
+		return;
+
+	float Log = log((1.0 / GetCameraZoom()) * 32.0) / log(2.0);
+	float Int = floor(Log);
+	float Frac = Log - Int;
+	float Alpha = 1.f - Frac;
+	float Step = pow(2.0, Int);
+
+	ScopedGroupSetter GroupSetter(this);
+	MapRenderer()->RenderGrid(Step, vec4(1.0f, 1.0f, 1.0f, 0.5f * Alpha));
+	MapRenderer()->RenderGrid(Step * 2.0f, vec4(1.0f, 1.0f, 1.0f, 0.5f * (1.0f - Alpha)));
+}
+
+void CViewMap::RenderEntities()
+{
+	const CAsset_Map* pMap = AssetsManager()->GetAsset<CAsset_Map>(GetMapPath());
+	if(!pMap)
+		return;
+
+	CAsset_Map::CIteratorEntityLayer IterEntityLayer;
+	for(IterEntityLayer = pMap->BeginEntityLayer(); IterEntityLayer != pMap->EndEntityLayer(); ++IterEntityLayer)
 	{
-		const CAsset_Map* pMap = AssetsManager()->GetAsset<CAsset_Map>(GetMapPath());
-		if(pMap)
+		CAssetPath EntitiesPath = pMap->GetEntityLayer(*IterEntityLayer);
+
+		const CAsset_MapEntities* pEntities = AssetsManager()->GetAsset<CAsset_MapEntities>(EntitiesPath);
+		if(!pEntities)
+			continue;
+
+		if(!pEntities->GetVisibility())
+			continue;
+
+		vec4 Color = 1.0f;
+		if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId && EntitiesPath != AssetsEditor()->GetEditedAssetPath())
 		{
-			CAsset_Map::CIteratorEntityLayer IterEntityLayer;
-			for(IterEntityLayer = pMap->BeginEntityLayer(); IterEntityLayer != pMap->EndEntityLayer(); ++IterEntityLayer)
+			if(m_ShowEntities > 0)
+				Color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
+			else
+				continue;
+		}
+
+		if(m_ShowEntities == 1 || m_ShowEntities == 2)
+		{
+			Graphics()->TextureClear();
+			Graphics()->QuadsBegin();
+			Graphics()->SetColor(vec4(1.0f, 1.0f, 1.0f, 0.75f), true);
+			CAsset_MapEntities::CIteratorEntity IterEntity;
+			for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
 			{
-				CAssetPath EntitiesPath = pMap->GetEntityLayer(*IterEntityLayer);
-				
-				const CAsset_MapEntities* pEntities = AssetsManager()->GetAsset<CAsset_MapEntities>(EntitiesPath);
-				if(!pEntities)
+				vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
+				CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
+
+				const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
+				if(!pEntityType)
 					continue;
-				
-				if(!pEntities->GetVisibility())
-					continue;
-								
-				vec4 Color = 1.0f;
-				if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId && EntitiesPath != AssetsEditor()->GetEditedAssetPath())
+
+				int i = 0;
+				while(i < 32)
 				{
-					if(m_ShowEntities > 0)
-						Color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
-					else
-						continue;
+					float Angle0 = 2.0f*Pi*static_cast<float>(i)/32.0f;
+					float Angle1 = 2.0f*Pi*static_cast<float>(i+1)/32.0f;
+					float Angle2 = 2.0f*Pi*static_cast<float>(i+2)/32.0f;
+
+					vec2 P0 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle0), std::sin(Angle0)) * pEntityType->GetCollisionRadius());
+					vec2 P1 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle1), std::sin(Angle1)) * pEntityType->GetCollisionRadius());
+					vec2 P2 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle2), std::sin(Angle2)) * pEntityType->GetCollisionRadius());
+
+					CGraphics::CFreeformItem Freeform(
+						P1.x, P1.y,
+						P2.x, P2.y,
+						P0.x, P0.y,
+						Pos.x, Pos.y
+					);
+					Graphics()->QuadsDrawFreeform(&Freeform, 1);
+
+					i += 2;
 				}
-				
-				if(m_ShowEntities == 1 || m_ShowEntities == 2)
+			}
+
+			Graphics()->QuadsEnd();
+		}
+
+		CAsset_MapEntities::CIteratorEntity IterEntity;
+		for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
+		{
+			vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
+			CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
+
+			const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
+			if(pEntityType)
+			{
+				if(m_ShowEntities >= 2)
 				{
-					Graphics()->TextureClear();
-					Graphics()->QuadsBegin();
-					Graphics()->SetColor(vec4(1.0f, 1.0f, 1.0f, 0.75f), true);
-					CAsset_MapEntities::CIteratorEntity IterEntity;
-					for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
-					{
-						vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
-						CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
-						
-						const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
-						if(!pEntityType)
-							continue;
-						
-						int i=0;
-						while(i<32)
-						{
-							float Angle0 = 2.0f*Pi*static_cast<float>(i)/32.0f;
-							float Angle1 = 2.0f*Pi*static_cast<float>(i+1)/32.0f;
-							float Angle2 = 2.0f*Pi*static_cast<float>(i+2)/32.0f;
-							
-							vec2 P0 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle0), std::sin(Angle0)) * pEntityType->GetCollisionRadius());
-							vec2 P1 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle1), std::sin(Angle1)) * pEntityType->GetCollisionRadius());
-							vec2 P2 = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity) + vec2(std::cos(Angle2), std::sin(Angle2)) * pEntityType->GetCollisionRadius());
-							
-							CGraphics::CFreeformItem Freeform(
-								P1.x, P1.y,
-								P2.x, P2.y,
-								P0.x, P0.y,
-								Pos.x, Pos.y
-							);
-							Graphics()->QuadsDrawFreeform(&Freeform, 1);
-							
-							i += 2;
-						}
-					}
-					
-					Graphics()->QuadsEnd();
+					AssetsRenderer()->DrawSprite(pEntityType->GetGizmoPath(), Pos, 1.0f, 0.0f, 0x0, Color);
 				}
-				
-				CAsset_MapEntities::CIteratorEntity IterEntity;
-				for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
+				else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId && EntitiesPath == AssetsEditor()->GetEditedAssetPath())
 				{
-					vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
-					CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
-					
-					const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
-					if(pEntityType)
-					{
-						if(m_ShowEntities >= 2)
-						{
-							AssetsRenderer()->DrawSprite(pEntityType->GetGizmoPath(), Pos, 1.0f, 0.0f, 0x0, Color);
-						}
-						else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId && EntitiesPath == AssetsEditor()->GetEditedAssetPath())
-						{
-							AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
-						}
-					}
-					else
-						AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
+					AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
 				}
+			}
+			else
+			{
+				AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
 			}
 		}
 	}
-	
-	//Draw boxes
+}
+
+void CViewMap::RenderBoxes()
+{
 	if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapLayerTiles::TypeId)
 	{
 		const CAsset_MapLayerTiles* pLayer = AssetsManager()->GetAsset<CAsset_MapLayerTiles>(AssetsEditor()->GetEditedAssetPath());
 		if(pLayer)
 		{
 			ScopedGroupSetter GroupSetter(this);
-			
+
 			vec2 MinCorner = MapRenderer()->TilePosToScreenPos(vec2(pLayer->GetPositionX(), pLayer->GetPositionY()));
 			vec2 MaxCorner = MapRenderer()->TilePosToScreenPos(vec2(pLayer->GetPositionX() + pLayer->GetTileWidth(), pLayer->GetPositionY() + pLayer->GetTileHeight()));
-			
+
 			gui::CRect Rect;
 			Rect.x = MinCorner.x;
 			Rect.y = MinCorner.y;
@@ -729,10 +739,10 @@ void CViewMap::RenderView()
 		if(pLayer)
 		{
 			ScopedGroupSetter GroupSetter(this);
-			
+
 			vec2 MinCorner = MapRenderer()->TilePosToScreenPos(vec2(pLayer->GetPositionX(), pLayer->GetPositionY()));
 			vec2 MaxCorner = MapRenderer()->TilePosToScreenPos(vec2(pLayer->GetPositionX() + pLayer->GetTileWidth(), pLayer->GetPositionY() + pLayer->GetTileHeight()));
-			
+
 			gui::CRect Rect;
 			Rect.x = MinCorner.x;
 			Rect.y = MinCorner.y;
@@ -748,7 +758,7 @@ void CViewMap::RenderView()
 		{
 			vec2 MinCorner = MapRenderer()->MapPosToScreenPos(pGroup->GetClipPosition());
 			vec2 MaxCorner = MapRenderer()->MapPosToScreenPos(pGroup->GetClipPosition() + pGroup->GetClipSize());
-			
+
 			gui::CRect Rect;
 			Rect.x = MinCorner.x;
 			Rect.y = MinCorner.y;

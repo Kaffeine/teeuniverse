@@ -53,6 +53,10 @@ public:
 	};
 
 protected:
+	void RenderGrid();
+	void RenderEntities();
+	void RenderBoxes();
+
 	bool m_GridAligned;
 	bool m_CameraDraged;
 	float m_ZoneOpacity;
