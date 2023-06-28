@@ -646,17 +646,17 @@ void CViewMap::RenderEntities()
 				continue;
 		}
 
+		const std::vector<CAsset_MapEntities::CEntity>& Entities = pEntities->GetEntityArray();
 		if(m_ShowEntities == 1 || m_ShowEntities == 2)
 		{
 			Graphics()->TextureClear();
 			Graphics()->QuadsBegin();
 			Graphics()->SetColor(vec4(1.0f, 1.0f, 1.0f, 0.75f), true);
-			CAsset_MapEntities::CIteratorEntity IterEntity;
-			for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
+			for(const CAsset_MapEntities::CEntity &Entity : Entities)
 			{
-				vec2 Position = pEntities->GetEntityPosition(*IterEntity);
+				vec2 Position = Entity.GetPosition();
 				vec2 ScreenPos = MapRenderer()->MapPosToScreenPos(Position);
-				CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
+				CAssetPath TypePath = Entity.GetTypePath();
 
 				const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
 				if(!pEntityType)
@@ -688,27 +688,27 @@ void CViewMap::RenderEntities()
 			Graphics()->QuadsEnd();
 		}
 
-		CAsset_MapEntities::CIteratorEntity IterEntity;
-		for(IterEntity = pEntities->BeginEntity(); IterEntity != pEntities->EndEntity(); ++IterEntity)
+		for(const CAsset_MapEntities::CEntity &Entity : Entities)
 		{
-			vec2 Pos = MapRenderer()->MapPosToScreenPos(pEntities->GetEntityPosition(*IterEntity));
-			CAssetPath TypePath = pEntities->GetEntityTypePath(*IterEntity);
+			vec2 Position = Entity.GetPosition();
+			vec2 ScreenPos = MapRenderer()->MapPosToScreenPos(Position);
+			CAssetPath TypePath = Entity.GetTypePath();
 
 			const CAsset_EntityType* pEntityType = AssetsManager()->GetAsset<CAsset_EntityType>(TypePath);
 			if(pEntityType)
 			{
 				if(m_ShowEntities >= 2)
 				{
-					AssetsRenderer()->DrawSprite(pEntityType->GetGizmoPath(), Pos, 1.0f, 0.0f, 0x0, Color);
+					AssetsRenderer()->DrawSprite(pEntityType->GetGizmoPath(), ScreenPos, 1.0f, 0.0f, 0x0, Color);
 				}
 				else if(AssetsEditor()->GetEditedAssetPath().GetType() == CAsset_MapEntities::TypeId && EntitiesPath == AssetsEditor()->GetEditedAssetPath())
 				{
-					AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
+					AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, ScreenPos, 1.0f, 0.0f, 0x0, Color);
 				}
 			}
 			else
 			{
-				AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, Pos, 1.0f, 0.0f, 0x0, Color);
+				AssetsRenderer()->DrawSprite(AssetsEditor()->m_Path_Sprite_GizmoPivot, ScreenPos, 1.0f, 0.0f, 0x0, Color);
 			}
 		}
 	}
