@@ -74,10 +74,15 @@ inline bool InsideTriangle(const vec2& t0, const vec2& t1, const vec2& t2, const
 //t0, t1 and t2 are position of quad vertices
 inline bool InsideQuad(const vec2& q0, const vec2& q1, const vec2& q2, const vec2& q3, const vec2& p)
 {
+#if 0
+	// SameSide() check is broken.
 	if(SameSide(q1, q2, p, q0))
 		return InsideTriangle(q0, q1, q2, p);
 	else
 		return InsideTriangle(q1, q2, q3, p);
+#else
+	return InsideTriangle(q0, q1, q2, p) || InsideTriangle(q1, q2, q3, p);
+#endif
 }
 
 //v0, v1 and v2 are values at triangle vertices
