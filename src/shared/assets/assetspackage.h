@@ -108,30 +108,30 @@ public:
 	void AssetPathOperation(const CAssetPath::COperation& Operation);
 	void SubPathOperation(const CAssetPath& Path, const CSubPath::COperation& Operation);
 	
-	inline bool IsLoaded() const { return m_State != STATE_CREATED; }
-	inline bool IsJustLoaded() const { return m_State == STATE_JUST_LOADED; }
-	inline void LoadingDone() { if(m_State == STATE_JUST_LOADED) m_State = STATE_LOADED; }
+	bool IsLoaded() const { return m_State != STATE_CREATED; }
+	bool IsJustLoaded() const { return m_State == STATE_JUST_LOADED; }
+	void LoadingDone() { if(m_State == STATE_JUST_LOADED) m_State = STATE_LOADED; }
 	
-	inline bool IsReadOnly() const { return m_ReadOnly; }
-	inline void SetReadOnly(bool Value) { m_ReadOnly = Value; }
+	bool IsReadOnly() const { return m_ReadOnly; }
+	void SetReadOnly(bool Value) { m_ReadOnly = Value; }
 	
-	inline bool IsEdited() const { return m_Edited; }
-	inline void SetEdited(bool Value) { m_Edited = Value; }
+	bool IsEdited() const { return m_Edited; }
+	void SetEdited(bool Value) { m_Edited = Value; }
 	
-	inline const char* GetName() const { return m_Name.buffer(); }
-	inline void SetName(const char* pName) { m_Name = pName; }
-	inline const char* GetDirectory() const { return m_Directory.buffer(); }
-	inline void SetDirectory(const char* pDirectory) { m_Directory = pDirectory; }
+	const char* GetName() const { return m_Name.buffer(); }
+	void SetName(const char* pName) { m_Name = pName; }
+	const char* GetDirectory() const { return m_Directory.buffer(); }
+	void SetDirectory(const char* pDirectory) { m_Directory = pDirectory; }
 	
-	inline const char* GetAuthor() const { return m_Author.buffer(); }
-	inline const char* GetCredits() const { return m_Credits.buffer(); }
-	inline const char* GetLicense() const { return m_License.buffer(); }
-	inline const char* GetVersion() const { return m_Version.buffer(); }
+	const char* GetAuthor() const { return m_Author.buffer(); }
+	const char* GetCredits() const { return m_Credits.buffer(); }
+	const char* GetLicense() const { return m_License.buffer(); }
+	const char* GetVersion() const { return m_Version.buffer(); }
 	
-	inline void SetAuthor(const char* pValue) { m_Author = pValue; }
-	inline void SetCredits(const char* pValue) { m_Credits = pValue; }
-	inline void SetLicense(const char* pValue) { m_License = pValue; }
-	inline void SetVersion(const char* pValue) { m_Version = pValue; }
+	void SetAuthor(const char* pValue) { m_Author = pValue; }
+	void SetCredits(const char* pValue) { m_Credits = pValue; }
+	void SetLicense(const char* pValue) { m_License = pValue; }
+	void SetVersion(const char* pValue) { m_Version = pValue; }
 	
 	template<typename ASSET>
 	const ASSET* GetAsset(const CAssetPath& Path) const
