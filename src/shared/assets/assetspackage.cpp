@@ -90,6 +90,38 @@ void CAssetsPackage::Load_AssetsFile(class CAssetsSaveLoadContext* pLoadingConte
 			#undef MACRO_ASSETTYPE
 			break;
 	}
+
+	if(AssetsVersion < ASSETSVERSION_0_3_3)
+	{
+		// Fixup Entities pos
+		using MapsList = CAssetsList<CAsset_Map, CAssetState>;
+		MapsList &Maps = GetList<CAsset_Map>();
+		for(MapsList::CEntry &Map : Maps.m_Assets)
+		{
+			CAsset_Map *pMap = &Map.m_Asset;
+			CAsset_Map::CIteratorEntityLayer IterEntityLayer;
+			for(IterEntityLayer = pMap->BeginEntityLayer(); IterEntityLayer != pMap->EndEntityLayer(); ++IterEntityLayer)
+			{
+				CSubPath SubPath = *IterEntityLayer;
+				CAssetPath EntitiesPath = pMap->GetEntityLayer(SubPath);
+				// Note: EntityLayer ID needs an update after the load and the current value is invalid
+				// at this point. The fixup is done in CAssetsManager::Load_AssetsFile() via CAssetPath::COperation::ResolveName
+				// Do the fixup manually here.
+				EntitiesPath.SetId(SubPath.GetId());
+
+				CAsset_MapEntities *pEntitiesAsset = pMap->AssetsManager()->GetAsset_Hard<CAsset_MapEntities>(EntitiesPath);
+				if(!pEntitiesAsset)
+					continue;
+
+				std::vector<CAsset_MapEntities::CEntity>& Entities = pEntitiesAsset->GetEntityArray();
+				for(CAsset_MapEntities::CEntity &Entity : Entities)
+				{
+					Entity.SetPivot(Entity.GetPosition());
+					Entity.SetPosition(vec2(0, 0));
+				}
+			}
+		}
+	}
 }
 	
 void CAssetsPackage::Save_AssetsFile(class CAssetsSaveLoadContext* pLoadingContext)
