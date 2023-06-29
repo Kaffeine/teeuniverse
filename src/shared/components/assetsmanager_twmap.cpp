@@ -803,35 +803,59 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 							int Height = pTilemapItem->m_Height;
 							
 							pMap->SetCameraPosition(vec2(Width*32.0f, Height*32.0f)/2.0f);
-							
-							CAssetPath EntitiesSpawnPath;
-							NewAsset_Hard<CAsset_MapEntities>(&EntitiesSpawnPath, PackageId);
-							AssetsManager()->TryChangeAssetName_Hard(EntitiesSpawnPath, "spawn");
-							
-							CAssetPath EntitiesWeaponPath;
-							NewAsset_Hard<CAsset_MapEntities>(&EntitiesWeaponPath, PackageId);
-							AssetsManager()->TryChangeAssetName_Hard(EntitiesWeaponPath, "weapons");
-							
-							CAssetPath EntitiesPickupPath;
-							NewAsset_Hard<CAsset_MapEntities>(&EntitiesPickupPath, PackageId);
-							AssetsManager()->TryChangeAssetName_Hard(EntitiesPickupPath, "pickups");
-							
-							CAsset_MapEntities* pEntitiesSpawn = GetAsset_Hard<CAsset_MapEntities>(EntitiesSpawnPath);
-							CAsset_MapEntities* pEntitiesWeapon = GetAsset_Hard<CAsset_MapEntities>(EntitiesWeaponPath);
-							CAsset_MapEntities* pEntitiesPickup = GetAsset_Hard<CAsset_MapEntities>(EntitiesPickupPath);
-							
-							pEntitiesSpawn->SetParentPath(MapPath);
-							pEntitiesWeapon->SetParentPath(MapPath);
-							pEntitiesPickup->SetParentPath(MapPath);
-					
-							CSubPath MapSubPath;
-							MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
-							pMap->SetEntityLayer(MapSubPath, EntitiesSpawnPath);	
-							MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());		
-							pMap->SetEntityLayer(MapSubPath, EntitiesWeaponPath);	
-							MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());		
-							pMap->SetEntityLayer(MapSubPath, EntitiesPickupPath);			
-							
+
+							CAsset_MapEntities* pEntitiesSpawn = nullptr;
+							CAsset_MapEntities* pEntitiesWeapon = nullptr;
+							CAsset_MapEntities* pEntitiesPickup = nullptr;
+
+							auto GetSpawnEntities = [&]() {
+								if(!pEntitiesSpawn)
+								{
+									CAssetPath EntitiesSpawnPath;
+									NewAsset_Hard<CAsset_MapEntities>(&EntitiesSpawnPath, PackageId);
+									AssetsManager()->TryChangeAssetName_Hard(EntitiesSpawnPath, "spawn");
+
+									pEntitiesSpawn = GetAsset_Hard<CAsset_MapEntities>(EntitiesSpawnPath);
+									pEntitiesSpawn->SetParentPath(MapPath);
+
+									CSubPath MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
+									pMap->SetEntityLayer(MapSubPath, EntitiesSpawnPath);
+								}
+
+								return pEntitiesSpawn;
+							};
+
+							auto GetWeaponsEntities = [&]() {
+								if(!pEntitiesWeapon)
+								{
+									CAssetPath EntitiesWeaponPath;
+									NewAsset_Hard<CAsset_MapEntities>(&EntitiesWeaponPath, PackageId);
+									AssetsManager()->TryChangeAssetName_Hard(EntitiesWeaponPath, "weapons");
+									pEntitiesWeapon = GetAsset_Hard<CAsset_MapEntities>(EntitiesWeaponPath);
+									pEntitiesWeapon->SetParentPath(MapPath);
+									CSubPath MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
+									pMap->SetEntityLayer(MapSubPath, EntitiesWeaponPath);
+								}
+
+								return pEntitiesWeapon;
+							};
+
+							auto GetPickupsEntities = [&]() {
+								if(!pEntitiesPickup)
+								{
+									CAssetPath EntitiesPickupPath;
+									NewAsset_Hard<CAsset_MapEntities>(&EntitiesPickupPath, PackageId);
+									AssetsManager()->TryChangeAssetName_Hard(EntitiesPickupPath, "pickups");
+									CAsset_MapEntities *pEntitiesPickup = GetAsset_Hard<CAsset_MapEntities>(EntitiesPickupPath);
+									pEntitiesPickup->SetParentPath(MapPath);
+
+									CSubPath MapSubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
+									pMap->SetEntityLayer(MapSubPath, EntitiesPickupPath);
+								}
+
+								return pEntitiesPickup;
+							};
+
 							for(int j=0; j<Height; j++)
 							{
 								for(int i=0; i<Width; i++)
@@ -846,93 +870,93 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 										{
 											case ninslash::ENTITY_SPAWN + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-												pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawn);
-												pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawn);
+												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_SPAWN_RED + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-												pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnRed);
-												pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnRed);
+												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_SPAWN_BLUE + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-												pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnBlue);
-												pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSSpawnBlue);
+												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_FLAGSTAND_RED + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-												pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagRed);
-												pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagRed);
+												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_FLAGSTAND_BLUE + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-												pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagBlue);
-												pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlagBlue);
+												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_HEALTH_1 + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-												pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_NSHeart);
-												pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSHeart);
+												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_CHAINSAW + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSChainsaw);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSChainsaw);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_SHOTGUN + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSShotgun);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSShotgun);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_GRENADE + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSGrenade);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSGrenade);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_LASER + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSLaser);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSLaser);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_RIFLE + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSRifle);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSRifle);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_ELECTRIC + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSElectric);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSElectric);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ninslash::ENTITY_WEAPON_FLAMER + ninslash::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlamer);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_NSFlamer);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											default:
@@ -953,81 +977,81 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 											{
 												if(Format == MAPFORMAT_DUMMYCAPTURE)
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawn);
-													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawn);
+													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
 											case ddnet::ENTITY_SPAWN_RED + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-												pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnRed);
-												pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnRed);
+												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_SPAWN_BLUE + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-												pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnBlue);
-												pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+												GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnBlue);
+												GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_HEALTH_1 + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-												pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWHeart);
-												pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWHeart);
+												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_ARMOR_1 + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-												pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWArmor);
-												pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+												GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWArmor);
+												GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_POWERUP_NINJA + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWNinja);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWNinja);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_WEAPON_GRENADE + ddnet::ENTITY_OFFSET:
 											{
 												if(Format == MAPFORMAT_FOOT)
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-													pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWGrenade);
-													pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+													GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWGrenade);
+													GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
 											case ddnet::ENTITY_WEAPON_RIFLE + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWLaserRifle);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWLaserRifle);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_WEAPON_SHOTGUN + ddnet::ENTITY_OFFSET:
 											{
-												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
-												pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWShotgun);
-												pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetWeaponsEntities()->AddEntity());
+												GetWeaponsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWShotgun);
+												GetWeaponsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												break;
 											}
 											case ddnet::ENTITY_FLAGSTAND_BLUE + ddnet::ENTITY_OFFSET:
@@ -1043,9 +1067,9 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												}
 												else
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagBlue);
-													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+													GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagBlue);
+													GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -1062,9 +1086,9 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 												}
 												else
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
-													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagRed);
-													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetPickupsEntities()->AddEntity());
+													GetPickupsEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagRed);
+													GetPickupsEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												break;
 											}
@@ -1072,9 +1096,9 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 											{
 												if(Format == MAPFORMAT_FOOT)
 												{
-													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
-													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
-													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(GetSpawnEntities()->AddEntity());
+													GetSpawnEntities()->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													GetSpawnEntities()->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
 												}
 												else if(Format == MAPFORMAT_DDNET)
 												{
