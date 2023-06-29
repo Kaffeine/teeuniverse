@@ -41,6 +41,7 @@ public:
 	CAssetPath m_DDTelePath;
 	CAssetPath m_DDSwitchPath;
 	CAssetPath m_DDTunePath;
+	CAssetPath m_IcDamagePath;
 	CAssetPath m_OpenFNGPath;
 	CAssetPath m_NinslashPath;
 	CAssetPath m_SportPath;
@@ -738,6 +739,13 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 							pZone->SetObjectPathType(ObjectPath, CAsset_MapZoneObjects::PATHTYPE_CLOSED);
 							pZone->SetObjectFillType(ObjectPath, CAsset_MapZoneObjects::FILLTYPE_INSIDE);
 							pZone->SetObjectZoneIndex(ObjectPath, pQuads[i].m_ColorEnvOffset);
+							int PtumExFlags = 0;
+							if(pQuads[i].m_aColors[0].r == 1)
+							{
+								PtumExFlags |= 1;
+								pZone->SetObjectZoneData1(ObjectPath, pQuads[i].m_aColors[0].g);
+							}
+							pZone->SetObjectZoneFlags(ObjectPath, PtumExFlags);
 							
 							{
 								CSubPath VertexPath = CAsset_MapZoneObjects::SubPath_ObjectVertex(ObjectPath.GetId(), pZone->AddObjectVertex(ObjectPath));
@@ -2974,7 +2982,20 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 					
 					GenerateZoneCurve_Object(this, 0.0f, LineVertices, Object);
 					PolygonQuadrangulation(LineVertices, &ObjectQuads);
-					
+
+					const int ZoneFlags = Object.GetZoneFlags();
+					const int ExtraData = Object.GetZoneData1();
+
+					int ColorR = ZoneFlags;
+					int ColorG = 255;
+					int ColorB = 255;
+					int ColorA = 255;
+					if(ZoneFlags & 1)
+					{
+						ColorG = ExtraData;
+						ColorA = 128;
+					}
+
 					for(unsigned int i=0; i<ObjectQuads.size(); i++)
 					{
 						Quads.emplace_back();
@@ -2990,10 +3011,10 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 							Quad.m_aPoints[j+1-2*(j%2)].y = f2fx(Pos.y);
 							Quad.m_aTexcoords[j+1-2*(j%2)].x = 0.0f;
 							Quad.m_aTexcoords[j+1-2*(j%2)].y = 0.0f;
-							Quad.m_aColors[j+1-2*(j%2)].r = 255.0f;
-							Quad.m_aColors[j+1-2*(j%2)].g = 255.0f;
-							Quad.m_aColors[j+1-2*(j%2)].b = 255.0f;
-							Quad.m_aColors[j+1-2*(j%2)].a = 255.0f;
+							Quad.m_aColors[j+1-2*(j%2)].r = ColorR;
+							Quad.m_aColors[j+1-2*(j%2)].g = ColorG;
+							Quad.m_aColors[j+1-2*(j%2)].b = ColorB;
+							Quad.m_aColors[j+1-2*(j%2)].a = ColorA;
 						}
 						
 						Quad.m_PosEnv = AnimationId*2;

@@ -69,9 +69,11 @@ int main(int argc, char* argv[])
 			pAsset->SetImagePath(ImageZonesDamagePath);
 			
 			int GroupId_Death = pAsset->AddGroup();
+			int GroupId_Damage = pAsset->AddGroup();
 			int GroupId_State = pAsset->AddGroup();
 			
 			pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Death), "Death");
+			pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Damage), "Damage");
 			pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_State), "State change");
 			
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
@@ -104,6 +106,29 @@ int main(int argc, char* argv[])
 			pAsset->SetIndexBorderIndex(SubPath, 2);
 			pAsset->SetIndexBorderColor(SubPath, vec4(11.0f/255.0f, 173.0f/255.0f, 0.0f, 1.0f));
 			pAsset->SetIndexGroup(SubPath, GroupId_State);
+			
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddDataInt());
+			pAsset->SetDataIntTitle(SubPath, "Damage");
+			pAsset->SetDataIntDescription(SubPath, "The damage dealt on contact with zone");
+			pAsset->SetDataIntDefaultValue(SubPath, 5);
+			pAsset->SetDataIntMinValue(SubPath, 0);
+			pAsset->SetDataIntMaxValue(SubPath, 255);
+			pAsset->SetDataIntNullValue(SubPath, -1);
+			
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "Damage zone");
+			pAsset->SetIndexDescription(SubPath, "Any player touching this zone takes a certain damage");
+			pAsset->SetIndexGroup(SubPath, GroupId_Damage);
+			
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "Damage zone (humans only)");
+			pAsset->SetIndexDescription(SubPath, "Any human touching this zone takes a certain damage");
+			pAsset->SetIndexGroup(SubPath, GroupId_Damage);
+			
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "Damage zone (infected only)");
+			pAsset->SetIndexDescription(SubPath, "Any infected touching this zone takes a certain damage");
+			pAsset->SetIndexGroup(SubPath, GroupId_Damage);
 		}	
 		//Zone, teleportation
 		{
