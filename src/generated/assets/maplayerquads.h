@@ -276,6 +276,31 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads::CQuad& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			CTuaVec2 m_Pivot;
+			CTuaVec2 m_Size;
+			tua_float m_Angle;
+			CTuaVec2 m_Vertex0;
+			CTuaVec2 m_Vertex1;
+			CTuaVec2 m_Vertex2;
+			CTuaVec2 m_Vertex3;
+			CTuaVec2 m_UV0;
+			CTuaVec2 m_UV1;
+			CTuaVec2 m_UV2;
+			CTuaVec2 m_UV3;
+			tua_uint32 m_Color0;
+			tua_uint32 m_Color1;
+			tua_uint32 m_Color2;
+			tua_uint32 m_Color3;
+			CAssetPath::CTuaType m_AnimationPath;
+			tua_uint32 m_Color;
+			tua_int64 m_AnimationOffset;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapLayerQuads::CQuad& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads::CQuad& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		vec2 m_Pivot{};
@@ -526,6 +551,18 @@ public:
 		tua_int32 m_LevelOfDetail;
 		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_MapLayerQuads& SysType);
 		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads& SysType, CTuaType_0_3_0& TuaType);
+	};
+	
+	class CTuaType_0_3_3 : public CAsset::CTuaType_0_3_3
+	{
+	public:
+		CAssetPath::CTuaType m_ParentPath;
+		CAssetPath::CTuaType m_ImagePath;
+		CTuaArray m_Quad;
+		tua_uint8 m_Visibility;
+		tua_int32 m_LevelOfDetail;
+		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapLayerQuads& SysType);
+		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads& SysType, CTuaType_0_3_3& TuaType);
 	};
 	
 

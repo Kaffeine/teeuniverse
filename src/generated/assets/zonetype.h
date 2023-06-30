@@ -235,6 +235,22 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType::CIndex& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			tua_uint8 m_Used;
+			tua_stringid m_Description;
+			tua_uint32 m_Color;
+			tua_stringid m_Title;
+			tua_int32 m_BorderIndex;
+			tua_uint32 m_BorderColor;
+			tua_int32 m_Group;
+			tua_uint8 m_RotationAllowed;
+			tua_uint8 m_MirrorAllowed;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_ZoneType::CIndex& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType::CIndex& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		bool m_Used{};
@@ -359,6 +375,19 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType::CDataInt& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			tua_stringid m_Title;
+			tua_stringid m_Description;
+			tua_int32 m_DefaultValue;
+			tua_int32 m_MinValue;
+			tua_int32 m_MaxValue;
+			tua_int32 m_NullValue;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_ZoneType::CDataInt& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType::CDataInt& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		_dynamic_string<128> m_Title{};
@@ -459,6 +488,17 @@ public:
 		CTuaArray m_Group;
 		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_ZoneType& SysType);
 		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType& SysType, CTuaType_0_3_0& TuaType);
+	};
+	
+	class CTuaType_0_3_3 : public CAsset::CTuaType_0_3_3
+	{
+	public:
+		CTuaArray m_Index;
+		CAssetPath::CTuaType m_ImagePath;
+		CTuaArray m_DataInt;
+		CTuaArray m_Group;
+		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_ZoneType& SysType);
+		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_ZoneType& SysType, CTuaType_0_3_3& TuaType);
 	};
 	
 

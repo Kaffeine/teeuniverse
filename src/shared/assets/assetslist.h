@@ -138,6 +138,9 @@ public:
 	
 	MACRO_SAVE_ASSETSFILE(0_3_0)
 	MACRO_LOAD_ASSETSFILE(0_3_0)
+
+	MACRO_SAVE_ASSETSFILE(0_3_3)
+	MACRO_LOAD_ASSETSFILE(0_3_3)
 	
 	void DeleteAsset(const CAssetPath& Path)
 	{

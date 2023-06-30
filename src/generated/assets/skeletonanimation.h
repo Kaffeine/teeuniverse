@@ -240,6 +240,17 @@ public:
 				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation::CFrame& SysType, CTuaType_0_3_0& TuaType);
 			};
 			
+			class CTuaType_0_3_3
+			{
+			public:
+				CTuaVec2 m_Translation;
+				CTuaVec2 m_Scale;
+				tua_float m_Angle;
+				tua_int32 m_Alignment;
+				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CBoneAnimation::CFrame& SysType);
+				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation::CFrame& SysType, CTuaType_0_3_3& TuaType);
+			};
+			
 		
 		private:
 			vec2 m_Translation{};
@@ -343,6 +354,15 @@ public:
 				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& SysType, CTuaType_0_3_0& TuaType);
 			};
 			
+			class CTuaType_0_3_3 : public CAsset_SkeletonAnimation::CBoneAnimation::CFrame::CTuaType_0_3_3
+			{
+			public:
+				tua_int64 m_Time;
+				tua_int32 m_GraphType;
+				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& SysType);
+				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation::CKeyFrame& SysType, CTuaType_0_3_3& TuaType);
+			};
+			
 		
 		private:
 			int64_t m_Time{};
@@ -422,6 +442,16 @@ public:
 			tua_int32 m_CycleType;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_SkeletonAnimation::CBoneAnimation& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation& SysType, CTuaType_0_3_0& TuaType);
+		};
+		
+		class CTuaType_0_3_3
+		{
+		public:
+			CTuaArray m_KeyFrame;
+			CSubPath::CTuaType m_BonePath;
+			tua_int32 m_CycleType;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CBoneAnimation& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CBoneAnimation& SysType, CTuaType_0_3_3& TuaType);
 		};
 		
 	
@@ -687,6 +717,15 @@ public:
 				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation::CFrame& SysType, CTuaType_0_3_0& TuaType);
 			};
 			
+			class CTuaType_0_3_3
+			{
+			public:
+				tua_uint32 m_Color;
+				tua_int32 m_State;
+				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CLayerAnimation::CFrame& SysType);
+				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation::CFrame& SysType, CTuaType_0_3_3& TuaType);
+			};
+			
 		
 		private:
 			vec4 m_Color{};
@@ -762,6 +801,15 @@ public:
 				tua_int32 m_GraphType;
 				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& SysType);
 				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& SysType, CTuaType_0_3_0& TuaType);
+			};
+			
+			class CTuaType_0_3_3 : public CAsset_SkeletonAnimation::CLayerAnimation::CFrame::CTuaType_0_3_3
+			{
+			public:
+				tua_int64 m_Time;
+				tua_int32 m_GraphType;
+				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& SysType);
+				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation::CKeyFrame& SysType, CTuaType_0_3_3& TuaType);
 			};
 			
 		
@@ -843,6 +891,16 @@ public:
 			tua_int32 m_CycleType;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_SkeletonAnimation::CLayerAnimation& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation& SysType, CTuaType_0_3_0& TuaType);
+		};
+		
+		class CTuaType_0_3_3
+		{
+		public:
+			CTuaArray m_KeyFrame;
+			CSubPath::CTuaType m_LayerPath;
+			tua_int32 m_CycleType;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation::CLayerAnimation& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation::CLayerAnimation& SysType, CTuaType_0_3_3& TuaType);
 		};
 		
 	
@@ -1028,6 +1086,16 @@ public:
 		CTuaArray m_LayerAnimation;
 		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_SkeletonAnimation& SysType);
 		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation& SysType, CTuaType_0_3_0& TuaType);
+	};
+	
+	class CTuaType_0_3_3 : public CAsset::CTuaType_0_3_3
+	{
+	public:
+		CAssetPath::CTuaType m_SkeletonPath;
+		CTuaArray m_BoneAnimation;
+		CTuaArray m_LayerAnimation;
+		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_SkeletonAnimation& SysType);
+		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_SkeletonAnimation& SysType, CTuaType_0_3_3& TuaType);
 	};
 	
 

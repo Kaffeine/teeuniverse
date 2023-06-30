@@ -141,6 +141,15 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_Character::CPart& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			tua_stringid m_Name;
+			CAssetPath::CTuaType m_DefaultPath;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_Character::CPart& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_Character::CPart& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		_dynamic_string<128> m_Name{};
@@ -231,6 +240,18 @@ public:
 		CTuaArray m_Part;
 		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_Character& SysType);
 		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_Character& SysType, CTuaType_0_3_0& TuaType);
+	};
+	
+	class CTuaType_0_3_3 : public CAsset::CTuaType_0_3_3
+	{
+	public:
+		CAssetPath::CTuaType m_IdlePath;
+		CAssetPath::CTuaType m_WalkPath;
+		CAssetPath::CTuaType m_ControlledJumpPath;
+		CAssetPath::CTuaType m_UncontrolledJumpPath;
+		CTuaArray m_Part;
+		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_Character& SysType);
+		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_Character& SysType, CTuaType_0_3_3& TuaType);
 	};
 	
 

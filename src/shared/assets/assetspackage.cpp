@@ -84,6 +84,11 @@ void CAssetsPackage::Load_AssetsFile(class CAssetsSaveLoadContext* pLoadingConte
 			#include <generated/assets/assetsmacro.h>
 			#undef MACRO_ASSETTYPE
 			break;
+		case ASSETSVERSION_0_3_3:
+			#define MACRO_ASSETTYPE(Name) m_##Name.Load_AssetsFile_0_3_3(pLoadingContext);
+			#include <generated/assets/assetsmacro.h>
+			#undef MACRO_ASSETTYPE
+			break;
 	}
 }
 	
@@ -99,7 +104,7 @@ void CAssetsPackage::Save_AssetsFile(class CAssetsSaveLoadContext* pLoadingConte
 	pItem->m_Version = pLoadingContext->ArchiveFile()->AddString(m_Version.buffer());
 	
 	//TAG_ASSETSVERSION
-	#define MACRO_ASSETTYPE(Name) m_##Name.Save_AssetsFile_0_3_0(pLoadingContext);
+	#define MACRO_ASSETTYPE(Name) m_##Name.Save_AssetsFile_0_3_3(pLoadingContext);
 	#include <generated/assets/assetsmacro.h>
 	#undef MACRO_ASSETTYPE
 	

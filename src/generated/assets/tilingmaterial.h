@@ -242,6 +242,16 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CZoneConverter& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			CAssetPath::CTuaType m_ZoneTypePath;
+			tua_uint8 m_OldIndex;
+			tua_uint8 m_NewIndex;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial::CZoneConverter& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CZoneConverter& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		CAssetPath m_ZoneTypePath{};
@@ -327,6 +337,17 @@ public:
 				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CRule::CCondition& SysType, CTuaType_0_3_0& TuaType);
 			};
 			
+			class CTuaType_0_3_3
+			{
+			public:
+				tua_int32 m_Type;
+				tua_int32 m_Value;
+				tua_int32 m_RelPosX;
+				tua_int32 m_RelPosY;
+				static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial::CRule::CCondition& SysType);
+				static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CRule::CCondition& SysType, CTuaType_0_3_3& TuaType);
+			};
+			
 		
 		private:
 			int m_Type{};
@@ -409,6 +430,17 @@ public:
 			tua_uint8 m_TileFlags;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_TilingMaterial::CRule& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CRule& SysType, CTuaType_0_3_0& TuaType);
+		};
+		
+		class CTuaType_0_3_3
+		{
+		public:
+			CTuaArray m_Condition;
+			tua_float m_Probability;
+			tua_uint8 m_TileIndex;
+			tua_uint8 m_TileFlags;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial::CRule& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CRule& SysType, CTuaType_0_3_3& TuaType);
 		};
 		
 	
@@ -585,6 +617,14 @@ public:
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CIndex& SysType, CTuaType_0_3_0& TuaType);
 		};
 		
+		class CTuaType_0_3_3
+		{
+		public:
+			tua_stringid m_Title;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial::CIndex& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CIndex& SysType, CTuaType_0_3_3& TuaType);
+		};
+		
 	
 	private:
 		_dynamic_string<128> m_Title{};
@@ -648,6 +688,15 @@ public:
 			CTuaArray m_Index;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_TilingMaterial::CLabel& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CLabel& SysType, CTuaType_0_3_0& TuaType);
+		};
+		
+		class CTuaType_0_3_3
+		{
+		public:
+			tua_stringid m_Title;
+			CTuaArray m_Index;
+			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial::CLabel& SysType);
+			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial::CLabel& SysType, CTuaType_0_3_3& TuaType);
 		};
 		
 	
@@ -764,6 +813,18 @@ public:
 		CTuaArray m_Label;
 		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_0& TuaType, CAsset_TilingMaterial& SysType);
 		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial& SysType, CTuaType_0_3_0& TuaType);
+	};
+	
+	class CTuaType_0_3_3 : public CAsset::CTuaType_0_3_3
+	{
+	public:
+		CAssetPath::CTuaType m_ImagePath;
+		CTuaArray m_ZoneConverter;
+		CTuaArray m_Rule;
+		CTuaArray m_Index;
+		CTuaArray m_Label;
+		static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_TilingMaterial& SysType);
+		static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_TilingMaterial& SysType, CTuaType_0_3_3& TuaType);
 	};
 	
 
