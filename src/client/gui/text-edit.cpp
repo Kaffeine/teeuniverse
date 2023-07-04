@@ -173,18 +173,56 @@ bool CAbstractTextEdit::LineInput(CInput::CEvent Event, dynamic_string& String, 
 		else if(Key == KEY_LEFT)
 		{
 			if(m_TextSelection0.m_TextIter >= 0 && m_TextSelection1.m_TextIter >= 0 && m_TextSelection0.m_TextIter != m_TextSelection1.m_TextIter)
+			{
 				CursorPos = ((m_TextSelection0.m_TextIter < m_TextSelection1.m_TextIter) ? m_TextSelection0.m_TextIter : m_TextSelection1.m_TextIter);
+			}
 			else if(CursorPos > 0)
-				CursorPos = str_utf8_rewind(String.buffer(), CursorPos);
-				
+			{
+				if(Input()->KeyIsPressed(KEY_LCTRL) || Input()->KeyIsPressed(KEY_RCTRL))
+				{
+					while (CursorPos > 0)
+					{
+						CursorPos = str_utf8_rewind(String.buffer(), CursorPos);
+						char c = String.buffer()[CursorPos];
+						if(isCharSeparator(c))
+						{
+							break;
+						}
+					}
+				}
+				else
+				{
+					CursorPos = str_utf8_rewind(String.buffer(), CursorPos);
+				}
+			}
+
 			ResetSelection = true;
 		}
 		else if(Key == KEY_RIGHT)
 		{
 			if(m_TextSelection0.m_TextIter >= 0 && m_TextSelection1.m_TextIter >= 0 && m_TextSelection0.m_TextIter != m_TextSelection1.m_TextIter)
+			{
 				CursorPos = ((m_TextSelection0.m_TextIter < m_TextSelection1.m_TextIter) ? m_TextSelection1.m_TextIter : m_TextSelection0.m_TextIter);
+			}
 			else if(CursorPos < Length)
-				CursorPos = str_utf8_forward(String.buffer(), CursorPos);
+			{
+				if(Input()->KeyIsPressed(KEY_LCTRL) || Input()->KeyIsPressed(KEY_RCTRL))
+				{
+					while (CursorPos < Length)
+					{
+						CursorPos = str_utf8_forward(String.buffer(), CursorPos);
+						char c = String.buffer()[CursorPos];
+						if(isCharSeparator(c))
+						{
+							break;
+						}
+					}
+				}
+				else
+				{
+					CursorPos = str_utf8_forward(String.buffer(), CursorPos);
+				}
+			}
 				
 			ResetSelection = true;
 		}
