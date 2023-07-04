@@ -28,8 +28,17 @@ namespace gui
 {
 
 static const std::vector<char> TextSeparators = {
-    '-', '_', '.', ',',
+	'-',
+	'_',
+	'.',
+	',',
 };
+
+bool isCharSeparator(char c)
+{
+	auto iterator = std::find(std::begin(TextSeparators), std::end(TextSeparators), c);
+	return iterator != TextSeparators.end();
+}
 
 /* ABSTRACT TEXT EDIT *************************************************/
 
@@ -97,15 +106,14 @@ bool CAbstractTextEdit::LineInput(CInput::CEvent Event, dynamic_string& String, 
 			}
 			else if(CursorPos > 0)
 			{
-				if(Input()->KeyIsPressed(KEY_LCTRL))
+				if(Input()->KeyIsPressed(KEY_LCTRL) || Input()->KeyIsPressed(KEY_RCTRL))
 				{
 					StartCharPos = CursorPos;
 					while (StartCharPos > 0)
 					{
 						StartCharPos = str_utf8_rewind(String.buffer(), StartCharPos);
 						char c = String.buffer()[StartCharPos];
-						auto iterator = std::find(std::begin(TextSeparators), std::end(TextSeparators), c);
-						if(iterator != TextSeparators.end())
+						if(isCharSeparator(c))
 						{
 							break;
 						}
