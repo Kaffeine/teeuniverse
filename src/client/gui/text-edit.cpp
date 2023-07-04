@@ -32,6 +32,8 @@ static const std::vector<char> TextSeparators = {
 	'_',
 	'.',
 	',',
+	'/',
+	'\\',
 };
 
 bool isCharSeparator(char c)
