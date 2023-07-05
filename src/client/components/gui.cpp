@@ -217,6 +217,8 @@ bool CGui::PreUpdate()
 				case KEY_TAB:
 					if(Event.m_Flags & CInput::FLAG_PRESS)
 					{
+						if(Input()->KeyIsPressed(KEY_LALT) || Input()->KeyIsPressed(KEY_RALT))
+							continue;
 						if(Input()->KeyIsPressed(KEY_LSHIFT))
 							PrevFocusWanted = true;
 						else
