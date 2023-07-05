@@ -58,6 +58,8 @@ void TesselateQuad(const CTexturedQuad& Input, std::vector<CTexturedQuad>& Outpu
 			Quad.m_Color[1] = mix(mix(Input.m_Color[0], Input.m_Color[1], x1), mix(Input.m_Color[2], Input.m_Color[3], x1), y0);
 			Quad.m_Color[2] = mix(mix(Input.m_Color[0], Input.m_Color[1], x0), mix(Input.m_Color[2], Input.m_Color[3], x0), y1);
 			Quad.m_Color[3] = mix(mix(Input.m_Color[0], Input.m_Color[1], x1), mix(Input.m_Color[2], Input.m_Color[3], x1), y1);
+
+			Quad.m_Pivot = Input.m_Pivot;
 		}
 	}
 }

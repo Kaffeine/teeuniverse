@@ -940,6 +940,8 @@ void GenerateMaterialQuads_Line(
 										Quad.m_Position[2] = ObjPosition + Transform*(Position1 - SegDir * SpriteWidth + OrthoSeg * (pSprite->GetPosition().y + SpriteInfo.m_Height/2.0f));
 										Quad.m_Position[3] = ObjPosition + Transform*(Position1 + OrthoVert1 * (pSprite->GetPosition().y - SpriteInfo.m_Height/2.0f));
 									}
+
+									Quad.m_Pivot = ObjPosition;
 										
 									if(pSprite->GetFlags() & CAsset_PathMaterial::SPRITEFLAG_ROTATION)
 										RotateQuadTexture(Quad);
@@ -985,6 +987,7 @@ void GenerateMaterialQuads_Line(
 								Quad.m_Position[1] = ObjPosition + Transform*(Position1 + Ortho1 * (pSprite->GetPosition().y + SpriteInfo.m_Height/2.0f));
 								Quad.m_Position[2] = ObjPosition + Transform*(Position0 + Ortho0 * (pSprite->GetPosition().y - SpriteInfo.m_Height/2.0f));
 								Quad.m_Position[3] = ObjPosition + Transform*(Position1 + Ortho1 * (pSprite->GetPosition().y - SpriteInfo.m_Height/2.0f));
+								Quad.m_Pivot = ObjPosition;
 								
 								TesselateQuad(Quad, OutputQuads, 1, OrthoTesselation);
 							}
@@ -1034,6 +1037,7 @@ void GenerateMaterialQuads_Line(
 							Quad.m_Position[1] = ObjPosition + Transform*(Pos - DirX * SpriteInfo.m_Width/2.0f + DirY * SpriteInfo.m_Height/2.0f);
 							Quad.m_Position[2] = ObjPosition + Transform*(Pos + DirX * SpriteInfo.m_Width/2.0f - DirY * SpriteInfo.m_Height/2.0f);
 							Quad.m_Position[3] = ObjPosition + Transform*(Pos - DirX * SpriteInfo.m_Width/2.0f - DirY * SpriteInfo.m_Height/2.0f);
+							Quad.m_Pivot = ObjPosition;
 						}
 					}
 					
@@ -1106,8 +1110,7 @@ void GenerateMaterialQuads(
 				Quad.m_ImagePath = pMaterial->GetTexturePath();
 				Quad.m_TextureIndex = -1;
 
-				Quad.m_Pivot.x = f2fx(Barycenter.x);
-				Quad.m_Pivot.y = f2fx(Barycenter.y);
+				Quad.m_Pivot = ObjPosition;
 				
 				i += 2;
 			}
