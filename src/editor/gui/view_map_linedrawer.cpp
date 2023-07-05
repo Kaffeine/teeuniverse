@@ -139,8 +139,10 @@ void CCursorTool_MapLineDrawer::OnViewButtonClick_Objects_Impl(int Button)
 				m_CurrentObject.GetId(),
 				AssetsManager()->AddSubItem(AssetsEditor()->GetEditedAssetPath(), m_CurrentObject, ASSET::TYPE_OBJECT_VERTEX, Token)
 			);
-			
-			vec2 VertexPositon = TransformInv*(ViewMap()->MapRenderer()->ScreenPosToMapPos(MousePos) - Position);
+
+			vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(MousePos);
+			ApplyGridAlignment(&CursorMapPos);
+			vec2 VertexPositon = TransformInv*(CursorMapPos - Position);
 			AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), VertexPath, ASSET::OBJECT_VERTEX_POSITION, VertexPositon, Token);
 			UpdateBarycenter_Objects_Impl<ASSET>(Token);
 		}
@@ -177,15 +179,31 @@ void CCursorTool_MapLineDrawer::RenderView_Objects_Impl()
 		
 		vec2 VertexPosition = pMapLayer->GetObjectVertexPosition(Vertex0Path);
 		VertexPosition = ViewMap()->MapRenderer()->MapPosToScreenPos(Transform*VertexPosition+Position);
-		vec2 MousePos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
-		
+
+		vec2 CursorPos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
+		vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos);
+		ApplyGridAlignment(&CursorMapPos);
+		vec2 AlignedPos = ViewMap()->MapRenderer()->MapPosToScreenPos(CursorMapPos);
+
 		Graphics()->TextureClear();
 		Graphics()->LinesBegin();
-	
-		CGraphics::CLineItem LineItem(VertexPosition.x, VertexPosition.y, MousePos.x, MousePos.y);
+
+		CGraphics::CLineItem LineItem(VertexPosition.x, VertexPosition.y, AlignedPos.x, AlignedPos.y);
 		Graphics()->LinesDraw(&LineItem, 1);
-		
+
 		Graphics()->LinesEnd();
+	}
+	else
+	{
+		vec2 CursorPos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
+		vec2 CursorMapPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos);
+		ApplyGridAlignment(&CursorMapPos);
+		vec2 AlignedPos = ViewMap()->MapRenderer()->MapPosToScreenPos(CursorMapPos);
+
+		AssetsRenderer()->DrawSprite(
+			AssetsEditor()->m_Path_Sprite_GizmoPivot,
+			AlignedPos,
+			1.0f, 0.0f, 0x0, 1.0f);
 	}
 
 	RenderPivots();
