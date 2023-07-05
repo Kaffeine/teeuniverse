@@ -155,7 +155,8 @@ void CCursorTool_MapVertexEditor::OnViewButtonClick_Objects_Impl(int Button)
 	const ASSET* pMapLayer = AssetsManager()->template GetAsset<ASSET>(AssetsEditor()->GetEditedAssetPath());
 	if(!pMapLayer)
 		return;
-	
+
+	const float GizmoSize = 8.0f;
 	vec2 MousePos = vec2(Context()->GetMousePos().x, Context()->GetMousePos().y);
 	
 	if(pMapLayer->IsValidObject(m_CurrentVertex))
@@ -191,9 +192,7 @@ void CCursorTool_MapVertexEditor::OnViewButtonClick_Objects_Impl(int Button)
 			VertexControlPoint0 = ViewMap()->MapRenderer()->MapPosToScreenPos(Transform*(VertexControlPoint0+VertexPos) + Position);
 			VertexControlPoint1 = ViewMap()->MapRenderer()->MapPosToScreenPos(Transform*(VertexControlPoint1+VertexPos) + Position);
 			VertexPos = ViewMap()->MapRenderer()->MapPosToScreenPos(Transform*VertexPos + Position);
-			
-			float GizmoSize = 8.0f;
-			
+
 			if(distance(MousePos, VertexControlPoint0) <= GizmoSize)
 			{
 				m_Token = AssetsManager()->GenerateToken();
@@ -208,7 +207,35 @@ void CCursorTool_MapVertexEditor::OnViewButtonClick_Objects_Impl(int Button)
 				m_DragType = 0;
 		}
 	}
-	
+
+	if(m_DragType == 0)
+	{
+		m_CurrentVertex = CSubPath::Null();
+		vec2 ObjPivotScreenPos;
+		typename ASSET::CIteratorObject Iter;
+		for(Iter = pMapLayer->BeginObject(); Iter != pMapLayer->EndObject(); ++Iter)
+		{
+			const typename ASSET::CObject& Object = pMapLayer->GetObject(*Iter);
+			vec2 ObjectPosition;
+			matrix2x2 Transform;
+			Object.GetTransform(AssetsManager(), ViewMap()->MapRenderer()->GetTime(), &Transform, &ObjectPosition);
+			ObjPivotScreenPos = ViewMap()->MapRenderer()->MapPosToScreenPos(ObjectPosition);
+
+			if(distance(ObjPivotScreenPos, MousePos) < GizmoSize)
+			{
+				m_CurrentVertex = ASSET::SubPath_Object((*Iter).GetId());
+			}
+		}
+
+		if(m_CurrentVertex.IsNotNull())
+		{
+			m_Token = AssetsManager()->GenerateToken();
+			AssetsEditor()->SetEditedAsset(AssetsEditor()->GetEditedAssetPath(), m_CurrentVertex);
+			m_ClickDiff = MousePos - ObjPivotScreenPos;
+			m_DragType = 4;
+		}
+	}
+
 	if(m_DragType == 0)
 	{
 		vec2 VertexPosition = PickVertex_Objects_Impl<ASSET>(MousePos);
@@ -377,7 +404,9 @@ void CCursorTool_MapVertexEditor::OnViewMouseMove_Objects_Impl()
 		return;
 	
 	const ASSET* pMapLayer = AssetsManager()->template GetAsset<ASSET>(AssetsEditor()->GetEditedAssetPath());
-	if(!pMapLayer || !pMapLayer->IsValidObjectVertex(m_CurrentVertex))
+	if(!pMapLayer)
+		return;
+	if(!(pMapLayer->IsValidObjectVertex(m_CurrentVertex) || pMapLayer->IsValidObject(m_CurrentVertex)))
 		return;
 	
 	const typename ASSET::CObject& Object = pMapLayer->GetObject(ASSET::SubPath_Object(m_CurrentVertex.GetId()));
@@ -404,6 +433,21 @@ void CCursorTool_MapVertexEditor::OnViewMouseMove_Objects_Impl()
 	{
 		vec2 VertexPos = AssetsManager()->GetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), m_CurrentVertex, ASSET::OBJECT_VERTEX_POSITION, 0.0f);
 		AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), m_CurrentVertex, ASSET::OBJECT_VERTEX_CONTROLPOINT1, NewPos - VertexPos, m_Token);
+	}
+	else if (m_DragType == 4)
+	{
+		vec2 CursorMapPos2 = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos);
+		ApplyGridAlignment(&CursorMapPos2);
+		AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), m_CurrentVertex, ASSET::OBJECT_POSITION, CursorMapPos2, m_Token);
+		const typename ASSET::CObject& Object = pMapLayer->GetObject(m_CurrentVertex);
+		const std::vector<typename ASSET::CVertex>& Vertices = Object.GetVertexArray();
+		const vec2 Diff = Position - CursorMapPos2;
+		for(std::size_t i = 0; i < Vertices.size(); i++)
+		{
+			vec2 VertexPosition = Vertices[i].GetPosition();
+			const CSubPath VertexSubpath = ASSET::SubPath_ObjectVertex(m_CurrentVertex.GetId(), i);
+			AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), VertexSubpath, ASSET::OBJECT_VERTEX_POSITION, VertexPosition + Diff, m_Token);
+		}
 	}
 }
 
