@@ -1403,7 +1403,7 @@ public:
 	
 	void Update(bool ParentEnabled) override
 	{
-		if(ParentEnabled && IsEnabled())
+		if(ParentEnabled)
 		{
 			int Type = GetValue();
 			
