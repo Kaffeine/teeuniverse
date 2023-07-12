@@ -253,7 +253,7 @@ protected:
 protected:
 	void MouseClickAction() override { Action(); }
 	
-	void Action()
+	void Action(int Button = 0)
 	{
 		if(Input()->KeyIsPressed(KEY_LSHIFT))
 		{
@@ -320,7 +320,26 @@ protected:
 				m_pAssetsEditor->AddEditedSubPath(m_SubPath);
 		}
 		else
+		{
+			if(Button == KEY_MOUSE_2)
+			{
+				bool Found = false;
+				for(unsigned int j = 0; j < m_pAssetsEditor->GetEditedSubPathes().size(); j++)
+				{
+					if(m_pAssetsEditor->GetEditedSubPathes()[j] == m_SubPath)
+					{
+						Found = true;
+						break;
+					}
+				}
+				if(Found)
+				{
+					return;
+				}
+			}
+
 			m_pAssetsEditor->SetEditedAsset(m_pAssetsEditor->GetEditedAssetPath(), m_SubPath);
+		}
 	}
 
 public:
@@ -374,7 +393,7 @@ public:
 			pMenu->List()->Add(new CDeleteButton(m_pAssetsEditor, pMenu));
 			
 			m_pAssetsEditor->DisplayPopup(pMenu);
-			Action();
+			Action(Button);
 			return;
 		}
 		
