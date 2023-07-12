@@ -155,6 +155,9 @@ void CMemberTextEdit::SaveFromTextBuffer()
 			GetText(),
 			Token);
 	}
+
+	CAssetState *pState = AssetsManager()->GetAssetState(m_pAssetsEditor->GetEditedAssetPath());
+	pState->m_NumUpdates++;
 }
 
 void CMemberTextEdit::CopyToTextBuffer()
