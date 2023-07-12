@@ -2514,8 +2514,11 @@ protected:
 		if(pMaterial && pMaterial->IsValidRule(m_pAssetsEditor->GetUniqueEditedSubPath()))
 		{
 			int Token = AssetsManager()->GenerateToken();
-			AssetsManager()->AddSubItem(m_pAssetsEditor->GetEditedAssetPath(), m_pAssetsEditor->GetUniqueEditedSubPath(), CAsset_TilingMaterial::TYPE_RULE_CONDITION, Token);
-			
+			CSubPath RulePath = m_pAssetsEditor->GetUniqueEditedSubPath();
+			int NewSubItemIndex = AssetsManager()->AddSubItem(m_pAssetsEditor->GetEditedAssetPath(), RulePath, CAsset_TilingMaterial::TYPE_RULE_CONDITION, Token);
+			CSubPath CondPath = CAsset_TilingMaterial::SubPath_RuleCondition(RulePath.GetId(), NewSubItemIndex);
+			m_pAssetsEditor->SetEditedAsset(m_pAssetsEditor->GetEditedAssetPath(), CondPath);
+
 			CAssetState* pState = AssetsManager()->GetAssetState(m_pAssetsEditor->GetEditedAssetPath());
 			pState->m_NumUpdates++;
 		}
