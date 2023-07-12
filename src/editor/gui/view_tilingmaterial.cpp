@@ -180,7 +180,11 @@ void CViewTilingMaterial::OnButtonClick(int Button)
 				{
 					int Token = AssetsManager()->GenerateToken();
 					CSubPath CondPath = CAsset_TilingMaterial::SubPath_RuleCondition(RulePath.GetId(), AssetsManager()->AddSubItem(AssetsEditor()->GetEditedAssetPath(), RulePath, CAsset_TilingMaterial::TYPE_RULE_CONDITION, Token));
-					AssetsManager()->SetAssetValue<int>(AssetsEditor()->GetEditedAssetPath(), CondPath, CAsset_TilingMaterial::RULE_CONDITION_TYPE, CAsset_TilingMaterial::CONDITIONTYPE_INDEX, Token);
+					CAsset_TilingMaterial::EConditionType Type = CAsset_TilingMaterial::CONDITIONTYPE_INDEX;
+					if(Input()->KeyIsPressed(KEY_LSHIFT))
+						Type = CAsset_TilingMaterial::CONDITIONTYPE_NOTINDEX;
+
+					AssetsManager()->SetAssetValue<int>(AssetsEditor()->GetEditedAssetPath(), CondPath, CAsset_TilingMaterial::RULE_CONDITION_TYPE, Type, Token);
 					AssetsManager()->SetAssetValue<int>(AssetsEditor()->GetEditedAssetPath(), CondPath, CAsset_TilingMaterial::RULE_CONDITION_VALUE, 1, Token);
 					AssetsManager()->SetAssetValue<int>(AssetsEditor()->GetEditedAssetPath(), CondPath, CAsset_TilingMaterial::RULE_CONDITION_RELPOSX, X, Token);
 					AssetsManager()->SetAssetValue<int>(AssetsEditor()->GetEditedAssetPath(), CondPath, CAsset_TilingMaterial::RULE_CONDITION_RELPOSY, Y, Token);
