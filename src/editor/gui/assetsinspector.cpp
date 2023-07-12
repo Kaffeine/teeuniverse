@@ -2093,6 +2093,10 @@ public:
 					Token
 				);
 			}
+
+			CAssetState *pState = AssetsManager()->GetAssetState(m_pAssetsEditor->GetEditedAssetPath());
+			pState->m_NumUpdates++;
+
 			m_pPopup->Close();
 		}
 		
