@@ -2230,6 +2230,23 @@ public:
 class CSubItemList_TilingMaterial_Rule : public CSubItemList
 {
 protected:
+	class CRuleSubItem : public CSubItem
+	{
+	public:
+		using CSubItem::CSubItem;
+
+	protected:
+		bool MatchSubPathForHighlight(const CSubPath &ActiveSubPath) const override
+		{
+			if(ActiveSubPath.GetType() == CAsset_TilingMaterial::TYPE_RULE_CONDITION && ActiveSubPath.GetId() == m_SubPath.GetId())
+			{
+				return true;
+			}
+
+			return CSubItem::MatchSubPathForHighlight(ActiveSubPath);
+		}
+	};
+
 	void GenerateList() override
 	{
 		Clear();
@@ -2297,7 +2314,8 @@ protected:
 				
 				LString_Rule.ClearParameters();
 				LString_Rule.AddInteger("Index", pMaterial->GetRuleTileIndex(*RuleIter));
-				Add(new CSubItem(m_pAssetsEditor, *RuleIter, LString_Rule, m_pAssetsEditor->m_Path_Sprite_IconScript), false);
+				CSubItem *pItem = new CRuleSubItem(m_pAssetsEditor, *RuleIter, LString_Rule, m_pAssetsEditor->m_Path_Sprite_IconScript);
+				Add(pItem, false);
 			
 				RuleCounter++;
 			}
