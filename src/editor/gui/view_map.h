@@ -57,25 +57,25 @@ protected:
 	void RenderEntities();
 	void RenderBoxes();
 
-	bool m_GridAligned;
-	bool m_CameraDraged;
-	float m_ZoneOpacity;
-	bool m_ShowGrid;
-	bool m_ShowMeshes;
-	int m_ShowEntities;
-	bool m_ZoomLockedToUnit;
-	int m_LoD;
-	
+	bool m_GridAligned{};
+	bool m_CameraDraged{};
+	float m_ZoneOpacity{};
+	bool m_ShowGrid{};
+	bool m_ShowMeshes{};
+	int m_ShowEntities{};
+	bool m_ZoomLockedToUnit{};
+	int m_LoD{};
+
 	std::unique_ptr<class CMapRenderer> m_pMapRenderer;
 	
-	CView::CCursorTool* m_pCursorTool_MapStamp;
-	CView::CCursorTool* m_pCursorTool_MapFill;
-	CView::CCursorTool* m_pCursorTool_MapTransform;
-	CView::CCursorTool* m_pCursorTool_MapEdit;
-	CView::CCursorTool* m_pCursorTool_MapEraser;
-	CView::CCursorTool* m_pCursorTool_MapCrop;
-	CView::CCursorTool* m_pCursorTool_MapAddVertex;
-	CView::CCursorTool* m_pCursorTool_MapWeightVertex;
+	CView::CCursorTool* m_pCursorTool_MapStamp{};
+	CView::CCursorTool* m_pCursorTool_MapFill{};
+	CView::CCursorTool* m_pCursorTool_MapTransform{};
+	CView::CCursorTool* m_pCursorTool_MapEdit{};
+	CView::CCursorTool* m_pCursorTool_MapEraser{};
+	CView::CCursorTool* m_pCursorTool_MapCrop{};
+	CView::CCursorTool* m_pCursorTool_MapAddVertex{};
+	CView::CCursorTool* m_pCursorTool_MapWeightVertex{};
 	
 	std::vector< std::pair<CAssetPath, std::vector<int> > > m_ZoneDataMemory;
 

@@ -83,43 +83,43 @@ protected:
 	class CShaperGlyph
 	{
 	public:
-		CGlyphId m_GlyphId;
-		int m_CharPos;
+		CGlyphId m_GlyphId{};
+		int m_CharPos{};
 	};
 	
 	class CGlyph
 	{
 	public:
-		int m_RenderTick;
-		int m_Width;
-		int m_Height;
-		ivec2 m_Granularity;
-		int m_Block;
-		int m_BlockPos;
-		unsigned char* m_pData;
-		vec2 m_UVMin;
-		vec2 m_UVMax;
+		int m_RenderTick{};
+		int m_Width{};
+		int m_Height{};
+		ivec2 m_Granularity{};
+		int m_Block{};
+		int m_BlockPos{};
+		unsigned char* m_pData{};
+		vec2 m_UVMin{};
+		vec2 m_UVMax{};
 		
-		float m_AdvanceX;
-		float m_OffsetX;
-		float m_OffsetY;
+		float m_AdvanceX{};
+		float m_OffsetX{};
+		float m_OffsetY{};
 	};
 	
 	class CGlyphCache : public CClientKernel::CGuest
 	{
 	public:
-		int m_FontSize;
-		int m_PPG;
-		int m_GPB;
-		int m_PPB;
-		int m_OffsetY;
-		int m_RenderTick;
-		int m_Width;
-		int m_Height;
+		int m_FontSize{};
+		int m_PPG{};
+		int m_GPB{};
+		int m_PPB{};
+		int m_OffsetY{};
+		int m_RenderTick{};
+		int m_Width{};
+		int m_Height{};
 		std::unique_ptr<unsigned char[]> m_pData;
 		CTextureHandle m_Texture;
-		int m_MemoryUsage;
-		int m_Version;
+		int m_MemoryUsage{};
+		int m_Version{};
 		
 		std::vector<CBlock> m_Blocks;
 		std::map<CGlyphId, CGlyph> m_Glyphs;
@@ -146,26 +146,26 @@ public:
 	public:
 		struct CQuad
 		{
-			int m_CharPos;			//Character in the original string that has created this quad
-			vec2 m_AdvancePos;
-			vec2 m_QuadPos;
-			vec2 m_Size;
-			vec2 m_UVMin;
-			vec2 m_UVMax;
+			int m_CharPos{};			//Character in the original string that has created this quad
+			vec2 m_AdvancePos{};
+			vec2 m_QuadPos{};
+			vec2 m_Size{};
+			vec2 m_UVMin{};
+			vec2 m_UVMax{};
 		};
 		
 	public:
-		bool m_Rendered;
+		bool m_Rendered{};
 		
 		dynamic_string m_Text;				//Store the text to detect if the cache must be updated
-		ivec2 m_BoxSize;			//To check if the context is different
-		float m_FontSize;
+		ivec2 m_BoxSize{};			//To check if the context is different
+		float m_FontSize{};
 		
-		int m_GlyphCacheId;			//Any modification in the GlyphCache can make obsolete the TextCache
-		int m_GlyphCacheVersion;
+		int m_GlyphCacheId{};			//Any modification in the GlyphCache can make obsolete the TextCache
+		int m_GlyphCacheVersion{};
 					
 		std::vector<CQuad> m_Quads;		//Keep quads to redraw quickly
-		float m_TextWidth;
+		float m_TextWidth{};
 		
 	public:
 		CTextCache();
@@ -177,15 +177,15 @@ public:
 	
 	struct CTextCursor
 	{
-		int m_TextIter;
-		vec2 m_Position;
+		int m_TextIter{};
+		vec2 m_Position{};
 	};
 	
 private:
 	FT_Library m_FTLibrary;
 	std::vector< std::unique_ptr<CFont> > m_Fonts;
 	std::vector< std::unique_ptr<CGlyphCache> > m_GlyphCaches;
-	int m_RenderTick;
+	int m_RenderTick{};
 
 private:
 	CGlyph* LoadGlyph(CGlyphCache* pCache, CGlyphId GlyphId);

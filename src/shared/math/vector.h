@@ -46,8 +46,8 @@ template<typename T>
 class vector2_base
 {
 public:
-	union { T x,u; };
-	union { T y,v; };
+	union { T x,u{}; };
+	union { T y,v{}; };
 
 	vector2_base() {}
 	vector2_base(T nx, T ny)

@@ -22,15 +22,6 @@
 namespace gui
 {
 
-CRect::CRect() :
-	x(0),
-	y(0),
-	w(0),
-	h(0)
-{
-	
-}
-
 CRect::CRect(int X, int Y, int W, int H) :
 	x(X),
 	y(Y),
@@ -46,7 +37,7 @@ void CRect::CenterIn(const CRect& Rect)
 	y = Rect.y + Rect.h/2 - h/2;
 }
 
-CRect CRect::Intersection(const CRect& Rect)
+CRect CRect::Intersection(const CRect& Rect) const
 {
 	int ix = max(x, Rect.x);
 	int iy = max(y, Rect.y);

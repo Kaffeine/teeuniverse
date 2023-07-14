@@ -27,17 +27,29 @@ namespace gui
 class CRect
 {
 public:
-	union { int x,minx,minw,x0; };
-	union { int y,miny,minh,y0; };
-	union { int w,maxx,maxw,x1; };
-	union { int h,maxy,maxh,y1; };
-	
+	union
+	{
+		int x, minx, minw, x0{};
+	};
+	union
+	{
+		int y, miny, minh, y0{};
+	};
+	union
+	{
+		int w, maxx, maxw, x1{};
+	};
+	union
+	{
+		int h, maxy, maxh, y1{};
+	};
+
 public:
-	CRect();
+	CRect() = default;
 	CRect(int X, int Y, int W, int H);
 	
 	void CenterIn(const CRect& Rect);
-	CRect Intersection(const CRect& Rect);
+	CRect Intersection(const CRect& Rect) const;
 	bool IsInside(int X, int Y) const;
 	inline bool IsInside(const ivec2& Pos) const { return IsInside(Pos.x, Pos.y); }
 	
