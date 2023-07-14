@@ -224,6 +224,7 @@ bool CGui::PreUpdate()
 						else
 							NextFocusWanted = true;
 					}
+					break;
 				default:
 				{
 					if(m_pFocusedWidget && (m_pFocusedWidget->GetInputToBlock() & BLOCKEDINPUT_KEY))
