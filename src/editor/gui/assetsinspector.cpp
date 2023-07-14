@@ -249,6 +249,7 @@ protected:
 protected:
 	CGuiEditor* m_pAssetsEditor;
 	CSubPath m_SubPath;
+	bool m_HighlightSameId{};
 	
 protected:
 	void MouseClickAction() override { Action(); }
@@ -342,6 +343,24 @@ protected:
 		}
 	}
 
+	virtual bool MatchSubPathForHighlight(const CSubPath &ActiveSubPath) const
+	{
+		if (m_HighlightSameId)
+		{
+			if (ActiveSubPath.IsNotNull() && ActiveSubPath.GetId() == m_SubPath.GetId())
+			{
+				return true;
+			}
+		}
+
+		if(ActiveSubPath == m_SubPath)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 public:
 	CSubItem(CGuiEditor* pAssetsEditor, CSubPath SubPath, const char* pName, CAssetPath IconPath) :
 		gui::CButton(pAssetsEditor, pName, IconPath),
@@ -358,20 +377,28 @@ public:
 	{
 		SetButtonStyle(m_pAssetsEditor->m_Path_Button_ListItem);
 	}
-	
-	void Update(bool ParentEnabled) override
+
+	void SetHighlightSameId(bool Highlight)
 	{
-		bool Found = false;
-		for(unsigned int i=0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
+		m_HighlightSameId = Highlight;
+	}
+
+	bool IsHighlighted() const
+	{
+		for(const CSubPath &ActiveSubPath : m_pAssetsEditor->GetEditedSubPathes())
 		{
-			if(m_pAssetsEditor->GetEditedSubPathes()[i] == m_SubPath)
+			if(MatchSubPathForHighlight(ActiveSubPath))
 			{
-				Found = true;
-				break;
+				return true;
 			}
 		}
-		
-		if(Found)
+
+		return false;
+	}
+
+	void Update(bool ParentEnabled) override
+	{
+		if(IsHighlighted())
 			SetButtonStyle(m_pAssetsEditor->m_Path_Button_ListItemHL);
 		else
 			SetButtonStyle(m_pAssetsEditor->m_Path_Button_ListItem);
@@ -1023,7 +1050,9 @@ protected:
 			{
 				LString.ClearParameters();
 				LString.AddInteger("Id", Counter);
-				Add(new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconQuad), false);
+				CSubItem *pItem = new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconQuad);
+				pItem->SetHighlightSameId(true);
+				Add(pItem, false);
 				Counter++;
 			}
 		}
@@ -1128,7 +1157,9 @@ protected:
 			{
 				LString.ClearParameters();
 				LString.AddInteger("Id", Counter);
-				Add(new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconPolygon), false);
+				CSubItem *pItem = new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconPolygon);
+				pItem->SetHighlightSameId(true);
+				Add(pItem, false);
 				Counter++;
 			}
 		}
