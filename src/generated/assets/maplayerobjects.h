@@ -209,12 +209,12 @@ public:
 		
 	
 	private:
-		vec2 m_Position;
-		float m_Weight;
-		vec4 m_Color;
-		int m_Smoothness;
-		vec2 m_ControlPoint0;
-		vec2 m_ControlPoint1;
+		vec2 m_Position{};
+		float m_Weight{};
+		vec4 m_Color{};
+		int m_Smoothness{};
+		vec2 m_ControlPoint0{};
+		vec2 m_ControlPoint1{};
 	
 	public:
 		CVertex();
@@ -374,17 +374,17 @@ public:
 		
 	
 	private:
-		vec2 m_Position;
-		vec2 m_Size;
-		float m_Angle;
-		CAssetPath m_StylePath;
-		std::vector<CVertex> m_Vertex;
-		int m_PathType;
-		int m_FillType;
-		int m_LineType;
-		int m_OrthoTesselation;
-		CAssetPath m_AnimationPath;
-		int64_t m_AnimationOffset;
+		vec2 m_Position{};
+		vec2 m_Size{};
+		float m_Angle{};
+		CAssetPath m_StylePath{};
+		std::vector<CVertex> m_Vertex{};
+		int m_PathType{};
+		int m_FillType{};
+		int m_LineType{};
+		int m_OrthoTesselation{};
+		CAssetPath m_AnimationPath{};
+		int64_t m_AnimationOffset{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -722,10 +722,10 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	std::vector<CAsset_MapLayerObjects::CObject> m_Object;
-	bool m_Visibility;
-	int m_LevelOfDetail;
+	CAssetPath m_ParentPath{};
+	std::vector<CAsset_MapLayerObjects::CObject> m_Object{};
+	bool m_Visibility{};
+	int m_LevelOfDetail{};
 
 public:
 	void GetObjectTransform(const CSubPath& SubPath, float Time, matrix2x2* pMatrix, vec2* pPosition) const;

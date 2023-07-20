@@ -131,12 +131,12 @@ public:
 	
 
 private:
-	CAssetPath m_ButtonStylePath;
-	CAssetPath m_PopupStylePath;
-	CAssetPath m_RGBIconPath;
-	CAssetPath m_HSVIconPath;
-	CAssetPath m_SquareIconPath;
-	CAssetPath m_WheelIconPath;
+	CAssetPath m_ButtonStylePath{};
+	CAssetPath m_PopupStylePath{};
+	CAssetPath m_RGBIconPath{};
+	CAssetPath m_HSVIconPath{};
+	CAssetPath m_SquareIconPath{};
+	CAssetPath m_WheelIconPath{};
 
 public:
 	virtual ~CAsset_GuiColorEditStyle() {}

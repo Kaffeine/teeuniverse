@@ -146,13 +146,13 @@ public:
 	
 
 private:
-	int m_GridWidth;
-	int m_GridHeight;
-	int m_GridSpacing;
-	int m_TexelSize;
-	bool m_TilingEnabled;
-	array2d< uint8_t > m_Data;
-	CTextureHandle m_Texture;
+	int m_GridWidth{};
+	int m_GridHeight{};
+	int m_GridSpacing{};
+	int m_TexelSize{};
+	bool m_TilingEnabled{};
+	array2d< uint8_t > m_Data{};
+	CTextureHandle m_Texture{};
 
 public:
 	vec4 GetColor(int x, int y) const;vec4 Sample(vec2 UV) const;

@@ -235,22 +235,22 @@ public:
 	
 
 private:
-	int m_Flags;
-	vec4 m_BackgroundColor;
-	float m_BackgroundPadding;
-	vec4 m_BorderColor;
-	int m_BorderFlags;
-	float m_CornerRadius;
-	int m_CornerFlags;
-	int m_ImagePadding;
-	CAssetPath m_ImageTPath;
-	CAssetPath m_ImageRPath;
-	CAssetPath m_ImageBPath;
-	CAssetPath m_ImageLPath;
-	CAssetPath m_ImageTRPath;
-	CAssetPath m_ImageBRPath;
-	CAssetPath m_ImageBLPath;
-	CAssetPath m_ImageTLPath;
+	int m_Flags{};
+	vec4 m_BackgroundColor{};
+	float m_BackgroundPadding{};
+	vec4 m_BorderColor{};
+	int m_BorderFlags{};
+	float m_CornerRadius{};
+	int m_CornerFlags{};
+	int m_ImagePadding{};
+	CAssetPath m_ImageTPath{};
+	CAssetPath m_ImageRPath{};
+	CAssetPath m_ImageBPath{};
+	CAssetPath m_ImageLPath{};
+	CAssetPath m_ImageTRPath{};
+	CAssetPath m_ImageBRPath{};
+	CAssetPath m_ImageBLPath{};
+	CAssetPath m_ImageTLPath{};
 
 public:
 	virtual ~CAsset_GuiRectStyle() {}

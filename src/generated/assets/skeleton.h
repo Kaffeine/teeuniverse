@@ -201,13 +201,13 @@ public:
 		
 	
 	private:
-		CSubPath m_Parent;
-		float m_Length;
-		float m_Anchor;
-		vec2 m_Translation;
-		float m_Angle;
-		_dynamic_string<128> m_Name;
-		vec4 m_Color;
+		CSubPath m_Parent{};
+		float m_Length{};
+		float m_Anchor{};
+		vec2 m_Translation{};
+		float m_Angle{};
+		_dynamic_string<128> m_Name{};
+		vec4 m_Color{};
 	
 	public:
 		CBone();
@@ -305,7 +305,7 @@ public:
 		
 	
 	private:
-		_dynamic_string<128> m_Name;
+		_dynamic_string<128> m_Name{};
 	
 	public:
 		const char* GetName() const { return m_Name.buffer(); }
@@ -373,8 +373,8 @@ public:
 	
 
 private:
-	std::vector<CAsset_Skeleton::CBone> m_Bone;
-	std::vector<CAsset_Skeleton::CLayer> m_Layer;
+	std::vector<CAsset_Skeleton::CBone> m_Bone{};
+	std::vector<CAsset_Skeleton::CLayer> m_Layer{};
 
 public:
 	virtual ~CAsset_Skeleton() {}

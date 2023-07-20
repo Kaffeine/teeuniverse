@@ -131,12 +131,12 @@ public:
 	
 
 private:
-	CAssetPath m_RectPath;
-	CAssetPath m_DefaultRailPath;
-	CAssetPath m_DefaultSliderPath;
-	CAssetPath m_MouseOverSliderPath;
-	int m_Margin;
-	int m_Padding;
+	CAssetPath m_RectPath{};
+	CAssetPath m_DefaultRailPath{};
+	CAssetPath m_DefaultSliderPath{};
+	CAssetPath m_MouseOverSliderPath{};
+	int m_Margin{};
+	int m_Padding{};
 
 public:
 	virtual ~CAsset_GuiScrollbarStyle() {}

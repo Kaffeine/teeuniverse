@@ -251,14 +251,14 @@ public:
 	
 
 private:
-	std::vector<CAssetPath> m_BgGroup;
-	std::vector<CAssetPath> m_FgGroup;
-	std::vector<CAssetPath> m_ZoneLayer;
-	std::vector<CAssetPath> m_EntityLayer;
-	vec2 m_CameraPosition;
-	float m_CameraZoom;
-	bool m_ShowEntities;
-	bool m_ShowZones;
+	std::vector<CAssetPath> m_BgGroup{};
+	std::vector<CAssetPath> m_FgGroup{};
+	std::vector<CAssetPath> m_ZoneLayer{};
+	std::vector<CAssetPath> m_EntityLayer{};
+	vec2 m_CameraPosition{};
+	float m_CameraZoom{};
+	bool m_ShowEntities{};
+	bool m_ShowZones{};
 
 public:
 	virtual ~CAsset_Map() {}

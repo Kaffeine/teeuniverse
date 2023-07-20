@@ -103,8 +103,8 @@ public:
 	
 
 private:
-	CAssetPath m_GizmoPath;
-	float m_CollisionRadius;
+	CAssetPath m_GizmoPath{};
+	float m_CollisionRadius{};
 
 public:
 	virtual ~CAsset_EntityType() {}

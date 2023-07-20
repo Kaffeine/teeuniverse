@@ -133,11 +133,11 @@ public:
 	
 
 private:
-	CAssetPath m_ImagePath;
-	int m_X;
-	int m_Y;
-	int m_Width;
-	int m_Height;
+	CAssetPath m_ImagePath{};
+	int m_X{};
+	int m_Y{};
+	int m_Width{};
+	int m_Height{};
 
 public:
 	int GetPixelWidth() const;

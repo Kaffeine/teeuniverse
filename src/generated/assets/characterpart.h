@@ -110,9 +110,9 @@ public:
 	
 
 private:
-	CAssetPath m_CharacterPath;
-	CSubPath m_CharacterPart;
-	CAssetPath m_SkeletonSkinPath;
+	CAssetPath m_CharacterPath{};
+	CSubPath m_CharacterPart{};
+	CAssetPath m_SkeletonSkinPath{};
 
 public:
 	virtual ~CAsset_CharacterPart() {}

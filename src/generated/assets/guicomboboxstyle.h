@@ -110,9 +110,9 @@ public:
 	
 
 private:
-	CAssetPath m_ButtonPath;
-	CAssetPath m_PopupPath;
-	CAssetPath m_EnumPath;
+	CAssetPath m_ButtonPath{};
+	CAssetPath m_PopupPath{};
+	CAssetPath m_EnumPath{};
 
 public:
 	virtual ~CAsset_GuiComboBoxStyle() {}

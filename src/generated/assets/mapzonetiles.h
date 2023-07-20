@@ -130,8 +130,8 @@ public:
 		
 	
 	private:
-		uint8_t m_Index;
-		uint32_t m_Flags;
+		uint8_t m_Index{};
+		uint32_t m_Flags{};
 	
 	public:
 		CTile();
@@ -224,13 +224,13 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	CAssetPath m_ZoneTypePath;
-	array2d< CTile > m_Tile;
-	bool m_Visibility;
-	array2d< int > m_DataInt;
-	int m_PositionX;
-	int m_PositionY;
+	CAssetPath m_ParentPath{};
+	CAssetPath m_ZoneTypePath{};
+	array2d< CTile > m_Tile{};
+	bool m_Visibility{};
+	array2d< int > m_DataInt{};
+	int m_PositionX{};
+	int m_PositionY{};
 
 public:
 	virtual ~CAsset_MapZoneTiles() {}

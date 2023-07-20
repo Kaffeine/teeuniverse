@@ -244,9 +244,9 @@ public:
 		
 	
 	private:
-		CAssetPath m_ZoneTypePath;
-		uint8_t m_OldIndex;
-		uint8_t m_NewIndex;
+		CAssetPath m_ZoneTypePath{};
+		uint8_t m_OldIndex{};
+		uint8_t m_NewIndex{};
 	
 	public:
 		CAssetPath GetZoneTypePath() const { return m_ZoneTypePath; }
@@ -329,10 +329,10 @@ public:
 			
 		
 		private:
-			int m_Type;
-			int m_Value;
-			int m_RelPosX;
-			int m_RelPosY;
+			int m_Type{};
+			int m_Value{};
+			int m_RelPosX{};
+			int m_RelPosY{};
 		
 		public:
 			CCondition();
@@ -413,10 +413,10 @@ public:
 		
 	
 	private:
-		std::vector<CRule::CCondition> m_Condition;
-		float m_Probability;
-		uint8_t m_TileIndex;
-		uint8_t m_TileFlags;
+		std::vector<CRule::CCondition> m_Condition{};
+		float m_Probability{};
+		uint8_t m_TileIndex{};
+		uint8_t m_TileFlags{};
 	
 	public:
 		CRule();
@@ -587,7 +587,7 @@ public:
 		
 	
 	private:
-		_dynamic_string<128> m_Title;
+		_dynamic_string<128> m_Title{};
 	
 	public:
 		const char* GetTitle() const { return m_Title.buffer(); }
@@ -652,8 +652,8 @@ public:
 		
 	
 	private:
-		_dynamic_string<128> m_Title;
-		std::vector<uint8_t> m_Index;
+		_dynamic_string<128> m_Title{};
+		std::vector<uint8_t> m_Index{};
 	
 	public:
 		const char* GetTitle() const { return m_Title.buffer(); }
@@ -768,11 +768,11 @@ public:
 	
 
 private:
-	CAssetPath m_ImagePath;
-	std::vector<CAsset_TilingMaterial::CZoneConverter> m_ZoneConverter;
-	std::vector<CAsset_TilingMaterial::CRule> m_Rule;
-	std::vector<CAsset_TilingMaterial::CIndex> m_Index;
-	std::vector<CAsset_TilingMaterial::CLabel> m_Label;
+	CAssetPath m_ImagePath{};
+	std::vector<CAsset_TilingMaterial::CZoneConverter> m_ZoneConverter{};
+	std::vector<CAsset_TilingMaterial::CRule> m_Rule{};
+	std::vector<CAsset_TilingMaterial::CIndex> m_Index{};
+	std::vector<CAsset_TilingMaterial::CLabel> m_Label{};
 
 public:
 	virtual ~CAsset_TilingMaterial() {}

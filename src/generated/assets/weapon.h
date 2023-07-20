@@ -117,10 +117,10 @@ public:
 	
 
 private:
-	CAssetPath m_CharacterPath;
-	CAssetPath m_CursorPath;
-	CAssetPath m_SkinPath;
-	CAssetPath m_AttackAnimationPath;
+	CAssetPath m_CharacterPath{};
+	CAssetPath m_CursorPath{};
+	CAssetPath m_SkinPath{};
+	CAssetPath m_AttackAnimationPath{};
 
 public:
 	virtual ~CAsset_Weapon() {}

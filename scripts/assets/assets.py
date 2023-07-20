@@ -157,7 +157,7 @@ class Type:
 	def generateAssetPathOp(self, var, operation):
 		return []
 	def generateDeclaration(self, var):
-		return [self.tname + " " + var + ";"]
+		return [self.tname + " " + var + "{};"]
 	def tuaType(self, version):
 		return ""
 	def generateTuaDeclaration(self, var, version):

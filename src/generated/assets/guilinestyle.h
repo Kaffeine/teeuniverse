@@ -131,11 +131,11 @@ public:
 	
 
 private:
-	int m_Flags;
-	vec4 m_BorderColor;
-	CAssetPath m_ImageLPath;
-	CAssetPath m_ImageMPath;
-	CAssetPath m_ImageRPath;
+	int m_Flags{};
+	vec4 m_BorderColor{};
+	CAssetPath m_ImageLPath{};
+	CAssetPath m_ImageMPath{};
+	CAssetPath m_ImageRPath{};
 
 public:
 	virtual ~CAsset_GuiLineStyle() {}

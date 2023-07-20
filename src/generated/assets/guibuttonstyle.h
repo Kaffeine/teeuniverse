@@ -117,10 +117,10 @@ public:
 	
 
 private:
-	CAssetPath m_IdleStylePath;
-	CAssetPath m_MouseOverStylePath;
-	CAssetPath m_ReadOnlyStylePath;
-	CAssetPath m_FocusStylePath;
+	CAssetPath m_IdleStylePath{};
+	CAssetPath m_MouseOverStylePath{};
+	CAssetPath m_ReadOnlyStylePath{};
+	CAssetPath m_FocusStylePath{};
 
 public:
 	virtual ~CAsset_GuiButtonStyle() {}

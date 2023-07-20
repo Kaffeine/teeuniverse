@@ -237,15 +237,15 @@ public:
 		
 	
 	private:
-		bool m_Used;
-		_dynamic_string<128> m_Description;
-		vec4 m_Color;
-		_dynamic_string<128> m_Title;
-		int m_BorderIndex;
-		vec4 m_BorderColor;
-		int m_Group;
-		bool m_RotationAllowed;
-		bool m_MirrorAllowed;
+		bool m_Used{};
+		_dynamic_string<128> m_Description{};
+		vec4 m_Color{};
+		_dynamic_string<128> m_Title{};
+		int m_BorderIndex{};
+		vec4 m_BorderColor{};
+		int m_Group{};
+		bool m_RotationAllowed{};
+		bool m_MirrorAllowed{};
 	
 	public:
 		CIndex();
@@ -361,12 +361,12 @@ public:
 		
 	
 	private:
-		_dynamic_string<128> m_Title;
-		_dynamic_string<128> m_Description;
-		int m_DefaultValue;
-		int m_MinValue;
-		int m_MaxValue;
-		int m_NullValue;
+		_dynamic_string<128> m_Title{};
+		_dynamic_string<128> m_Description{};
+		int m_DefaultValue{};
+		int m_MinValue{};
+		int m_MaxValue{};
+		int m_NullValue{};
 	
 	public:
 		CDataInt();
@@ -463,10 +463,10 @@ public:
 	
 
 private:
-	std::vector<CAsset_ZoneType::CIndex> m_Index;
-	CAssetPath m_ImagePath;
-	std::vector<CAsset_ZoneType::CDataInt> m_DataInt;
-	std::vector<_dynamic_string<128>> m_Group;
+	std::vector<CAsset_ZoneType::CIndex> m_Index{};
+	CAssetPath m_ImagePath{};
+	std::vector<CAsset_ZoneType::CDataInt> m_DataInt{};
+	std::vector<_dynamic_string<128>> m_Group{};
 
 public:
 	virtual ~CAsset_ZoneType() {}

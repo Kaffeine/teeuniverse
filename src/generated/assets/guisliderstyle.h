@@ -124,11 +124,11 @@ public:
 	
 
 private:
-	CAssetPath m_RectPath;
-	CAssetPath m_DefaultRailPath;
-	CAssetPath m_CursorPath;
-	int m_Margin;
-	int m_Padding;
+	CAssetPath m_RectPath{};
+	CAssetPath m_DefaultRailPath{};
+	CAssetPath m_CursorPath{};
+	int m_Margin{};
+	int m_Padding{};
 
 public:
 	virtual ~CAsset_GuiSliderStyle() {}

@@ -138,13 +138,13 @@ public:
 	
 
 private:
-	CAssetPath m_LayoutPath;
-	CAssetPath m_ContentPath;
-	CAssetPath m_ButtonListPath;
-	CAssetPath m_InactiveButtonPath;
-	CAssetPath m_ActiveButtonPath;
-	bool m_ButtonListFill;
-	bool m_ButtonListText;
+	CAssetPath m_LayoutPath{};
+	CAssetPath m_ContentPath{};
+	CAssetPath m_ButtonListPath{};
+	CAssetPath m_InactiveButtonPath{};
+	CAssetPath m_ActiveButtonPath{};
+	bool m_ButtonListFill{};
+	bool m_ButtonListText{};
 
 public:
 	virtual ~CAsset_GuiTabsStyle() {}

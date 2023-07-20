@@ -131,12 +131,12 @@ public:
 	
 
 private:
-	int m_MinWidth;
-	int m_MinHeight;
-	int m_Margin;
-	int m_Padding;
-	int m_Spacing;
-	CAssetPath m_RectPath;
+	int m_MinWidth{};
+	int m_MinHeight{};
+	int m_Margin{};
+	int m_Padding{};
+	int m_Spacing{};
+	CAssetPath m_RectPath{};
 
 public:
 	virtual ~CAsset_GuiBoxStyle() {}

@@ -192,11 +192,11 @@ public:
 		
 	
 	private:
-		vec2 m_Position;
-		int m_Smoothness;
-		vec2 m_ControlPoint0;
-		vec2 m_ControlPoint1;
-		float m_Weight;
+		vec2 m_Position{};
+		int m_Smoothness{};
+		vec2 m_ControlPoint0{};
+		vec2 m_ControlPoint1{};
+		float m_Weight{};
 	
 	public:
 		CVertex();
@@ -329,16 +329,16 @@ public:
 		
 	
 	private:
-		vec2 m_Position;
-		vec2 m_Size;
-		float m_Angle;
-		std::vector<CVertex> m_Vertex;
-		int m_PathType;
-		int m_FillType;
-		uint8_t m_ZoneIndex;
-		uint32_t m_ZoneFlags;
-		CAssetPath m_AnimationPath;
-		int64_t m_AnimationOffset;
+		vec2 m_Position{};
+		vec2 m_Size{};
+		float m_Angle{};
+		std::vector<CVertex> m_Vertex{};
+		int m_PathType{};
+		int m_FillType{};
+		uint8_t m_ZoneIndex{};
+		uint32_t m_ZoneFlags{};
+		CAssetPath m_AnimationPath{};
+		int64_t m_AnimationOffset{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -653,10 +653,10 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	CAssetPath m_ZoneTypePath;
-	std::vector<CAsset_MapZoneObjects::CObject> m_Object;
-	bool m_Visibility;
+	CAssetPath m_ParentPath{};
+	CAssetPath m_ZoneTypePath{};
+	std::vector<CAsset_MapZoneObjects::CObject> m_Object{};
+	bool m_Visibility{};
 
 public:
 	void GetObjectTransform(const CSubPath& SubPath, float Time, matrix2x2* pMatrix, vec2* pPosition) const;

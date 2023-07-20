@@ -221,9 +221,9 @@ public:
 		
 	
 	private:
-		vec4 m_Color;
-		float m_AngleStart;
-		float m_AngleEnd;
+		vec4 m_Color{};
+		float m_AngleStart{};
+		float m_AngleEnd{};
 	
 	public:
 		CLabel();
@@ -351,16 +351,16 @@ public:
 		
 	
 	private:
-		CAssetPath m_Path;
-		vec2 m_Size;
-		vec4 m_Color;
-		int m_Flags;
-		vec2 m_Position;
-		int m_Alignment;
-		int m_Filling;
-		int m_TileType;
-		int m_TileLabel0;
-		int m_TileLabel1;
+		CAssetPath m_Path{};
+		vec2 m_Size{};
+		vec4 m_Color{};
+		int m_Flags{};
+		vec2 m_Position{};
+		int m_Alignment{};
+		int m_Filling{};
+		int m_TileType{};
+		int m_TileLabel0{};
+		int m_TileLabel1{};
 	
 	public:
 		CSprite();
@@ -479,7 +479,7 @@ public:
 		
 	
 	private:
-		std::vector<CSprite> m_Sprite;
+		std::vector<CSprite> m_Sprite{};
 	
 	public:
 		int GetSpriteArraySize() const { return m_Sprite.size(); }
@@ -809,14 +809,14 @@ public:
 	
 
 private:
-	std::vector<CAsset_PathMaterial::CLabel> m_Label;
-	std::vector<CAsset_PathMaterial::CLayer> m_Layer;
-	CAssetPath m_TexturePath;
-	vec4 m_TextureColor;
-	vec2 m_TextureSize;
-	float m_TextureAngle;
-	float m_TextureSpacing;
-	bool m_TextureEnabled;
+	std::vector<CAsset_PathMaterial::CLabel> m_Label{};
+	std::vector<CAsset_PathMaterial::CLayer> m_Layer{};
+	CAssetPath m_TexturePath{};
+	vec4 m_TextureColor{};
+	vec2 m_TextureSize{};
+	float m_TextureAngle{};
+	float m_TextureSpacing{};
+	bool m_TextureEnabled{};
 
 public:
 	virtual ~CAsset_PathMaterial() {}

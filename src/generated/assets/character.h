@@ -143,8 +143,8 @@ public:
 		
 	
 	private:
-		_dynamic_string<128> m_Name;
-		CAssetPath m_DefaultPath;
+		_dynamic_string<128> m_Name{};
+		CAssetPath m_DefaultPath{};
 	
 	public:
 		const char* GetName() const { return m_Name.buffer(); }
@@ -235,11 +235,11 @@ public:
 	
 
 private:
-	CAssetPath m_IdlePath;
-	CAssetPath m_WalkPath;
-	CAssetPath m_ControlledJumpPath;
-	CAssetPath m_UncontrolledJumpPath;
-	std::vector<CAsset_Character::CPart> m_Part;
+	CAssetPath m_IdlePath{};
+	CAssetPath m_WalkPath{};
+	CAssetPath m_ControlledJumpPath{};
+	CAssetPath m_UncontrolledJumpPath{};
+	std::vector<CAsset_Character::CPart> m_Part{};
 
 public:
 	virtual ~CAsset_Character() {}

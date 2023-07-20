@@ -142,9 +142,9 @@ public:
 		
 	
 	private:
-		uint8_t m_Index;
-		uint8_t m_Flags;
-		uint8_t m_Brush;
+		uint8_t m_Index{};
+		uint8_t m_Flags{};
+		uint8_t m_Brush{};
 	
 	public:
 		CTile();
@@ -257,16 +257,16 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	CAssetPath m_StylePath;
-	vec4 m_Color;
-	array2d< CTile > m_Tile;
-	bool m_Visibility;
-	int m_PositionX;
-	int m_PositionY;
-	int m_LevelOfDetail;
-	CAssetPath m_SourcePath;
-	int m_RandomSeed;
+	CAssetPath m_ParentPath{};
+	CAssetPath m_StylePath{};
+	vec4 m_Color{};
+	array2d< CTile > m_Tile{};
+	bool m_Visibility{};
+	int m_PositionX{};
+	int m_PositionY{};
+	int m_LevelOfDetail{};
+	CAssetPath m_SourcePath{};
+	int m_RandomSeed{};
 
 public:
 	virtual ~CAsset_MapLayerTiles() {}

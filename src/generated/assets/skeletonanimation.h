@@ -242,10 +242,10 @@ public:
 			
 		
 		private:
-			vec2 m_Translation;
-			vec2 m_Scale;
-			float m_Angle;
-			int m_Alignment;
+			vec2 m_Translation{};
+			vec2 m_Scale{};
+			float m_Angle{};
+			int m_Alignment{};
 		
 		public:
 			CFrame();
@@ -345,8 +345,8 @@ public:
 			
 		
 		private:
-			int64_t m_Time;
-			int m_GraphType;
+			int64_t m_Time{};
+			int m_GraphType{};
 		
 		public:
 			CKeyFrame& operator=(const CFrame& Frame);
@@ -426,9 +426,9 @@ public:
 		
 	
 	private:
-		std::vector<CBoneAnimation::CKeyFrame> m_KeyFrame;
-		CSubPath m_BonePath;
-		int m_CycleType;
+		std::vector<CBoneAnimation::CKeyFrame> m_KeyFrame{};
+		CSubPath m_BonePath{};
+		int m_CycleType{};
 	
 	public:
 		int64_t GetDuration() const;
@@ -689,8 +689,8 @@ public:
 			
 		
 		private:
-			vec4 m_Color;
-			int m_State;
+			vec4 m_Color{};
+			int m_State{};
 		
 		public:
 			CFrame();
@@ -766,8 +766,8 @@ public:
 			
 		
 		private:
-			int64_t m_Time;
-			int m_GraphType;
+			int64_t m_Time{};
+			int m_GraphType{};
 		
 		public:
 			CKeyFrame& operator=(const CFrame& Frame);
@@ -847,9 +847,9 @@ public:
 		
 	
 	private:
-		std::vector<CLayerAnimation::CKeyFrame> m_KeyFrame;
-		CSubPath m_LayerPath;
-		int m_CycleType;
+		std::vector<CLayerAnimation::CKeyFrame> m_KeyFrame{};
+		CSubPath m_LayerPath{};
+		int m_CycleType{};
 	
 	public:
 		int64_t GetDuration() const;
@@ -1032,9 +1032,9 @@ public:
 	
 
 private:
-	CAssetPath m_SkeletonPath;
-	std::vector<CAsset_SkeletonAnimation::CBoneAnimation> m_BoneAnimation;
-	std::vector<CAsset_SkeletonAnimation::CLayerAnimation> m_LayerAnimation;
+	CAssetPath m_SkeletonPath{};
+	std::vector<CAsset_SkeletonAnimation::CBoneAnimation> m_BoneAnimation{};
+	std::vector<CAsset_SkeletonAnimation::CLayerAnimation> m_LayerAnimation{};
 
 public:
 	bool GetBoneAnimFrame(const CSubPath& SubPath, int64_t Time, CBoneAnimation::CFrame& Frame) const;

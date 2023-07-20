@@ -278,24 +278,24 @@ public:
 		
 	
 	private:
-		vec2 m_Pivot;
-		vec2 m_Size;
-		float m_Angle;
-		vec2 m_Vertex0;
-		vec2 m_Vertex1;
-		vec2 m_Vertex2;
-		vec2 m_Vertex3;
-		vec2 m_UV0;
-		vec2 m_UV1;
-		vec2 m_UV2;
-		vec2 m_UV3;
-		vec4 m_Color0;
-		vec4 m_Color1;
-		vec4 m_Color2;
-		vec4 m_Color3;
-		CAssetPath m_AnimationPath;
-		vec4 m_Color;
-		int64_t m_AnimationOffset;
+		vec2 m_Pivot{};
+		vec2 m_Size{};
+		float m_Angle{};
+		vec2 m_Vertex0{};
+		vec2 m_Vertex1{};
+		vec2 m_Vertex2{};
+		vec2 m_Vertex3{};
+		vec2 m_UV0{};
+		vec2 m_UV1{};
+		vec2 m_UV2{};
+		vec2 m_UV3{};
+		vec4 m_Color0{};
+		vec4 m_Color1{};
+		vec4 m_Color2{};
+		vec4 m_Color3{};
+		CAssetPath m_AnimationPath{};
+		vec4 m_Color{};
+		int64_t m_AnimationOffset{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -530,11 +530,11 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	CAssetPath m_ImagePath;
-	std::vector<CAsset_MapLayerQuads::CQuad> m_Quad;
-	bool m_Visibility;
-	int m_LevelOfDetail;
+	CAssetPath m_ParentPath{};
+	CAssetPath m_ImagePath{};
+	std::vector<CAsset_MapLayerQuads::CQuad> m_Quad{};
+	bool m_Visibility{};
+	int m_LevelOfDetail{};
 
 public:
 	void GetQuadTransform(const CSubPath& SubPath, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;

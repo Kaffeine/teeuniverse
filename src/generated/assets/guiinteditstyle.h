@@ -103,8 +103,8 @@ public:
 	
 
 private:
-	CAssetPath m_IncreaseButtonStylePath;
-	CAssetPath m_DecreaseButtonStylePath;
+	CAssetPath m_IncreaseButtonStylePath{};
+	CAssetPath m_DecreaseButtonStylePath{};
 
 public:
 	virtual ~CAsset_GuiIntEditStyle() {}

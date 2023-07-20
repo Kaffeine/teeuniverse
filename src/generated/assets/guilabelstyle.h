@@ -169,16 +169,16 @@ public:
 	
 
 private:
-	int m_MinWidth;
-	int m_MinHeight;
-	int m_Margin;
-	int m_Padding;
-	int m_Spacing;
-	int m_FontSize;
-	vec4 m_TextColor;
-	int m_TextAlignment;
-	CAssetPath m_RectPath;
-	CAssetPath m_IconPath;
+	int m_MinWidth{};
+	int m_MinHeight{};
+	int m_Margin{};
+	int m_Padding{};
+	int m_Spacing{};
+	int m_FontSize{};
+	vec4 m_TextColor{};
+	int m_TextAlignment{};
+	CAssetPath m_RectPath{};
+	CAssetPath m_IconPath{};
 
 public:
 	virtual ~CAsset_GuiLabelStyle() {}

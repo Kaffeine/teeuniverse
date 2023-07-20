@@ -186,14 +186,14 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	std::vector<CAssetPath> m_Layer;
-	vec2 m_Position;
-	vec2 m_HardParallax;
-	bool m_Clipping;
-	vec2 m_ClipPosition;
-	vec2 m_ClipSize;
-	bool m_Visibility;
+	CAssetPath m_ParentPath{};
+	std::vector<CAssetPath> m_Layer{};
+	vec2 m_Position{};
+	vec2 m_HardParallax{};
+	bool m_Clipping{};
+	vec2 m_ClipPosition{};
+	vec2 m_ClipSize{};
+	bool m_Visibility{};
 
 public:
 	virtual ~CAsset_MapGroup() {}

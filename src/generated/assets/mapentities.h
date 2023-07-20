@@ -143,8 +143,8 @@ public:
 		
 	
 	private:
-		CAssetPath m_TypePath;
-		vec2 m_Position;
+		CAssetPath m_TypePath{};
+		vec2 m_Position{};
 	
 	public:
 		CEntity();
@@ -232,9 +232,9 @@ public:
 	
 
 private:
-	CAssetPath m_ParentPath;
-	std::vector<CAsset_MapEntities::CEntity> m_Entity;
-	bool m_Visibility;
+	CAssetPath m_ParentPath{};
+	std::vector<CAsset_MapEntities::CEntity> m_Entity{};
+	bool m_Visibility{};
 
 public:
 	virtual ~CAsset_MapEntities() {}

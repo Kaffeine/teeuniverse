@@ -138,13 +138,13 @@ public:
 	
 
 private:
-	CAssetPath m_IdleTrueStylePath;
-	CAssetPath m_MouseOverTrueStylePath;
-	CAssetPath m_IconTruePath;
-	CAssetPath m_IdleFalseStylePath;
-	CAssetPath m_MouseOverFalseStylePath;
-	CAssetPath m_IconFalsePath;
-	bool m_SwitchIcon;
+	CAssetPath m_IdleTrueStylePath{};
+	CAssetPath m_MouseOverTrueStylePath{};
+	CAssetPath m_IconTruePath{};
+	CAssetPath m_IdleFalseStylePath{};
+	CAssetPath m_MouseOverFalseStylePath{};
+	CAssetPath m_IconFalsePath{};
+	bool m_SwitchIcon{};
 
 public:
 	virtual ~CAsset_GuiToggleStyle() {}

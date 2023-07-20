@@ -199,15 +199,15 @@ public:
 		
 	
 	private:
-		CAssetPath m_SpritePath;
-		CSubPath m_BonePath;
-		CSubPath m_LayerPath;
-		float m_Anchor;
-		vec2 m_Translation;
-		vec2 m_Scale;
-		float m_Angle;
-		vec4 m_Color;
-		int m_Alignment;
+		CAssetPath m_SpritePath{};
+		CSubPath m_BonePath{};
+		CSubPath m_LayerPath{};
+		float m_Anchor{};
+		vec2 m_Translation{};
+		vec2 m_Scale{};
+		float m_Angle{};
+		vec4 m_Color{};
+		int m_Alignment{};
 	
 	public:
 		CSprite();
@@ -325,8 +325,8 @@ public:
 	
 
 private:
-	CAssetPath m_SkeletonPath;
-	std::vector<CAsset_SkeletonSkin::CSprite> m_Sprite;
+	CAssetPath m_SkeletonPath{};
+	std::vector<CAsset_SkeletonSkin::CSprite> m_Sprite{};
 
 public:
 	virtual ~CAsset_SkeletonSkin() {}
