@@ -1089,64 +1089,72 @@ bool CAssetsManager::RelMoveSubItem(CAssetPath AssetPath, CSubPath& SubPath, int
 	
 	return false;
 }
-	
+
+template<class ASSET>
+CAssetPath CAssetsManager::DuplicateAsset_Impl(const CAssetPath &Path, int PackageId, int Token)
+{
+	if(!GetAsset<ASSET>(Path))
+		return CAssetPath::Null();
+
+	CAssetPath NewAssetPath;
+	char aBuf[128];
+	dynamic_string Buffer;
+
+	ASSET *pNewAsset = NewAsset<ASSET>(&NewAssetPath, PackageId, Token);
+	if(!pNewAsset)
+		return CAssetPath::Null();
+	const ASSET *pOldAsset = GetAsset<ASSET>(Path);
+	*pNewAsset = *pOldAsset;
+
+	int DuplicateNum = ((PackageId == Path.GetPackageId()) ? 1 : 0);
+	const char *pName = pOldAsset->GetName();
+	const char *pCharIter = pName + str_length(pName) - 1;
+	while(pCharIter > pName && *pCharIter >= '0' && *pCharIter <= '9')
+	{
+		pCharIter--;
+	}
+	if(pCharIter >= pName)
+	{
+		Buffer.append(pName, pCharIter - pName + 1);
+		DuplicateNum = str_to_int(pCharIter + 1);
+	}
+	else
+	{
+		Buffer = pName;
+	}
+
+	bool NameFound;
+	do
+	{
+		NameFound = false;
+		DuplicateNum++;
+		if(DuplicateNum < 2)
+			str_copy(aBuf, Buffer.buffer(), sizeof(aBuf));
+		else
+			str_format(aBuf, sizeof(aBuf), "%s%d", Buffer.buffer(), DuplicateNum);
+		for(int i = 0; i < GetNumAssets<ASSET>(PackageId); i++)
+		{
+			const ASSET *pTestedAsset = GetAsset<ASSET>(CAssetPath(Path.GetType(), PackageId, i));
+			if(str_comp(pTestedAsset->GetName(), aBuf) == 0)
+			{
+				NameFound = true;
+				break;
+			}
+		}
+	} while(NameFound);
+	pNewAsset->SetName(aBuf);
+	m_pPackages[PackageId]->SetEdited(true);
+
+	return NewAssetPath;
+}
+
 CAssetPath CAssetsManager::DuplicateAsset(const CAssetPath& Path, int PackageId, int Token)
 {
 	if(!IsValidPackage(PackageId) || IsReadOnlyPackage(PackageId))
 		return CAssetPath::Null();
-	
-	CAssetPath NewAssetPath;
-	char aBuf[128];
-	dynamic_string Buffer;
-	
+
 	#define MACRO_ASSETTYPE(Name) case CAsset_##Name::TypeId:\
-	{\
-		if(!GetAsset<CAsset_##Name>(Path))\
-			return CAssetPath::Null();\
-		CAsset_##Name* pNewAsset = NewAsset<CAsset_##Name>(&NewAssetPath, PackageId, Token);\
-		if(!pNewAsset)\
-			return CAssetPath::Null();\
-		const CAsset_##Name* pOldAsset = GetAsset<CAsset_##Name>(Path);\
-		*pNewAsset = *pOldAsset;\
-		\
-		int DuplicateNum = ((PackageId == Path.GetPackageId()) ? 1 : 0);\
-		const char* pName = pOldAsset->GetName();\
-		const char* pCharIter = pName + str_length(pName) - 1;\
-		while(pCharIter > pName && *pCharIter >= '0' && *pCharIter <= '9')\
-		{\
-			pCharIter--;\
-		}\
-		if(pCharIter >= pName)\
-		{\
-			Buffer.append(pName, pCharIter - pName + 1);\
-			DuplicateNum = str_to_int(pCharIter + 1);\
-		}\
-		else\
-			Buffer = pName;\
-		bool NameFound;\
-		do\
-		{\
-			NameFound = false;\
-			DuplicateNum++;\
-			if(DuplicateNum < 2)\
-				str_copy(aBuf, Buffer.buffer(), sizeof(aBuf));\
-			else\
-				str_format(aBuf, sizeof(aBuf), "%s%d", Buffer.buffer(), DuplicateNum);\
-			for(int i=0; i<GetNumAssets<CAsset_##Name>(PackageId); i++)\
-			{\
-				const CAsset_##Name* pTestedAsset = GetAsset<CAsset_##Name>(CAssetPath(Path.GetType(), PackageId, i));\
-				if(str_comp(pTestedAsset->GetName(), aBuf) == 0)\
-				{\
-					NameFound = true;\
-					break;\
-				}\
-			}\
-		}\
-		while(NameFound);\
-		pNewAsset->SetName(aBuf);\
-		m_pPackages[PackageId]->SetEdited(true);\
-		break;\
-	}
+		return DuplicateAsset_Impl<CAsset_##Name>(Path, PackageId, Token);
 	
 	switch(Path.GetType())
 	{
@@ -1155,7 +1163,7 @@ CAssetPath CAssetsManager::DuplicateAsset(const CAssetPath& Path, int PackageId,
 	
 	#undef MACRO_ASSETTYPE
 	
-	return NewAssetPath;
+	return CAssetPath::Null();
 }
 
 void CAssetsManager::DeleteAsset_Hard(const CAssetPath& Path)

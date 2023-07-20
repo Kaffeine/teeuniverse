@@ -270,7 +270,10 @@ public:
 	void Load_EnvInfclass();
 	void Load_EnvLab();
 	void Load_EnvFactory();
-	
+
+	template<class ASSET>
+	CAssetPath DuplicateAsset_Impl(const CAssetPath& Path, int PackageId, int Token = -1);
+
 	CAssetPath DuplicateAsset(const CAssetPath& Path, int PackageId, int Token = -1);
 	
 	void TryChangeAssetName_Hard(CAssetPath AssetPath, const char* pName);
