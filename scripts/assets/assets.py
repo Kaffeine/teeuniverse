@@ -21,6 +21,8 @@ import sys, os
 # TAG_ASSETSVERSION
 versionList = ["0.2.0", "0.2.1", "0.2.2", "0.2.3", "0.2.4", "0.3.0"]
 
+getSetApiTypeList = ["int", "uint32_t", "int64_t", "bool", "const char*", "float", "double", "vec2", "vec4", "CAssetPath", "CSubPath"]
+
 class SubPathType:
 	def __init__(self, name, enumname, numidx):
 		self.name = name
@@ -1551,50 +1553,11 @@ def generateHeader(asset):
 	print >>f, ""
 	print >>f, "\n".join(asset.generateClassDefinition())
 	print >>f, ""
-	for l in asset.generateGetSpe("int"):
-		print >>f, l
-	for l in asset.generateSetSpe("int"):
-		print >>f, l
-	for l in asset.generateGetSpe("uint32_t"):
-		print >>f, l
-	for l in asset.generateSetSpe("uint32_t"):
-		print >>f, l
-	for l in asset.generateGetSpe("int64_t"):
-		print >>f, l
-	for l in asset.generateSetSpe("int64_t"):
-		print >>f, l
-	for l in asset.generateGetSpe("bool"):
-		print >>f, l
-	for l in asset.generateSetSpe("bool"):
-		print >>f, l
-	for l in asset.generateGetSpe("const char*"):
-		print >>f, l
-	for l in asset.generateSetSpe("const char*"):
-		print >>f, l
-	for l in asset.generateGetSpe("float"):
-		print >>f, l
-	for l in asset.generateSetSpe("float"):
-		print >>f, l
-	for l in asset.generateGetSpe("double"):
-		print >>f, l
-	for l in asset.generateSetSpe("double"):
-		print >>f, l
-	for l in asset.generateGetSpe("vec2"):
-		print >>f, l
-	for l in asset.generateSetSpe("vec2"):
-		print >>f, l
-	for l in asset.generateGetSpe("vec4"):
-		print >>f, l
-	for l in asset.generateSetSpe("vec4"):
-		print >>f, l
-	for l in asset.generateGetSpe("CAssetPath"):
-		print >>f, l
-	for l in asset.generateSetSpe("CAssetPath"):
-		print >>f, l
-	for l in asset.generateGetSpe("CSubPath"):
-		print >>f, l
-	for l in asset.generateSetSpe("CSubPath"):
-		print >>f, l
+	for t in getSetApiTypeList:
+		for l in asset.generateGetSpe(t):
+			print >>f, l
+		for l in asset.generateSetSpe(t):
+			print >>f, l
 	print >>f, ""
 	print >>f, "#endif"
 	
@@ -1647,50 +1610,11 @@ def generateImpl(asset):
 		for l in asset.generateWriteImpl(lAcceptedVersion):
 			print >>f, l
 		print >>f, ""
-	for l in asset.generateGetImpl("int"):
-		print >>f, l
-	for l in asset.generateSetImpl("int"):
-		print >>f, l
-	for l in asset.generateGetImpl("uint32_t"):
-		print >>f, l
-	for l in asset.generateSetImpl("uint32_t"):
-		print >>f, l
-	for l in asset.generateGetImpl("int64_t"):
-		print >>f, l
-	for l in asset.generateSetImpl("int64_t"):
-		print >>f, l
-	for l in asset.generateGetImpl("bool"):
-		print >>f, l
-	for l in asset.generateSetImpl("bool"):
-		print >>f, l
-	for l in asset.generateGetImpl("const char*"):
-		print >>f, l
-	for l in asset.generateSetImpl("const char*"):
-		print >>f, l
-	for l in asset.generateGetImpl("float"):
-		print >>f, l
-	for l in asset.generateSetImpl("float"):
-		print >>f, l
-	for l in asset.generateGetImpl("double"):
-		print >>f, l
-	for l in asset.generateSetImpl("double"):
-		print >>f, l
-	for l in asset.generateGetImpl("vec2"):
-		print >>f, l
-	for l in asset.generateSetImpl("vec2"):
-		print >>f, l
-	for l in asset.generateGetImpl("vec4"):
-		print >>f, l
-	for l in asset.generateSetImpl("vec4"):
-		print >>f, l
-	for l in asset.generateGetImpl("CAssetPath"):
-		print >>f, l
-	for l in asset.generateSetImpl("CAssetPath"):
-		print >>f, l
-	for l in asset.generateGetImpl("CSubPath"):
-		print >>f, l
-	for l in asset.generateSetImpl("CSubPath"):
-		print >>f, l
+	for t in getSetApiTypeList:
+		for l in asset.generateGetImpl(t):
+			print >>f, l
+		for l in asset.generateSetImpl(t):
+			print >>f, l
 	for l in asset.generateAddImpl():
 		print >>f, l
 	for l in asset.generateAddAtImpl():
