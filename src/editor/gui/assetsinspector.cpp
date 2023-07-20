@@ -16,6 +16,8 @@
  * along with TeeUniverse.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "generated/assets/maplayerquads.h"
+#include "shared/assets/assetpath.h"
 #include <editor/gui/assetsinspector.h>
 #include <editor/gui/image_picker.h>
 #include <editor/components/gui.h>
@@ -178,6 +180,33 @@ public:
 class CSubItem : public gui::CButton
 {
 protected:
+	class CDuplicateButton : public gui::CButton
+	{
+	protected:
+		CGuiEditor* m_pAssetsEditor;
+		CContextMenu* m_pContextMenu;
+
+		CGuiEditor *AssetsEditor() { return m_pAssetsEditor; }
+
+	protected:
+		template<typename ASSET>
+		std::vector<CSubPath> CopyItems(const std::vector<CSubPath> SubPathsToDuplicate, int Token)
+		{
+			return {};
+		}
+
+		void MouseClickAction() override;
+
+	public:
+		CDuplicateButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu) :
+			gui::CButton(pAssetsEditor, _LSTRING("Duplicate"), pAssetsEditor->m_Path_Sprite_IconDuplicate),
+			m_pAssetsEditor(pAssetsEditor),
+			m_pContextMenu(pContextMenu)
+		{
+			SetButtonStyle(m_pAssetsEditor->m_Path_Button_Menu);
+		}
+	};
+
 	class CDeleteButton : public gui::CButton
 	{
 	protected:
@@ -250,6 +279,7 @@ protected:
 	CGuiEditor* m_pAssetsEditor;
 	CSubPath m_SubPath;
 	bool m_HighlightSameId{};
+	bool m_DuplicationEnabled{};
 	
 protected:
 	void MouseClickAction() override { Action(); }
@@ -383,6 +413,11 @@ public:
 		m_HighlightSameId = Highlight;
 	}
 
+	void SetDuplicationEnabled(bool Enabled)
+	{
+		m_DuplicationEnabled = Enabled;
+	}
+
 	bool IsHighlighted() const
 	{
 		for(const CSubPath &ActiveSubPath : m_pAssetsEditor->GetEditedSubPathes())
@@ -417,6 +452,11 @@ public:
 			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move forward"), m_pAssetsEditor->m_Path_Sprite_IconDown, 1), false);
 			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move to the front"), m_pAssetsEditor->m_Path_Sprite_IconMoveFront, 99999999), false);
 			pMenu->List()->AddSeparator();
+			if(m_DuplicationEnabled)
+			{
+				pMenu->List()->Add(new CDuplicateButton(m_pAssetsEditor, pMenu));
+				pMenu->List()->AddSeparator();
+			}
 			pMenu->List()->Add(new CDeleteButton(m_pAssetsEditor, pMenu));
 			
 			m_pAssetsEditor->DisplayPopup(pMenu);
@@ -427,6 +467,98 @@ public:
 		gui::CButton::OnButtonClick(Button);
 	}
 };
+
+template<>
+std::vector<CSubPath> CSubItem::CDuplicateButton::CopyItems<CAsset_MapLayerQuads>(const std::vector<CSubPath> SubPathsToDuplicate, int Token)
+{
+	const CAssetPath AssetPath = AssetsEditor()->GetEditedAssetPath();
+	CAsset_MapLayerQuads *pLayer = AssetsManager()->GetAsset_Hard<CAsset_MapLayerQuads>(AssetPath);
+	if(!pLayer)
+		return {};
+
+	std::vector<CSubPath> NewEditedSubPaths;
+	for (const CSubPath &ReferenceSubPath : SubPathsToDuplicate)
+	{
+		CSubPath NewSubItemPath = CAsset_MapLayerQuads::SubPath_Quad(AssetsManager()->AddSubItem(AssetPath,
+			CSubPath::Null(), CAsset_MapLayerQuads::TYPE_QUAD, Token));
+		pLayer->SetQuad(NewSubItemPath, pLayer->GetQuad(ReferenceSubPath));
+		NewEditedSubPaths.push_back(NewSubItemPath);
+	}
+	return NewEditedSubPaths;
+}
+
+template<>
+std::vector<CSubPath> CSubItem::CDuplicateButton::CopyItems<CAsset_MapLayerObjects>(const std::vector<CSubPath> SubPathsToDuplicate, int Token)
+{
+	const CAssetPath AssetPath = AssetsEditor()->GetEditedAssetPath();
+	CAsset_MapLayerObjects *pLayer = AssetsManager()->GetAsset_Hard<CAsset_MapLayerObjects>(AssetPath);
+	if (!pLayer)
+		return {};
+
+	std::vector<CSubPath> NewEditedSubPaths;
+	for (const CSubPath &ReferenceSubPath : SubPathsToDuplicate)
+	{
+		CSubPath NewSubItemPath = CAsset_MapLayerObjects::SubPath_Object(AssetsManager()->AddSubItem(AssetPath,
+			CSubPath::Null(), CAsset_MapLayerObjects::TYPE_OBJECT, Token));
+		pLayer->SetObject(NewSubItemPath, pLayer->GetObject(ReferenceSubPath));
+		NewEditedSubPaths.push_back(NewSubItemPath);
+	}
+
+	return NewEditedSubPaths;
+}
+
+template<>
+std::vector<CSubPath> CSubItem::CDuplicateButton::CopyItems<CAsset_MapZoneObjects>(const std::vector<CSubPath> SubPathsToDuplicate, int Token)
+{
+	const CAssetPath AssetPath = AssetsEditor()->GetEditedAssetPath();
+	CAsset_MapZoneObjects *pLayer = AssetsManager()->GetAsset_Hard<CAsset_MapZoneObjects>(AssetPath);
+	if (!pLayer)
+		return {};
+
+	std::vector<CSubPath> NewEditedSubPaths;
+	for (const CSubPath &ReferenceSubPath : SubPathsToDuplicate)
+	{
+		CSubPath NewSubItemPath = CAsset_MapZoneObjects::SubPath_Object(AssetsManager()->AddSubItem(AssetPath,
+			CSubPath::Null(), CAsset_MapZoneObjects::TYPE_OBJECT, Token));
+		pLayer->SetObject(NewSubItemPath, pLayer->GetObject(ReferenceSubPath));
+		NewEditedSubPaths.push_back(NewSubItemPath);
+	}
+
+	return NewEditedSubPaths;
+}
+
+void CSubItem::CDuplicateButton::MouseClickAction()
+{
+	const CAssetPath AssetPath = AssetsEditor()->GetEditedAssetPath();
+	const std::vector<CSubPath> SubPathsToDuplicate = m_pAssetsEditor->GetEditedSubPathes();
+	if(SubPathsToDuplicate.empty())
+		return;
+	if(SubPathsToDuplicate.size() == 1 && SubPathsToDuplicate.cbegin()->IsNull())
+		return;
+
+	int Token = AssetsManager()->GenerateToken();
+	AssetsManager()->SaveAssetInHistory(AssetsEditor()->GetEditedAssetPath(), Token);
+
+	std::vector<CSubPath> NewEditedSubPaths;
+
+	#define MACRO_ASSETTYPE(Name) case CAsset_##Name::TypeId:\
+		NewEditedSubPaths = CopyItems<CAsset_##Name>(SubPathsToDuplicate, Token);\
+		break;
+
+	switch(AssetPath.GetType())
+	{
+		#include <generated/assets/assetsmacro.h>
+	}
+
+	#undef MACRO_ASSETTYPE
+
+	m_pAssetsEditor->SetEditedSubPaths(NewEditedSubPaths);
+
+	CAssetState *pState = AssetsManager()->GetAssetState(AssetPath);
+	pState->m_NumUpdates++;
+
+	m_pContextMenu->Close();
+}
 
 class CSubItemList : public gui::CVScrollLayout
 {
@@ -1052,6 +1184,7 @@ protected:
 				LString.AddInteger("Id", Counter);
 				CSubItem *pItem = new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconQuad);
 				pItem->SetHighlightSameId(true);
+				pItem->SetDuplicationEnabled(true);
 				Add(pItem, false);
 				Counter++;
 			}
@@ -1159,6 +1292,7 @@ protected:
 				LString.AddInteger("Id", Counter);
 				CSubItem *pItem = new CSubItem(m_pAssetsEditor, *Iter, LString, m_pAssetsEditor->m_Path_Sprite_IconPolygon);
 				pItem->SetHighlightSameId(true);
+				pItem->SetDuplicationEnabled(true);
 				Add(pItem, false);
 				Counter++;
 			}

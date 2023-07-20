@@ -2744,6 +2744,11 @@ void CGuiEditor::AddEditedSubPath(const CSubPath& SubPath)
 	m_EditedSubPathes.emplace_back(SubPath);
 }
 
+void CGuiEditor::SetEditedSubPaths(const std::vector<CSubPath> &SubPaths)
+{
+	m_EditedSubPathes = SubPaths;
+}
+
 void CGuiEditor::RemoveEditedSubPath(const CSubPath& SubPath)
 {
 	auto Iter = m_EditedSubPathes.begin();
