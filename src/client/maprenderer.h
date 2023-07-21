@@ -46,6 +46,7 @@ public:
 	
 	void SetCanvas(const gui::CRect& Canvas, vec2 ScreenPos);
 	void SetCamera(vec2 CameraPos, float CameraZoom);
+	float GetCameraZoom() const { return m_CameraZoom; }
 	void SetGroup(CAssetPath GroupPath);
 	void UnsetGroup();
 	
