@@ -302,13 +302,8 @@ void CCursorTool_MapTransform::OnViewMouseMove_Objects_Impl()
 		if(RelPos.x != 0 || RelPos.y != 0)
 		{
 			vec2 NewPivotPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos) - m_ClickDiff;
-		
-			if(ViewMap()->GetGridAlign())
-			{
-				NewPivotPos = ViewMap()->MapRenderer()->MapPosToTilePos(NewPivotPos);
-				NewPivotPos = ViewMap()->MapRenderer()->TilePosToMapPos(vec2(floor(NewPivotPos.x), floor(NewPivotPos.y))) + vec2(16.0f, 16.0f);
-			}
-			
+			ApplyGridAlignment(&NewPivotPos, vec2(16.0f, 16.0f));
+
 			AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), SelectedObject, ASSET::OBJECT_POSITION, NewPivotPos, m_Token);
 			m_Transformed = true;
 		}
@@ -403,13 +398,8 @@ void CCursorTool_MapTransform::OnViewMouseMove()
 			if(RelPos.x != 0 || RelPos.y != 0)
 			{
 				vec2 NewPivotPos = ViewMap()->MapRenderer()->ScreenPosToMapPos(CursorPos) - m_ClickDiff;
-			
-				if(ViewMap()->GetGridAlign())
-				{
-					NewPivotPos = ViewMap()->MapRenderer()->MapPosToTilePos(NewPivotPos);
-					NewPivotPos = ViewMap()->MapRenderer()->TilePosToMapPos(vec2(floor(NewPivotPos.x), floor(NewPivotPos.y))) + vec2(16.0f, 16.0f);
-				}
-				
+				ApplyGridAlignment(&NewPivotPos, vec2(16.0f, 16.0f));
+
 				AssetsManager()->SetAssetValue<vec2>(AssetsEditor()->GetEditedAssetPath(), SelectedQuad, CAsset_MapLayerQuads::QUAD_PIVOT, NewPivotPos, m_Token);
 				m_Transformed = true;
 			}
