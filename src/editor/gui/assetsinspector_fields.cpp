@@ -1153,7 +1153,7 @@ void CAssetsInspector::AddField_Animations(gui::CVListLayout* pList, int Member,
 class CZoneTypeEdit : public gui::CButton
 {
 public:
-	CZoneTypeEdit(CGuiEditor* pAssetsEditor, int Member);
+	CZoneTypeEdit(CGuiEditor* pAssetsEditor, int IndexMember, int ZonePathMember);
 	void Update(bool ParentEnabled) override;
 
 public:
@@ -1231,20 +1231,22 @@ public:
 
 protected:
 	CGuiEditor* m_pAssetsEditor;
-	int m_Member;
+	int m_IndexMember;
+	int m_ZonePathMember;
 	CAssetPath m_ZoneTypeAssetPath;
 
 protected:
 	void MouseClickAction() override
 	{
-		Context()->DisplayPopup(new CPopup(m_pAssetsEditor, m_Member, m_ZoneTypeAssetPath, m_DrawRect));
+		Context()->DisplayPopup(new CPopup(m_pAssetsEditor, m_IndexMember, m_ZoneTypeAssetPath, m_DrawRect));
 	}
 };
 
-CZoneTypeEdit::CZoneTypeEdit(CGuiEditor *pAssetsEditor, int Member) :
+CZoneTypeEdit::CZoneTypeEdit(CGuiEditor *pAssetsEditor, int IndexMember, int ZonePathMember) :
 	gui::CButton(pAssetsEditor, "", CAssetPath::Null()),
 	m_pAssetsEditor(pAssetsEditor),
-	m_Member(Member)
+	m_IndexMember(IndexMember),
+	m_ZonePathMember(ZonePathMember)
 {
 }
 
@@ -1260,13 +1262,13 @@ void CZoneTypeEdit::Update(bool ParentEnabled)
 		int Index = m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
 			m_pAssetsEditor->GetEditedAssetPath(),
 			m_pAssetsEditor->GetFirstEditedSubPath(),
-			m_Member,
+			m_IndexMember,
 			0);
 
 		m_ZoneTypeAssetPath = AssetsManager()->GetAssetValue<CAssetPath>(
 			m_pAssetsEditor->GetEditedAssetPath(),
 			m_pAssetsEditor->GetFirstEditedSubPath(),
-			CAsset_MapZoneTiles::ZONETYPEPATH,
+			m_ZonePathMember,
 			CAssetPath::Null());
 
 		const CAsset_ZoneType *pZoneType = AssetsManager()->GetAsset<CAsset_ZoneType>(m_ZoneTypeAssetPath);
@@ -1319,9 +1321,9 @@ void CZoneTypeEdit::CPopup::CItem::Update(bool ParentEnabled)
 	gui::CButton::Update(ParentEnabled);
 }
 
-void CAssetsInspector::AddField_ZoneIndex(gui::CVListLayout *pList, int Member, const CLocalizableString &Text)
+void CAssetsInspector::AddField_ZoneIndex(gui::CVListLayout *pList, int Member, int ZonePathMember, const CLocalizableString &Text)
 {
-	CZoneTypeEdit *pWidget = new CZoneTypeEdit(m_pAssetsEditor, Member);
+	CZoneTypeEdit *pWidget = new CZoneTypeEdit(m_pAssetsEditor, Member, ZonePathMember);
 	AddField(pList, pWidget, Text);
 }
 

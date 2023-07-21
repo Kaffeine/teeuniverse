@@ -1546,7 +1546,7 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapZoneObjects_Asset()
 	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_POSITION_X, CAsset_MapZoneObjects::OBJECT_POSITION_Y, _LSTRING("Position"));	
 	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_SIZE_X, CAsset_MapZoneObjects::OBJECT_SIZE_Y, _LSTRING("Size"));	
 	AddField_Angle(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANGLE, _LSTRING("Angle"));
-	AddField_ZoneIndex(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, _LSTRING("Zone Index"));
+	AddField_ZoneIndex(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, CAsset_MapZoneObjects::ZONETYPEPATH, _LSTRING("Zone Index"));
 
 	AddField_Animations(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONPATH, _LSTRING("Animation"));
 	AddField_Duration(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
@@ -2758,7 +2758,7 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_TilingMaterial_Asset()
 	gui::CVListLayout* pConvEditor = new CSubItemEditor(AssetsEditor(), CAsset_TilingMaterial::TYPE_ZONECONVERTER);
 	pTab->Add(pConvEditor, false);
 	AddField_Asset(pConvEditor, CAsset_TilingMaterial::ZONECONVERTER_ZONETYPEPATH, CAsset_ZoneType::TypeId, _LSTRING("Input zone type"));
-	AddField_Integer(pConvEditor, CAsset_TilingMaterial::ZONECONVERTER_OLDINDEX, _LSTRING("Input zone index"));
+	AddField_ZoneIndex(pConvEditor, CAsset_TilingMaterial::ZONECONVERTER_OLDINDEX, CAsset_TilingMaterial::ZONECONVERTER_ZONETYPEPATH, _LSTRING("Input zone index"));
 	AddField_Integer(pConvEditor, CAsset_TilingMaterial::ZONECONVERTER_NEWINDEX, _LSTRING("Output index"));
 	
 	//Condition List
