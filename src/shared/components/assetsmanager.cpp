@@ -412,13 +412,13 @@ bool CAssetsManager::GetPackageSaveFilename(int PackageId, dynamic_string& Filen
 	return true;
 }
 
-bool CAssetsManager::Save_AssetsFile(int PackageId, const char* pFilename)
+bool CAssetsManager::Save_AssetsFile(int PackageId, const char* pFilename, uint32_t FormatVersion)
 {
 	if(!IsValidPackage(PackageId))
 		return false;
 	
 	CArchiveFile ArchiveFile;
-	CAssetsSaveLoadContext SaveLoadContext(this, &ArchiveFile, PackageId);
+	CAssetsSaveContext SaveLoadContext(this, &ArchiveFile, PackageId, FormatVersion);
 	
 	m_pPackages[PackageId]->Save_AssetsFile(&SaveLoadContext);
 	

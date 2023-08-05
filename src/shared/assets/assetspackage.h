@@ -104,7 +104,7 @@ public:
 	CAssetsPackage();
 	void InitAssetState(const CAssetState& State);
 	void Load_AssetsFile(class CAssetsSaveLoadContext* pLoadingContext);
-	void Save_AssetsFile(class CAssetsSaveLoadContext* pLoadingContext);
+	void Save_AssetsFile(class CAssetsSaveContext* pLoadingContext);
 	void DeleteAsset(const CAssetPath& Path);
 	void AssetPathOperation(const CAssetPath::COperation& Operation);
 	void SubPathOperation(const CAssetPath& Path, const CSubPath::COperation& Operation);

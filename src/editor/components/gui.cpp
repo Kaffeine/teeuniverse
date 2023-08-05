@@ -48,19 +48,21 @@ class CSaveConfirmationDialog : public CConfirmationDialog
 {
 protected:
 	int m_PackageId;
+	int m_FormatVersion;
 	dynamic_string m_Filename;
 	
 protected:
 	void OnConfirmation() override
 	{
-		if(!m_pAssetsEditor->AssetsManager()->Save_AssetsFile(m_PackageId, m_Filename.buffer()))
+		if(!m_pAssetsEditor->AssetsManager()->Save_AssetsFile(m_PackageId, m_Filename.buffer(), m_FormatVersion))
 			m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("The package can't be saved")));
 	}
 
 public:
-	CSaveConfirmationDialog(CGuiEditor* pAssetsEditor, const CLocalizableString& LString, int PackageId, const char* pFilename) :
+	CSaveConfirmationDialog(CGuiEditor* pAssetsEditor, const CLocalizableString& LString, int PackageId, int FormatVersion, const char* pFilename) :
 		CConfirmationDialog(pAssetsEditor, LString),
 		m_PackageId(PackageId),
+		m_FormatVersion(FormatVersion),
 		m_Filename(pFilename)
 	{ }
 };
@@ -139,7 +141,7 @@ public:
 				CLocalizableString LString(_("Do you want to overwrite \"{str:Filename}\"?"));
 				LString.AddString("Filename", Filename.buffer());
 				
-				m_pAssetsEditor->DisplayPopup(new CSaveConfirmationDialog(m_pAssetsEditor, LString, m_pAssetsEditor->GetEditedPackageId(), Filename.buffer()));
+				m_pAssetsEditor->DisplayPopup(new CSaveConfirmationDialog(m_pAssetsEditor, LString, m_pAssetsEditor->GetEditedPackageId(), ASSETSVERSION_CURRENT, Filename.buffer()));
 			}
 			else
 			{
@@ -719,6 +721,30 @@ public:
 	}
 };
 
+class COpenSavePackageDialog_FormatVersionComboBox : public gui::CComboBox
+{
+public:
+	COpenSavePackageDialog_FormatVersionComboBox(CGui *pContext, int *pValueContainer) :
+		gui::CComboBox(pContext),
+		m_pIndexContainer(pValueContainer)
+	{
+	}
+
+protected:
+	int GetIndex() const override
+	{
+		return *m_pIndexContainer;
+	}
+
+	void SetIndex(int Value) override
+	{
+		*m_pIndexContainer = Value;
+	}
+
+protected:
+	int *m_pIndexContainer;
+};
+
 class COpenSavePackageDialog_ShowHiddenFiles : public gui::CAbstractToggle
 {
 protected:
@@ -959,6 +985,21 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 		pComboBox->Add(_LSTRING("Foot"), m_pAssetsEditor->m_Path_Sprite_IconMap);
 		pHList->Add(pComboBox, true);
 	
+		pLayout->AddSeparator();
+	}
+	else if(m_Format == FORMAT_PACKAGE)
+	{
+		gui::CHListLayout* pHList = new gui::CHListLayout(Context());
+		pLayout->Add(pHList, false);
+
+		gui::CLabel* pLabel = new gui::CLabel(Context(), _LSTRING("Format version:"));
+		pHList->Add(pLabel, true);
+
+		gui::CComboBox* pComboBox = new COpenSavePackageDialog_FormatVersionComboBox(Context(), &m_pAssetsEditor->m_Cfg_DefaultPackageFormatIndex);
+		pComboBox->Add(_LSTRING("v0.3.3"));
+		pComboBox->Add(_LSTRING("v0.3.0"));
+		pHList->Add(pComboBox, true);
+
 		pLayout->AddSeparator();
 	}
 	
@@ -1210,12 +1251,14 @@ void COpenSavePackageDialog::Save()
 		}
 		case FORMAT_PACKAGE:
 		{
+			int FormatVersionIndex = m_pAssetsEditor->m_Cfg_DefaultPackageFormatIndex;
 			TextIter = Buffer.append_at(TextIter, m_Directory.buffer());
 			TextIter = Buffer.append_at(TextIter, "/");
 			TextIter = Buffer.append_at(TextIter, m_Filename.buffer());
 			TextIter = Buffer.append_at(TextIter, ".tup");
-			
-			if(!AssetsManager()->Save_AssetsFile(m_pAssetsEditor->GetEditedPackageId(), Buffer.buffer()))
+
+			int FormatVersion = FormatVersionIndex == 0 ? ASSETSVERSION_CURRENT : ASSETSVERSION_0_3_0;
+			if(!AssetsManager()->Save_AssetsFile(m_pAssetsEditor->GetEditedPackageId(), Buffer.buffer(), FormatVersion))
 			{
 				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("Unable to save the package")));
 			}
@@ -2218,6 +2261,7 @@ bool CGuiEditor::InitConfig(int argc, const char** argv)
 		return false;
 	
 	m_Cfg_DefaultCompatibilityMode = CAssetsManager::MAPFORMAT_DDNET;
+	m_Cfg_DefaultPackageFormatIndex = 0;
 	
 	CLI()->RegisterConfigInteger("editor_default_compatibility_mode", "Default Compatibility mode in Import/Export dialog", &m_Cfg_DefaultCompatibilityMode, 0, CAssetsManager::NUM_MAPFORMAT-1);
 	CLI()->RegisterConfigString("editor_default_author", "Default Compatibility mode in Import/Export dialog", &m_Cfg_DefaultAuthor);

@@ -79,6 +79,7 @@ public:
 	
 public:
 	int m_Cfg_DefaultCompatibilityMode;
+	int m_Cfg_DefaultPackageFormatIndex;
 	dynamic_string m_Cfg_DefaultAuthor;
 
 public:
@@ -401,10 +402,10 @@ public:
 		MODE_SAVE,
 		MODE_REPLACE,
 	};
-	
+
 	enum
 	{
-		FORMAT_PACKAGE=0,
+		FORMAT_PACKAGE,
 		FORMAT_MAP_TW,
 		FORMAT_ZIP,
 		FORMAT_IMAGE,

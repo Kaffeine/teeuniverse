@@ -229,7 +229,7 @@ public:
 	bool AddDirectory(const char* pDirectory);
 	
 	bool Save_AssetsFile_SaveDir(int PackageId);
-	bool Save_AssetsFile(int PackageId, const char* pFilename);
+	bool Save_AssetsFile(int PackageId, const char* pFilename, uint32_t FormatVersion = ASSETSVERSION_CURRENT);
 	int Load_AssetsFile_Core(const char *pFileName, CErrorStack* pErrorStack = NULL);
 	int Load_AssetsFile(const char *pFileName, CErrorStack* pErrorStack = NULL);
 	

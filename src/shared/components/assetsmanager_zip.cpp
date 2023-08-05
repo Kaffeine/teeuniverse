@@ -45,7 +45,7 @@ bool CAssetsManager::Save_ZipWithDependencies(const char* pFilename, int Storage
 		}
 		
 		CArchiveFile ArchiveFile;
-		CAssetsSaveLoadContext SaveLoadContext(this, &ArchiveFile, PackageToSave[0]);
+		CAssetsSaveContext SaveLoadContext(this, &ArchiveFile, PackageToSave[0], ASSETSVERSION_CURRENT);
 		
 		m_pPackages[PackageToSave[0]]->Save_AssetsFile(&SaveLoadContext);
 		

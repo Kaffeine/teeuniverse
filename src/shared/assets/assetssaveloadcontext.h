@@ -26,24 +26,35 @@
 
 class CAssetsSaveLoadContext
 {
-private:
-	class CAssetsManager* m_pAssetsManager;
-	CArchiveFile* m_pArchiveFile;
-	int m_PackageId;
-	std::vector<int> m_Dependencies;
-	
 public:
 	CAssetsSaveLoadContext(CAssetsManager* pAssetsManager, CArchiveFile* pArchiveFile, int PackageId);
 	
 	void WriteAssetPath(const CAssetPath& SysType, CAssetPath::CTuaType& TuaType);
 	void ReadAssetPath(const CAssetPath::CTuaType& TuaType, CAssetPath& SysType);
 	
-	inline CAssetsManager* AssetsManager() { return m_pAssetsManager; }
-	inline CArchiveFile* ArchiveFile() { return m_pArchiveFile; }
+	CAssetsManager* AssetsManager() { return m_pAssetsManager; }
+	CArchiveFile* ArchiveFile() { return m_pArchiveFile; }
 	
-	inline void SetPackageId(int PackageId) { m_PackageId = PackageId; }
-	inline void AddDependency(int PackageId) { m_Dependencies.push_back(PackageId); }
-	inline const std::vector<int>& Dependencies() const { return m_Dependencies; }
+	void SetPackageId(int PackageId) { m_PackageId = PackageId; }
+	void AddDependency(int PackageId) { m_Dependencies.push_back(PackageId); }
+	const std::vector<int>& Dependencies() const { return m_Dependencies; }
+
+private:
+	class CAssetsManager* m_pAssetsManager;
+	CArchiveFile* m_pArchiveFile;
+	int m_PackageId;
+	std::vector<int> m_Dependencies;
+};
+
+class CAssetsSaveContext : public CAssetsSaveLoadContext
+{
+public:
+	CAssetsSaveContext(CAssetsManager* pAssetsManager, CArchiveFile* pArchiveFile, int PackageId, uint32_t FormatVersion);
+
+	uint32_t FormatVersion() const { return m_FormatVersion; }
+
+private:
+	uint32_t m_FormatVersion;
 };
 
 #endif

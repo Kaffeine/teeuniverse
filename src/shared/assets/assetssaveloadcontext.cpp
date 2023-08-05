@@ -24,7 +24,7 @@
 
 /* LOADING CONTEXT ****************************************************/
 
-CAssetsSaveLoadContext::CAssetsSaveLoadContext(CAssetsManager* pAssetsManager, CArchiveFile* pArchiveFile, int PackageId) :
+CAssetsSaveLoadContext::CAssetsSaveLoadContext(CAssetsManager *pAssetsManager, CArchiveFile *pArchiveFile, int PackageId) :
 	m_pAssetsManager(pAssetsManager),
 	m_pArchiveFile(pArchiveFile),
 	m_PackageId(PackageId)
@@ -100,4 +100,10 @@ void CAssetsSaveLoadContext::ReadAssetPath(const CAssetPath::CTuaType& TuaType, 
 		SysType.SetPackageId(m_Dependencies[DependencyIndex]);
 	else
 		SysType = CAssetPath::Null();
+}
+
+CAssetsSaveContext::CAssetsSaveContext(CAssetsManager *pAssetsManager, CArchiveFile *pArchiveFile, int PackageId, uint32_t FormatVersion) :
+	CAssetsSaveLoadContext(pAssetsManager, pArchiveFile, PackageId),
+	m_FormatVersion(FormatVersion)
+{
 }
