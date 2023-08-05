@@ -52,6 +52,8 @@ CAsset_MapZoneObjects::CObject::CObject()
 	m_ZoneIndex = 1;
 	m_ZoneFlags = 0x0;
 	m_AnimationOffset = 0;
+	m_ZoneData1 = 0;
+	m_ZoneData2 = 0;
 }
 
 CAsset_MapZoneObjects::CAsset_MapZoneObjects()
@@ -611,6 +613,8 @@ void CAsset_MapZoneObjects::CObject::CTuaType_0_3_3::Read(CAssetsSaveLoadContext
 	SysType.m_ZoneFlags = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneFlags);
 	pLoadingContext->ReadAssetPath(TuaType.m_AnimationPath, SysType.m_AnimationPath);
 	SysType.m_AnimationOffset = pLoadingContext->ArchiveFile()->ReadInt64(TuaType.m_AnimationOffset);
+	SysType.m_ZoneData1 = pLoadingContext->ArchiveFile()->ReadInt32(TuaType.m_ZoneData1);
+	SysType.m_ZoneData2 = pLoadingContext->ArchiveFile()->ReadInt32(TuaType.m_ZoneData2);
 }
 
 
@@ -670,6 +674,8 @@ void CAsset_MapZoneObjects::CObject::CTuaType_0_3_3::Write(CAssetsSaveLoadContex
 	TuaType.m_ZoneFlags = pLoadingContext->ArchiveFile()->WriteUInt32(SysType.m_ZoneFlags);
 	pLoadingContext->WriteAssetPath(SysType.m_AnimationPath, TuaType.m_AnimationPath);
 	TuaType.m_AnimationOffset = pLoadingContext->ArchiveFile()->WriteInt64(SysType.m_AnimationOffset);
+	TuaType.m_ZoneData1 = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_ZoneData1);
+	TuaType.m_ZoneData2 = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_ZoneData2);
 }
 
 void CAsset_MapZoneObjects::CTuaType_0_3_3::Write(CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapZoneObjects& SysType, CTuaType_0_3_3& TuaType)
@@ -709,6 +715,10 @@ int CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, int 
 			return GetObjectFillType(SubPath);
 		case OBJECT_ZONEINDEX:
 			return GetObjectZoneIndex(SubPath);
+		case OBJECT_ZONEDATA1:
+			return GetObjectZoneData1(SubPath);
+		case OBJECT_ZONEDATA2:
+			return GetObjectZoneData2(SubPath);
 	}
 	return CAsset::GetValue<int>(ValueType, SubPath, DefaultValue);
 }
@@ -735,6 +745,12 @@ bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, int
 			return true;
 		case OBJECT_ZONEINDEX:
 			SetObjectZoneIndex(SubPath, Value);
+			return true;
+		case OBJECT_ZONEDATA1:
+			SetObjectZoneData1(SubPath, Value);
+			return true;
+		case OBJECT_ZONEDATA2:
+			SetObjectZoneData2(SubPath, Value);
 			return true;
 	}
 	return CAsset::SetValue<int>(ValueType, SubPath, Value);

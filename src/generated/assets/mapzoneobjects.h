@@ -102,6 +102,8 @@ public:
 		OBJECT_ZONEFLAGS,
 		OBJECT_ANIMATIONPATH,
 		OBJECT_ANIMATIONOFFSET,
+		OBJECT_ZONEDATA1,
+		OBJECT_ZONEDATA2,
 		OBJECT,
 		VISIBILITY,
 	};
@@ -352,6 +354,8 @@ public:
 			tua_uint32 m_ZoneFlags;
 			CAssetPath::CTuaType m_AnimationPath;
 			tua_int64 m_AnimationOffset;
+			tua_int32 m_ZoneData1;
+			tua_int32 m_ZoneData2;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapZoneObjects::CObject& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapZoneObjects::CObject& SysType, CTuaType_0_3_3& TuaType);
 		};
@@ -368,6 +372,8 @@ public:
 		uint32_t m_ZoneFlags{};
 		CAssetPath m_AnimationPath{};
 		int64_t m_AnimationOffset{};
+		int m_ZoneData1{};
+		int m_ZoneData2{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -491,6 +497,10 @@ public:
 		
 		int64_t GetAnimationOffset() const { return m_AnimationOffset; }
 		
+		int GetZoneData1() const { return m_ZoneData1; }
+		
+		int GetZoneData2() const { return m_ZoneData2; }
+		
 		void SetPosition(vec2 Value) { m_Position = Value; }
 		
 		void SetPositionX(float Value) { m_Position.x = Value; }
@@ -592,6 +602,10 @@ public:
 		void SetAnimationPath(const CAssetPath& Value) { m_AnimationPath = Value; }
 		
 		void SetAnimationOffset(int64_t Value) { m_AnimationOffset = Value; }
+		
+		void SetZoneData1(int Value) { m_ZoneData1 = Value; }
+		
+		void SetZoneData2(int Value) { m_ZoneData2 = Value; }
 		
 		int AddVertex()
 		{
@@ -942,6 +956,20 @@ public:
 		else return 0;
 	}
 	
+	int GetObjectZoneData1(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetZoneData1();
+		else return 0;
+	}
+	
+	int GetObjectZoneData2(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetZoneData2();
+		else return 0;
+	}
+	
 	bool GetVisibility() const { return m_Visibility; }
 	
 	void SetParentPath(const CAssetPath& Value) { m_ParentPath = Value; }
@@ -1112,6 +1140,18 @@ public:
 	{
 		if(SubPath.GetId() < m_Object.size())
 			m_Object[SubPath.GetId()].SetAnimationOffset(Value);
+	}
+	
+	void SetObjectZoneData1(const CSubPath& SubPath, int Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetZoneData1(Value);
+	}
+	
+	void SetObjectZoneData2(const CSubPath& SubPath, int Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetZoneData2(Value);
 	}
 	
 	void SetVisibility(bool Value) { m_Visibility = Value; }

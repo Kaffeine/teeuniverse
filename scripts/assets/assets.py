@@ -2390,6 +2390,8 @@ mapZoneObjects_object.addMember("0.2.2", "ZoneIndex", TypeUInt8(), "1")
 mapZoneObjects_object.addMember("0.2.3", "ZoneFlags", TypeUInt32(), "0x0")
 mapZoneObjects_object.addMember("0.3.0", "AnimationPath", TypeAssetPath())
 mapZoneObjects_object.addMember("0.3.0", "AnimationOffset", TypeInt64(), "0")
+mapZoneObjects_object.addMember("0.3.3", "ZoneData1", TypeInt32(), "0")
+mapZoneObjects_object.addMember("0.3.3", "ZoneData2", TypeInt32(), "0")
 mapZoneObjects_object.addPublicFunc([
 	"void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;",
 	"void GetDrawState(CAssetsManager* pAssetsManager, float Time, vec4* pColor, int* pState) const;"
