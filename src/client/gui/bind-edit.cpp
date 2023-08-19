@@ -75,7 +75,7 @@ void CAbstractBindEdit::Update(bool ParentEnabled)
 			dynamic_string Buffer;
 			int Iter = 0;
 			if(Key.m_Modifier == CBindsManager::MODIFIER_CTRL)
-				Iter = Buffer.append_at(Iter, "Ctrl + ");
+				Iter = Buffer.append_at(Iter, "ctrl+");
 			Iter = Buffer.append_at(Iter, Input()->KeyName(Key.m_KeyID));
 			SetText(Buffer.buffer());
 		}
