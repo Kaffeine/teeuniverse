@@ -94,8 +94,8 @@ int main(int argc, char* argv[])
 		CREATE_SPRITE(PackageId, "iconDuplicate", ImageEditorPath, 13*2, 0*2, 2, 2);
 		CREATE_SPRITE(PackageId, "iconSave", ImageEditorPath, 14*2, 0*2, 2, 2);
 		CREATE_SPRITE(PackageId, "iconLoad", ImageEditorPath, 15*2, 0*2, 2, 2);
-		CREATE_SPRITE(PackageId, "iconVFlip", ImageEditorPath, 22*2, 0*2, 2, 2);
-		CREATE_SPRITE(PackageId, "iconHFlip", ImageEditorPath, 23*2, 0*2, 2, 2);
+		CREATE_SPRITE(PackageId, "iconHFlip", ImageEditorPath, 22*2, 0*2, 2, 2);
+		CREATE_SPRITE(PackageId, "iconVFlip", ImageEditorPath, 23*2, 0*2, 2, 2);
 		CREATE_SPRITE(PackageId, "iconRotateCW", ImageEditorPath, 24*2, 0*2, 2, 2);
 		CREATE_SPRITE(PackageId, "iconRotateCCW", ImageEditorPath, 25*2, 0*2, 2, 2);
 		CREATE_SPRITE(PackageId, "iconMoveBack", ImageEditorPath, 26*2, 0*2, 2, 2);
@@ -232,8 +232,8 @@ int main(int argc, char* argv[])
 		CREATE_SPRITE(PackageId, "iconShapeBow", ImageEditorPath, 40, 26, 3, 3);
 		CREATE_SPRITE(PackageId, "iconShapeCircle", ImageEditorPath, 43, 26, 3, 3);
 		CREATE_SPRITE(PackageId, "iconSpriteCreator", ImageEditorPath, 46, 26, 3, 3);
-		CREATE_SPRITE(PackageId, "iconBigVFlip", ImageEditorPath, 49, 26, 3, 3);
-		CREATE_SPRITE(PackageId, "iconBigHFlip", ImageEditorPath, 52, 26, 3, 3);
+		CREATE_SPRITE(PackageId, "iconBigHFlip", ImageEditorPath, 49, 26, 3, 3);
+		CREATE_SPRITE(PackageId, "iconBigVFlip", ImageEditorPath, 52, 26, 3, 3);
 		CREATE_SPRITE(PackageId, "iconBigRotateCW", ImageEditorPath, 55, 26, 3, 3);
 		CREATE_SPRITE(PackageId, "iconBigRotateCCW", ImageEditorPath, 58, 26, 3, 3);
 		CREATE_SPRITE(PackageId, "iconBigMesh", ImageEditorPath, 61, 26, 3, 3);

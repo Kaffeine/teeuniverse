@@ -200,8 +200,8 @@ public: \
 	virtual const char* Description() { return desc; } \
 };
 
-DEFINE_CMD_BINDCALL(CCommand_VFlip, m_BindCall_ApplyVFlip, "vflip", "Apply vertical flip to the current selection")
-DEFINE_CMD_BINDCALL(CCommand_HFlip, m_BindCall_ApplyHFlip, "hflip", "Apply horizontal flip to the current selection")
+DEFINE_CMD_BINDCALL(CCommand_VFlip, m_BindCall_ApplyVFlip, "vflip", "Apply vertical (upside down) flip to the current selection")
+DEFINE_CMD_BINDCALL(CCommand_HFlip, m_BindCall_ApplyHFlip, "hflip", "Apply horizontal flip (mirror) to the current selection")
 DEFINE_CMD_BINDCALL(CCommand_CWRotation, m_BindCall_ApplyCWRotation, "cwrotation", "Apply a clockwise rotation to the current selection")
 DEFINE_CMD_BINDCALL(CCommand_CCWRotation, m_BindCall_ApplyCCWRotation, "ccwrotation", "Apply a counter-clockwise rotation to the current selection")
 DEFINE_CMD_BINDCALL(CCommand_ZoomIn, m_BindCall_ZoomIn, "editor_zoomin", "Zoom-in in the view")
@@ -2252,8 +2252,8 @@ bool CGuiEditor::InitConfig(int argc, const char** argv)
 	BindsManager()->Bind(KEY_F3, CBindsManager::MODIFIER_NONE, "editor_tool_transform");
 	BindsManager()->Bind(KEY_F4, CBindsManager::MODIFIER_NONE, "editor_tool_vertex");
 	
-	BindsManager()->Bind(KEY_N, CBindsManager::MODIFIER_NONE, "vflip");
-	BindsManager()->Bind(KEY_M, CBindsManager::MODIFIER_NONE, "hflip");
+	BindsManager()->Bind(KEY_M, CBindsManager::MODIFIER_NONE, "vflip");
+	BindsManager()->Bind(KEY_N, CBindsManager::MODIFIER_NONE, "hflip");
 	BindsManager()->Bind(KEY_R, CBindsManager::MODIFIER_NONE, "ccwrotation");
 	BindsManager()->Bind(KEY_T, CBindsManager::MODIFIER_NONE, "cwrotation");
 	

@@ -476,8 +476,8 @@ void CCursorTool_MapStamp::UpdateToolbar()
 	}
 	m_pOptions->Add(new CRotateCCWButton(AssetsEditor(), this), false);
 	m_pOptions->Add(new CRotateCWButton(AssetsEditor(), this), false);
-	m_pOptions->Add(new CVFlipButton(AssetsEditor(), this), false);
 	m_pOptions->Add(new CHFlipButton(AssetsEditor(), this), false);
+	m_pOptions->Add(new CVFlipButton(AssetsEditor(), this), false);
 	ViewMap()->GetToolbar()->Add(m_pOptions, false);
 }
 
@@ -1624,7 +1624,7 @@ void CCursorTool_MapStamp::PaletteCallback_SelectEntityType(CAssetPath EntityTyp
 	m_SelectionEnabled = true;
 }
 
-void CCursorTool_MapStamp::VFlipSelection()
+void CCursorTool_MapStamp::HFlipSelection()
 {
 	if(!m_SelectionEnabled)
 		return;
@@ -1711,7 +1711,7 @@ void CCursorTool_MapStamp::VFlipSelection()
 	}
 }
 
-void CCursorTool_MapStamp::HFlipSelection()
+void CCursorTool_MapStamp::VFlipSelection()
 {
 	if(!m_SelectionEnabled)
 		return;

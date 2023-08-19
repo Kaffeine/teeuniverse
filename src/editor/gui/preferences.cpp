@@ -100,14 +100,14 @@ CPreferences::CPreferences(CGuiEditor* pAssetsEditor) :
 		}
 		{
 			gui::CHListLayout* pHList = new gui::CHListLayout(Context());
-			pHList->Add(new gui::CLabel(Context(), _LSTRING("Apply vertical flip to the selection"), AssetsEditor()->m_Path_Sprite_IconVFlip), true);
-			pHList->Add(new gui::CBindEdit(Context(), "vflip", 0, true), true);
+			pHList->Add(new gui::CLabel(Context(), _LSTRING("Apply horizontal flip (mirror) to the selection"), AssetsEditor()->m_Path_Sprite_IconHFlip), true);
+			pHList->Add(new gui::CBindEdit(Context(), "hflip", 0, true), true);
 			pLayout->Add(pHList, false);
 		}
 		{
 			gui::CHListLayout* pHList = new gui::CHListLayout(Context());
-			pHList->Add(new gui::CLabel(Context(), _LSTRING("Apply horizontal flip to the selection"), AssetsEditor()->m_Path_Sprite_IconHFlip), true);
-			pHList->Add(new gui::CBindEdit(Context(), "hflip", 0, true), true);
+			pHList->Add(new gui::CLabel(Context(), _LSTRING("Apply vertical (upside down) flip to the selection"), AssetsEditor()->m_Path_Sprite_IconVFlip), true);
+			pHList->Add(new gui::CBindEdit(Context(), "vflip", 0, true), true);
 			pLayout->Add(pHList, false);
 		}
 		{
