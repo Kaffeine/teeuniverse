@@ -1,0 +1,23 @@
+{
+	
+"translation":
+[
+	{
+		"key": "File",
+		"value": "Файл"
+	},
+	{
+		"key": "Edit",
+		"value": "Правка"
+	},
+	{
+		"key": "View",
+		"value": "Вид"
+	},
+	{
+		"key": "Help",
+		"value": "Справка"
+	},
+]
+
+}

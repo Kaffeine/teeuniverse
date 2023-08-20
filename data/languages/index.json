@@ -6,7 +6,13 @@
 	},
 	{
 		"file": "fr",
-		"name": "Français"
+		"name": "Français",
+		"parent": "en"
+	},
+	{
+		"file": "ru",
+		"name": "Русский",
+		"parent": "en"
 	}
 ]
 }
