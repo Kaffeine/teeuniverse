@@ -146,6 +146,7 @@ bool CStorage::Init()
 			
 			fs_makedir(GetPath(TYPE_SAVE, "packages", Buf).buffer());
 			fs_makedir(GetPath(TYPE_SAVE, "config", Buf).buffer());
+			fs_makedir(GetPath(TYPE_SAVE, "images", Buf).buffer());
 			fs_makedir(GetPath(TYPE_SAVE, "maps", Buf).buffer());
 		}
 	}
