@@ -1180,7 +1180,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".map");
 			if(!AssetsManager()->Save_Map(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedPackageId(), m_pAssetsEditor->m_Cfg_DefaultCompatibilityMode))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("The map can't be saved")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("Unable to export the map")));
 			}
 			break;
 		}
@@ -1192,7 +1192,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".zip");
 			if(!AssetsManager()->Save_ZipWithDependencies(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedPackageId()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("The package can't be saved")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("Unable to save the package with dependencies")));
 			}
 			break;
 		}
@@ -1204,7 +1204,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".png");
 			if(!AssetsManager()->Save_Image(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedAssetPath()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("The image can't be saved")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("Unable to save the image")));
 			}
 			break;
 		}
@@ -1217,7 +1217,7 @@ void COpenSavePackageDialog::Save()
 			
 			if(!AssetsManager()->Save_AssetsFile(m_pAssetsEditor->GetEditedPackageId(), Buffer.buffer()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("The package can't be saved")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("Unable to save the package")));
 			}
 			else
 			{
