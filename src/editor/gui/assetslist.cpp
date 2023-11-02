@@ -1564,6 +1564,11 @@ public:
 					pMenu->List()->Add(new CAddSkeletonSkinButton(m_pAssetsEditor, pMenu, m_AssetPath));
 					pMenu->List()->Add(new CAddSkeletonAnimationButton(m_pAssetsEditor, pMenu, m_AssetPath));
 				}
+				else if(m_AssetPath.GetType() == CAsset_SkeletonAnimation::TypeId)
+				{
+					pMenu->List()->AddSeparator();
+					pMenu->List()->Add(new CDuplicateButton(m_pAssetsEditor, pMenu, m_AssetPath));
+				}
 				
 				if(m_SubPath.IsNull())
 				{
