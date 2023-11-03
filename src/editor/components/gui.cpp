@@ -2727,14 +2727,50 @@ const char* CGuiEditor::GetItemName(const CAssetPath& AssetPath, const CSubPath&
 
 void CGuiEditor::OnEditedPackageClosed()
 {
+	int PackageId = m_EditedPackageId;
 	SetEditedPackage(-1);
+
+	m_PackagesEditedAssetPaths.erase(PackageId);
+	m_PackagesEditedAssetSubPaths.erase(PackageId);
 }
 
 void CGuiEditor::SetEditedPackage(int PackageId)
 {
+	if(m_EditedPackageId == PackageId)
+	{
+		m_EditedAssetPath = CAssetPath::Null();
+		m_EditedSubPathes.clear();
+		return;
+	}
+
+	if(m_EditedPackageId > 0)
+	{
+		m_PackagesEditedAssetPaths[m_EditedPackageId] = m_EditedAssetPath;
+		m_PackagesEditedAssetSubPaths[m_EditedPackageId] = m_EditedSubPathes;
+	}
+
 	m_EditedPackageId = PackageId;
-	m_EditedAssetPath = CAssetPath::Null();
-	m_EditedSubPathes.clear();
+
+	const auto AssetPathIt = m_PackagesEditedAssetPaths.find(PackageId);
+
+	if(AssetPathIt == m_PackagesEditedAssetPaths.end())
+	{
+		m_EditedAssetPath = CAssetPath::Null();
+	}
+	else
+	{
+		m_EditedAssetPath = AssetPathIt->second;
+	}
+
+	const auto AssetSubPathsIt = m_PackagesEditedAssetSubPaths.find(PackageId);
+	if(AssetSubPathsIt == m_PackagesEditedAssetSubPaths.end())
+	{
+		m_EditedSubPathes.clear();
+	}
+	else
+	{
+		m_EditedSubPathes = AssetSubPathsIt->second;
+	}
 }
 
 void CGuiEditor::SetEditedAsset(const CAssetPath& Path, const CSubPath& SubPath)

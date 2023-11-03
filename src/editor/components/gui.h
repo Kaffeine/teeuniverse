@@ -26,6 +26,8 @@
 #include <shared/components/assetsmanager.h>
 #include <editor/kernel.h>
 
+#include <unordered_map>
+
 class CGuiEditor : public CGui
 {
 public:
@@ -53,7 +55,11 @@ private:
 	int m_EditedPackageId;
 	CAssetPath m_EditedAssetPath;
 	std::vector<CSubPath> m_EditedSubPathes;
-	
+
+	// PackageId to asset path
+	std::unordered_map<int, CAssetPath> m_PackagesEditedAssetPaths;
+	std::unordered_map<int, std::vector<CSubPath>> m_PackagesEditedAssetSubPaths;
+
 	//System time
 	CTimePoint m_TimeLast;
 	

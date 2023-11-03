@@ -130,11 +130,14 @@ protected:
 	void Action()
 	{
 		m_pAssetsEditor->SetEditedPackage(m_PackageId);
-		
-		//Search for maps
-		if(AssetsManager()->GetNumAssets<CAsset_Map>(m_PackageId))
-			m_pAssetsEditor->SetEditedAsset(CAssetPath(CAsset_Map::TypeId, m_PackageId, 0), CSubPath::Null());
-		
+
+		if(m_pAssetsEditor->GetEditedAssetPath().IsNull())
+		{
+			// Search for maps
+			if(AssetsManager()->GetNumAssets<CAsset_Map>(m_PackageId))
+				m_pAssetsEditor->SetEditedAsset(CAssetPath(CAsset_Map::TypeId, m_PackageId, 0), CSubPath::Null());
+		}
+
 		m_pAssetsEditor->QueuePackageTreeRefresh();
 		m_pAssetsEditor->QueueAssetsTreeRefresh();
 	}
