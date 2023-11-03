@@ -33,11 +33,11 @@
 #define __CLIENT_ASSETS_PATHMATERIAL__
 
 #include <shared/assets/asset.h>
-#include <cassert>
-#include <shared/math/vector.h>
 #include <shared/tl/algorithm.h>
-#include <shared/assets/assetpath.h>
+#include <shared/math/vector.h>
+#include <cassert>
 #include <vector>
+#include <shared/assets/assetpath.h>
 
 class CAsset_PathMaterial : public CAsset
 {

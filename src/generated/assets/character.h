@@ -34,9 +34,9 @@
 
 #include <shared/assets/asset.h>
 #include <cassert>
-#include <shared/tl/algorithm.h>
-#include <shared/assets/assetpath.h>
 #include <vector>
+#include <shared/assets/assetpath.h>
+#include <shared/tl/algorithm.h>
 
 class CAsset_Character : public CAsset
 {

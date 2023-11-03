@@ -33,11 +33,11 @@
 #define __CLIENT_ASSETS_MAPLAYEROBJECTS__
 
 #include <shared/assets/asset.h>
-#include <cassert>
-#include <shared/tl/algorithm.h>
-#include <shared/assets/assetpath.h>
-#include <vector>
 #include <shared/geometry/bezier.h>
+#include <shared/tl/algorithm.h>
+#include <cassert>
+#include <vector>
+#include <shared/assets/assetpath.h>
 
 class CAsset_MapLayerObjects : public CAsset
 {
@@ -102,6 +102,9 @@ public:
 		OBJECT_ORTHOTESSELATION,
 		OBJECT_ANIMATIONPATH,
 		OBJECT_ANIMATIONOFFSET,
+		OBJECT_NAME,
+		OBJECT_VISIBILITY,
+		OBJECT_LOCKED,
 		OBJECT,
 		VISIBILITY,
 		LEVELOFDETAIL,
@@ -399,6 +402,9 @@ public:
 			tua_int32 m_OrthoTesselation;
 			CAssetPath::CTuaType m_AnimationPath;
 			tua_int64 m_AnimationOffset;
+			tua_stringid m_Name;
+			tua_uint8 m_Visibility;
+			tua_uint8 m_Locked;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapLayerObjects::CObject& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerObjects::CObject& SysType, CTuaType_0_3_3& TuaType);
 		};
@@ -416,6 +422,9 @@ public:
 		int m_OrthoTesselation{};
 		CAssetPath m_AnimationPath{};
 		int64_t m_AnimationOffset{};
+		_dynamic_string<128> m_Name{};
+		bool m_Visibility{};
+		bool m_Locked{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -548,6 +557,12 @@ public:
 		
 		int64_t GetAnimationOffset() const { return m_AnimationOffset; }
 		
+		const char* GetName() const { return m_Name.buffer(); }
+		
+		bool GetVisibility() const { return m_Visibility; }
+		
+		bool GetLocked() const { return m_Locked; }
+		
 		void SetPosition(vec2 Value) { m_Position = Value; }
 		
 		void SetPositionX(float Value) { m_Position.x = Value; }
@@ -657,6 +672,12 @@ public:
 		void SetAnimationPath(const CAssetPath& Value) { m_AnimationPath = Value; }
 		
 		void SetAnimationOffset(int64_t Value) { m_AnimationOffset = Value; }
+		
+		void SetName(const char* Value) { m_Name = Value; }
+		
+		void SetVisibility(bool Value) { m_Visibility = Value; }
+		
+		void SetLocked(bool Value) { m_Locked = Value; }
 		
 		int AddVertex()
 		{
@@ -1025,6 +1046,27 @@ public:
 		else return 0;
 	}
 	
+	const char* GetObjectName(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetName();
+		else return NULL;
+	}
+	
+	bool GetObjectVisibility(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetVisibility();
+		else return false;
+	}
+	
+	bool GetObjectLocked(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetLocked();
+		else return false;
+	}
+	
 	bool GetVisibility() const { return m_Visibility; }
 	
 	int GetLevelOfDetail() const { return m_LevelOfDetail; }
@@ -1209,6 +1251,24 @@ public:
 			m_Object[SubPath.GetId()].SetAnimationOffset(Value);
 	}
 	
+	void SetObjectName(const CSubPath& SubPath, const char* Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetName(Value);
+	}
+	
+	void SetObjectVisibility(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetVisibility(Value);
+	}
+	
+	void SetObjectLocked(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetLocked(Value);
+	}
+	
 	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
 	void SetLevelOfDetail(int Value) { m_LevelOfDetail = Value; }
@@ -1264,6 +1324,8 @@ template<> int64_t CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPat
 template<> bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value);
 template<> bool CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const;
 template<> bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, bool Value);
+template<> const char* CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, const char* DefaultValue) const;
+template<> bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, const char* Value);
 template<> float CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, float DefaultValue) const;
 template<> bool CAsset_MapLayerObjects::SetValue(int ValueType, const CSubPath& SubPath, float Value);
 template<> vec2 CAsset_MapLayerObjects::GetValue(int ValueType, const CSubPath& SubPath, vec2 DefaultValue) const;

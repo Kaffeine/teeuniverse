@@ -33,8 +33,8 @@
 #define __CLIENT_ASSETS_GUILABELSTYLE__
 
 #include <shared/assets/asset.h>
-#include <shared/assets/assetpath.h>
 #include <shared/math/vector.h>
+#include <shared/assets/assetpath.h>
 
 class CAsset_GuiLabelStyle : public CAsset
 {

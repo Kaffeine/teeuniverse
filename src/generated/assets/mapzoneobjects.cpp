@@ -52,6 +52,8 @@ CAsset_MapZoneObjects::CObject::CObject()
 	m_ZoneIndex = 1;
 	m_ZoneFlags = 0x0;
 	m_AnimationOffset = 0;
+	m_Visibility = true;
+	m_Locked = false;
 	m_ZoneData1 = 0;
 	m_ZoneData2 = 0;
 }
@@ -613,6 +615,9 @@ void CAsset_MapZoneObjects::CObject::CTuaType_0_3_3::Read(CAssetsSaveLoadContext
 	SysType.m_ZoneFlags = pLoadingContext->ArchiveFile()->ReadUInt32(TuaType.m_ZoneFlags);
 	pLoadingContext->ReadAssetPath(TuaType.m_AnimationPath, SysType.m_AnimationPath);
 	SysType.m_AnimationOffset = pLoadingContext->ArchiveFile()->ReadInt64(TuaType.m_AnimationOffset);
+	SysType.m_Name = pLoadingContext->ArchiveFile()->GetString(TuaType.m_Name);
+	SysType.m_Visibility = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_Visibility);
+	SysType.m_Locked = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_Locked);
 	SysType.m_ZoneData1 = pLoadingContext->ArchiveFile()->ReadInt32(TuaType.m_ZoneData1);
 	SysType.m_ZoneData2 = pLoadingContext->ArchiveFile()->ReadInt32(TuaType.m_ZoneData2);
 }
@@ -674,6 +679,9 @@ void CAsset_MapZoneObjects::CObject::CTuaType_0_3_3::Write(CAssetsSaveLoadContex
 	TuaType.m_ZoneFlags = pLoadingContext->ArchiveFile()->WriteUInt32(SysType.m_ZoneFlags);
 	pLoadingContext->WriteAssetPath(SysType.m_AnimationPath, TuaType.m_AnimationPath);
 	TuaType.m_AnimationOffset = pLoadingContext->ArchiveFile()->WriteInt64(SysType.m_AnimationOffset);
+	TuaType.m_Name = pLoadingContext->ArchiveFile()->AddString(SysType.m_Name.buffer());
+	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
+	TuaType.m_Locked = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Locked);
 	TuaType.m_ZoneData1 = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_ZoneData1);
 	TuaType.m_ZoneData2 = pLoadingContext->ArchiveFile()->WriteInt32(SysType.m_ZoneData2);
 }
@@ -807,6 +815,10 @@ bool CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, boo
 {
 	switch(ValueType)
 	{
+		case OBJECT_VISIBILITY:
+			return GetObjectVisibility(SubPath);
+		case OBJECT_LOCKED:
+			return GetObjectLocked(SubPath);
 		case VISIBILITY:
 			return GetVisibility();
 	}
@@ -818,11 +830,40 @@ bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, boo
 {
 	switch(ValueType)
 	{
+		case OBJECT_VISIBILITY:
+			SetObjectVisibility(SubPath, Value);
+			return true;
+		case OBJECT_LOCKED:
+			SetObjectLocked(SubPath, Value);
+			return true;
 		case VISIBILITY:
 			SetVisibility(Value);
 			return true;
 	}
 	return CAsset::SetValue<bool>(ValueType, SubPath, Value);
+}
+
+template<>
+const char* CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, const char* DefaultValue) const
+{
+	switch(ValueType)
+	{
+		case OBJECT_NAME:
+			return GetObjectName(SubPath);
+	}
+	return CAsset::GetValue<const char*>(ValueType, SubPath, DefaultValue);
+}
+
+template<>
+bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, const char* Value)
+{
+	switch(ValueType)
+	{
+		case OBJECT_NAME:
+			SetObjectName(SubPath, Value);
+			return true;
+	}
+	return CAsset::SetValue<const char*>(ValueType, SubPath, Value);
 }
 
 template<>

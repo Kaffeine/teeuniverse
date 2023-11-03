@@ -34,8 +34,8 @@
 
 #include <shared/assets/asset.h>
 #include <cassert>
-#include <shared/tl/algorithm.h>
 #include <vector>
+#include <shared/tl/algorithm.h>
 
 class CAsset_Skeleton : public CAsset
 {

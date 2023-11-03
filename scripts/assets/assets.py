@@ -1914,6 +1914,9 @@ mapLayerQuads_quad.addMember("0.2.0", "Color3", TypeColor(), "1.0f")
 mapLayerQuads_quad.addMember("0.2.0", "AnimationPath", TypeAssetPath())
 mapLayerQuads_quad.addMember("0.2.2", "Color", TypeColor(), "1.0f")
 mapLayerQuads_quad.addMember("0.3.0", "AnimationOffset", TypeInt64(), "0")
+mapLayerQuads_quad.addMember("0.3.3", "Name", TypeString(128))
+mapLayerQuads_quad.addMember("0.3.3", "Visibility", TypeBool(), "true")
+mapLayerQuads_quad.addMember("0.3.3", "Locked", TypeBool(), "false")
 mapLayerQuads_quad.addPublicFunc([
 	"void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;",
 	"void GetDrawState(CAssetsManager* pAssetsManager, int64_t Time, vec4* pColor, int* pState) const;"
@@ -2274,6 +2277,9 @@ mapLayerObjects_object.addMember("0.2.0", "LineType", TypeInt32(), "LINETYPE_SHO
 mapLayerObjects_object.addMember("0.2.0", "OrthoTesselation", TypeInt32(), "1")
 mapLayerObjects_object.addMember("0.3.0", "AnimationPath", TypeAssetPath())
 mapLayerObjects_object.addMember("0.3.0", "AnimationOffset", TypeInt64(), "0")
+mapLayerObjects_object.addMember("0.3.3", "Name", TypeString(128))
+mapLayerObjects_object.addMember("0.3.3", "Visibility", TypeBool(), "true")
+mapLayerObjects_object.addMember("0.3.3", "Locked", TypeBool(), "false")
 mapLayerObjects_object.addPublicFunc([
 	"void GetTransform(CAssetsManager* pAssetsManager, float Time, matrix2x2* pMatrix, vec2* pPosition) const;",
 	"void GetDrawState(CAssetsManager* pAssetsManager, float Time, vec4* pColor, int* pState) const;"
@@ -2399,6 +2405,9 @@ mapZoneObjects_object.addMember("0.2.2", "ZoneIndex", TypeUInt8(), "1")
 mapZoneObjects_object.addMember("0.2.3", "ZoneFlags", TypeUInt32(), "0x0")
 mapZoneObjects_object.addMember("0.3.0", "AnimationPath", TypeAssetPath())
 mapZoneObjects_object.addMember("0.3.0", "AnimationOffset", TypeInt64(), "0")
+mapZoneObjects_object.addMember("0.3.3", "Name", TypeString(128))
+mapZoneObjects_object.addMember("0.3.3", "Visibility", TypeBool(), "true")
+mapZoneObjects_object.addMember("0.3.3", "Locked", TypeBool(), "false")
 mapZoneObjects_object.addMember("0.3.3", "ZoneData1", TypeInt32(), "0")
 mapZoneObjects_object.addMember("0.3.3", "ZoneData2", TypeInt32(), "0")
 mapZoneObjects_object.addPublicFunc([

@@ -52,6 +52,8 @@ CAsset_MapLayerQuads::CQuad::CQuad()
 	m_Color3 = 1.0f;
 	m_Color = 1.0f;
 	m_AnimationOffset = 0;
+	m_Visibility = true;
+	m_Locked = false;
 }
 
 CAsset_MapLayerQuads::CAsset_MapLayerQuads()
@@ -712,6 +714,9 @@ void CAsset_MapLayerQuads::CQuad::CTuaType_0_3_3::Read(CAssetsSaveLoadContext* p
 	pLoadingContext->ReadAssetPath(TuaType.m_AnimationPath, SysType.m_AnimationPath);
 	SysType.m_Color = pLoadingContext->ArchiveFile()->ReadColor(TuaType.m_Color);
 	SysType.m_AnimationOffset = pLoadingContext->ArchiveFile()->ReadInt64(TuaType.m_AnimationOffset);
+	SysType.m_Name = pLoadingContext->ArchiveFile()->GetString(TuaType.m_Name);
+	SysType.m_Visibility = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_Visibility);
+	SysType.m_Locked = pLoadingContext->ArchiveFile()->ReadBool(TuaType.m_Locked);
 }
 
 
@@ -766,6 +771,9 @@ void CAsset_MapLayerQuads::CQuad::CTuaType_0_3_3::Write(CAssetsSaveLoadContext* 
 	pLoadingContext->WriteAssetPath(SysType.m_AnimationPath, TuaType.m_AnimationPath);
 	TuaType.m_Color = pLoadingContext->ArchiveFile()->WriteColor(SysType.m_Color);
 	TuaType.m_AnimationOffset = pLoadingContext->ArchiveFile()->WriteInt64(SysType.m_AnimationOffset);
+	TuaType.m_Name = pLoadingContext->ArchiveFile()->AddString(SysType.m_Name.buffer());
+	TuaType.m_Visibility = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Visibility);
+	TuaType.m_Locked = pLoadingContext->ArchiveFile()->WriteBool(SysType.m_Locked);
 }
 
 void CAsset_MapLayerQuads::CTuaType_0_3_3::Write(CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads& SysType, CTuaType_0_3_3& TuaType)
@@ -845,6 +853,10 @@ bool CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, bool
 {
 	switch(ValueType)
 	{
+		case QUAD_VISIBILITY:
+			return GetQuadVisibility(SubPath);
+		case QUAD_LOCKED:
+			return GetQuadLocked(SubPath);
 		case VISIBILITY:
 			return GetVisibility();
 	}
@@ -856,11 +868,40 @@ bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, bool
 {
 	switch(ValueType)
 	{
+		case QUAD_VISIBILITY:
+			SetQuadVisibility(SubPath, Value);
+			return true;
+		case QUAD_LOCKED:
+			SetQuadLocked(SubPath, Value);
+			return true;
 		case VISIBILITY:
 			SetVisibility(Value);
 			return true;
 	}
 	return CAsset::SetValue<bool>(ValueType, SubPath, Value);
+}
+
+template<>
+const char* CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, const char* DefaultValue) const
+{
+	switch(ValueType)
+	{
+		case QUAD_NAME:
+			return GetQuadName(SubPath);
+	}
+	return CAsset::GetValue<const char*>(ValueType, SubPath, DefaultValue);
+}
+
+template<>
+bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, const char* Value)
+{
+	switch(ValueType)
+	{
+		case QUAD_NAME:
+			SetQuadName(SubPath, Value);
+			return true;
+	}
+	return CAsset::SetValue<const char*>(ValueType, SubPath, Value);
 }
 
 template<>

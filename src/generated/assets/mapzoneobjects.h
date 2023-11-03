@@ -33,11 +33,11 @@
 #define __CLIENT_ASSETS_MAPZONEOBJECTS__
 
 #include <shared/assets/asset.h>
-#include <cassert>
-#include <shared/tl/algorithm.h>
-#include <shared/assets/assetpath.h>
-#include <vector>
 #include <shared/geometry/bezier.h>
+#include <shared/tl/algorithm.h>
+#include <cassert>
+#include <vector>
+#include <shared/assets/assetpath.h>
 
 class CAsset_MapZoneObjects : public CAsset
 {
@@ -102,6 +102,9 @@ public:
 		OBJECT_ZONEFLAGS,
 		OBJECT_ANIMATIONPATH,
 		OBJECT_ANIMATIONOFFSET,
+		OBJECT_NAME,
+		OBJECT_VISIBILITY,
+		OBJECT_LOCKED,
 		OBJECT_ZONEDATA1,
 		OBJECT_ZONEDATA2,
 		OBJECT,
@@ -354,6 +357,9 @@ public:
 			tua_uint32 m_ZoneFlags;
 			CAssetPath::CTuaType m_AnimationPath;
 			tua_int64 m_AnimationOffset;
+			tua_stringid m_Name;
+			tua_uint8 m_Visibility;
+			tua_uint8 m_Locked;
 			tua_int32 m_ZoneData1;
 			tua_int32 m_ZoneData2;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapZoneObjects::CObject& SysType);
@@ -372,6 +378,9 @@ public:
 		uint32_t m_ZoneFlags{};
 		CAssetPath m_AnimationPath{};
 		int64_t m_AnimationOffset{};
+		_dynamic_string<128> m_Name{};
+		bool m_Visibility{};
+		bool m_Locked{};
 		int m_ZoneData1{};
 		int m_ZoneData2{};
 	
@@ -497,6 +506,12 @@ public:
 		
 		int64_t GetAnimationOffset() const { return m_AnimationOffset; }
 		
+		const char* GetName() const { return m_Name.buffer(); }
+		
+		bool GetVisibility() const { return m_Visibility; }
+		
+		bool GetLocked() const { return m_Locked; }
+		
 		int GetZoneData1() const { return m_ZoneData1; }
 		
 		int GetZoneData2() const { return m_ZoneData2; }
@@ -602,6 +617,12 @@ public:
 		void SetAnimationPath(const CAssetPath& Value) { m_AnimationPath = Value; }
 		
 		void SetAnimationOffset(int64_t Value) { m_AnimationOffset = Value; }
+		
+		void SetName(const char* Value) { m_Name = Value; }
+		
+		void SetVisibility(bool Value) { m_Visibility = Value; }
+		
+		void SetLocked(bool Value) { m_Locked = Value; }
 		
 		void SetZoneData1(int Value) { m_ZoneData1 = Value; }
 		
@@ -956,6 +977,27 @@ public:
 		else return 0;
 	}
 	
+	const char* GetObjectName(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetName();
+		else return NULL;
+	}
+	
+	bool GetObjectVisibility(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetVisibility();
+		else return false;
+	}
+	
+	bool GetObjectLocked(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Object.size())
+			return m_Object[SubPath.GetId()].GetLocked();
+		else return false;
+	}
+	
 	int GetObjectZoneData1(const CSubPath& SubPath) const
 	{
 		if(SubPath.GetId() < m_Object.size())
@@ -1142,6 +1184,24 @@ public:
 			m_Object[SubPath.GetId()].SetAnimationOffset(Value);
 	}
 	
+	void SetObjectName(const CSubPath& SubPath, const char* Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetName(Value);
+	}
+	
+	void SetObjectVisibility(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetVisibility(Value);
+	}
+	
+	void SetObjectLocked(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Object.size())
+			m_Object[SubPath.GetId()].SetLocked(Value);
+	}
+	
 	void SetObjectZoneData1(const CSubPath& SubPath, int Value)
 	{
 		if(SubPath.GetId() < m_Object.size())
@@ -1210,6 +1270,8 @@ template<> int64_t CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath
 template<> bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value);
 template<> bool CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const;
 template<> bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, bool Value);
+template<> const char* CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, const char* DefaultValue) const;
+template<> bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, const char* Value);
 template<> float CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, float DefaultValue) const;
 template<> bool CAsset_MapZoneObjects::SetValue(int ValueType, const CSubPath& SubPath, float Value);
 template<> vec2 CAsset_MapZoneObjects::GetValue(int ValueType, const CSubPath& SubPath, vec2 DefaultValue) const;

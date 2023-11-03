@@ -33,8 +33,8 @@
 #define __CLIENT_ASSETS_IMAGE__
 
 #include <shared/assets/asset.h>
-#include <shared/tl/array2d.h>
 #include <shared/graphics.h>
+#include <shared/tl/array2d.h>
 
 class CAsset_Image : public CAsset
 {

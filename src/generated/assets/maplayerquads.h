@@ -34,9 +34,9 @@
 
 #include <shared/assets/asset.h>
 #include <cassert>
-#include <shared/tl/algorithm.h>
-#include <shared/assets/assetpath.h>
 #include <vector>
+#include <shared/assets/assetpath.h>
+#include <shared/tl/algorithm.h>
 
 class CAsset_MapLayerQuads : public CAsset
 {
@@ -106,6 +106,9 @@ public:
 		QUAD_ANIMATIONPATH,
 		QUAD_COLOR,
 		QUAD_ANIMATIONOFFSET,
+		QUAD_NAME,
+		QUAD_VISIBILITY,
+		QUAD_LOCKED,
 		QUAD,
 		VISIBILITY,
 		LEVELOFDETAIL,
@@ -297,6 +300,9 @@ public:
 			CAssetPath::CTuaType m_AnimationPath;
 			tua_uint32 m_Color;
 			tua_int64 m_AnimationOffset;
+			tua_stringid m_Name;
+			tua_uint8 m_Visibility;
+			tua_uint8 m_Locked;
 			static void Read(class CAssetsSaveLoadContext* pLoadingContext, const CTuaType_0_3_3& TuaType, CAsset_MapLayerQuads::CQuad& SysType);
 			static void Write(class CAssetsSaveLoadContext* pLoadingContext, const CAsset_MapLayerQuads::CQuad& SysType, CTuaType_0_3_3& TuaType);
 		};
@@ -321,6 +327,9 @@ public:
 		CAssetPath m_AnimationPath{};
 		vec4 m_Color{};
 		int64_t m_AnimationOffset{};
+		_dynamic_string<128> m_Name{};
+		bool m_Visibility{};
+		bool m_Locked{};
 	
 	public:
 		void GetTransform(CAssetsManager* pAssetsManager, int64_t Time, matrix2x2* pMatrix, vec2* pPosition) const;
@@ -402,6 +411,12 @@ public:
 		
 		int64_t GetAnimationOffset() const { return m_AnimationOffset; }
 		
+		const char* GetName() const { return m_Name.buffer(); }
+		
+		bool GetVisibility() const { return m_Visibility; }
+		
+		bool GetLocked() const { return m_Locked; }
+		
 		void SetPivot(vec2 Value) { m_Pivot = Value; }
 		
 		void SetPivotX(float Value) { m_Pivot.x = Value; }
@@ -477,6 +492,12 @@ public:
 		void SetColor(vec4 Value) { m_Color = Value; }
 		
 		void SetAnimationOffset(int64_t Value) { m_AnimationOffset = Value; }
+		
+		void SetName(const char* Value) { m_Name = Value; }
+		
+		void SetVisibility(bool Value) { m_Visibility = Value; }
+		
+		void SetLocked(bool Value) { m_Locked = Value; }
 		
 		void AssetPathOperation(const CAssetPath::COperation& Operation)
 		{
@@ -884,6 +905,27 @@ public:
 		else return 0;
 	}
 	
+	const char* GetQuadName(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			return m_Quad[SubPath.GetId()].GetName();
+		else return NULL;
+	}
+	
+	bool GetQuadVisibility(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			return m_Quad[SubPath.GetId()].GetVisibility();
+		else return false;
+	}
+	
+	bool GetQuadLocked(const CSubPath& SubPath) const
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			return m_Quad[SubPath.GetId()].GetLocked();
+		else return false;
+	}
+	
 	bool GetVisibility() const { return m_Visibility; }
 	
 	int GetLevelOfDetail() const { return m_LevelOfDetail; }
@@ -1130,6 +1172,24 @@ public:
 			m_Quad[SubPath.GetId()].SetAnimationOffset(Value);
 	}
 	
+	void SetQuadName(const CSubPath& SubPath, const char* Value)
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			m_Quad[SubPath.GetId()].SetName(Value);
+	}
+	
+	void SetQuadVisibility(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			m_Quad[SubPath.GetId()].SetVisibility(Value);
+	}
+	
+	void SetQuadLocked(const CSubPath& SubPath, bool Value)
+	{
+		if(SubPath.GetId() < m_Quad.size())
+			m_Quad[SubPath.GetId()].SetLocked(Value);
+	}
+	
 	void SetVisibility(bool Value) { m_Visibility = Value; }
 	
 	void SetLevelOfDetail(int Value) { m_LevelOfDetail = Value; }
@@ -1171,6 +1231,8 @@ template<> int64_t CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath&
 template<> bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, int64_t Value);
 template<> bool CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, bool DefaultValue) const;
 template<> bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, bool Value);
+template<> const char* CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, const char* DefaultValue) const;
+template<> bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, const char* Value);
 template<> float CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, float DefaultValue) const;
 template<> bool CAsset_MapLayerQuads::SetValue(int ValueType, const CSubPath& SubPath, float Value);
 template<> vec2 CAsset_MapLayerQuads::GetValue(int ValueType, const CSubPath& SubPath, vec2 DefaultValue) const;
