@@ -38,13 +38,12 @@ public:
 	};
 
 private:
-	uint32_t m_Id;
-	uint16_t m_PackageId; //(packageid == 0 means self)
-	uint16_t m_Type; //(type == 0 means null)
+	uint32_t m_Id{};
+	uint16_t m_PackageId{}; //(packageid == 0 means self)
+	uint16_t m_Type{}; //(type == 0 means null)
 
 public:
-	CAssetPath() :
-		m_Id(0), m_PackageId(0), m_Type(0) {}
+	CAssetPath() = default;
 	CAssetPath(uint16_t Type, uint16_t PackageId, uint32_t Id) :
 		m_Id(Id), m_PackageId(PackageId), m_Type(Type + 1) {}
 
