@@ -2725,6 +2725,11 @@ const char* CGuiEditor::GetItemName(const CAssetPath& AssetPath, const CSubPath&
 		return nullptr;
 }
 
+void CGuiEditor::OnEditedPackageClosed()
+{
+	SetEditedPackage(-1);
+}
+
 void CGuiEditor::SetEditedPackage(int PackageId)
 {
 	m_EditedPackageId = PackageId;

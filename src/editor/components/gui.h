@@ -322,6 +322,7 @@ public:
 	CAssetPath GetItemIcon(const CAssetPath& AssetPath, const CSubPath& SubPath);
 	const char* GetItemName(const CAssetPath& AssetPath, const CSubPath& SubPath);
 	
+	void OnEditedPackageClosed();
 	void SetEditedPackage(int PackageId);
 	void SetEditedAsset(const CAssetPath& Path, const CSubPath& SubPath);
 	void AddEditedSubPath(const CSubPath& SubPath);
