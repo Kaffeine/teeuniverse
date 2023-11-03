@@ -33,9 +33,9 @@
 #define __CLIENT_ASSETS_MAPLAYERTILES__
 
 #include <shared/assets/asset.h>
-#include <shared/tl/array2d.h>
-#include <shared/math/vector.h>
 #include <shared/assets/assetpath.h>
+#include <shared/math/vector.h>
+#include <shared/tl/array2d.h>
 
 class CAsset_MapLayerTiles : public CAsset
 {

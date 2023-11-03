@@ -33,8 +33,8 @@
 #define __CLIENT_ASSETS_GUIRECTSTYLE__
 
 #include <shared/assets/asset.h>
-#include <shared/math/vector.h>
 #include <shared/assets/assetpath.h>
+#include <shared/math/vector.h>
 
 class CAsset_GuiRectStyle : public CAsset
 {

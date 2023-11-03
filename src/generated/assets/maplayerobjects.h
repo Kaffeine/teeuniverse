@@ -34,10 +34,10 @@
 
 #include <shared/assets/asset.h>
 #include <cassert>
-#include <vector>
-#include <shared/assets/assetpath.h>
-#include <shared/geometry/bezier.h>
 #include <shared/tl/algorithm.h>
+#include <shared/assets/assetpath.h>
+#include <vector>
+#include <shared/geometry/bezier.h>
 
 class CAsset_MapLayerObjects : public CAsset
 {

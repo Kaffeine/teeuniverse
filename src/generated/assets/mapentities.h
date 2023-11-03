@@ -34,9 +34,9 @@
 
 #include <shared/assets/asset.h>
 #include <cassert>
-#include <vector>
-#include <shared/assets/assetpath.h>
 #include <shared/tl/algorithm.h>
+#include <shared/assets/assetpath.h>
+#include <vector>
 
 class CAsset_MapEntities : public CAsset
 {

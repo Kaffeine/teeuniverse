@@ -33,8 +33,8 @@
 #define __CLIENT_ASSETS_MAPZONETILES__
 
 #include <shared/assets/asset.h>
-#include <shared/tl/array2d.h>
 #include <shared/assets/assetpath.h>
+#include <shared/tl/array2d.h>
 
 class CAsset_MapZoneTiles : public CAsset
 {
