@@ -36,7 +36,7 @@ protected:
 protected:
 	void MouseClickAction() override
 	{
-		m_pComboBox->SetValue(m_Value);
+		m_pComboBox->SetIndex(m_Value);
 		m_pPopup->Close();
 	}	
 
@@ -107,7 +107,7 @@ void CComboBox::Update(bool ParentEnabled)
 {
 	RefreshComboBoxStyle();
 	
-	int Value = GetValue();
+	int Value = GetIndex();
 	if(Value >= 0 && Value < static_cast<int>(m_EnumDescriptions.size()))
 	{
 		SetText(m_EnumDescriptions[Value].m_Description);

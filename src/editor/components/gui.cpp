@@ -697,23 +697,23 @@ public:
 class COpenSavePackageDialog_FormatComboBox : public gui::CComboBox
 {
 protected:
-	int* m_pValueContainer;
+	int* m_pIndexContainer;
 	
 protected:
-	int GetValue() const override
+	int GetIndex() const override
 	{
-		return *m_pValueContainer;
+		return *m_pIndexContainer;
 	}
 	
-	void SetValue(int Value) override
+	void SetIndex(int Value) override
 	{
-		*m_pValueContainer = Value;
+		*m_pIndexContainer = Value;
 	}
 	
 public:
 	COpenSavePackageDialog_FormatComboBox(CGui* pContext, int* pValueContainer) :
 		gui::CComboBox(pContext),
-		m_pValueContainer(pValueContainer)
+		m_pIndexContainer(pValueContainer)
 	{
 		
 	}

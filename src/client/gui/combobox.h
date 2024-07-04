@@ -54,8 +54,8 @@ public:
 	
 	virtual void Update(bool ParentEnabled);
 	
-	virtual int GetValue() const = 0;
-	virtual void SetValue(int Value) = 0;
+	virtual int GetIndex() const = 0;
+	virtual void SetIndex(int Value) = 0;
 };
 
 }

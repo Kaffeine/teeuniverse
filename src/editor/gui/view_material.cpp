@@ -69,12 +69,12 @@ protected:
 	int* m_pInteger;
 
 protected:
-	int GetValue() const override
+	int GetIndex() const override
 	{
 		return *m_pInteger;
 	}
 	
-	void SetValue(int Value) override
+	void SetIndex(int Value) override
 	{
 		*m_pInteger = Value;
 	}

@@ -46,7 +46,7 @@ protected:
 	CGuiEditor* m_pAssetsEditor;
 	int m_Member;
 	
-	int GetValue() const override
+	int GetIndex() const override
 	{
 		return m_pAssetsEditor->AssetsManager()->GetAssetValue<int>(
 			m_pAssetsEditor->GetEditedAssetPath(),
@@ -56,7 +56,7 @@ protected:
 		);
 	}
 	
-	void SetValue(int Value) override
+	void SetIndex(int Value) override
 	{
 		int Token = AssetsManager()->GenerateToken();
 		for(unsigned int i=0; i<m_pAssetsEditor->GetEditedSubPathes().size(); i++)
