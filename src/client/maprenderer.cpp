@@ -453,11 +453,12 @@ void CMapRenderer::RenderZoneIntData(CAssetPath ZonePath, CAssetPath ZoneTypePat
 	
 	float TileSize = 32.0f*m_CameraZoom;
 
+	vec2 Pos = TilePosToMapPos(vec2(pZoneLayer->GetPositionX(), pZoneLayer->GetPositionY()));
 	//Draw tile layer
 	vec2 MinMapPos = ScreenPosToMapPos(vec2(GetCanvas().x, GetCanvas().y));
 	vec2 MaxMapPos = ScreenPosToMapPos(vec2(GetCanvas().x + GetCanvas().w, GetCanvas().y + GetCanvas().h));
-	vec2 MinTilePos = MapPosToTilePos(MinMapPos);
-	vec2 MaxTilePos = MapPosToTilePos(MaxMapPos);
+	vec2 MinTilePos = MapPosToTilePos(MinMapPos - Pos);
+	vec2 MaxTilePos = MapPosToTilePos(MaxMapPos - Pos);
 	int MinX = clamp((int)MinTilePos.x-1, 0, Data.get_width()-1);
 	int MaxX = clamp((int)MaxTilePos.x+1, 0, Data.get_width()-1);
 	int MinY = clamp((int)MinTilePos.y-1, 0, Data.get_height()-1);
@@ -498,7 +499,7 @@ void CMapRenderer::RenderZoneIntData(CAssetPath ZonePath, CAssetPath ZoneTypePat
 				int Value = Data.get_clamp(i, j, d);
 				if(Value != NullValue)
 				{
-					vec2 TilePos = MapPosToScreenPos(vec2(i*32.0f, j*32.0f));
+					vec2 TilePos = MapPosToScreenPos(Pos + vec2(i*32.0f, j*32.0f));
 					
 					dynamic_string Buffer;
 					Localization()->FormatInteger(Buffer, nullptr, Value);
