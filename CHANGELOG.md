@@ -1,5 +1,37 @@
 # Change Log
 
+## [0.3.3] - 2024-07-10
+### Added
+- Inspector displays zone subtype name instead of index
+- Inspector displays the TilingMaterial name in zone converter options
+- Inspector now highlights the tiling material rule if its condition selected
+- Inspector now highlights the object and quad list item if its vertex selected
+- Tiling Material Editor now adds 'NOTINDEX' condition on click with Shift
+- Tiling Material Editor now auto-select newly added condition
+- Text editors support Ctrl+Left and Ctrl+Right shortcuts
+- Objects drawer support grid alignment
+- Heart and Armor pickups enabled for Infclass maps (require InfclassR-v1.5.0)
+- Implemented half-step alignment for object pos and quad pivot pos
+- Added finer (up to 1/8 of tile) alignment precision for higher camera zoom factor
+- Added a button to duplicate Animation
+- Added an option to save a package in previous v0.3.0 format
+
+### Changed
+- Changed .tup format to v0.3.3 (prev format version was v0.3.0):
+  - Zone Objects got Data1 and Data2 (can be used e.g. to add Damage and Interval for icDamage zones)
+  - Map Entities got Animation and Pivon properties
+  - Quads and Objects got 'name', 'visibility', and 'locked' properties (!only on tup format level!)
+- Active SubPackage (e.g. in-package map or an animation) now tracked per TeeUniverse Package
+
+### Fixed
+- Tiling Material Editor now auto-select newly added condition
+- Inspector keeps selection on RMB clicked
+- Fixed focus changed on Alt+Tab
+- Fixed exported map could contained uninitialized data
+- Fixed vertical and horizontal flip actions named controversially
+- Fixed Map Crop tool corrupted bottom and right edges on top left corner moved
+- Fixed Map Crop tool corrupted layer data
+
 ## [0.3.2] - 2022-03-13
 ### Added
 - 'config_directory.bat' for windows
