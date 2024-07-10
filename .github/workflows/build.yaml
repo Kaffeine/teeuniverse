@@ -22,7 +22,7 @@ jobs:
             LDFLAGS: /WX
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         submodules: true
 
@@ -48,7 +48,7 @@ jobs:
         mv ${{ matrix.package-file }} artifacts
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: teeuniverse-${{ matrix.os }}
         path: release/artifacts
