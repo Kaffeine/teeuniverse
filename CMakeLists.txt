@@ -20,7 +20,6 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(TeeUniverse
-	# Preliminary bump before incompatible changes released
 	VERSION 0.3.3
 )
 
