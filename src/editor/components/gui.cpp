@@ -987,7 +987,7 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 	
 		pLayout->AddSeparator();
 	}
-	else if(m_Format == FORMAT_PACKAGE)
+	else if((m_Format == FORMAT_PACKAGE) && (Mode == MODE_SAVE))
 	{
 		gui::CHListLayout* pHList = new gui::CHListLayout(Context());
 		pLayout->Add(pHList, false);
