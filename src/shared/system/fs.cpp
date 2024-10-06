@@ -33,6 +33,8 @@
 
 #include "fs.h"
 
+#include <shared/system/debug.h>
+
 #include <cstdio>
 
 /* FOREIGN CODE BEGIN: TeeWorlds **************************************/
@@ -308,11 +310,54 @@ bool fs_storage_path(const char *appname, dynamic_string& result)
 	result.append("/Library/Application Support/");
 	result.append(appname);
 #else
-	result.append("/.");
-	
-	//by conviension, configuration folders on linux are lower-case
-	int CursorPos = result.length();
-	result.append(appname);
+	bool UseXDG = true;
+	if (str_comp(appname, "Teeworlds") == 0)
+	{
+		UseXDG = false;
+	}
+	else if (str_comp(appname, "TeeUniverse") == 0)
+	{
+		constexpr std::size_t IO_MAX_PATH_LENGTH = 512;
+		char aFallbackUserdir[IO_MAX_PATH_LENGTH];
+		str_format(aFallbackUserdir, sizeof(aFallbackUserdir), "%s/.teeuniverse", home, appname);
+		if (fs_is_dir(aFallbackUserdir))
+		{
+			UseXDG = false;
+		}
+	}
+
+	int CursorPos{};
+	if(UseXDG)
+	{
+		char *data_home = getenv("XDG_DATA_HOME");
+		if(data_home)
+		{
+			if(!str_utf8_check(data_home))
+			{
+				debug::WarningStream("filesystem") << "ERROR: the XDG_DATA_HOME environment variable contains invalid UTF-8" << std::endl;
+				return false;
+			}
+			result.clear();
+			result.append(data_home);
+			result.append("/");
+			CursorPos = result.length();
+			result.append(appname);
+		}
+		else
+		{
+			result.append("/.local/share/");
+			CursorPos = result.length();
+			result.append(appname);
+		}
+	}
+	else
+	{
+		result.append("/.");
+		CursorPos = result.length();
+		result.append(appname);
+	}
+
+	//by convension, configuration folders on linux are lower-case
 	char* pChar = result.buffer() + CursorPos;
 	while(*pChar)
 	{
