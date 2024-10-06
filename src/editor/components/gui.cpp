@@ -919,15 +919,40 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 			pPlaces->AddSeparator();
 			{
 				Buffer.clear();
-				fs_storage_path("teeworlds", Buffer);
+				fs_storage_path("Teeworlds", Buffer);
 				Buffer.append("/maps");
-				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("TeeWorlds Maps"), Buffer.buffer(), false), false);
+				if(fs_is_dir(Buffer.buffer()))
+				{
+					pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("TeeWorlds Maps"), Buffer.buffer(), false));
+				}
 			}
 			{
 				Buffer.clear();
-				fs_storage_path("teeworlds", Buffer);
+				fs_storage_path("Teeworlds", Buffer);
 				Buffer.append("/downloadedmaps");
-				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("TeeWorlds Downloaded Maps"), Buffer.buffer(), false), false);
+				if(fs_is_dir(Buffer.buffer()))
+				{
+					pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("TeeWorlds Downloaded Maps"), Buffer.buffer(), false));
+				}
+			}
+			pPlaces->AddSeparator();
+			{
+				Buffer.clear();
+				fs_storage_path("DDNet", Buffer);
+				Buffer.append("/maps");
+				if(fs_is_dir(Buffer.buffer()))
+				{
+					pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("DDNet Maps"), Buffer.buffer(), false));
+				}
+			}
+			{
+				Buffer.clear();
+				fs_storage_path("DDNet", Buffer);
+				Buffer.append("/downloadedmaps");
+				if(fs_is_dir(Buffer.buffer()))
+				{
+					pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("DDNet Downloaded Maps"), Buffer.buffer(), false));
+				}
 			}
 		}
 		pPlaces->AddSeparator();
